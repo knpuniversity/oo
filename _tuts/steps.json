@@ -136,10 +136,15 @@
             "description": null
         },
         {
+            "id": "property-visibility-making-all-other-properties-private",
+            "name": "Property Visibility: Making all other properties private",
+            "description": null
+        },
+        {
             "id": "fixing-battle-php-dumping-ship1-and-ship2",
             "name": "Fixing battle.php: Dumping $ship1 and $ship2",
             "description": null
         }
     ],
-    "sha": "47ca371a7ed4a2cf8c59022a119b457e4dfb3a8a"
+    "sha": "48eda2cfa1e85d4abeb5fd67d965d3fd018e56e2"
 }
