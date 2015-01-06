@@ -74,7 +74,12 @@
             "id": "multiple-objects-adding-doesgivenshiphavemorestrength",
             "name": "Multiple Objects: Adding doesGivenShipHaveMoreStrength()",
             "description": null
+        },
+        {
+            "id": "organization-moving-ship-class-to-ship-php",
+            "name": "Organization: Moving Ship class to Ship.php",
+            "description": null
         }
     ],
-    "sha": "069e180e8350233c98bdefb9552d52aa7b296e92"
+    "sha": "0b2530b9ae66d7b8421b5c2de8a62df844743213"
 }
