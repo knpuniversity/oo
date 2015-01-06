@@ -4,7 +4,7 @@ function get_ships()
 {
     return array(
         'starfighter' => array(
-            'name' => 'Jedi Starfighter (Delta-7 Aethersprite-class light interceptor)',
+            'name' => 'Jedi Starfighter',
             'weapon_power' => 5,
             'jedi_factor' => 15,
             'strength' => 30,

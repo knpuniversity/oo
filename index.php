@@ -30,6 +30,8 @@ if (isset($_GET['error'])) {
 
            <!-- Bootstrap -->
            <link href="css/bootstrap.min.css" rel="stylesheet">
+           <link href="css/style.css" rel="stylesheet">
+           <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,6 +53,7 @@ if (isset($_GET['error'])) {
                 <h1>OO Battleships of Space</h1>
             </div>
             <table class="table table-hover">
+                <caption><i class="fa fa-rocket"></i> These ships are ready for their next Mission</caption>
                 <thead>
                     <tr>
                         <th>Ship</th>
@@ -70,29 +73,33 @@ if (isset($_GET['error'])) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-            <form method="POST" action="/battle.php">
-                Battle
-                <input type="text" name="ship1_quantity" value="1" />
-                <select name="ship1_name">
-                    <option value="">-- Choose a Ship--</option>
-                    <?php foreach ($ships as $key => $ship): ?>
-                        <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                against
-
-                <input type="text" name="ship2_quantity" value="1" />
-                <select name="ship2_name">
-                    <option value="">-- Choose a Ship--</option>
-                    <?php foreach ($ships as $key => $ship): ?>
-                        <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <button type="submit">Battle!</button>
-            </form>
+            
+            <div class="battle-box center-block border">
+                <div>
+                    <form method="POST" action="/battle.php">
+                        <h2 class="text-center">The Mission</h2>
+                        <input class="center-block form-control text-field" type="text" name="ship1_quantity" placeholder="Enter Number of Ships" />
+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                            <option value="">Choose a Ship</option>
+                            <?php foreach ($ships as $key => $ship): ?>
+                                <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <br>
+                        <p class="text-center">AGAINST</p>
+                        <br>
+                        <input class="center-block form-control text-field" type="text" name="ship2_quantity" placeholder="Enter Number of Ships" />
+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                            <option value="">Choose a Ship</option>
+                            <?php foreach ($ships as $key => $ship): ?>
+                                <option value="<?php echo $key; ?>"><?php echo $ship['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <br>
+                        <button class="btn btn-md btn-danger center-block" type="submit">Engage</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
