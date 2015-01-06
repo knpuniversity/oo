@@ -144,7 +144,27 @@
             "id": "fixing-battle-php-dumping-ship1-and-ship2",
             "name": "Fixing battle.php: Dumping $ship1 and $ship2",
             "description": null
+        },
+        {
+            "id": "fixing-battle-php-removing-array-type-hint",
+            "name": "Fixing battle.php: Removing array type-hint",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-starting-to-use-correct-syntax",
+            "name": "Fixing battle.php: Starting to use correct syntax",
+            "description": null
+        },
+        {
+            "id": "type-hinting-pass-bad-type-of-argument-to-battle",
+            "name": "Type-Hinting: Pass bad type of argument to battle()",
+            "description": null
+        },
+        {
+            "id": "type-hinting-type-hint-the-arguments-to-battle",
+            "name": "Type-Hinting: Type-hint the arguments to Battle",
+            "description": null
         }
     ],
-    "sha": "13abdf38e0da227744cdcabd9531e2256ab95474"
+    "sha": "9dad364f56b5c5977dbc179848386fad7e927248"
 }
