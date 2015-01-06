@@ -1,0 +1,32 @@
+diff --git a/functions.php b/functions.php
+index 94677c2..b22141b 100644
+--- a/functions.php
++++ b/functions.php
+@@ -13,6 +13,27 @@ function get_ships()
+     $ship1->strength = 30;
+     $ships['starfighter'] = $ship1;
+ 
++    $ship2 = new Ship();
++    $ship2->name = 'CloakShape Fighter';
++    $ship2->weaponPower = 2;
++    $ship2->jediFactor = 2;
++    $ship2->strength = 70;
++    $ships['cloakshape_fighter'] = $ship2;
++
++    $ship3 = new Ship();
++    $ship3->name = 'Super Star Destroyer';
++    $ship3->weaponPower = 70;
++    $ship3->jediFactor = 0;
++    $ship3->strength = 500;
++    $ships['super_star_destroyer'] = $ship3;
++
++    $ship4 = new Ship();
++    $ship4->name = 'RZ-1 A-wing interceptor';
++    $ship4->weaponPower = 4;
++    $ship4->jediFactor = 4;
++    $ship4->strength = 50;
++    $ships['rz1_a_wing_interceptor'] = $ship4;
++
+     return $ships;
+ 
+     /*

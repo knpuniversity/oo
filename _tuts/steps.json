@@ -104,7 +104,42 @@
             "id": "using-objects-call-getnameandspecs-for-options",
             "name": "Using Objects: Call getNameAndSpecs for options",
             "description": null
+        },
+        {
+            "id": "using-objects-creating-the-other-3-ships",
+            "name": "Using Objects: Creating the other 3 Ships",
+            "description": null
+        },
+        {
+            "id": "property-visibility-setting-a-bad-strength",
+            "name": "Property Visibility: Setting a bad strength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-making-strength-private",
+            "name": "Property Visibility: Making strength private",
+            "description": null
+        },
+        {
+            "id": "property-visibility-adding-setstrength-and-getstrength",
+            "name": "Property Visibility: adding setStrength and getStrength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-adding-is-numeric-check-in-setstrength",
+            "name": "Property Visibility: Adding is_numeric check in setStrength",
+            "description": null
+        },
+        {
+            "id": "property-visibility-putting-back-good-strength-value",
+            "name": "Property Visibility: Putting back good strength value",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-dumping-ship1-and-ship2",
+            "name": "Fixing battle.php: Dumping $ship1 and $ship2",
+            "description": null
         }
     ],
-    "sha": "4328eaa0e04b7728008a6d03cef7dd67808b412d"
+    "sha": "47ca371a7ed4a2cf8c59022a119b457e4dfb3a8a"
 }
