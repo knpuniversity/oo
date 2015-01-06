@@ -1,0 +1,14 @@
+diff --git a/play.php b/play.php
+index a5cb1d9..7e15df0 100644
+--- a/play.php
++++ b/play.php
+@@ -26,6 +26,9 @@ class Ship
+     }
+ }
+ 
++/**
++ * @param Ship $someShip
++ */
+ function printShipSummary($someShip)
+ {
+     echo 'Ship Name: '.$someShip->getName();

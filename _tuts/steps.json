@@ -54,7 +54,22 @@
             "id": "method-basics-adding-gettacticaldescription",
             "name": "Method Basics: Adding getTacticalDescription()",
             "description": null
+        },
+        {
+            "id": "multiple-objects-adding-helper-printshipsummary",
+            "name": "Multiple Objects: Adding helper printShipSummary()",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-adding-phpdoc-for-ship-argument",
+            "name": "Multiple Objects: Adding PHPDoc for Ship argument",
+            "description": null
+        },
+        {
+            "id": "multiple-objects-create-a-second-ship",
+            "name": "Multiple Objects: Create a second Ship",
+            "description": null
         }
     ],
-    "sha": "a32ca0cad3257751080d42aff4e28ff885af5fa2"
+    "sha": "5b33fe791e2850d96ff656a26c0af1848aae6bd0"
 }
