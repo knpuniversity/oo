@@ -1,0 +1,35 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "class-basics-create-play-php-file",
+            "name": "Class Basics: Create play.php file",
+            "description": null
+        },
+        {
+            "id": "class-basics-create-the-class",
+            "name": "Class Basics: Create the class",
+            "description": null
+        },
+        {
+            "id": "class-basics-instantiate",
+            "name": "Class Basics: Instantiate",
+            "description": null
+        },
+        {
+            "id": "class-basics-adding-a-property",
+            "name": "Class Basics: Adding a property",
+            "description": null
+        },
+        {
+            "id": "class-basics-changing-the-property",
+            "name": "Class Basics: Changing the property",
+            "description": null
+        }
+    ],
+    "sha": "14d4ba1531e46222d1b7de2745d443542621c345"
+}
