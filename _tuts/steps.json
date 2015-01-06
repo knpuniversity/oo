@@ -164,7 +164,32 @@
             "id": "type-hinting-type-hint-the-arguments-to-battle",
             "name": "Type-Hinting: Type-hint the arguments to Battle",
             "description": null
+        },
+        {
+            "id": "fixing-battle-php-fixing-syntax-in-battle",
+            "name": "Fixing battle.php: Fixing syntax in battle()",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-dumping-outcome-to-see-objects",
+            "name": "Fixing battle.php: Dumping $outcome to see objects",
+            "description": null
+        },
+        {
+            "id": "fixing-battle-php-finishing-object-syntax-in-battle-php",
+            "name": "Fixing battle.php: Finishing object syntax in battle.php",
+            "description": null
+        },
+        {
+            "id": "constructor-adding-it-printing-something",
+            "name": "Constructor: Adding it, printing something",
+            "description": null
+        },
+        {
+            "id": "constructor-setting-underrepair-and-adding-an-isfunctional-method-that-we-use",
+            "name": "Constructor: Setting underRepair and adding an isFunctional() method that we use",
+            "description": null
         }
     ],
-    "sha": "9dad364f56b5c5977dbc179848386fad7e927248"
+    "sha": "2e17c6f14a13e6169e92f0be8b2e5ac6600b33e8"
 }
