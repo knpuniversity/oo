@@ -1,8 +1,8 @@
 diff --git a/play.php b/play.php
-index c2c432e..a5cb1d9 100644
+index 6c9619e..a3eff60 100644
 --- a/play.php
 +++ b/play.php
-@@ -26,14 +26,20 @@ class Ship
+@@ -32,14 +32,20 @@ class Ship
      }
  }
  
@@ -10,7 +10,7 @@ index c2c432e..a5cb1d9 100644
 +{
 +    echo 'Ship Name: '.$someShip->getName();
 +    echo '<hr/>';
-+    echo 'Ship Description: '.$someShip->getTacticalDescription();
++    echo 'Ship Description: '.$someShip->getNameAndSpecs();
 +    echo '<hr/>';
 +    $someShip->sayHello();
 +}
@@ -24,7 +24,7 @@ index c2c432e..a5cb1d9 100644
  
 -echo 'Ship Name: '.$myShip->getName();
 -echo '<hr/>';
--echo 'Ship Description: '.$myShip->getTacticalDescription();
+-echo 'Ship Description: '.$myShip->getNameAndSpecs();
 -echo '<hr/>';
 -$myShip->sayHello();
 +printShipSummary($myShip);

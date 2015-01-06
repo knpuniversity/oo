@@ -1,9 +1,9 @@
 diff --git a/lib/Ship.php b/lib/Ship.php
 new file mode 100644
-index 0000000..bf875c7
+index 0000000..ddb45e3
 --- /dev/null
 +++ b/lib/Ship.php
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,39 @@
 +<?php
 +
 +class Ship
@@ -26,9 +26,15 @@ index 0000000..bf875c7
 +        return $this->name;
 +    }
 +
-+    public function getTacticalDescription()
++    public function getNameAndSpecs()
 +    {
-+        return 'Weaponry: '.$this->weaponPower.', Strength: '.$this->strength;
++        return sprintf(
++            '%s (w:%s, j:%s, s:%s)',
++            $this->name,
++            $this->weaponPower,
++            $this->jediFactor,
++            $this->strength
++        );
 +    }
 +
 +    public function doesGivenShipHaveMoreStrength($givenShip)
@@ -38,10 +44,10 @@ index 0000000..bf875c7
 +
 +}
 diff --git a/play.php b/play.php
-index ba20c20..9910678 100644
+index 389a06e..ce39f3f 100644
 --- a/play.php
 +++ b/play.php
-@@ -1,36 +1,6 @@
+@@ -1,42 +1,6 @@
  <?php
  
 -class Ship
@@ -64,9 +70,15 @@ index ba20c20..9910678 100644
 -        return $this->name;
 -    }
 -
--    public function getTacticalDescription()
+-    public function getNameAndSpecs()
 -    {
--        return 'Weaponry: '.$this->weaponPower.', Strength: '.$this->strength;
+-        return sprintf(
+-            '%s (w:%s, j:%s, s:%s)',
+-            $this->name,
+-            $this->weaponPower,
+-            $this->jediFactor,
+-            $this->strength
+-        );
 -    }
 -
 -    public function doesGivenShipHaveMoreStrength($givenShip)

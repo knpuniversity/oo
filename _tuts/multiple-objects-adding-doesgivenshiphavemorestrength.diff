@@ -1,10 +1,10 @@
 diff --git a/play.php b/play.php
-index f418b96..ba20c20 100644
+index 2b37222..389a06e 100644
 --- a/play.php
 +++ b/play.php
-@@ -24,6 +24,12 @@ class Ship
-     {
-         return 'Weaponry: '.$this->weaponPower.', Strength: '.$this->strength;
+@@ -30,6 +30,12 @@ class Ship
+             $this->strength
+         );
      }
 +
 +    public function doesGivenShipHaveMoreStrength($givenShip)
@@ -15,7 +15,7 @@ index f418b96..ba20c20 100644
  }
  
  /**
-@@ -54,3 +60,10 @@ $otherShip->strength = 50;
+@@ -60,3 +66,10 @@ $otherShip->strength = 50;
  
  echo '<hr/>';
  printShipSummary($otherShip);

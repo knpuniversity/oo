@@ -79,7 +79,32 @@
             "id": "organization-moving-ship-class-to-ship-php",
             "name": "Organization: Moving Ship class to Ship.php",
             "description": null
+        },
+        {
+            "id": "using-objects-create-one-ship-and-var-dump",
+            "name": "Using Objects: Create one Ship and var_dump",
+            "description": null
+        },
+        {
+            "id": "using-objects-using-proper-syntax-in-table",
+            "name": "Using Objects: Using proper syntax in table",
+            "description": null
+        },
+        {
+            "id": "using-objects-use-getname-method",
+            "name": "Using Objects: Use getName() method",
+            "description": null
+        },
+        {
+            "id": "using-objects-fixing-syntax-in-select",
+            "name": "Using Objects: Fixing syntax in select",
+            "description": null
+        },
+        {
+            "id": "using-objects-call-getnameandspecs-for-options",
+            "name": "Using Objects: Call getNameAndSpecs for options",
+            "description": null
         }
     ],
-    "sha": "0b2530b9ae66d7b8421b5c2de8a62df844743213"
+    "sha": "1481439b90624d16995aa0739bd42b42dd46951f"
 }
