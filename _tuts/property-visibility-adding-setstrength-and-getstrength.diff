@@ -1,38 +1,14 @@
 diff --git a/functions.php b/functions.php
-index ee4dcfc..4ddf002 100644
+index c3bfdc4..00666cb 100644
 --- a/functions.php
 +++ b/functions.php
-@@ -10,28 +10,28 @@ function get_ships()
+@@ -10,7 +10,7 @@ function get_ships()
      $ship1->name = 'Jedi Starfighter';
      $ship1->weaponPower = 5;
      $ship1->jediFactor = 15;
 -    $ship1->strength = 'Jar Jar Binks';
 +    $ship1->setStrength('Jar Jar Binks');
      $ships['starfighter'] = $ship1;
- 
-     $ship2 = new Ship();
-     $ship2->name = 'CloakShape Fighter';
-     $ship2->weaponPower = 2;
-     $ship2->jediFactor = 2;
--    $ship2->strength = 70;
-+    $ship2->setStrength(70);
-     $ships['cloakshape_fighter'] = $ship2;
- 
-     $ship3 = new Ship();
-     $ship3->name = 'Super Star Destroyer';
-     $ship3->weaponPower = 70;
-     $ship3->jediFactor = 0;
--    $ship3->strength = 500;
-+    $ship3->setStrength(500);
-     $ships['super_star_destroyer'] = $ship3;
- 
-     $ship4 = new Ship();
-     $ship4->name = 'RZ-1 A-wing interceptor';
-     $ship4->weaponPower = 4;
-     $ship4->jediFactor = 4;
--    $ship4->strength = 50;
-+    $ship4->setStrength(50);
-     $ships['rz1_a_wing_interceptor'] = $ship4;
  
      return $ships;
 diff --git a/index.php b/index.php

@@ -141,10 +141,15 @@
             "description": null
         },
         {
+            "id": "property-visibility-adding-other-3-ships",
+            "name": "Property Visibility: Adding other 3 ships",
+            "description": null
+        },
+        {
             "id": "fixing-battle-php-dumping-ship1-and-ship2",
             "name": "Fixing battle.php: Dumping $ship1 and $ship2",
             "description": null
         }
     ],
-    "sha": "48eda2cfa1e85d4abeb5fd67d965d3fd018e56e2"
+    "sha": "13abdf38e0da227744cdcabd9531e2256ab95474"
 }

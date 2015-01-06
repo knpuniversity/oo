@@ -1,5 +1,5 @@
 diff --git a/functions.php b/functions.php
-index 4ddf002..6e5cf88 100644
+index 00666cb..3b3da94 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -10,7 +10,7 @@ function get_ships()
@@ -10,4 +10,4 @@ index 4ddf002..6e5cf88 100644
 +    $ship1->setStrength(30);
      $ships['starfighter'] = $ship1;
  
-     $ship2 = new Ship();
+     return $ships;
