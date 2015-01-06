@@ -44,7 +44,17 @@
             "id": "method-basics-finishing-getname-with-this",
             "name": "Method Basics: Finishing getName() with $this",
             "description": null
+        },
+        {
+            "id": "method-basics-add-the-other-properties",
+            "name": "Method Basics: Add the other properties",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-gettacticaldescription",
+            "name": "Method Basics: Adding getTacticalDescription()",
+            "description": null
         }
     ],
-    "sha": "98f533de43f1b5d7f2ef30d9e4a10a35bfad609b"
+    "sha": "a32ca0cad3257751080d42aff4e28ff885af5fa2"
 }
