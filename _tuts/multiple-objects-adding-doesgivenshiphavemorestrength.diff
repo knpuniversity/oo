@@ -1,0 +1,28 @@
+diff --git a/play.php b/play.php
+index f418b96..ba20c20 100644
+--- a/play.php
++++ b/play.php
+@@ -24,6 +24,12 @@ class Ship
+     {
+         return 'Weaponry: '.$this->weaponPower.', Strength: '.$this->strength;
+     }
++
++    public function doesGivenShipHaveMoreStrength($givenShip)
++    {
++        return $givenShip->strength > $this->strength;
++    }
++
+ }
+ 
+ /**
+@@ -54,3 +60,10 @@ $otherShip->strength = 50;
+ 
+ echo '<hr/>';
+ printShipSummary($otherShip);
++echo '<hr/>';
++
++if ($myShip->doesGivenShipHaveMoreStrength($otherShip)) {
++    echo $otherShip->name.' has more strength';
++} else {
++    echo $myShip->name.' has more strength';
++}

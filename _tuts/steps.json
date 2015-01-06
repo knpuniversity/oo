@@ -69,7 +69,12 @@
             "id": "multiple-objects-create-a-second-ship",
             "name": "Multiple Objects: Create a second Ship",
             "description": null
+        },
+        {
+            "id": "multiple-objects-adding-doesgivenshiphavemorestrength",
+            "name": "Multiple Objects: Adding doesGivenShipHaveMoreStrength()",
+            "description": null
         }
     ],
-    "sha": "5b33fe791e2850d96ff656a26c0af1848aae6bd0"
+    "sha": "069e180e8350233c98bdefb9552d52aa7b296e92"
 }
