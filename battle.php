@@ -47,42 +47,46 @@ $outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
            <![endif]-->
     </head>
     <body>
-        <div>
-            You battled
-            <?php echo $ship1Quantity; ?> <?php echo $ship1['name']; ?><?php echo $ship1Quantity > 1 ? 's': ''; ?>
+        <div class="container">
+            <div class="page-header">
+                <h1>OO Battleships of Space</h1>
+            </div>
+            <div>
+                You battled
+                <?php echo $ship1Quantity; ?> <?php echo $ship1['name']; ?><?php echo $ship1Quantity > 1 ? 's': ''; ?>
 
-            against
+                against
 
-            <?php echo $ship2Quantity; ?> <?php echo $ship2['name']; ?><?php echo $ship2Quantity > 1 ? 's': ''; ?>
-        </div>
+                <?php echo $ship2Quantity; ?> <?php echo $ship2['name']; ?><?php echo $ship2Quantity > 1 ? 's': ''; ?>
+            </div>
 
-        <h3>
-            Winner:
-            <?php if ($outcome['winning_ship']): ?>
-                <?php echo $outcome['winning_ship']['name']; ?>
-            <?php else: ?>
-                Nobody
-            <?php endif; ?>
-        </h3>
-        <div>
-            <?php if ($outcome['winning_ship'] == null): ?>
-                Both ships destroyed each other in an epic battle to the end.
-            <?php else: ?>
-                The <?php echo $outcome['winning_ship']['name']; ?>
-                <?php if ($outcome['used_jedi_powers']): ?>
-                    used its Jedi Powers for a stunning victory!
+            <h3>
+                Winner:
+                <?php if ($outcome['winning_ship']): ?>
+                    <?php echo $outcome['winning_ship']['name']; ?>
                 <?php else: ?>
-                    overpowered and destroyed the <?php echo $outcome['losing_ship']['name'] ?>s
+                    Nobody
                 <?php endif; ?>
-            <?php endif; ?>
-        </div>
+            </h3>
+            <div>
+                <?php if ($outcome['winning_ship'] == null): ?>
+                    Both ships destroyed each other in an epic battle to the end.
+                <?php else: ?>
+                    The <?php echo $outcome['winning_ship']['name']; ?>
+                    <?php if ($outcome['used_jedi_powers']): ?>
+                        used its Jedi Powers for a stunning victory!
+                    <?php else: ?>
+                        overpowered and destroyed the <?php echo $outcome['losing_ship']['name'] ?>s
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
 
-        <a href="/index.php">Battle again</a>
+            <a href="/index.php">Battle again</a>
         
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="js/bootstrap.min.js"></script>
+        </div>
     </body>
 </html>
