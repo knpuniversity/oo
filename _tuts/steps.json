@@ -29,7 +29,22 @@
             "id": "class-basics-changing-the-property",
             "name": "Class Basics: Changing the property",
             "description": null
+        },
+        {
+            "id": "method-basics-adding-sayhello",
+            "name": "Method Basics: Adding sayHello()",
+            "description": null
+        },
+        {
+            "id": "method-basics-adding-getname-with-fake-implementation",
+            "name": "Method Basics: Adding getName() with fake implementation",
+            "description": null
+        },
+        {
+            "id": "method-basics-finishing-getname-with-this",
+            "name": "Method Basics: Finishing getName() with $this",
+            "description": null
         }
     ],
-    "sha": "14d4ba1531e46222d1b7de2745d443542621c345"
+    "sha": "98f533de43f1b5d7f2ef30d9e4a10a35bfad609b"
 }

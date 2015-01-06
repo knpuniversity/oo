@@ -1,0 +1,13 @@
+diff --git a/play.php b/play.php
+index 76d9934..171ca0c 100644
+--- a/play.php
++++ b/play.php
+@@ -11,7 +11,7 @@ class Ship
+ 
+     public function getName()
+     {
+-        return 'FAKE NAME';
++        return $this->name;
+     }
+ }
+ 
