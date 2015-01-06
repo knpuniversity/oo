@@ -1,8 +1,8 @@
 diff --git a/functions.php b/functions.php
-index bcf21f1..23a8d56 100644
+index bcf21f1..94677c2 100644
 --- a/functions.php
 +++ b/functions.php
-@@ -1,7 +1,22 @@
+@@ -1,7 +1,21 @@
  <?php
  
 +require __DIR__.'/lib/Ship.php';
@@ -16,7 +16,6 @@ index bcf21f1..23a8d56 100644
 +    $ship1->weaponPower = 5;
 +    $ship1->jediFactor = 15;
 +    $ship1->strength = 30;
-+
 +    $ships['starfighter'] = $ship1;
 +
 +    return $ships;
@@ -25,7 +24,7 @@ index bcf21f1..23a8d56 100644
      return array(
          'starfighter' => array(
              'name' => 'Jedi Starfighter',
-@@ -28,6 +43,7 @@ function get_ships()
+@@ -28,6 +42,7 @@ function get_ships()
              'strength' => 50,
          ),
      );
