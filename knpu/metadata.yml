@@ -1,0 +1,14 @@
+title:  Intro to OO
+summary: |
+    Work-in-Progress details about our OO tutorial. Woot!  
+
+illustration: oo.png
+hasVideoDownload: 0
+
+tuts_hero:
+    start_step: start
+
+chapters:
+    the-project:
+        is_finished: false
+
