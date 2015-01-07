@@ -1,17 +1,13 @@
 diff --git a/play.php b/play.php
-index 859bee8..1ada022 100644
+index f9e8fb0..1ce8597 100644
 --- a/play.php
 +++ b/play.php
-@@ -2,10 +2,10 @@
+@@ -2,7 +2,7 @@
  
  class Ship
  {
 -    
-+    public $name = 'Jedi Starfighter';
++    public $name;
  }
  
  // but it doesn't do anything yet...
- $myShip = new Ship();
- 
--echo 'Hello world!';
-+echo 'Ship Name: '.$myShip->name;

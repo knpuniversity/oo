@@ -1,5 +1,5 @@
 diff --git a/play.php b/play.php
-index dcf2eb0..859bee8 100644
+index 6a8fb0c..f9e8fb0 100644
 --- a/play.php
 +++ b/play.php
 @@ -5,4 +5,7 @@ class Ship
@@ -9,4 +9,4 @@ index dcf2eb0..859bee8 100644
 +// but it doesn't do anything yet...
 +$myShip = new Ship();
 +
- echo 'Hello world!';
+ echo 'IT\'S A TRAAAAAAPPPP!';

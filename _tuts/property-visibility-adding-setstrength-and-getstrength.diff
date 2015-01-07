@@ -25,7 +25,7 @@ index 3ee610c..af5c34e 100644
                      <?php endforeach; ?>
                  </tbody>
 diff --git a/lib/Ship.php b/lib/Ship.php
-index e9319a3..0087f7c 100644
+index 46c0be3..cc0a84b 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -20,6 +20,16 @@ class Ship

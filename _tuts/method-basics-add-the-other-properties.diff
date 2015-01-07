@@ -1,10 +1,10 @@
 diff --git a/play.php b/play.php
-index 171ca0c..f11c96e 100644
+index b6242bf..56d081a 100644
 --- a/play.php
 +++ b/play.php
 @@ -4,6 +4,12 @@ class Ship
  {
-     public $name = 'Jedi Starfighter';
+     public $name;
  
 +    public $weaponPower = 0;
 +

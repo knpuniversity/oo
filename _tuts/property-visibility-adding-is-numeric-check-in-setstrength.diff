@@ -1,5 +1,5 @@
 diff --git a/lib/Ship.php b/lib/Ship.php
-index 0087f7c..6a9d77e 100644
+index cc0a84b..6bb1a91 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -22,6 +22,10 @@ class Ship

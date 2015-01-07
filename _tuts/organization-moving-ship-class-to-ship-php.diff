@@ -1,6 +1,6 @@
 diff --git a/lib/Ship.php b/lib/Ship.php
 new file mode 100644
-index 0000000..ddb45e3
+index 0000000..c33a298
 --- /dev/null
 +++ b/lib/Ship.php
 @@ -0,0 +1,39 @@
@@ -8,7 +8,7 @@ index 0000000..ddb45e3
 +
 +class Ship
 +{
-+    public $name = 'Jedi Starfighter';
++    public $name;
 +
 +    public $weaponPower = 0;
 +
@@ -44,7 +44,7 @@ index 0000000..ddb45e3
 +
 +}
 diff --git a/play.php b/play.php
-index 389a06e..ce39f3f 100644
+index a90d1a7..ce39f3f 100644
 --- a/play.php
 +++ b/play.php
 @@ -1,42 +1,6 @@
@@ -52,7 +52,7 @@ index 389a06e..ce39f3f 100644
  
 -class Ship
 -{
--    public $name = 'Jedi Starfighter';
+-    public $name;
 -
 -    public $weaponPower = 0;
 -

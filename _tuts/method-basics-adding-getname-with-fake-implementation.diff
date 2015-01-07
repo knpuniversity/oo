@@ -1,5 +1,5 @@
 diff --git a/play.php b/play.php
-index f87900c..76d9934 100644
+index 8617f97..13d3825 100644
 --- a/play.php
 +++ b/play.php
 @@ -8,12 +8,17 @@ class Ship

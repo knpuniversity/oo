@@ -1,5 +1,5 @@
 diff --git a/play.php b/play.php
-index 1ada022..d0c46d9 100644
+index 1ce8597..786d3f9 100644
 --- a/play.php
 +++ b/play.php
 @@ -7,5 +7,6 @@ class Ship
@@ -8,4 +8,5 @@ index 1ada022..d0c46d9 100644
  $myShip = new Ship();
 +$myShip->name = 'TIE Fighter';
  
- echo 'Ship Name: '.$myShip->name;
+-echo 'IT\'S A TRAAAAAAPPPP!';
++echo 'Ship Name: '.$myShip->name;

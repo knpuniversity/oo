@@ -31,15 +31,15 @@ index af5c34e..5069fc7 100644
                          </tr>
                      <?php endforeach; ?>
 diff --git a/lib/Ship.php b/lib/Ship.php
-index 6a9d77e..15cda86 100644
+index 6bb1a91..848bf84 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -2,11 +2,11 @@
  
  class Ship
  {
--    public $name = 'Jedi Starfighter';
-+    private $name = 'Jedi Starfighter';
+-    public $name;
++    private $name;
  
 -    public $weaponPower = 0;
 +    private $weaponPower = 0;
