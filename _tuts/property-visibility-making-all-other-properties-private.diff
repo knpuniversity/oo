@@ -31,7 +31,7 @@ index af5c34e..5069fc7 100644
                          </tr>
                      <?php endforeach; ?>
 diff --git a/lib/Ship.php b/lib/Ship.php
-index 6bb1a91..848bf84 100644
+index 71cc61f..770306e 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -2,11 +2,11 @@
@@ -49,7 +49,7 @@ index 6bb1a91..848bf84 100644
  
      private $strength = 0;
  
-@@ -50,4 +50,43 @@ class Ship
+@@ -60,4 +60,43 @@ class Ship
          return $givenShip->strength > $this->strength;
      }
  

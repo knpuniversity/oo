@@ -20,3 +20,16 @@ index b039369..3ee610c 100644
                              <?php endforeach; ?>
                          </select>
                          <br>
+diff --git a/lib/Ship.php b/lib/Ship.php
+index c405292..07c567d 100644
+--- a/lib/Ship.php
++++ b/lib/Ship.php
+@@ -20,7 +20,7 @@ class Ship
+         return $this->name;
+     }
+ 
+-    public function getNameAndSpecs($useShortFormat)
++    public function getNameAndSpecs($useShortFormat = false)
+     {
+         if ($useShortFormat) {
+             return sprintf(

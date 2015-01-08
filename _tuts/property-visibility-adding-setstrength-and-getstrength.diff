@@ -25,13 +25,14 @@ index 3ee610c..af5c34e 100644
                      <?php endforeach; ?>
                  </tbody>
 diff --git a/lib/Ship.php b/lib/Ship.php
-index 46c0be3..cc0a84b 100644
+index 1620d21..b3ea40a 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
-@@ -20,6 +20,16 @@ class Ship
+@@ -19,6 +19,16 @@ class Ship
+     {
          return $this->name;
      }
- 
++    
 +    public function setStrength($number)
 +    {
 +        $this->strength = $number;
@@ -41,7 +42,6 @@ index 46c0be3..cc0a84b 100644
 +    {
 +        return $this->strength;
 +    }
-+
-     public function getNameAndSpecs()
+ 
+     public function getNameAndSpecs($useShortFormat = false)
      {
-         return sprintf(

@@ -1,10 +1,10 @@
 diff --git a/play.php b/play.php
-index 2c2292d..42849f2 100644
+index 728745d..ecda441 100644
 --- a/play.php
 +++ b/play.php
-@@ -30,6 +30,12 @@ class Ship
-             $this->strength
-         );
+@@ -40,6 +40,12 @@ class Ship
+             );
+         }
      }
 +
 +    public function doesGivenShipHaveMoreStrength($givenShip)
@@ -15,7 +15,7 @@ index 2c2292d..42849f2 100644
  }
  
  /**
-@@ -59,3 +65,10 @@ $otherShip->strength = 50;
+@@ -70,3 +76,10 @@ $otherShip->strength = 50;
  
  echo '<hr/>';
  printShipSummary($otherShip);

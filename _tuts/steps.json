@@ -71,6 +71,11 @@
             "description": null
         },
         {
+            "id": "method-basics-giving-getnameandspecs-and-arg",
+            "name": "Method Basics: Giving getNameAndSpecs and arg",
+            "description": null
+        },
+        {
             "id": "multiple-objects-adding-helper-printshipsummary",
             "name": "Multiple Objects: Adding helper printShipSummary()",
             "description": null
@@ -206,5 +211,5 @@
             "description": null
         }
     ],
-    "sha": "1c01f705e0054d3138a27ca6b0c1a7e24fa9b569"
+    "sha": "cbc3c202c8fbe42e8285c5bc720afed64ab4c6ed"
 }
