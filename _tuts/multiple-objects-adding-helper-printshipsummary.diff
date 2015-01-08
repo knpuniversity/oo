@@ -1,8 +1,8 @@
 diff --git a/play.php b/play.php
-index 20ece57..8cc57a9 100644
+index e3a58ea..393d2fa 100644
 --- a/play.php
 +++ b/play.php
-@@ -32,14 +32,20 @@ class Ship
+@@ -32,14 +32,19 @@ class Ship
      }
  }
  
@@ -10,21 +10,21 @@ index 20ece57..8cc57a9 100644
 +{
 +    echo 'Ship Name: '.$someShip->getName();
 +    echo '<hr/>';
-+    echo 'Ship Description: '.$someShip->getNameAndSpecs();
-+    echo '<hr/>';
 +    $someShip->sayHello();
++    echo '<hr/>';
++    echo 'Ship Description: '.$someShip->getNameAndSpecs();
 +}
 +
 +
  // but it doesn't do anything yet...
  $myShip = new Ship();
  $myShip->name = 'TIE Fighter';
- $myShip->weaponPower = 15;
- $myShip->strength = 40;
+ $myShip->weaponPower = 10;
  
 -echo 'Ship Name: '.$myShip->getName();
 -echo '<hr/>';
+-$myShip->sayHello();
+-echo '<hr/>';
 -echo 'Ship Description: '.$myShip->getNameAndSpecs();
 -echo '<hr/>';
--$myShip->sayHello();
 +printShipSummary($myShip);

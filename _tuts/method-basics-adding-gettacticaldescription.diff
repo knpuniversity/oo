@@ -1,5 +1,5 @@
 diff --git a/play.php b/play.php
-index 56d081a..20ece57 100644
+index 6bfc169..e3a58ea 100644
 --- a/play.php
 +++ b/play.php
 @@ -19,6 +19,17 @@ class Ship
@@ -20,11 +20,10 @@ index 56d081a..20ece57 100644
  }
  
  // but it doesn't do anything yet...
-@@ -29,6 +40,6 @@ $myShip->strength = 40;
- 
- echo 'Ship Name: '.$myShip->getName();
- echo '<hr/>';
--echo 'Ship Weapon Power: '.$myShip->weaponPower;
-+echo 'Ship Description: '.$myShip->getNameAndSpecs();
+@@ -30,4 +41,5 @@ echo 'Ship Name: '.$myShip->getName();
  echo '<hr/>';
  $myShip->sayHello();
+ echo '<hr/>';
+-var_dump($myShip->weaponPower);
++echo 'Ship Description: '.$myShip->getNameAndSpecs();
++echo '<hr/>';

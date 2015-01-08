@@ -51,6 +51,21 @@
             "description": null
         },
         {
+            "id": "method-basics-adding-default-args",
+            "name": "Method Basics: Adding default args",
+            "description": null
+        },
+        {
+            "id": "method-basics-printing-weaponpower",
+            "name": "Method Basics: Printing weaponPower",
+            "description": null
+        },
+        {
+            "id": "method-basics-setting-weaponpower",
+            "name": "Method Basics: Setting weaponPower",
+            "description": null
+        },
+        {
             "id": "method-basics-adding-gettacticaldescription",
             "name": "Method Basics: Adding getTacticalDescription()",
             "description": null
@@ -191,5 +206,5 @@
             "description": null
         }
     ],
-    "sha": "a40f0e9d846194c71bcaae93cb503ba456c052e2"
+    "sha": "1c01f705e0054d3138a27ca6b0c1a7e24fa9b569"
 }

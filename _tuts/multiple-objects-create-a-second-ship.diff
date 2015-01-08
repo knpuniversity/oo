@@ -1,9 +1,9 @@
 diff --git a/play.php b/play.php
-index 2d7571a..fe53425 100644
+index bf361f9..2c2292d 100644
 --- a/play.php
 +++ b/play.php
-@@ -52,3 +52,11 @@ $myShip->weaponPower = 15;
- $myShip->strength = 40;
+@@ -51,3 +51,11 @@ $myShip->name = 'TIE Fighter';
+ $myShip->weaponPower = 10;
  
  printShipSummary($myShip);
 +

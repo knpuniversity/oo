@@ -1,29 +1,17 @@
 diff --git a/play.php b/play.php
-index b6242bf..56d081a 100644
+index b6242bf..98b6617 100644
 --- a/play.php
 +++ b/play.php
 @@ -4,6 +4,12 @@ class Ship
  {
      public $name;
  
-+    public $weaponPower = 0;
++    public $weaponPower;
 +
-+    public $jediFactor = 0;
++    public $jediFactor;
 +
-+    public $strength = 0;
++    public $strength;
 +
      public function sayHello()
      {
          echo 'Hello!';
-@@ -18,7 +24,11 @@ class Ship
- // but it doesn't do anything yet...
- $myShip = new Ship();
- $myShip->name = 'TIE Fighter';
-+$myShip->weaponPower = 15;
-+$myShip->strength = 40;
- 
- echo 'Ship Name: '.$myShip->getName();
- echo '<hr/>';
-+echo 'Ship Weapon Power: '.$myShip->weaponPower;
-+echo '<hr/>';
- $myShip->sayHello();
