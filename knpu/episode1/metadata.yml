@@ -15,5 +15,5 @@ chapters:
         is_finished: true
     methods:
         is_finished: true
-    multiple_objects:
+    multiple-objects:
         is_finished: true
