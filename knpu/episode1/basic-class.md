@@ -132,6 +132,10 @@ The *real* difference between an object and an array is that an object has
 a class that defines all possible properties that it can hold, instead of
 being able to store any random keys you dream up, like an array.
 
+**TIP** Technically, you can set a property (e.g. `$myShip->weight = 100`)
+on an object without creating a property for it in the class. But this is
+frowned upon, and not seen commonly in higher-quality code. So don't do it!
+
 ## Classes: Data Structure Docs
 
 And with this simple difference, you get a *huge* benefit. A class is like

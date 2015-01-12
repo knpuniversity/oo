@@ -13,4 +13,7 @@ chapters:
         is_finished: true
     basic-class:
         is_finished: true
-
+    methods:
+        is_finished: true
+    multiple_objects:
+        is_finished: true
