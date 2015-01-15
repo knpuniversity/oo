@@ -12,7 +12,7 @@ index ac733e3..441b04d 100644
  ?>
  
 diff --git a/functions.php b/functions.php
-index 3137283..cc54dac 100644
+index 2b4a457..d13276b 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -71,7 +71,7 @@ function get_ships()

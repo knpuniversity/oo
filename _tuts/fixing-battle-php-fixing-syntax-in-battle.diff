@@ -12,7 +12,7 @@ index c4a2de0..441b04d 100644
  
  <html>
 diff --git a/functions.php b/functions.php
-index cac8da9..40cd29e 100644
+index 9b4e740..b785b68 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -74,8 +74,7 @@ function get_ships()

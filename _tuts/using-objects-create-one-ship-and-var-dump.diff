@@ -1,22 +1,22 @@
 diff --git a/functions.php b/functions.php
-index bcf21f1..94677c2 100644
+index bcf21f1..4ce35fa 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -1,7 +1,21 @@
  <?php
  
-+require __DIR__.'/lib/Ship.php';
++require_once __DIR__.'/lib/Ship.php';
 +
  function get_ships()
  {
 +    $ships = array();
 +
-+    $ship1 = new Ship();
-+    $ship1->name = 'Jedi Starfighter';
-+    $ship1->weaponPower = 5;
-+    $ship1->jediFactor = 15;
-+    $ship1->strength = 30;
-+    $ships['starfighter'] = $ship1;
++    $ship = new Ship();
++    $ship->name = 'Jedi Starfighter';
++    $ship->weaponPower = 5;
++    $ship->jediFactor = 15;
++    $ship->strength = 30;
++    $ships['starfighter'] = $ship;
 +
 +    return $ships;
 +

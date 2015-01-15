@@ -54,7 +54,7 @@ index 0000000..c405292
 +
 +}
 diff --git a/play.php b/play.php
-index ecda441..2fe378d 100644
+index ecda441..2626b1f 100644
 --- a/play.php
 +++ b/play.php
 @@ -1,52 +1,6 @@
@@ -107,7 +107,7 @@ index ecda441..2fe378d 100644
 -    }
 -
 -}
-+require __DIR__.'/lib/Ship.php';
++require_once __DIR__.'/lib/Ship.php';
  
  /**
   * @param Ship $someShip

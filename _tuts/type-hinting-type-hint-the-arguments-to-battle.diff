@@ -1,5 +1,5 @@
 diff --git a/functions.php b/functions.php
-index fe0efc2..cac8da9 100644
+index 241523d..9b4e740 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -71,7 +71,7 @@ function get_ships()

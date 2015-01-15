@@ -1,19 +1,19 @@
 diff --git a/functions.php b/functions.php
-index 3b3da94..833c1ed 100644
+index 4876bb7..236ad4a 100644
 --- a/functions.php
 +++ b/functions.php
 @@ -7,9 +7,9 @@ function get_ships()
      $ships = array();
  
-     $ship1 = new Ship();
--    $ship1->name = 'Jedi Starfighter';
--    $ship1->weaponPower = 5;
--    $ship1->jediFactor = 15;
-+    $ship1->setName('Jedi Starfighter');
-+    $ship1->setWeaponPower(5);
-+    $ship1->setJediFactor(15);
-     $ship1->setStrength(30);
-     $ships['starfighter'] = $ship1;
+     $ship = new Ship();
+-    $ship->name = 'Jedi Starfighter';
+-    $ship->weaponPower = 5;
+-    $ship->jediFactor = 15;
++    $ship->setName('Jedi Starfighter');
++    $ship->setWeaponPower(5);
++    $ship->setJediFactor(15);
+     $ship->setStrength(30);
+     $ships['starfighter'] = $ship;
  
 diff --git a/index.php b/index.php
 index af5c34e..5069fc7 100644
