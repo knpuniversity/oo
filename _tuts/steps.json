@@ -209,7 +209,12 @@
             "id": "constructor-setting-underrepair-and-adding-an-isfunctional-method-that-we-use",
             "name": "Constructor: Setting underRepair and adding an isFunctional() method that we use",
             "description": null
+        },
+        {
+            "id": "constructor-passing-an-argument",
+            "name": "Constructor: Passing an argument",
+            "description": null
         }
     ],
-    "sha": "083400ee6b10d36d5efddea46573a0fe61cecdcf"
+    "sha": "bb88501d19a3068e0a8366389c058f2842dffa0f"
 }
