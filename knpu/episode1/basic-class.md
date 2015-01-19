@@ -12,7 +12,7 @@ and there it is! We've conquered the echo statement!
 
 Now to the cool stuff! The first super-important big awesome-crazy thing
 in object-oriented programming is.... a class! To create one, write the keyword
-`class` then the name of the class - it can be almost anything alphanumeric.
+`class` then the name of it - this name can be almost anything alphanumeric.
 Finish things off with an open curly brace and a close curly brace. Nice work.
 
 [[[ code('8c256fa244') ]]]
@@ -32,8 +32,8 @@ by the name of the class, then open parenthesis, close parenthesis:
 
 [[[ code('c435e86b7c') ]]]
 
-It kind of looks like we're calling a function called `Ship()`, except because
-that `new` keyword in front tells PHP that `Ship` is a class, and we're
+It kind of looks like we're calling a function called `Ship()`, except for
+the `new` keyword in front that tells PHP that `Ship` is a class, and we're
 instantiating a new object from it.
 
 Before we explain any of this - refresh again. Still no changes. We have
@@ -58,11 +58,12 @@ in Excel.
 
 A class is like that empty template, with blank lines for the ship's name
 and size, a yes/no option for warp drive and blanks for fuel-level, weapon
-power and defines strength. It's not actually a ship of course, but it defines
+power and defense strength. It's not actually a ship of course, but it defines
 all the properties that a ship might have.
 
 ### Object: A Completed Worksheet
 
+Ok, I think you've got the gist on classes, now let's go over objects.
 This is where I'm supposed to tell you to think of an object like a *real*
 ship that's landed in our dock. That's correct, but I think it's closer to
 think of an object like a completed worksheet that we've filled out for a
@@ -73,11 +74,11 @@ in with different details. If we re-fuel one of those ships, we'll update
 the fuel level on its worksheet.
 
 But each ship is using the same template, or class. If we wanted to also
-track a ship's weight, we'd need to go back to the template and add a blank
+track a ship's weight, we'd need to go back to the template and add a field
 for it there.
 
-Right now, our class is empty. That's like a template with no blank lines
-at all that I can fill in. Not helpful - time to fix that!
+Right now, our class is empty. That's like a template with no blank fields
+to fill in. Not helpful - time to fix that!
 
 ## Objects are like Uptight (Structured) Arrays
 
@@ -88,9 +89,9 @@ An object works *exactly* like an array, except instead of calling these
 storage spaces keys, we call them properties. But basically, they work the
 same way.
 
-But there is one big difference between an array and an object. With an array,
+There is one big difference between an array and an object. With an array,
 you can just invent a new key and set data on it. But with an object, you
-need to pre-register the possible properties it might have.
+need to pre-register the possible properties it might have in its class.
 
 Back at our loading dock, this means an array is like a template where each
 line has two blanks: one for the value and one for what that value is. We
@@ -100,15 +101,15 @@ really like my job, I'll put my current favorite song on the last line.
 If I give 10 sheets to my manager, they'll have no guarantee *what* data
 I may or may not have recorded. Simple, but unstructured.
 
-But an object is like the sheet's we were talking about earlier: it has a
+But an object is like the sheets we were talking about earlier: it has a
 list of exactly what we want to track with a blank next to each for that
 value. So if we want to be able to store the name of each ship, we'll need
-to add a spot for it on the template. In object-oriented land, we'd need to
+to add a spot for it on the template. In object-oriented land, we need to
 add a `name` property to our `Ship` class.
 
 ### Adding a Property to a Class
 
-Let's do that. Say `public` then `$`, then the name of your property. In
+Let's do it! Say `public` then `$`, then the name of your property. In
 this case, our name is actually `name`:
 
 [[[ code('396303d088') ]]]
@@ -125,8 +126,8 @@ Now we can read the data from that property using the same syntax:
 Try it out! It's working great.
 
 Does this feel familiar? It works *exactly* like an array, except instead
-of the square-bracket syntax, we use this dash, greater-than syntax, which
-Let's call that an "arrow".
+of the square-bracket syntax, we use this dash, greater-than syntax, let's 
+call that an "arrow".
 
 The *real* difference between an object and an array is that an object has
 a class that defines all possible properties that it can hold, instead of
