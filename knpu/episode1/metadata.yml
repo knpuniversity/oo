@@ -17,3 +17,5 @@ chapters:
         is_finished: true
     multiple-objects:
         is_finished: true
+    using-objects:
+        is_finished: true
