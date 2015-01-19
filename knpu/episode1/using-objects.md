@@ -20,3 +20,5 @@ Go copy the `Ship` class, and put it into `Ship.php`. Don't put a closing
 PHP tag, because you don't need it. PHP will reach the end of the file, and
 close it automatically.
 
+NOTE TO LEANNA: The last sentence above isn't said, so listen for the first
+sentence to get your place
