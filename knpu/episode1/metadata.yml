@@ -19,5 +19,9 @@ chapters:
         is_finished: true
     multiple-objects:
         is_finished: true
+    objects-interact:
+        is_finished: true
+    editor-autocomplete:
+        is_finished: true
     using-objects:
         is_finished: true
