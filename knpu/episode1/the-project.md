@@ -3,7 +3,7 @@
 Welcome KnpU Peeps! I am *so* glad you're here today - I am *not* kidding -
 because we're intro'ing into one of my absolute favorite topics: object-oriented
 programming. This is what gets me up in the morning, excited to go to work,
-this is why I love programming. And I hope, you'll be as geeked about these
+this is why I love to code. And I hope, you'll be as geeked about these
 new tools as I am.
 
 Like always, we're going to learn this stuff by building a real app! Don't
@@ -13,7 +13,7 @@ see a "start" directory. I'll rename this to `oo` and move it into a `Sites/`
 directory in my Home folder.
 
 There's not much going on yet guys - just 3 PHP files and some CSS and JS
-files. That is it right now. Let's take the app for a test drive!
+files. That's it. Let's take the app for a test drive!
 
 You can of course use a web server like Apache and setup a Virtual Host,
 but I perfer the built-in PHP web server. Open up a terminal. Move into the
@@ -27,16 +27,15 @@ php -S localhost:8000
 
 It'll hang there, and that means it's working: we instantly have a web server
 at the address that's serving from our directory. Let's go to the browser
-an try it out:
+and try it out:
 
     http://localhost:8000
 
-And voilà! Welcome to OO Battleships of Space! This awesome app does one
+Voilà! Welcome to OO Battleships of Space! This awesome app does one
 important thing: it lets you fight one ship against another. We have 4 ships,
 each has a "weapon power", which is your offense, "strength", which is your
-defense and "Jedi Factor", which is used in a randomized way to figure out
-if the ship "pulls a Luke-Skywalker" and destroys a much bigger ship by identifying
-a crazy weakness and exploiting it.
+defense and "Jedi Factor". This last one randomly causes one ship to go all
+"Luke-Skywalker" on another and and destroy it instantly.
 
 Ok, let's put 4 "Jedi Starfighters" against 1 giant "Super Star Destroyer".
 A Super Star Destroyer is a lot more powerful, so it'll probably win.
@@ -44,7 +43,7 @@ A Super Star Destroyer is a lot more powerful, so it'll probably win.
 Stunning upset! The Jedi Starfighters won! Probably they used their Jedi
 ways to find some crazy weakness. Of course, we can go back and do a re-match:
 4 Jedi Starfighters against another Super Star Destroyer, and now the Destroyer
-works.
+wins.
 
 How the App Works
 -----------------
