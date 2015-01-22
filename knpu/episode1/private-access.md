@@ -40,4 +40,23 @@ will go grab the value from that private property and return it to us.
 In `index` we can say `getStrength` and that should take care of the problem. Head back
 and refresh and it works! Alright!
 
+The reason we did this, is that when you have a public property there's no way to control
+who sets it from the outside. Anyone could have set the strength and they could have set
+it to any crazy string, negative number or something else that doesn't make sense and we
+don't have any control over that. As soon as you make it private it means that outsiders
+are going to have to call public methods, and this gives us a cool opportunity to run
+a check inside of here to say, "Hey! Is the strength a number? If not, let's throw an 
+error." 
 
+In `setStrength` we'll put in an if statement with the is numeric function, and if it's
+not numeric then we're going to throw a new exception with a helpful message. In case you 
+aren't familiar with exceptions, they're a special internal object to php. It stops the 
+flow and shows an error. 
+
+Now when we refresh we get this nice helpful error. This message is for us the developer.
+Instead of the application running and tripping up later when we accidentaly put in a 
+bad strength we are notified immediately. 
+
+It even tells us that the error happened on ship line 52 and we called the method on
+functions line 13. So let's go back into functions line 13 and of course there it is.
+We'll change that back to 30 and when we refresh life is good again. 
