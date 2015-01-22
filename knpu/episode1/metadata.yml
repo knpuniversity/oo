@@ -10,7 +10,7 @@ tuts_hero:
 
 chapters:
     the-project:
-        is_finished: false
+        is_finished: true
     basic-class:
         is_finished: false
     methods:
