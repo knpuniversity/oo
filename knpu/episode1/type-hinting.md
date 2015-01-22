@@ -47,6 +47,30 @@ This time it's very clear, it says it should have been a ship object but you're 
 string and it points us to the exact right spot. So type hinting is option but it's a really
 good idea because it will make your code easier to debug later. It also has a second benefit,
 as soon as I type hinted this ship1 variable here, all of a sudden my editor knew what type
-of object ship1 was and offered me autocomplete. So getStrength, it knows all the methods
+of object ship1 was and offered me autocomplete. So `getStrength`, it knows all the methods
 that are on that object. 
 
+So now that we know that these are objects, let's fix this method for all the array syntaxes.
+Let's see here we have a few more. And then down here, which is called from above we have
+one more. And notice that this one is not giving me autocomplete because it's being
+type hinted as an array. So this function is called all the way up here, it's passing a
+ship1 and ship2, so it's passing a ship object. So let's change that to be a ship instead
+of an array. And now we will get that nice autocompletion which will make sure the object is
+being passed there. Awesome, this function looks good!
+
+Let's go back and refresh. And of course I get that same error because I forgot to go back 
+and put ship1 here. Now let's try that again. We still get an error, but if you look closely 
+you'll see that it is happening farther down the page. The battle function is being called 
+and it's all working. This new error is from line 61, at this point you can probably even spot
+what that is, "Cannot use object of type Ship as an array," that's another syntax thing that
+we need to change.
+
+So, let's go down to line 61 and sure enough there it is. We'll call `getName` on our ship1 
+and ship2 objects. Now, real quick back up on battle what it returns is this outcome variable
+and I'm going to show you what that actually is. So down here let's do a var_dump on `$outcome`,
+put a die statement and refresh. 
+
+So the battle function returns an array with three different keys on it: winning_ship which 
+is a ship object, losing_ship which is a ship object and whether or not Jedi powers were used 
+during that power to have a really awesome comeback win. 
+ 
