@@ -20,5 +20,31 @@ Go copy the `Ship` class, and put it into `Ship.php`. Don't put a closing
 PHP tag, because you don't need it. PHP will reach the end of the file, and
 close it automatically.
 
-NOTE TO LEANNA: The last sentence above isn't said, so listen for the first
-sentence to get your place
+I'll head back to `play.php`, just like when you have functions in an external
+file you have to require that file to have access to it. So we'll require once
+`...__DIR__'/lib/Ship.php'` The _ _DIR constant is a constant that points to
+this directory. So this makes sure that we're requiring exactly `/lib/Ship.php`
+relative to this file.
+
+If you're familiar with modern apps you'll notice that they don't have this 
+require statement, we'll talk about that in the future. There is a way called
+`autoloading` to not even need require statements. But for now we do need it.
+
+So now that we've moved that out let's refresh and we see that everything
+works perfectly.
+
+So now that we have this ship class instead of a `Ship.php` file we can start
+using it from within our real application. From our `get_ships()` function I 
+don't want to return this array inside of an array thing anymore. I want to
+do awesome things like return objects.
+
+We'll start with adding our require statement. Next, let's transform our brave
+starfighter into a ship object. We do that with `$ship = new Ship();` and then
+we'll just start setting the details. Name equals Jedi Starfighter, weapon power
+of 5, jediFactor of 15 and strength of 30. Perfect!
+
+I'm commenting out this bottom array, we're not going to use that at all anymore.
+Instead we are going to return an array with just this one ship in it, we'll add
+more to our fleet later. 
+
+Remember, we're calling this back in `index.php`
