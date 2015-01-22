@@ -73,4 +73,21 @@ put a die statement and refresh.
 So the battle function returns an array with three different keys on it: winning_ship which 
 is a ship object, losing_ship which is a ship object and whether or not Jedi powers were used 
 during that power to have a really awesome comeback win. 
+
+The important part is that winning_ship and losing_ship are ship objects. Let's just remove
+this var_dump real quick. Down here when we reference outcome winning_ship we know that this
+right here is actually going to be an object. And we want to call `getName();` on it. The same 
+thing right here. And then we'll do the same thing here as well. We're convering from that
+array syntax to the object syntax. 
+
+Moment of truth, do we have a working battle page? SUCCESS! Super Star Destoyer won. Let's
+try it again. We'll throw 10 Jedi Star Ships at our one Super Star Destroyer and it wins again.
+Come one Jedi's get it together. If you try enough times the Jedis do come up with a victory.
+
+The key take away here is because we have a ship class it gives us shape and we're starting
+to protect our properties so they can't be modified from the outside and then we're exposing
+them with these public methods. This is cool because whenever we know we're passing around
+a ship object we can type hint it with `Ship` and our editor and PHP knows exactly what type
+of object it is and what methods we're going to have on it. We're giving definition to our
+data instead of passing around arrays which unknown and probably inconsistent keys. 
  
