@@ -70,3 +70,13 @@ good to go.
 So, why would you do this? Why would you add a name argument to the ship's constructor and force it to
 be passed in versus the setter. It's really up to you. In our case it doesn't make sense to have a
 ship without a name. And before that would have been possible had we just instantiated a new ship
+and forgotten to call setName, then we would have been running around with a ship object that had
+absolutely no name. 
+
+So sometimes, when you have required information you might choose to set them up as arguments to your
+constructor. It says "Hey when you create a ship you have to pass me a name" We're not forcing the 
+user to pass a weapon power, jedi factor or strength because those all have a nice default value of 0.
+So it makes sense not to force those but we do force the name.
+
+When you back up I just want you to realize that the construct function is just like any other function,
+but if you give it that special name it is automatically called when the arguments are passed to it.
