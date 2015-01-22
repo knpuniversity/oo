@@ -54,3 +54,11 @@ looks like.
 
 Take off the file name, so we load index.php and there it is. We have an array with
 one item in it which is our ship object. Look at those sweet spaceship stats. 
+
+Let's take that var_dump off and see what that does to our app. When we refresh we see
+an exciting error that tells us we cannot use object of type Ship as array on line 68.
+This is an error that you might see, so let's see what's happening on line 68. Ok, we're
+using ship [ name ]. Before when each ship was an array that made sense, now we know
+when you reference an object you need to use an arrow. So if you do have an object and
+you try to use the square bracket syntax that is the error that you will see. Luck you!
+I don't want to keep seeing errors so let's fix the other ones as well. 
