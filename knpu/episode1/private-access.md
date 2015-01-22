@@ -88,6 +88,23 @@ right now, but if we had made it private in the beginning then we wouldn't have 
 and change them now. Which is what I recommend that you do. 
 
 In `index.php` we have the same thing, we need to call `getWeaponPower` and `getJediFactor`.
-We're already calling `getStrength` and down here we're calling `getNameAndSpecs`.
+We're already calling `getStrength` and down here we're calling the public function
+`getNameAndSpecs`.
+
+So let's try that out and see if we missed anything. Refresh and everything looks really 
+good and even the select menu shows up perfect. We're all set!
+
+we now have all these wonderful hooks so that if anyone ever needs to get the weaponPower
+or set the jediFactor we can do something before returning it. For example, in `getName`
+you can actually use a strtoupper so whenever someone calls this we'll return the uppercase
+version. As cool as that is, I'll just undo it for now.
+
+With all these private properties, getters and setters our Ship class is looking fit for
+action. 
+
+Back in `functions.php` we used to have these 3 other ships. Let's make object representations
+of those. We'll say `$ship2 = new Ship()`
+
+
 
 
