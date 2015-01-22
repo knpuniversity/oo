@@ -10,18 +10,19 @@ tuts_hero:
 
 chapters:
     the-project:
-        is_finished: true
+        is_finished: false
     basic-class:
-        is_finished: true
+        is_finished: false
     methods:
-        is_finished: true
+        is_finished: false
     methods-work:
-        is_finished: true
+        is_finished: false
     multiple-objects:
-        is_finished: true
+        is_finished: false
     objects-interact:
-        is_finished: true
+        is_finished: false
     editor-autocomplete:
-        is_finished: true
+        is_finished: false
     using-objects:
-        is_finished: true
+        is_finished: false
+
