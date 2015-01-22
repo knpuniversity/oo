@@ -29,3 +29,15 @@ see that this does not highlight red, so a private property can still be accesse
 within a class using the magic `$this` keyword. It just can't be accessed outside of the 
 class.
 
+Here, instead of accessing the strength property directly, we can access the `setStrength`
+method. 
+
+When we refresh, it gets further! It gets past that setter and now we're down to line 71.
+We're still accessing the strength property, so let's fix that right here. Since we can't
+reference that anymore we need to go in and make a public function `getStrength` and it
+will go grab the value from that private property and return it to us.
+
+In `index` we can say `getStrength` and that should take care of the problem. Head back
+and refresh and it works! Alright!
+
+
