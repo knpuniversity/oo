@@ -25,4 +25,9 @@ chapters:
         is_finished: false
     using-objects:
         is_finished: false
-
+    private-access:
+        is_finished: false
+    type-hinting:
+        is_finished: false
+    constructor:
+        is_finished: false
