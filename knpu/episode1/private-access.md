@@ -103,7 +103,16 @@ With all these private properties, getters and setters our Ship class is looking
 action. 
 
 Back in `functions.php` we used to have these 3 other ships. Let's make object representations
-of those. We'll say `$ship2 = new Ship()`
+of those. We'll say `$ship2 = new Ship()` and then we just need to set the `name`, `weaponPower`
+`jediFactor` and `strength` for those other three ships. I'm going to save us a little bit of
+time and paste this in. And there we go, ship2 3 and 4 have their data set on the array. What
+we're returning from here is an array of ship objects.
+
+When we go back and refresh everything looks perfect. And this is starting to look pretty good.
+
+Next, we need to fix up `battle.php`, if we try to start a battle we can see that it's super 
+broken and that makes sense since we moved from arrays to objects and we haven't updated that 
+page yet. But we've learned a ton so far so I'm sure this will be easy.
 
 
 
