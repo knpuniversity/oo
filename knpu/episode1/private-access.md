@@ -71,4 +71,23 @@ A really common thing to do is to always make your properties private. So I'll u
 JediFactor, weaponPower and name. The downside of this is that we do want to get in and
 set all of these so we'll need a `getName`, `setName`, `getWeaponPower`, `setWeaponPower`
 `getJediFactor`, and a `setJediFactor`. That can be a lot to write those methods inside of
-here. PHP doesn't give us a way to get around 
+here. PHP doesn't give us a way to get around this, so we do need to write those. A lot of
+editors allow you to generate these, which is nice. In PHPStorm, go to code generate you 
+can pick Getters and Setters and select the weaponPower and jediFactor fields. Name isn't 
+in this list is because we already have a getName. I'll go back to code generate again and 
+pick just setter this time and it recognizes that the name doesn't have a setter.
+
+Now we have getters and setters on all of these properties. And by the way the name
+of this doesn't matter, we could get creative and call this `setWeaponPowerFooBar`, but in
+your project try to be clear and concise.
+
+Now that we've made everything private and we have these getters and setters we need to
+use those everywhere instead of accessing the properties directly. Let's chance this to
+`setName`, this to `setWeaponPower`, and `setJediFactor`. Maybe this feels like extra work
+right now, but if we had made it private in the beginning then we wouldn't have to go back
+and change them now. Which is what I recommend that you do. 
+
+In `index.php` we have the same thing, we need to call `getWeaponPower` and `getJediFactor`.
+We're already calling `getStrength` and down here we're calling `getNameAndSpecs`.
+
+
