@@ -47,4 +47,10 @@ I'm commenting out this bottom array, we're not going to use that at all anymore
 Instead we are going to return an array with just this one ship in it, we'll add
 more to our fleet later. 
 
-Remember, we're calling this back in `index.php`
+Remember, we're calling this back in `index.php`, in that file we call `get_ships();`
+that used to return an array of ship arrays. Now it returns an array of ship objects,
+of which there will only be the one starfighter. Let's `var_dump` this to see what it
+looks like.
+
+Take off the file name, so we load index.php and there it is. We have an array with
+one item in it which is our ship object. Look at those sweet spaceship stats. 
