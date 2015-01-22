@@ -1,4 +1,4 @@
-# Basic Class
+# A Class and an Object
 
 Let's create a fresh file that we can play around with - call it `play.php`.
 Now we can warn the rebels that It's a TRAAAP!
