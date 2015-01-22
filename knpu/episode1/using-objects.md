@@ -64,5 +64,26 @@ you try to use the square bracket syntax that is the error that you will see. Lu
 I don't want to keep seeing errors so let's fix the other ones as well. Awesome!
 
 Head back to the browser and refresh and things are looking kinda better! Sweet!
-Well, at least we have a different fatal error, cannot use object of type ship as an array
-inside the select
+Well, at least we have a different fatal error in our dropdown here, cannot use 
+object of type Ship as array, we'll fix that in a second. 
+
+Back in our editor, because this is an object we can use our methods on it. In our Ship
+class we have this `getName();` method. Down here let's switch out name for `getName();`
+
+When we refresh, we see it does the exact same thing. Let's fix this little error we have
+in the select menu. In `index.php` you can see it's the same thing as before, we're using
+the ship like an array, so change this to use `getName();` here and down there as well.
+
+Refresh, and now things look just fine!
+
+Again, we have methods inside of our ship we can use. Remeber, we have this 
+`getNameAndSpecs`, so I'm thinking when I'm choosing a ship I might want to see right in
+this list some of the important stats of the ship I'm about to use to save the day. So
+instead of `getName` I'll use `getNameAndSpecs`. 
+
+First, I'm going to make the short format an optional argument so we don't always have 
+to fill that in. Let's make these updates in `index.php` and now refresh the browser.
+And now we see our specs format in the select menu -- cool! 
+
+And that's it, switching to an object is not that big of a deal. Next we'll talk about
+what these public things are doing inside of here and what else we can have.
