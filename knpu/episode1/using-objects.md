@@ -61,4 +61,8 @@ This is an error that you might see, so let's see what's happening on line 68. O
 using ship [ name ]. Before when each ship was an array that made sense, now we know
 when you reference an object you need to use an arrow. So if you do have an object and
 you try to use the square bracket syntax that is the error that you will see. Luck you!
-I don't want to keep seeing errors so let's fix the other ones as well. 
+I don't want to keep seeing errors so let's fix the other ones as well. Awesome!
+
+Head back to the browser and refresh and things are looking kinda better! Sweet!
+Well, at least we have a different fatal error, cannot use object of type ship as an array
+inside the select
