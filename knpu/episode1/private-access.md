@@ -60,3 +60,15 @@ bad strength we are notified immediately.
 It even tells us that the error happened on ship line 52 and we called the method on
 functions line 13. So let's go back into functions line 13 and of course there it is.
 We'll change that back to 30 and when we refresh life is good again. 
+
+This idea of making your properties private and then adding getters and setters is 
+really common. Even if you don't need the control like this now you might in the future.
+If you're already forcing outsiders to call your setter methods and you realize later that
+you need to do some sort of check you have the opportunity to do that by modifying your
+method. 
+
+A really common thing to do is to always make your properties private. So I'll update
+JediFactor, weaponPower and name. The downside of this is that we do want to get in and
+set all of these so we'll need a `getName`, `setName`, `getWeaponPower`, `setWeaponPower`
+`getJediFactor`, and a `setJediFactor`. That can be a lot to write those methods inside of
+here. PHP doesn't give us a way to get around 
