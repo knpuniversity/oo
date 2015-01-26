@@ -10,11 +10,16 @@ tuts_hero:
 
 chapters:
     the-project:
-        is_finished: false
+        title:      The Project
+        is_free:    true
+        video_key:  v9z4xgg745
     basic-class:
-        is_finished: false
+        title:      Basic Class
+        is_free:    true
+        video_key:  gjf2535dsg
     methods:
-        is_finished: false
+        title:      Class Methods
+        video_key:  dhhi0xlj3c
     methods-work:
         is_finished: false
     multiple-objects:
