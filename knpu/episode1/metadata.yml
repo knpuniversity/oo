@@ -21,13 +21,17 @@ chapters:
         title:      Class Methods
         video_key:  dhhi0xlj3c
     methods-work:
-        is_finished: false
+        title:      Methods Work
+        video_key:  skllcdfl51
     multiple-objects:
-        is_finished: false
+        title:      Multiple Objects
+        video_key:  pbii2wp7ny
     objects-interact:
-        is_finished: false
+        title:      Objects Interact
+        video_key:  vjailwj7at
     editor-autocomplete:
-        is_finished: false
+        title:      Editor Autocomplete
+        video_key:  0t55y0eirm
     using-objects:
         is_finished: false
     private-access:
