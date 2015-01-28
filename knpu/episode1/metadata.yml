@@ -49,10 +49,14 @@ chapters:
         title:      Editor Autocomplete
         video_key:  0t55y0eirm
     using-objects:
+        title:      Using Objects
         is_finished: false
     private-access:
+        title:      Private Access
         is_finished: false
     type-hinting:
+        title:      Type Hinting
         is_finished: false
     constructor:
+        title:      Constructor
         is_finished: false
