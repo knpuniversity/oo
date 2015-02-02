@@ -1,8 +1,8 @@
 # Using Objects
 
-This `play.php` file is cute, but it's not our real application. But hey,
-we *did* make this nice `Ship` class, so let's use. It'll clean up our code
-and give us more power. Sounds good to me!
+This `play.php` file is cute, but it's not our real application. we *did* make 
+this nice `Ship` class, so let's use. It'll clean up our code and give us more 
+power. Sounds good to me!
 
 ## Moving Ship into Ship.php
 
@@ -22,16 +22,14 @@ close it automatically.
 
 I'll head back to `play.php`, just like when you have functions in an external
 file you have to require that file to have access to it. So we'll require once
-`...__DIR__'/lib/Ship.php'` The _ _DIR constant is a constant that points to
-this directory. So this makes sure that we're requiring exactly `/lib/Ship.php`
-relative to this file.
+`...__DIR__'/lib/Ship.php'` The _ _DIR is a constant that points to this directory. 
+So this makes sure that we're requiring exactly `/lib/Ship.php` relative to this file.
 
 If you're familiar with modern apps you'll notice that they don't have this 
 require statement, we'll talk about that in the future. There is a way called
 `autoloading` to not even need require statements. But for now we do need it.
 
-So now that we've moved that out let's refresh and we see that everything
-works perfectly.
+So now that we've moved that out let's refresh. Well look at that, it still works!
 
 So now that we have this ship class instead of a `Ship.php` file we can start
 using it from within our real application. From our `get_ships()` function I 
@@ -44,11 +42,11 @@ we'll just start setting the details. Name equals Jedi Starfighter, weapon power
 of 5, jediFactor of 15 and strength of 30. Perfect!
 
 I'm commenting out this bottom array, we're not going to use that at all anymore.
-Instead we are going to return an array with just this one ship in it, we'll add
+Instead we're going to return an array with just this one ship in it, we'll add
 more to our fleet later. 
 
 Remember, we're calling this back in `index.php`, in that file we call `get_ships();`
-that used to return an array of ship arrays. Now it returns an array of ship objects,
+that use to return an array of ship arrays. Now it returns an array of ship objects,
 of which there will only be the one starfighter. Let's `var_dump` this to see what it
 looks like.
 
@@ -58,9 +56,9 @@ one item in it which is our ship object. Look at those sweet spaceship stats.
 Let's take that var_dump off and see what that does to our app. When we refresh we see
 an exciting error that tells us we cannot use object of type Ship as array on line 68.
 This is an error that you might see, so let's see what's happening on line 68. Ok, we're
-using ship [ name ]. Before when each ship was an array that made sense, now we know
+using `$ship['name']`. Before when each ship was an array that made sense, now we know
 when you reference an object you need to use an arrow. So if you do have an object and
-you try to use the square bracket syntax that is the error that you will see. Luck you!
+you try to use the square bracket syntax that is the error that you will see. Lucky you!
 I don't want to keep seeing errors so let's fix the other ones as well. Awesome!
 
 Head back to the browser and refresh and things are looking kinda better! Sweet!
@@ -76,14 +74,13 @@ the ship like an array, so change this to use `getName();` here and down there a
 
 Refresh, and now things look just fine!
 
-Again, we have methods inside of our ship we can use. Remeber, we have this 
-`getNameAndSpecs`, so I'm thinking when I'm choosing a ship I might want to see right in
-this list some of the important stats of the ship I'm about to use to save the day. So
-instead of `getName` I'll use `getNameAndSpecs`. 
+We have this `getNameAndSpecs`, so perhaps when I'm choosing a ship I might want to see its
+important stats since I'm goint to use it to save the day. So instead of `getName` I'll use 
+`getNameAndSpecs`. 
 
 First, I'm going to make the short format an optional argument so we don't always have 
 to fill that in. Let's make these updates in `index.php` and now refresh the browser.
-And now we see our specs format in the select menu -- cool! 
+We see our specs format in the select menu -- cool! 
 
 And that's it, switching to an object is not that big of a deal. Next we'll talk about
 what these public things are doing inside of here and what else we can have.
