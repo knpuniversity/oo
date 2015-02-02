@@ -75,7 +75,7 @@ the ship like an array, so change this to use `getName();` here and down there a
 Refresh, and now things look just fine!
 
 We have this `getNameAndSpecs`, so perhaps when I'm choosing a ship I might want to see its
-important stats since I'm goint to use it to save the day. So instead of `getName` I'll use 
+important stats since I'm going to use it to save the day. So instead of `getName` I'll use 
 `getNameAndSpecs`. 
 
 First, I'm going to make the short format an optional argument so we don't always have 
