@@ -86,4 +86,4 @@ The key take away here is because we have a `Ship` class, when we have a `Ship` 
 know exactly what we can do with it. This is cool because whenever we pass around a `Ship`,
 object we can type hint it with `Ship` and our editor instantly knows what that is and what
 methods we can call on it. We're giving definition to our data instead of passing around arrays
-which are unknown and probably inconsistent keys. 
+which have unknown and probably inconsistent keys. 
