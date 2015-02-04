@@ -31,7 +31,7 @@ require statement, we'll talk about that in the future. There is a way called
 
 So now that we've moved that out let's refresh. Well look at that, it still works!
 
-So now that we have this ship class instead of a `Ship.php` file we can start
+So now that we have this ship class inside of a `Ship.php` file we can start
 using it from within our real application. From our `get_ships()` function I 
 don't want to return this array inside of an array thing anymore. I want to
 do awesome things like return objects.
