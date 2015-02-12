@@ -50,10 +50,10 @@ chapters:
         video_key:  0t55y0eirm
     using-objects:
         title:      Using Objects
-        is_finished: false
+        video_key:  8yife9jirq
     private-access:
         title:      Private Access
-        is_finished: false
+        video_key:  
     type-hinting:
         title:      Type Hinting
         is_finished: false
