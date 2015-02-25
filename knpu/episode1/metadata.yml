@@ -19,7 +19,7 @@ summary: |
     Blast off! `#NerdPun`
 
 illustration: oo.png
-hasVideoDownload: 0
+videoDownloadExtension: mov
 
 tuts_hero:
     start_step: start
