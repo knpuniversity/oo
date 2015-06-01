@@ -1,0 +1,142 @@
+diff --git a/battle.php b/battle.php
+index 115cd81..66d3f44 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,7 +1,8 @@
+ <?php
+ require __DIR__.'/functions.php';
+ 
+-$ships = get_ships();
++$shipLoader = new ShipLoader();
++$ships = $shipLoader->getShips();
+ 
+ $ship1Name = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
+ $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
+diff --git a/functions.php b/functions.php
+index 2ec4e71..872af88 100644
+--- a/functions.php
++++ b/functions.php
+@@ -2,64 +2,4 @@
+ 
+ require_once __DIR__.'/lib/Ship.php';
+ require_once __DIR__.'/lib/BattleManager.php';
+-
+-function get_ships()
+-{
+-    $ships = array();
+-
+-    $ship = new Ship('Jedi Starfighter');
+-    //$ship->setName('Jedi Starfighter');
+-    $ship->setWeaponPower(5);
+-    $ship->setJediFactor(15);
+-    $ship->setStrength(30);
+-    $ships['starfighter'] = $ship;
+-
+-    $ship2 = new Ship('CloakShape Fighter');
+-    $ship2->setWeaponPower(2);
+-    $ship2->setJediFactor(2);
+-    $ship2->setStrength(70);
+-    $ships['cloakshape_fighter'] = $ship2;
+-
+-    $ship3 = new Ship('Super Star Destroyer');
+-    $ship3->setWeaponPower(70);
+-    $ship3->setJediFactor(0);
+-    $ship3->setStrength(500);
+-    $ships['super_star_destroyer'] = $ship3;
+-
+-    $ship4 = new Ship('RZ-1 A-wing interceptor');
+-    $ship4->setWeaponPower(4);
+-    $ship4->setJediFactor(4);
+-    $ship4->setStrength(50);
+-    $ships['rz1_a_wing_interceptor'] = $ship4;
+-
+-    return $ships;
+-
+-    /*
+-    return array(
+-        'starfighter' => array(
+-            'name' => 'Jedi Starfighter',
+-            'weapon_power' => 5,
+-            'jedi_factor' => 15,
+-            'strength' => 30,
+-        ),
+-        'cloakshape_fighter' => array(
+-            'name' => 'CloakShape Fighter',
+-            'weapon_power' => 2,
+-            'jedi_factor' => 2,
+-            'strength' => 70,
+-        ),
+-        'super_star_destroyer' => array(
+-            'name' => 'Super Star Destroyer',
+-            'weapon_power' => 70,
+-            'jedi_factor' => 0,
+-            'strength' => 500,
+-        ),
+-        'rz1_a_wing_interceptor' => array(
+-            'name' => 'RZ-1 A-wing interceptor',
+-            'weapon_power' => 4,
+-            'jedi_factor' => 4,
+-            'strength' => 50,
+-        ),
+-    );
+-    */
+-}
++require_once __DIR__.'/lib/ShipLoader.php';
+diff --git a/index.php b/index.php
+index 0266821..483c24d 100644
+--- a/index.php
++++ b/index.php
+@@ -1,7 +1,8 @@
+ <?php
+ require __DIR__.'/functions.php';
+ 
+-$ships = get_ships();
++$shipLoader = new ShipLoader();
++$ships = $shipLoader->getShips();
+ 
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+new file mode 100644
+index 0000000..012ddd4
+--- /dev/null
++++ b/lib/ShipLoader.php
+@@ -0,0 +1,37 @@
++<?php
++
++class ShipLoader
++{
++    public function getShips()
++    {
++        $ships = array();
++
++        $ship = new Ship('Jedi Starfighter');
++        //$ship->setName('Jedi Starfighter');
++        $ship->setWeaponPower(5);
++        $ship->setJediFactor(15);
++        $ship->setStrength(30);
++        $ships['starfighter'] = $ship;
++
++        $ship2 = new Ship('CloakShape Fighter');
++        $ship2->setWeaponPower(2);
++        $ship2->setJediFactor(2);
++        $ship2->setStrength(70);
++        $ships['cloakshape_fighter'] = $ship2;
++
++        $ship3 = new Ship('Super Star Destroyer');
++        $ship3->setWeaponPower(70);
++        $ship3->setJediFactor(0);
++        $ship3->setStrength(500);
++        $ships['super_star_destroyer'] = $ship3;
++
++        $ship4 = new Ship('RZ-1 A-wing interceptor');
++        $ship4->setWeaponPower(4);
++        $ship4->setJediFactor(4);
++        $ship4->setStrength(50);
++        $ships['rz1_a_wing_interceptor'] = $ship4;
++
++        return $ships;
++    }
++
++}
+\ No newline at end of file

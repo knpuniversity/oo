@@ -1,0 +1,21 @@
+diff --git a/lib/BattleResult.php b/lib/BattleResult.php
+new file mode 100644
+index 0000000..35a6178
+--- /dev/null
++++ b/lib/BattleResult.php
+@@ -0,0 +1,15 @@
++<?php
++
++class BattleResult
++{
++    private $usedJediPowers;
++    private $winningShip;
++    private $losingShip;
++
++    public function __construct($usedJediPowers, $winningShip, $losingShip)
++    {
++        $this->usedJediPowers = $usedJediPowers;
++        $this->winningShip = $winningShip;
++        $this->losingShip = $losingShip;
++    }
++}

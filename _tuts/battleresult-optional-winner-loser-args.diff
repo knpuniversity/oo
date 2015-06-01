@@ -1,0 +1,65 @@
+diff --git a/battle.php b/battle.php
+index c035532..98e643a 100644
+--- a/battle.php
++++ b/battle.php
+@@ -68,14 +68,14 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
+             <div class="result-box center-block">
+                 <h3 class="text-center audiowide">
+                     Winner:
+-                    <?php if ($battleResult->getWinningShip()): ?>
++                    <?php if ($battleResult->isThereAWinner()): ?>
+                         <?php echo $battleResult->getWinningShip()->getName(); ?>
+                     <?php else: ?>
+                         Nobody
+                     <?php endif; ?>
+                 </h3>
+                 <p class="text-center">
+-                    <?php if ($battleResult->getWinningShip() == null): ?>
++                    <?php if (!$battleResult->isThereAWinner()): ?>
+                         Both ships destroyed each other in an epic battle to the end.
+                     <?php else: ?>
+                         The <?php echo $battleResult->getWinningShip()->getName(); ?>
+diff --git a/lib/BattleResult.php b/lib/BattleResult.php
+index 2553625..6da8c81 100644
+--- a/lib/BattleResult.php
++++ b/lib/BattleResult.php
+@@ -11,7 +11,7 @@ class BattleResult
+      * @param Ship $losingShip
+      * @param boolean $usedJediPowers
+      */
+-    public function __construct($usedJediPowers, Ship $winningShip, Ship $losingShip)
++    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
+     {
+         $this->usedJediPowers = $usedJediPowers;
+         $this->winningShip = $winningShip;
+@@ -27,7 +27,7 @@ class BattleResult
+     }
+ 
+     /**
+-     * @return Ship
++     * @return Ship|null
+      */
+     public function getWinningShip()
+     {
+@@ -35,10 +35,20 @@ class BattleResult
+     }
+ 
+     /**
+-     * @return Ship
++     * @return Ship|null
+      */
+     public function getLosingShip()
+     {
+         return $this->losingShip;
+     }
++
++    /**
++     * Was there a winner? Or did everybody die :(
++     *
++     * @return bool
++     */
++    public function isThereAWinner()
++    {
++        return $this->getWinningShip() !== null;
++    }
+ }

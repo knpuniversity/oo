@@ -1,0 +1,44 @@
+diff --git a/battle.php b/battle.php
+index 66d3f44..392fd00 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,5 +1,5 @@
+ <?php
+-require __DIR__.'/functions.php';
++require __DIR__.'/bootstrap.php';
+ 
+ $shipLoader = new ShipLoader();
+ $ships = $shipLoader->getShips();
+diff --git a/bootstrap.php b/bootstrap.php
+new file mode 100644
+index 0000000..872af88
+--- /dev/null
++++ b/bootstrap.php
+@@ -0,0 +1,5 @@
++<?php
++
++require_once __DIR__.'/lib/Ship.php';
++require_once __DIR__.'/lib/BattleManager.php';
++require_once __DIR__.'/lib/ShipLoader.php';
+diff --git a/functions.php b/functions.php
+deleted file mode 100644
+index 872af88..0000000
+--- a/functions.php
++++ /dev/null
+@@ -1,5 +0,0 @@
+-<?php
+-
+-require_once __DIR__.'/lib/Ship.php';
+-require_once __DIR__.'/lib/BattleManager.php';
+-require_once __DIR__.'/lib/ShipLoader.php';
+diff --git a/index.php b/index.php
+index 483c24d..86fc0ed 100644
+--- a/index.php
++++ b/index.php
+@@ -1,5 +1,5 @@
+ <?php
+-require __DIR__.'/functions.php';
++require __DIR__.'/bootstrap.php';
+ 
+ $shipLoader = new ShipLoader();
+ $ships = $shipLoader->getShips();

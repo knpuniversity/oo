@@ -1,0 +1,47 @@
+diff --git a/functions.php b/functions.php
+index 3b150fb..2ec4e71 100644
+--- a/functions.php
++++ b/functions.php
+@@ -63,10 +63,3 @@ function get_ships()
+     );
+     */
+ }
+-
+-function didJediDestroyShipUsingTheForce(Ship $ship)
+-{
+-    $jediHeroProbability = $ship->getJediFactor() / 100;
+-
+-    return mt_rand(1, 100) <= ($jediHeroProbability*100);
+-}
+diff --git a/lib/BattleManager.php b/lib/BattleManager.php
+index 66b234f..cb2e232 100644
+--- a/lib/BattleManager.php
++++ b/lib/BattleManager.php
+@@ -16,13 +16,13 @@ class BattleManager
+         $ship2UsedJediPowers = false;
+         while ($ship1Health > 0 && $ship2Health > 0) {
+             // first, see if we have a rare Jedi hero event!
+-            if (didJediDestroyShipUsingTheForce($ship1)) {
++            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
+                 $ship2Health = 0;
+                 $ship1UsedJediPowers = true;
+ 
+                 break;
+             }
+-            if (didJediDestroyShipUsingTheForce($ship2)) {
++            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
+                 $ship1Health = 0;
+                 $ship2UsedJediPowers = true;
+ 
+@@ -55,4 +55,11 @@ class BattleManager
+             'used_jedi_powers' => $usedJediPowers,
+         );
+     }
++
++    private function didJediDestroyShipUsingTheForce(Ship $ship)
++    {
++        $jediHeroProbability = $ship->getJediFactor() / 100;
++
++        return mt_rand(1, 100) <= ($jediHeroProbability*100);
++    }
+ }

@@ -214,7 +214,57 @@
             "id": "constructor-passing-an-argument",
             "name": "Constructor: Passing an argument",
             "description": null
+        },
+        {
+            "id": "battlemanager-basic-creation-and-usage",
+            "name": "BattleManager: Basic creation and usage",
+            "description": null
+        },
+        {
+            "id": "battlemanager-private-didjedidestroyshipusingtheforce",
+            "name": "BattleManager:: private didJediDestroyShipUsingTheForce()",
+            "description": null
+        },
+        {
+            "id": "shiploader-class-to-help-load-ships",
+            "name": "ShipLoader: Class to help load ships",
+            "description": null
+        },
+        {
+            "id": "shiploader-proper-phpdoc",
+            "name": "ShipLoader: Proper PHPDoc",
+            "description": null
+        },
+        {
+            "id": "refactor-rename-functions-php-to-bootstrap-php",
+            "name": "Refactor: Rename functions.php to bootstrap.php",
+            "description": null
+        },
+        {
+            "id": "battleresult-class-with-construct",
+            "name": "BattleResult: Class with __construct",
+            "description": null
+        },
+        {
+            "id": "battleresult-phpdoc-getters",
+            "name": "BattleResult: PHPDoc + getters",
+            "description": null
+        },
+        {
+            "id": "battleresult-renaming-jedi-isser",
+            "name": "BattleResult: renaming jedi \"isser\"",
+            "description": null
+        },
+        {
+            "id": "battleresult-returing-from-battle-and-using",
+            "name": "BattleResult: Returing from battle() and using",
+            "description": null
+        },
+        {
+            "id": "battleresult-optional-winner-loser-args",
+            "name": "BattleResult: Optional winner\/loser args",
+            "description": null
         }
     ],
-    "sha": "bb88501d19a3068e0a8366389c058f2842dffa0f"
+    "sha": "1703ef098c4660798c86afb81ee6479cf279e2ec"
 }
