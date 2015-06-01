@@ -1,0 +1,830 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 769dfd7..6b701be 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -6,8 +6,8 @@ $configuration = array(
+     'db_pass' => null,
+ );
+ 
+-require_once __DIR__.'/lib/Container.php';
+-require_once __DIR__.'/lib/Ship.php';
+-require_once __DIR__.'/lib/BattleManager.php';
+-require_once __DIR__.'/lib/ShipLoader.php';
+-require_once __DIR__.'/lib/BattleResult.php';
++require_once __DIR__.'/lib/Service/Container.php';
++require_once __DIR__.'/lib/Model/Ship.php';
++require_once __DIR__.'/lib/Service/BattleManager.php';
++require_once __DIR__.'/lib/Service/ShipLoader.php';
++require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/lib/BattleManager.php b/lib/BattleManager.php
+deleted file mode 100644
+index e4dc5bc..0000000
+--- a/lib/BattleManager.php
++++ /dev/null
+@@ -1,65 +0,0 @@
+-<?php
+-
+-class BattleManager
+-{
+-    /**
+-     * Our complex fighting algorithm!
+-     *
+-     * @return BattleResult
+-     */
+-    public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
+-    {
+-        $ship1Health = $ship1->getStrength() * $ship1Quantity;
+-        $ship2Health = $ship2->getStrength() * $ship2Quantity;
+-
+-        $ship1UsedJediPowers = false;
+-        $ship2UsedJediPowers = false;
+-        while ($ship1Health > 0 && $ship2Health > 0) {
+-            // first, see if we have a rare Jedi hero event!
+-            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
+-                $ship2Health = 0;
+-                $ship1UsedJediPowers = true;
+-
+-                break;
+-            }
+-            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
+-                $ship1Health = 0;
+-                $ship2UsedJediPowers = true;
+-
+-                break;
+-            }
+-
+-            // now battle them normally
+-            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+-            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+-        }
+-
+-        // update the strengths on the ships, so we can show this
+-        $ship1->setStrength($ship1Health);
+-        $ship2->setStrength($ship2Health);
+-
+-        if ($ship1Health <= 0 && $ship2Health <= 0) {
+-            // they destroyed each other
+-            $winningShip = null;
+-            $losingShip = null;
+-            $usedJediPowers = $ship1UsedJediPowers || $ship2UsedJediPowers;
+-        } elseif ($ship1Health <= 0) {
+-            $winningShip = $ship2;
+-            $losingShip = $ship1;
+-            $usedJediPowers = $ship2UsedJediPowers;
+-        } else {
+-            $winningShip = $ship1;
+-            $losingShip = $ship2;
+-            $usedJediPowers = $ship1UsedJediPowers;
+-        }
+-
+-        return new BattleResult($usedJediPowers, $winningShip, $losingShip);
+-    }
+-
+-    private function didJediDestroyShipUsingTheForce(Ship $ship)
+-    {
+-        $jediHeroProbability = $ship->getJediFactor() / 100;
+-
+-        return mt_rand(1, 100) <= ($jediHeroProbability*100);
+-    }
+-}
+diff --git a/lib/BattleResult.php b/lib/BattleResult.php
+deleted file mode 100644
+index 6da8c81..0000000
+--- a/lib/BattleResult.php
++++ /dev/null
+@@ -1,54 +0,0 @@
+-<?php
+-
+-class BattleResult
+-{
+-    private $usedJediPowers;
+-    private $winningShip;
+-    private $losingShip;
+-
+-    /**
+-     * @param Ship $winningShip
+-     * @param Ship $losingShip
+-     * @param boolean $usedJediPowers
+-     */
+-    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
+-    {
+-        $this->usedJediPowers = $usedJediPowers;
+-        $this->winningShip = $winningShip;
+-        $this->losingShip = $losingShip;
+-    }
+-
+-    /**
+-     * @return boolean
+-     */
+-    public function wereJediPowersUsed()
+-    {
+-        return $this->usedJediPowers;
+-    }
+-
+-    /**
+-     * @return Ship|null
+-     */
+-    public function getWinningShip()
+-    {
+-        return $this->winningShip;
+-    }
+-
+-    /**
+-     * @return Ship|null
+-     */
+-    public function getLosingShip()
+-    {
+-        return $this->losingShip;
+-    }
+-
+-    /**
+-     * Was there a winner? Or did everybody die :(
+-     *
+-     * @return bool
+-     */
+-    public function isThereAWinner()
+-    {
+-        return $this->getWinningShip() !== null;
+-    }
+-}
+diff --git a/lib/Container.php b/lib/Container.php
+deleted file mode 100644
+index 8795ce4..0000000
+--- a/lib/Container.php
++++ /dev/null
+@@ -1,57 +0,0 @@
+-<?php
+-
+-class Container
+-{
+-    private $configuration;
+-
+-    private $pdo;
+-
+-    private $shipLoader;
+-
+-    private $battleManager;
+-
+-    public function __construct(array $configuration)
+-    {
+-        $this->configuration = $configuration;
+-    }
+-
+-    /**
+-     * @return PDO
+-     */
+-    public function getPDO()
+-    {
+-        if ($this->pdo === null) {
+-            return new PDO(
+-                $this->configuration['db_dsn'],
+-                $this->configuration['db_user'],
+-                $this->configuration['db_pass']
+-            );
+-        }
+-
+-        return $this->pdo;
+-    }
+-
+-    /**
+-     * @return ShipLoader
+-     */
+-    public function getShipLoader()
+-    {
+-        if ($this->shipLoader === null) {
+-            $this->shipLoader = new ShipLoader($this->getPDO());
+-        }
+-
+-        return $this->shipLoader;
+-    }
+-
+-    /**
+-     * @return BattleManager
+-     */
+-    public function getBattleManager()
+-    {
+-        if ($this->battleManager === null) {
+-            $this->battleManager = new BattleManager();
+-        }
+-
+-        return $this->battleManager;
+-    }
+-}
+diff --git a/lib/Model/BattleResult.php b/lib/Model/BattleResult.php
+new file mode 100644
+index 0000000..6da8c81
+--- /dev/null
++++ b/lib/Model/BattleResult.php
+@@ -0,0 +1,54 @@
++<?php
++
++class BattleResult
++{
++    private $usedJediPowers;
++    private $winningShip;
++    private $losingShip;
++
++    /**
++     * @param Ship $winningShip
++     * @param Ship $losingShip
++     * @param boolean $usedJediPowers
++     */
++    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
++    {
++        $this->usedJediPowers = $usedJediPowers;
++        $this->winningShip = $winningShip;
++        $this->losingShip = $losingShip;
++    }
++
++    /**
++     * @return boolean
++     */
++    public function wereJediPowersUsed()
++    {
++        return $this->usedJediPowers;
++    }
++
++    /**
++     * @return Ship|null
++     */
++    public function getWinningShip()
++    {
++        return $this->winningShip;
++    }
++
++    /**
++     * @return Ship|null
++     */
++    public function getLosingShip()
++    {
++        return $this->losingShip;
++    }
++
++    /**
++     * Was there a winner? Or did everybody die :(
++     *
++     * @return bool
++     */
++    public function isThereAWinner()
++    {
++        return $this->getWinningShip() !== null;
++    }
++}
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+new file mode 100644
+index 0000000..80c1744
+--- /dev/null
++++ b/lib/Model/Ship.php
+@@ -0,0 +1,134 @@
++<?php
++
++class Ship
++{
++    private $id;
++
++    private $name;
++
++    private $weaponPower = 0;
++
++    private $jediFactor = 0;
++
++    private $strength = 0;
++
++    private $underRepair;
++
++    public function __construct($name)
++    {
++        $this->name = $name;
++        // randomly put this ship under repair
++        $this->underRepair = mt_rand(1, 100) < 30;
++    }
++
++    public function isFunctional()
++    {
++        return !$this->underRepair;
++    }
++
++    public function sayHello()
++    {
++        echo 'Hello!';
++    }
++
++    public function getName()
++    {
++        return $this->name;
++    }
++    
++    public function setStrength($number)
++    {
++        if (!is_numeric($number)) {
++            throw new \Exception('Strength must be a number, duh!');
++        }
++
++        $this->strength = $number;
++    }
++
++    public function getStrength()
++    {
++        return $this->strength;
++    }
++
++    public function getNameAndSpecs($useShortFormat = false)
++    {
++        if ($useShortFormat) {
++            return sprintf(
++                '%s: %s/%s/%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        } else {
++            return sprintf(
++                '%s: w:%s, j:%s, s:%s',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        }
++    }
++
++    public function doesGivenShipHaveMoreStrength($givenShip)
++    {
++        return $givenShip->strength > $this->strength;
++    }
++
++    /**
++     * @return int
++     */
++    public function getWeaponPower()
++    {
++        return $this->weaponPower;
++    }
++
++    /**
++     * @return int
++     */
++    public function getJediFactor()
++    {
++        return $this->jediFactor;
++    }
++
++    /**
++     * @param string $name
++     */
++    public function setName($name)
++    {
++        $this->name = $name;
++    }
++
++    /**
++     * @param int $weaponPower
++     */
++    public function setWeaponPower($weaponPower)
++    {
++        $this->weaponPower = $weaponPower;
++    }
++
++    /**
++     * @param int $jediFactor
++     */
++    public function setJediFactor($jediFactor)
++    {
++        $this->jediFactor = $jediFactor;
++    }
++
++    /**
++     * @return int
++     */
++    public function getId()
++    {
++        return $this->id;
++    }
++
++    /**
++     * @param int $id
++     */
++    public function setId($id)
++    {
++        $this->id = $id;
++    }
++}
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+new file mode 100644
+index 0000000..e4dc5bc
+--- /dev/null
++++ b/lib/Service/BattleManager.php
+@@ -0,0 +1,65 @@
++<?php
++
++class BattleManager
++{
++    /**
++     * Our complex fighting algorithm!
++     *
++     * @return BattleResult
++     */
++    public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
++    {
++        $ship1Health = $ship1->getStrength() * $ship1Quantity;
++        $ship2Health = $ship2->getStrength() * $ship2Quantity;
++
++        $ship1UsedJediPowers = false;
++        $ship2UsedJediPowers = false;
++        while ($ship1Health > 0 && $ship2Health > 0) {
++            // first, see if we have a rare Jedi hero event!
++            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
++                $ship2Health = 0;
++                $ship1UsedJediPowers = true;
++
++                break;
++            }
++            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
++                $ship1Health = 0;
++                $ship2UsedJediPowers = true;
++
++                break;
++            }
++
++            // now battle them normally
++            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
++            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
++        }
++
++        // update the strengths on the ships, so we can show this
++        $ship1->setStrength($ship1Health);
++        $ship2->setStrength($ship2Health);
++
++        if ($ship1Health <= 0 && $ship2Health <= 0) {
++            // they destroyed each other
++            $winningShip = null;
++            $losingShip = null;
++            $usedJediPowers = $ship1UsedJediPowers || $ship2UsedJediPowers;
++        } elseif ($ship1Health <= 0) {
++            $winningShip = $ship2;
++            $losingShip = $ship1;
++            $usedJediPowers = $ship2UsedJediPowers;
++        } else {
++            $winningShip = $ship1;
++            $losingShip = $ship2;
++            $usedJediPowers = $ship1UsedJediPowers;
++        }
++
++        return new BattleResult($usedJediPowers, $winningShip, $losingShip);
++    }
++
++    private function didJediDestroyShipUsingTheForce(Ship $ship)
++    {
++        $jediHeroProbability = $ship->getJediFactor() / 100;
++
++        return mt_rand(1, 100) <= ($jediHeroProbability*100);
++    }
++}
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+new file mode 100644
+index 0000000..8795ce4
+--- /dev/null
++++ b/lib/Service/Container.php
+@@ -0,0 +1,57 @@
++<?php
++
++class Container
++{
++    private $configuration;
++
++    private $pdo;
++
++    private $shipLoader;
++
++    private $battleManager;
++
++    public function __construct(array $configuration)
++    {
++        $this->configuration = $configuration;
++    }
++
++    /**
++     * @return PDO
++     */
++    public function getPDO()
++    {
++        if ($this->pdo === null) {
++            return new PDO(
++                $this->configuration['db_dsn'],
++                $this->configuration['db_user'],
++                $this->configuration['db_pass']
++            );
++        }
++
++        return $this->pdo;
++    }
++
++    /**
++     * @return ShipLoader
++     */
++    public function getShipLoader()
++    {
++        if ($this->shipLoader === null) {
++            $this->shipLoader = new ShipLoader($this->getPDO());
++        }
++
++        return $this->shipLoader;
++    }
++
++    /**
++     * @return BattleManager
++     */
++    public function getBattleManager()
++    {
++        if ($this->battleManager === null) {
++            $this->battleManager = new BattleManager();
++        }
++
++        return $this->battleManager;
++    }
++}
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+new file mode 100644
+index 0000000..6516a57
+--- /dev/null
++++ b/lib/Service/ShipLoader.php
+@@ -0,0 +1,65 @@
++<?php
++
++class ShipLoader
++{
++    private $pdo;
++
++    public function __construct(PDO $pdo)
++    {
++        $this->pdo = $pdo;
++    }
++
++    /**
++     * @return Ship[]
++     * @throws Exception
++     */
++    public function getShips()
++    {
++        $ships = array();
++
++        $shipsData = $this->queryForShips();
++
++        foreach ($shipsData as $shipData) {
++            $ships[] = $this->createShipFromData($shipData);
++        }
++
++        return $ships;
++    }
++
++    public function findOneById($id)
++    {
++        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
++        $statement->execute(array('id' => $id));
++        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
++
++        return $this->createShipFromData($shipArray);
++    }
++
++    private function createShipFromData(array $shipData)
++    {
++        $ship = new Ship($shipData['name']);
++        $ship->setId($shipData['id']);
++        $ship->setWeaponPower($shipData['weapon_power']);
++        $ship->setJediFactor($shipData['jedi_factor']);
++        $ship->setStrength($shipData['strength']);
++
++        return $ship;
++    }
++
++    /**
++     * @return PDO
++     */
++    private function getPDO()
++    {
++        return $this->pdo;
++    }
++
++    private function queryForShips()
++    {
++        $statement = $this->getPDO()->prepare('SELECT * FROM ship');
++        $statement->execute();
++        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
++
++        return $shipsArray;
++    }
++}
+\ No newline at end of file
+diff --git a/lib/Ship.php b/lib/Ship.php
+deleted file mode 100644
+index 80c1744..0000000
+--- a/lib/Ship.php
++++ /dev/null
+@@ -1,134 +0,0 @@
+-<?php
+-
+-class Ship
+-{
+-    private $id;
+-
+-    private $name;
+-
+-    private $weaponPower = 0;
+-
+-    private $jediFactor = 0;
+-
+-    private $strength = 0;
+-
+-    private $underRepair;
+-
+-    public function __construct($name)
+-    {
+-        $this->name = $name;
+-        // randomly put this ship under repair
+-        $this->underRepair = mt_rand(1, 100) < 30;
+-    }
+-
+-    public function isFunctional()
+-    {
+-        return !$this->underRepair;
+-    }
+-
+-    public function sayHello()
+-    {
+-        echo 'Hello!';
+-    }
+-
+-    public function getName()
+-    {
+-        return $this->name;
+-    }
+-    
+-    public function setStrength($number)
+-    {
+-        if (!is_numeric($number)) {
+-            throw new \Exception('Strength must be a number, duh!');
+-        }
+-
+-        $this->strength = $number;
+-    }
+-
+-    public function getStrength()
+-    {
+-        return $this->strength;
+-    }
+-
+-    public function getNameAndSpecs($useShortFormat = false)
+-    {
+-        if ($useShortFormat) {
+-            return sprintf(
+-                '%s: %s/%s/%s',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
+-            );
+-        } else {
+-            return sprintf(
+-                '%s: w:%s, j:%s, s:%s',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
+-            );
+-        }
+-    }
+-
+-    public function doesGivenShipHaveMoreStrength($givenShip)
+-    {
+-        return $givenShip->strength > $this->strength;
+-    }
+-
+-    /**
+-     * @return int
+-     */
+-    public function getWeaponPower()
+-    {
+-        return $this->weaponPower;
+-    }
+-
+-    /**
+-     * @return int
+-     */
+-    public function getJediFactor()
+-    {
+-        return $this->jediFactor;
+-    }
+-
+-    /**
+-     * @param string $name
+-     */
+-    public function setName($name)
+-    {
+-        $this->name = $name;
+-    }
+-
+-    /**
+-     * @param int $weaponPower
+-     */
+-    public function setWeaponPower($weaponPower)
+-    {
+-        $this->weaponPower = $weaponPower;
+-    }
+-
+-    /**
+-     * @param int $jediFactor
+-     */
+-    public function setJediFactor($jediFactor)
+-    {
+-        $this->jediFactor = $jediFactor;
+-    }
+-
+-    /**
+-     * @return int
+-     */
+-    public function getId()
+-    {
+-        return $this->id;
+-    }
+-
+-    /**
+-     * @param int $id
+-     */
+-    public function setId($id)
+-    {
+-        $this->id = $id;
+-    }
+-}
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+deleted file mode 100644
+index 6516a57..0000000
+--- a/lib/ShipLoader.php
++++ /dev/null
+@@ -1,65 +0,0 @@
+-<?php
+-
+-class ShipLoader
+-{
+-    private $pdo;
+-
+-    public function __construct(PDO $pdo)
+-    {
+-        $this->pdo = $pdo;
+-    }
+-
+-    /**
+-     * @return Ship[]
+-     * @throws Exception
+-     */
+-    public function getShips()
+-    {
+-        $ships = array();
+-
+-        $shipsData = $this->queryForShips();
+-
+-        foreach ($shipsData as $shipData) {
+-            $ships[] = $this->createShipFromData($shipData);
+-        }
+-
+-        return $ships;
+-    }
+-
+-    public function findOneById($id)
+-    {
+-        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
+-        $statement->execute(array('id' => $id));
+-        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
+-
+-        return $this->createShipFromData($shipArray);
+-    }
+-
+-    private function createShipFromData(array $shipData)
+-    {
+-        $ship = new Ship($shipData['name']);
+-        $ship->setId($shipData['id']);
+-        $ship->setWeaponPower($shipData['weapon_power']);
+-        $ship->setJediFactor($shipData['jedi_factor']);
+-        $ship->setStrength($shipData['strength']);
+-
+-        return $ship;
+-    }
+-
+-    /**
+-     * @return PDO
+-     */
+-    private function getPDO()
+-    {
+-        return $this->pdo;
+-    }
+-
+-    private function queryForShips()
+-    {
+-        $statement = $this->getPDO()->prepare('SELECT * FROM ship');
+-        $statement->execute();
+-        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+-
+-        return $shipsArray;
+-    }
+-}
+\ No newline at end of file

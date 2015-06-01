@@ -349,7 +349,12 @@
             "id": "container-move-in-battlemanager",
             "name": "Container: Move in BattleManager",
             "description": null
+        },
+        {
+            "id": "container-reorganizing-models-and-services",
+            "name": "Container: Reorganizing models and services",
+            "description": null
         }
     ],
-    "sha": "8a3e3035553545c5e9b9e1c255e03e3590898f9e"
+    "sha": "e85c495d5860b7104ac79c35405da6e09dd7b35c"
 }
