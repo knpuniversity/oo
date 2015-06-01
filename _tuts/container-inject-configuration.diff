@@ -1,0 +1,62 @@
+diff --git a/battle.php b/battle.php
+index 20c4957..e6a1381 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,7 +1,7 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$container = new Container();
++$container = new Container($configuration);
+ $pdo = $container->getPDO();
+ 
+ $shipLoader = new ShipLoader($pdo);
+diff --git a/index.php b/index.php
+index 5590309..57e12ef 100644
+--- a/index.php
++++ b/index.php
+@@ -1,7 +1,7 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$container = new Container();
++$container = new Container($configuration);
+ $pdo = $container->getPDO();
+ 
+ $shipLoader = new ShipLoader($pdo);
+diff --git a/lib/Container.php b/lib/Container.php
+index 1ca6b9c..f565bef 100644
+--- a/lib/Container.php
++++ b/lib/Container.php
+@@ -2,21 +2,22 @@
+ 
+ class Container
+ {
++    private $configuration;
++
++    public function __construct(array $configuration)
++    {
++        $this->configuration = $configuration;
++    }
++
+     /**
+      * @return PDO
+      */
+     public function getPDO()
+     {
+-        $configuration = array(
+-            'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
+-            'db_user' => 'root',
+-            'db_pass' => null,
+-        );
+-
+         return new PDO(
+-            $configuration['db_dsn'],
+-            $configuration['db_user'],
+-            $configuration['db_pass']
++            $this->configuration['db_dsn'],
++            $this->configuration['db_user'],
++            $this->configuration['db_pass']
+         );
+     }
+ }

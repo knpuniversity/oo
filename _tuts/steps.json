@@ -324,7 +324,32 @@
             "id": "di-injecting-only-pdo",
             "name": "DI: Injecting only PDO",
             "description": null
+        },
+        {
+            "id": "container-basic-container-getpdo",
+            "name": "Container: Basic Container::getPDO",
+            "description": null
+        },
+        {
+            "id": "container-inject-configuration",
+            "name": "Container: Inject configuration",
+            "description": null
+        },
+        {
+            "id": "container-properties-to-avoid-dups",
+            "name": "Container: Properties to avoid dups",
+            "description": null
+        },
+        {
+            "id": "container-move-in-shiploader",
+            "name": "Container: Move in ShipLoader",
+            "description": null
+        },
+        {
+            "id": "container-move-in-battlemanager",
+            "name": "Container: Move in BattleManager",
+            "description": null
         }
     ],
-    "sha": "8d37d973ae1a069832e9c44f8d9739196488439b"
+    "sha": "8a3e3035553545c5e9b9e1c255e03e3590898f9e"
 }

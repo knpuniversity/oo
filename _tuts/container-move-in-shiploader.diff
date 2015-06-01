@@ -1,0 +1,61 @@
+diff --git a/battle.php b/battle.php
+index e6a1381..d020a76 100644
+--- a/battle.php
++++ b/battle.php
+@@ -2,10 +2,8 @@
+ require __DIR__.'/bootstrap.php';
+ 
+ $container = new Container($configuration);
+-$pdo = $container->getPDO();
+-
+-$shipLoader = new ShipLoader($pdo);
+ 
++$shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
+ $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
+diff --git a/index.php b/index.php
+index 57e12ef..1e794ad 100644
+--- a/index.php
++++ b/index.php
+@@ -2,9 +2,8 @@
+ require __DIR__.'/bootstrap.php';
+ 
+ $container = new Container($configuration);
+-$pdo = $container->getPDO();
+ 
+-$shipLoader = new ShipLoader($pdo);
++$shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
+ $errorMessage = '';
+diff --git a/lib/Container.php b/lib/Container.php
+index 3fddd08..8957943 100644
+--- a/lib/Container.php
++++ b/lib/Container.php
+@@ -6,6 +6,8 @@ class Container
+ 
+     private $pdo;
+ 
++    private $shipLoader;
++
+     public function __construct(array $configuration)
+     {
+         $this->configuration = $configuration;
+@@ -26,4 +28,16 @@ class Container
+ 
+         return $this->pdo;
+     }
++
++    /**
++     * @return ShipLoader
++     */
++    public function getShipLoader()
++    {
++        if ($this->shipLoader === null) {
++            $this->shipLoader = new ShipLoader($this->getPDO());
++        }
++
++        return $this->shipLoader;
++    }
+ }

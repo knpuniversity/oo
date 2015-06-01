@@ -1,0 +1,33 @@
+diff --git a/lib/Container.php b/lib/Container.php
+index f565bef..3fddd08 100644
+--- a/lib/Container.php
++++ b/lib/Container.php
+@@ -4,6 +4,8 @@ class Container
+ {
+     private $configuration;
+ 
++    private $pdo;
++
+     public function __construct(array $configuration)
+     {
+         $this->configuration = $configuration;
+@@ -14,10 +16,14 @@ class Container
+      */
+     public function getPDO()
+     {
+-        return new PDO(
+-            $this->configuration['db_dsn'],
+-            $this->configuration['db_user'],
+-            $this->configuration['db_pass']
+-        );
++        if ($this->pdo === null) {
++            return new PDO(
++                $this->configuration['db_dsn'],
++                $this->configuration['db_user'],
++                $this->configuration['db_pass']
++            );
++        }
++
++        return $this->pdo;
+     }
+ }

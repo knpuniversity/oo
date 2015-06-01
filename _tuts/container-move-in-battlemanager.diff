@@ -1,0 +1,43 @@
+diff --git a/battle.php b/battle.php
+index d020a76..d323838 100644
+--- a/battle.php
++++ b/battle.php
+@@ -29,7 +29,7 @@ if (!$ship1 || !$ship2) {
+     die;
+ }
+ 
+-$battleManager = new BattleManager();
++$battleManager = $container->getBattleManager();
+ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+ ?>
+ 
+diff --git a/lib/Container.php b/lib/Container.php
+index 8957943..8795ce4 100644
+--- a/lib/Container.php
++++ b/lib/Container.php
+@@ -8,6 +8,8 @@ class Container
+ 
+     private $shipLoader;
+ 
++    private $battleManager;
++
+     public function __construct(array $configuration)
+     {
+         $this->configuration = $configuration;
+@@ -40,4 +42,16 @@ class Container
+ 
+         return $this->shipLoader;
+     }
++
++    /**
++     * @return BattleManager
++     */
++    public function getBattleManager()
++    {
++        if ($this->battleManager === null) {
++            $this->battleManager = new BattleManager();
++        }
++
++        return $this->battleManager;
++    }
+ }

@@ -1,0 +1,76 @@
+diff --git a/battle.php b/battle.php
+index b5a5465..20c4957 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,11 +1,8 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$pdo = new PDO(
+-    $configuration['db_dsn'],
+-    $configuration['db_user'],
+-    $configuration['db_pass']
+-);
++$container = new Container();
++$pdo = $container->getPDO();
+ 
+ $shipLoader = new ShipLoader($pdo);
+ 
+diff --git a/bootstrap.php b/bootstrap.php
+index c07d335..769dfd7 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -6,6 +6,7 @@ $configuration = array(
+     'db_pass' => null,
+ );
+ 
++require_once __DIR__.'/lib/Container.php';
+ require_once __DIR__.'/lib/Ship.php';
+ require_once __DIR__.'/lib/BattleManager.php';
+ require_once __DIR__.'/lib/ShipLoader.php';
+diff --git a/index.php b/index.php
+index 922ca2e..5590309 100644
+--- a/index.php
++++ b/index.php
+@@ -1,11 +1,8 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$pdo = new PDO(
+-    $configuration['db_dsn'],
+-    $configuration['db_user'],
+-    $configuration['db_pass']
+-);
++$container = new Container();
++$pdo = $container->getPDO();
+ 
+ $shipLoader = new ShipLoader($pdo);
+ $ships = $shipLoader->getShips();
+diff --git a/lib/Container.php b/lib/Container.php
+new file mode 100644
+index 0000000..1ca6b9c
+--- /dev/null
++++ b/lib/Container.php
+@@ -0,0 +1,22 @@
++<?php
++
++class Container
++{
++    /**
++     * @return PDO
++     */
++    public function getPDO()
++    {
++        $configuration = array(
++            'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
++            'db_user' => 'root',
++            'db_pass' => null,
++        );
++
++        return new PDO(
++            $configuration['db_dsn'],
++            $configuration['db_user'],
++            $configuration['db_pass']
++        );
++    }
++}
