@@ -1,0 +1,72 @@
+diff --git a/battle.php b/battle.php
+index 22bff4f..b5a5465 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,7 +1,14 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$shipLoader = new ShipLoader();
++$pdo = new PDO(
++    $configuration['db_dsn'],
++    $configuration['db_user'],
++    $configuration['db_pass']
++);
++
++$shipLoader = new ShipLoader($pdo);
++
+ $ships = $shipLoader->getShips();
+ 
+ $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
+diff --git a/index.php b/index.php
+index e732772..922ca2e 100644
+--- a/index.php
++++ b/index.php
+@@ -1,11 +1,13 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$shipLoader = new ShipLoader(
++$pdo = new PDO(
+     $configuration['db_dsn'],
+     $configuration['db_user'],
+     $configuration['db_pass']
+ );
++
++$shipLoader = new ShipLoader($pdo);
+ $ships = $shipLoader->getShips();
+ 
+ $errorMessage = '';
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index 6b6596d..6516a57 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -4,15 +4,9 @@ class ShipLoader
+ {
+     private $pdo;
+ 
+-    private $dbDsn;
+-    private $dbUser;
+-    private $dbPass;
+-
+-    public function __construct($dbDsn, $dbUser, $dbPass)
++    public function __construct(PDO $pdo)
+     {
+-        $this->dbDsn = $dbDsn;
+-        $this->dbUser = $dbUser;
+-        $this->dbPass = $dbPass;
++        $this->pdo = $pdo;
+     }
+ 
+     /**
+@@ -57,10 +51,6 @@ class ShipLoader
+      */
+     private function getPDO()
+     {
+-        if ($this->pdo === null) {
+-            $this->pdo = new PDO($this->dbDsn, $this->dbUser, $this->dbPass);
+-        }
+-
+         return $this->pdo;
+     }
+ 

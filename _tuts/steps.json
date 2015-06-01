@@ -264,7 +264,67 @@
             "id": "battleresult-optional-winner-loser-args",
             "name": "BattleResult: Optional winner\/loser args",
             "description": null
+        },
+        {
+            "id": "battlemanager-update-ship-strength",
+            "name": "BattleManager: update Ship strength",
+            "description": null
+        },
+        {
+            "id": "database-copy-the-init-db-php-script",
+            "name": "Database: Copy the init_db.php script",
+            "description": null
+        },
+        {
+            "id": "database-make-query-in-shiploader",
+            "name": "Database: Make query in ShipLoader",
+            "description": null
+        },
+        {
+            "id": "database-shiploader-query-in-private-method",
+            "name": "Database: ShipLoader query in private method",
+            "description": null
+        },
+        {
+            "id": "database-hydrate-the-objects",
+            "name": "Database: Hydrate the objects!",
+            "description": null
+        },
+        {
+            "id": "database-add-id-property-and-use-it",
+            "name": "Database: Add id property and use it",
+            "description": null
+        },
+        {
+            "id": "database-query-by-id-in-battle-php",
+            "name": "Database: Query by id in battle.php",
+            "description": null
+        },
+        {
+            "id": "database-refactor-shiploader-to-hydrate",
+            "name": "Database: Refactor ShipLoader to hydrate",
+            "description": null
+        },
+        {
+            "id": "di-getter-for-pdo",
+            "name": "DI: Getter for PDO",
+            "description": null
+        },
+        {
+            "id": "di-private-property-for-only-one-pdo",
+            "name": "DI: private property for only one pdo",
+            "description": null
+        },
+        {
+            "id": "di-adding-configuration-as-construct-args",
+            "name": "DI: Adding configuration as construct args",
+            "description": null
+        },
+        {
+            "id": "di-injecting-only-pdo",
+            "name": "DI: Injecting only PDO",
+            "description": null
         }
     ],
-    "sha": "1703ef098c4660798c86afb81ee6479cf279e2ec"
+    "sha": "8d37d973ae1a069832e9c44f8d9739196488439b"
 }

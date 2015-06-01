@@ -1,0 +1,27 @@
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index 0d8ba1e..29a9e92 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -2,6 +2,8 @@
+ 
+ class ShipLoader
+ {
++    private $pdo;
++
+     /**
+      * @return Ship[]
+      * @throws Exception
+@@ -44,9 +46,11 @@ class ShipLoader
+      */
+     private function getPDO()
+     {
+-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++        if ($this->pdo === null) {
++            $this->pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++        }
+ 
+-        return $pdo;
++        return $this->pdo;
+     }
+ 
+     private function queryForShips()

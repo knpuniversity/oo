@@ -1,0 +1,36 @@
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index 8166ccf..0d8ba1e 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -21,8 +21,7 @@ class ShipLoader
+ 
+     public function findOneById($id)
+     {
+-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+-        $statement = $pdo->prepare('SELECT * FROM ship WHERE id = :id');
++        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
+         $statement->execute(array('id' => $id));
+         $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
+ 
+@@ -40,11 +39,19 @@ class ShipLoader
+         return $ship;
+     }
+ 
++    /**
++     * @return PDO
++     */
++    private function getPDO()
++    {
++        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++
++        return $pdo;
++    }
+ 
+     private function queryForShips()
+     {
+-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+-        $statement = $pdo->prepare('SELECT * FROM ship');
++        $statement = $this->getPDO()->prepare('SELECT * FROM ship');
+         $statement->execute();
+         $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+ 

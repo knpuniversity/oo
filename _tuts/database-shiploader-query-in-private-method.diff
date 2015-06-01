@@ -1,0 +1,37 @@
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index d018e0b..b5f1f77 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -8,14 +8,11 @@ class ShipLoader
+      */
+     public function getShips()
+     {
+-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+-        $statement = $pdo->prepare('SELECT * FROM ship');
+-        $statement->execute();
+-        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+-        var_dump($shipsArray);die;
+-
+         $ships = array();
+ 
++        $shipsData = $this->queryForShips();
++        var_dump($shipsData);die;
++
+         $ship = new Ship('Jedi Starfighter');
+         //$ship->setName('Jedi Starfighter');
+         $ship->setWeaponPower(5);
+@@ -44,4 +41,13 @@ class ShipLoader
+         return $ships;
+     }
+ 
++    private function queryForShips()
++    {
++        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++        $statement = $pdo->prepare('SELECT * FROM ship');
++        $statement->execute();
++        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
++
++        return $shipsArray;
++    }
+ }
+\ No newline at end of file

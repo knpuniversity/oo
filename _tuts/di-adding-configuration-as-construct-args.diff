@@ -1,0 +1,64 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 063bfaa..c07d335 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -1,5 +1,11 @@
+ <?php
+ 
++$configuration = array(
++    'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
++    'db_user' => 'root',
++    'db_pass' => null,
++);
++
+ require_once __DIR__.'/lib/Ship.php';
+ require_once __DIR__.'/lib/BattleManager.php';
+ require_once __DIR__.'/lib/ShipLoader.php';
+diff --git a/index.php b/index.php
+index fc32144..e732772 100644
+--- a/index.php
++++ b/index.php
+@@ -1,7 +1,11 @@
+ <?php
+ require __DIR__.'/bootstrap.php';
+ 
+-$shipLoader = new ShipLoader();
++$shipLoader = new ShipLoader(
++    $configuration['db_dsn'],
++    $configuration['db_user'],
++    $configuration['db_pass']
++);
+ $ships = $shipLoader->getShips();
+ 
+ $errorMessage = '';
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index 29a9e92..6b6596d 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -4,6 +4,17 @@ class ShipLoader
+ {
+     private $pdo;
+ 
++    private $dbDsn;
++    private $dbUser;
++    private $dbPass;
++
++    public function __construct($dbDsn, $dbUser, $dbPass)
++    {
++        $this->dbDsn = $dbDsn;
++        $this->dbUser = $dbUser;
++        $this->dbPass = $dbPass;
++    }
++
+     /**
+      * @return Ship[]
+      * @throws Exception
+@@ -47,7 +58,7 @@ class ShipLoader
+     private function getPDO()
+     {
+         if ($this->pdo === null) {
+-            $this->pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++            $this->pdo = new PDO($this->dbDsn, $this->dbUser, $this->dbPass);
+         }
+ 
+         return $this->pdo;
