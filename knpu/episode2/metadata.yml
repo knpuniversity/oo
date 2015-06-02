@@ -22,6 +22,7 @@ summary: |
     Do it!
 
 illustration: oo.png
+hasVideoDownload: false
 
 tuts_hero:
     start_step: constructor-passing-an-argument
