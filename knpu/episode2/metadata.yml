@@ -1,0 +1,29 @@
+title:  "OOP (ep 2): Services, Dependency Injection and Containers"
+summary: |
+    Time to take things up a notch!
+    
+    In this tutorial, we'll leverage what we learned in
+    [Episode 1](http://knpuniversity.com/screencast/oo) to *really* start
+    using what we know. We'll clean up old functions with new classes, learn
+    a practice called dependency injection and organize our objects into
+    something called a container. This is the episode that *really* makes
+    objects useful and sets us up for future stuff (inheritance, interfaces, etc).
+    
+    So let's get serious:
+    
+    * Service Classes
+    * Organize with private functions
+    * Goodbye arrays, hello BattleResult
+    * Objects passed by Reference
+    * Query from the Database, but using Objects!
+    * Dependency Injection!!!
+    * Creating a Service Container
+    
+    Do it!
+
+illustration: oo.png
+
+tuts_hero:
+    start_step: constructor-passing-an-argument
+
+chapters: []

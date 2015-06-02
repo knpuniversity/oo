@@ -16,6 +16,8 @@ summary: |
     * Type-hinting
     * Class constructors (the `__construct` guy)
     
+    Then keep going with [episode 2](http://knpuniversity.com/screencast/oo-ep2).
+    
     Blast off! `#NerdPun`
 
 illustration: oo.png
@@ -23,6 +25,7 @@ videoDownloadExtension: mov
 
 tuts_hero:
     start_step: start
+    finish_step: constructor-passing-an-argument
 
 chapters:
     the-project:
