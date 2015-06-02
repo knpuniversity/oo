@@ -29,37 +29,26 @@ tuts_hero:
 
 chapters:
     the-project:
-        title:      The Project
         is_free:    true
         video_key:  v9z4xgg745
     basic-class:
-        title:      Basic Class
         is_free:    true
         video_key:  gjf2535dsg
     methods:
-        title:      Class Methods
         video_key:  dhhi0xlj3c
     methods-work:
-        title:      Methods Work
         video_key:  skllcdfl51
     multiple-objects:
-        title:      Multiple Objects
         video_key:  pbii2wp7ny
     objects-interact:
-        title:      Objects Interact
         video_key:  vjailwj7at
     editor-autocomplete:
-        title:      Editor Autocomplete
         video_key:  0t55y0eirm
     using-objects:
-        title:      Using Objects
         video_key:  8yife9jirq
     private-access:
-        title:      Private Access
         video_key:  pjjubaasb2
     type-hinting:
-        title:      Type Hinting
         video_key:  4up3h78l8r
     constructor:
-        title:      Constructor
         video_key:  t2z930wgr8
