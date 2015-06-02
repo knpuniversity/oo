@@ -1,5 +1,5 @@
 diff --git a/battle.php b/battle.php
-index 031c777..22bff4f 100644
+index bd38342..a10d8ac 100644
 --- a/battle.php
 +++ b/battle.php
 @@ -4,28 +4,28 @@ require __DIR__.'/bootstrap.php';

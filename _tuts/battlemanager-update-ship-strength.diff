@@ -1,15 +1,21 @@
 diff --git a/battle.php b/battle.php
-index 98e643a..031c777 100644
+index 98e643a..bd38342 100644
 --- a/battle.php
 +++ b/battle.php
-@@ -84,6 +84,7 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
-                         <?php else: ?>
-                             overpowered and destroyed the <?php echo $battleResult->getLosingShip()->getName() ?>s
+@@ -86,6 +86,13 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
                          <?php endif; ?>
-+                        (remaining strength: <?php echo $battleResult->getWinningShip()->getStrength(); ?>)
                      <?php endif; ?>
                  </p>
++                <h3>Remaining Strength</h3>
++                <dl class="dl-horizontal">
++                    <dt><?php echo $ship1->getName(); ?></dt>
++                    <dd><?php echo $ship1->getStrength(); ?></dd>
++                    <dt><?php echo $ship2->getName(); ?></dt>
++                    <dd><?php echo $ship2->getStrength(); ?></dd>
++                </dl>
              </div>
+             <a href="/index.php"><p class="text-center"><i class="fa fa-undo"></i> Battle again</p></a>
+         
 diff --git a/lib/BattleManager.php b/lib/BattleManager.php
 index 2d53460..e4dc5bc 100644
 --- a/lib/BattleManager.php

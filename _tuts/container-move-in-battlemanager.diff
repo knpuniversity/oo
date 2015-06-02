@@ -1,5 +1,5 @@
 diff --git a/battle.php b/battle.php
-index d020a76..d323838 100644
+index aaca8ca..cad0378 100644
 --- a/battle.php
 +++ b/battle.php
 @@ -29,7 +29,7 @@ if (!$ship1 || !$ship2) {
