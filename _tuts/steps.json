@@ -231,11 +231,6 @@
             "description": null
         },
         {
-            "id": "shiploader-proper-phpdoc",
-            "name": "ShipLoader: Proper PHPDoc",
-            "description": null
-        },
-        {
             "id": "refactor-rename-functions-php-to-bootstrap-php",
             "name": "Refactor: Rename functions.php to bootstrap.php",
             "description": null
