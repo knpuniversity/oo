@@ -32,7 +32,7 @@ index fc32144..e732772 100644
  
  $errorMessage = '';
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 29a9e92..6b6596d 100644
+index ed76f54..8a0c07a 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -4,6 +4,17 @@ class ShipLoader
@@ -52,8 +52,8 @@ index 29a9e92..6b6596d 100644
 +
      /**
       * @return Ship[]
-      * @throws Exception
-@@ -47,7 +58,7 @@ class ShipLoader
+      */
+@@ -54,7 +65,7 @@ class ShipLoader
      private function getPDO()
      {
          if ($this->pdo === null) {

@@ -1,0 +1,25 @@
+diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
+index 8b41745..f888043 100644
+--- a/lib/ShipLoader.php
++++ b/lib/ShipLoader.php
+@@ -2,6 +2,9 @@
+ 
+ class ShipLoader
+ {
++    /**
++     * @return Ship[]
++     */
+     public function getShips()
+     {
+         $ships = array();
+@@ -15,6 +18,10 @@ class ShipLoader
+         return $ships;
+     }
+ 
++    /**
++     * @param $id
++     * @return Ship
++     */
+     public function findOneById($id)
+     {
+         $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');

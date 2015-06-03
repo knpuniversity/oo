@@ -546,10 +546,10 @@ index 0000000..8795ce4
 +}
 diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
 new file mode 100644
-index 0000000..6516a57
+index 0000000..9ccfdad
 --- /dev/null
 +++ b/lib/Service/ShipLoader.php
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,73 @@
 +<?php
 +
 +class ShipLoader
@@ -563,7 +563,6 @@ index 0000000..6516a57
 +
 +    /**
 +     * @return Ship[]
-+     * @throws Exception
 +     */
 +    public function getShips()
 +    {
@@ -578,11 +577,19 @@ index 0000000..6516a57
 +        return $ships;
 +    }
 +
++    /**
++     * @param $id
++     * @return Ship
++     */
 +    public function findOneById($id)
 +    {
 +        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
 +        $statement->execute(array('id' => $id));
 +        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
++
++        if (!$shipArray) {
++            return null;
++        }
 +
 +        return $this->createShipFromData($shipArray);
 +    }
@@ -615,7 +622,7 @@ index 0000000..6516a57
 +        return $shipsArray;
 +    }
 +}
-\ No newline at end of file
++
 diff --git a/lib/Ship.php b/lib/Ship.php
 deleted file mode 100644
 index 80c1744..0000000
@@ -758,10 +765,10 @@ index 80c1744..0000000
 -}
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
 deleted file mode 100644
-index 6516a57..0000000
+index 9ccfdad..0000000
 --- a/lib/ShipLoader.php
 +++ /dev/null
-@@ -1,65 +0,0 @@
+@@ -1,73 +0,0 @@
 -<?php
 -
 -class ShipLoader
@@ -775,7 +782,6 @@ index 6516a57..0000000
 -
 -    /**
 -     * @return Ship[]
--     * @throws Exception
 -     */
 -    public function getShips()
 -    {
@@ -790,11 +796,19 @@ index 6516a57..0000000
 -        return $ships;
 -    }
 -
+-    /**
+-     * @param $id
+-     * @return Ship
+-     */
 -    public function findOneById($id)
 -    {
 -        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
 -        $statement->execute(array('id' => $id));
 -        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
+-
+-        if (!$shipArray) {
+-            return null;
+-        }
 -
 -        return $this->createShipFromData($shipArray);
 -    }
@@ -827,4 +841,4 @@ index 6516a57..0000000
 -        return $shipsArray;
 -    }
 -}
-\ No newline at end of file
+-

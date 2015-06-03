@@ -1,5 +1,5 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 0d8ba1e..29a9e92 100644
+index 8c6d815..ed76f54 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -2,6 +2,8 @@
@@ -10,8 +10,8 @@ index 0d8ba1e..29a9e92 100644
 +
      /**
       * @return Ship[]
-      * @throws Exception
-@@ -44,9 +46,11 @@ class ShipLoader
+      */
+@@ -51,9 +53,11 @@ class ShipLoader
       */
      private function getPDO()
      {

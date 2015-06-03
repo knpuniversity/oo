@@ -1,8 +1,8 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index b5f1f77..3ee21e1 100644
+index 20938a1..47c74b1 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -11,32 +11,15 @@ class ShipLoader
+@@ -7,32 +7,15 @@ class ShipLoader
          $ships = array();
  
          $shipsData = $this->queryForShips();

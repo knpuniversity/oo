@@ -1,9 +1,9 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 8166ccf..0d8ba1e 100644
+index f888043..8c6d815 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -21,8 +21,7 @@ class ShipLoader
- 
+@@ -24,8 +24,7 @@ class ShipLoader
+      */
      public function findOneById($id)
      {
 -        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
@@ -12,7 +12,7 @@ index 8166ccf..0d8ba1e 100644
          $statement->execute(array('id' => $id));
          $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
  
-@@ -40,11 +39,19 @@ class ShipLoader
+@@ -47,11 +46,19 @@ class ShipLoader
          return $ship;
      }
  

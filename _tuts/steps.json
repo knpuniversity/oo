@@ -306,6 +306,11 @@
             "description": null
         },
         {
+            "id": "database-shiploader-phpdoc",
+            "name": "Database: ShipLoader PHPDoc",
+            "description": null
+        },
+        {
             "id": "di-getter-for-pdo",
             "name": "DI: Getter for PDO",
             "description": null
@@ -356,5 +361,5 @@
             "description": null
         }
     ],
-    "sha": "4ccfa9b8d1dccac2d969d4b83d106de915689b74"
+    "sha": "8fe37b9e1a3955acbbdd33c9bcf2c3a71e6ca850"
 }

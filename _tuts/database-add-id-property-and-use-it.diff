@@ -67,10 +67,10 @@ index 76b164e..80c1744 100644
 +    }
  }
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 3ee21e1..bc6e1ef 100644
+index 47c74b1..27d781d 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -14,6 +14,7 @@ class ShipLoader
+@@ -10,6 +10,7 @@ class ShipLoader
  
          foreach ($shipsData as $shipData) {
              $ship = new Ship($shipData['name']);

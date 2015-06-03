@@ -1,8 +1,8 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index c1dc7bc..8166ccf 100644
+index 7a13520..8b41745 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -13,13 +13,7 @@ class ShipLoader
+@@ -9,13 +9,7 @@ class ShipLoader
          $shipsData = $this->queryForShips();
  
          foreach ($shipsData as $shipData) {
@@ -17,14 +17,18 @@ index c1dc7bc..8166ccf 100644
          }
  
          return $ships;
-@@ -32,9 +26,21 @@ class ShipLoader
+@@ -28,9 +22,25 @@ class ShipLoader
          $statement->execute(array('id' => $id));
          $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
  
 -        var_dump($shipArray);die;
-+        return $this->createShipFromData($shipArray);
-+    }
++        if (!$shipArray) {
++            return null;
++        }
 +
++        return $this->createShipFromData($shipArray);
+     }
+ 
 +    private function createShipFromData(array $shipData)
 +    {
 +        $ship = new Ship($shipData['name']);
@@ -34,9 +38,17 @@ index c1dc7bc..8166ccf 100644
 +        $ship->setStrength($shipData['strength']);
 +
 +        return $ship;
-     }
- 
++    }
++
 +
      private function queryForShips()
      {
          $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+@@ -40,4 +50,5 @@ class ShipLoader
+ 
+         return $shipsArray;
+     }
+-}
+\ No newline at end of file
++}
++
