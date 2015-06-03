@@ -1,13 +1,13 @@
 # Service Classes
 
-Well hey! Welcome back! It's time to put our new object-oriented skills *really*
-into practice. We're working on the same project: it has ships, you choose
-them, then they engage in epic battle!
+Well hey! Welcome back! It's time to put our new object-oriented skills
+into practice. We're working on the same out of this world project: it has 
+ships, you choose them, then they engage in epic battle!
 
 In an editor, far far away, you'll see a simple application that runs this:
 `index.php` is the homepage and `battle.php` does the magic and shows the
 results. Last time, we created a single class called `Ship`, which describes
-all the properties of a ship - it's like a container for one ship's details:
+all its properties - it's like a container for one ship's details:
 
 [[[ code('7074e3820c') ]]]
 
@@ -19,7 +19,7 @@ We used this to replace these big associative arrays. Now we deal with cute
 ## Remove all the Flat Functions!
 
 Having a huge list of flat functions in `functions.php` is not a good recipe
-for staying organized. But in just 5 minutes, we'll use some new classes
+for staying organized. But in just a few minutes, we'll use some new classes
 to give our app a whole new level of sophistication. We'll get rid of `battle()`
 first.
 
@@ -38,8 +38,8 @@ work: we give it 2 Ships, it does some calculations, executes logic to see
 how different strengths affect each other and ultimately returns the result
 of that work.
 
-And we're all familiar with creating functions that do work like this. And
-here's the secret for OO: whenever you get the urge to create a flat function
+And we're all familiar with creating functions like this. And here's the 
+secret for OO: whenever you get the urge to create a flat function
 like `battle()`, don't. Instead, create a class and with a method inside
 of it.
 
@@ -54,15 +54,15 @@ Be as creative as you want with naming: I want to describe that methods in
 this class will do things related to battling.
 
 Go copy and remove the flat `battle()` function: paste it into `BattleManager`.
-Put `public` in front of `functions`. Remember, `public` means that code
-*outside* of this class will be able to call this function:
+Put `public` in front of `function`. Remember, `public` means that code
+*outside* of this class will be able to call this:
 
 [[[ code('ef5f4426c3') ]]]
 
 And yes, you don't *have* to add `public`: functions default to `public`
 if you say nothing, but let's keep things clear!
 
-And yea, that's all you need to change: functions work the same inside or
+That's all you need to change: functions work the same inside or
 outside of a class: they have arguments, they return stuff.
 
 But we do need to change code where we call this function - in `battle.php`.
@@ -107,4 +107,4 @@ inside one class - as long as they are all thematically similar.
 You'll create one of these objects - like `BattleManager` - just one time,
 before you need to call a method on it. These are sometimes called service
 classes, because they perform work or service. Organizing your code to use
-service classes can be tricky, but we'll learn some tricks.
+service classes can be tricky, but we'll learn all about that.
