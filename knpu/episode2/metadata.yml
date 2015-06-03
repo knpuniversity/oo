@@ -30,4 +30,7 @@ tuts_hero:
 chapters:
     service-classes:
         is_finished: false
+    army-of-services:
+        is_finished: false
+
 
