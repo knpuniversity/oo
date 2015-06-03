@@ -27,4 +27,7 @@ hasVideoDownload: false
 tuts_hero:
     start_step: constructor-passing-an-argument
 
-chapters: []
+chapters:
+    service-classes:
+        is_finished: false
+
