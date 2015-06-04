@@ -40,7 +40,7 @@ index 392fd00..c035532 100644
                      <?php endif; ?>
                  </p>
 diff --git a/lib/BattleManager.php b/lib/BattleManager.php
-index cb2e232..2d53460 100644
+index 188d245..2d53460 100644
 --- a/lib/BattleManager.php
 +++ b/lib/BattleManager.php
 @@ -5,7 +5,7 @@ class BattleManager
@@ -52,16 +52,3 @@ index cb2e232..2d53460 100644
       */
      public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
      {
-@@ -49,11 +49,7 @@ class BattleManager
-             $usedJediPowers = $ship1UsedJediPowers;
-         }
- 
--        return array(
--            'winning_ship' => $winningShip,
--            'losing_ship' => $losingShip,
--            'used_jedi_powers' => $usedJediPowers,
--        );
-+        return new BattleResult($usedJediPowers, $winningShip, $losingShip);
-     }
- 
-     private function didJediDestroyShipUsingTheForce(Ship $ship)

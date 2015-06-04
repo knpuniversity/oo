@@ -1,3 +1,20 @@
+diff --git a/lib/BattleManager.php b/lib/BattleManager.php
+index cb2e232..188d245 100644
+--- a/lib/BattleManager.php
++++ b/lib/BattleManager.php
+@@ -49,11 +49,7 @@ class BattleManager
+             $usedJediPowers = $ship1UsedJediPowers;
+         }
+ 
+-        return array(
+-            'winning_ship' => $winningShip,
+-            'losing_ship' => $losingShip,
+-            'used_jedi_powers' => $usedJediPowers,
+-        );
++        return new BattleResult($usedJediPowers, $winningShip, $losingShip);
+     }
+ 
+     private function didJediDestroyShipUsingTheForce(Ship $ship)
 diff --git a/lib/BattleResult.php b/lib/BattleResult.php
 new file mode 100644
 index 0000000..35a6178
