@@ -32,5 +32,9 @@ chapters:
         is_finished: false
     army-of-services:
         is_finished: false
-
-
+    battle-result-model:
+        is_finished: false
+    semantic-methods:
+        is_finished: false
+    by_reference:
+        is_finished: false
