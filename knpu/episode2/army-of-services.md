@@ -5,11 +5,11 @@ we're *calling* a flat function: `didJediDestroyShipUsingTheForce()`:
 
 [[[ code('261d176cc4') ]]]
 
-No good!
+No bueno!
 
 ## Refactoring to private Functions
 
-This lives at bottom of `functions.php`. In our app, this is *only* called
+This lives at the bottom of `functions.php`. In our app, this is *only* called
 from inside `battle()`, and since it obviously relates to battles, let's
 move it into `BattleManager`. Make it a `private function`:
 
@@ -26,7 +26,7 @@ The "force" of our app is happy again:
 
 Now, if someday we *did* want to use this function from outside of `BattleManager`,
 *then* we could change it to `public`. Ok, so why not just make everything
-`public` right now - isn't that more flexible? Yes, but making this private
+`public` - isn't that more flexible? Yes, but making this private
 is *nice*: it means that if I want to change this function - add arguments
 or even change what it returns - I know that the *only* code that will be
 affected will be right inside this class. If it's public, who knows what
@@ -44,8 +44,8 @@ Yes!
 In `functions.php`, only the flat `get_ships()` function remains. You guys
 know what do to: move it into a class!
 
-Should we move it into `BattleManager`? No - it doesn't relate to battles
-really. Instead, create a new class for this - how about `ShipLoader`:
+Should we move it into `BattleManager`? No - it doesn't relate to battles. 
+Instead, create a new class for this - how about `ShipLoader`:
 
 [[[ code('92feab2a7d') ]]]
 
