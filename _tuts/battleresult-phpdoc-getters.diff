@@ -1,12 +1,3 @@
-diff --git a/bootstrap.php b/bootstrap.php
-index 872af88..063bfaa 100644
---- a/bootstrap.php
-+++ b/bootstrap.php
-@@ -3,3 +3,4 @@
- require_once __DIR__.'/lib/Ship.php';
- require_once __DIR__.'/lib/BattleManager.php';
- require_once __DIR__.'/lib/ShipLoader.php';
-+require_once __DIR__.'/lib/BattleResult.php';
 diff --git a/lib/BattleResult.php b/lib/BattleResult.php
 index 35a6178..2603785 100644
 --- a/lib/BattleResult.php
