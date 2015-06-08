@@ -61,7 +61,7 @@ But first, open `functions.php` and `require` the new `ShipLoader.php`:
 
 [[[ code('1c580b21f7') ]]]
 
-`getShips()` is used in `battle.php` and `functions.php` - start there. To
+`getShips()` is used in `battle.php` and `index.php` - start there. To
 call the method, create a `$shipLoader` variable and create a new `ShipLoader()`
 object. Now, just `$shipLoader->getShips()`:
 
