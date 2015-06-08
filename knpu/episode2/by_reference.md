@@ -1,12 +1,12 @@
 # Objects are Passed by Reference
 
-Start another battle - how about 3 CloakShape fighters againg 4 RZ-1 A-wing
+Start another battle - how about 3 CloakShape fighters against 4 RZ-1 A-wing
 interceptors. Behind the scenes: each ship has a `strength`. The `battle()`
-function uses this as the ship's health, and as the battle each other, that
+function uses this as the ship's health, and as they battle each other, that
 health gets lower and lower until one hits zero.
 
-We need to add a new feature: after the battle: display the finishing healths.
-One will be zero or negative, but how much health did the other have left?
+We need to add a new feature: after the battle: display the final health of the battling
+ships. One will be zero or negative, but how much health did the other have left?
 
 In `battle()`, those "ship health" variables are *not* returned in `BattleResult`.
 So we *don't* have access to this information. We could add it to `BattleResult`,
@@ -20,7 +20,7 @@ new health: like `$ship1->setStrength($ship1Health)` and the same for `$ship2`:
 After all, in real life - if a `$ship` is almost defeated, it's probably
 pretty broken - so it's `$strength` should reflect that.
 
-Check this out by dumping `$ship1->getStrenght()` and `$ship2->getStrength()`
+Check this out by dumping `$ship1->getStrength()` and `$ship2->getStrength()`
 and die. Refresh! We have -14 and 116, 130 and 0 and so on.
 
 Ok, working nicely, and that's simple. Actually, we just did something really
@@ -30,8 +30,8 @@ with two `Ship` objects and pass them into `battle()`:
 
 [[[ code('59ab5f89bc') ]]]
 
- Once that finishes
-running, those *same* two objects are different now: their data has changed.
+Once that finishes running, those *same* two objects are different now: their 
+data has changed.
 
 This is *totally* different than how arrays work: if `$ship1` were an array,
 and the `battle()` function changed one of its keys internally, that would
@@ -63,4 +63,4 @@ fix that in a bit.
 Time to try it! Since objects are passed by reference, we should see the
 new, modified strength values - not the originals. Absolutely perfect.
 
-Now let's start fetching our ships from a database.
+Now let's get really wild and start fetching our ships from a database.
