@@ -9,7 +9,7 @@ It blows up!
 
 In `BattleResult` - because we're good programmers - we type-hinted the two
 `Ship` arguments. Buuuuut, if you look at the `battle()` function, there's
-a case wehre the ships can destroy each other. And when that happens, there
+a case where the ships can destroy each other. And when that happens, there
 is no winning or losing ship - they're both null. Since - news flash `null`
 is *not* a `Ship` object, PHP gets angry and casts down this big error.
 
