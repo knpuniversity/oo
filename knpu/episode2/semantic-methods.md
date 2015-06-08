@@ -20,7 +20,7 @@ optional - add an `= null` after it:
 
 [[[ code('a7ad385698') ]]]
 
-I don't have to, but I'll update te `@return` on the methods to be `Ship|null`:
+I don't have to, but I'll update `@return` on the methods to be `Ship|null`:
 
 [[[ code('046efa7c01') ]]]
 
@@ -40,10 +40,10 @@ new public method called `isThereAWinner()`. Here, return
 [[[ code('85b9802eef') ]]]
 
 There's at least two great things about this. First, code outside of this
-class don't need to know *how* to figure out whether or not there was a winner:
-that code can be dumb and just call this method. Second, if something changes
-in the future and the code used to figure out if there is a winner changes,
-we only need to update the logic in this *one* spot: no need to run around
+class doesn't need to know *how* to figure out whether or not there was a winner:
+that code can be dumb and just call this method. Second, if something happens
+in the future and the logic used to figure out if there is a winner changes,
+we only need to update the code in this *one* spot: no need to run around
 the code base trying to figure out where we have the old logic for seeing
 if there was a winner.
 
