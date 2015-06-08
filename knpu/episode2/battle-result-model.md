@@ -12,15 +12,14 @@ all those keys to print stuff further down:
 
 [[[ code('d64dab1bd2') ]]]
 
-An man, I *hate* this kind of
-stuff. It's not obvious at all what's inside this `$outcome` variable or
-whether the keys it has now might ever be missing. When you see stuff like
-this, you need to be thinking: this is perfect for a class - something that
-can hold the data returned from `battle()`.
+Ah man, I *hate* this kind of stuff. It's not obvious at all what's inside 
+this `$outcome` variable or whether the keys it has now might be missing or 
+different in the future. When you see questionable code like this, you need to be thinking: 
+this is perfect for a class.
 
 ## Creating the BattleResult Model Class
 
-Let's do it! Now, what to call this new class. Well, this information summarizes
+Let's create one! Now, what to call this new class. Well, this information summarizes
 a battle result - let's use that - a new class called `BattleResult`:
 
 [[[ code('7148cfe4d6') ]]]
@@ -45,7 +44,8 @@ For the other properties, we created public functions - like `setStrength()`,
 
 Both ways are fine - but I like to use the ``__construct()`` strategy for
 any properties that are required. You *must* give your ship a name - it doesn't
-make sense to have a nameless Ship fighting battles.
+make sense to have a nameless Ship fighting battles. How will they know who to 
+write songs about?
 
 A `BattleResult` only makes sense with *all* of this information - that's
 perfect for setting via the constructor! Create a new `public function __construct()`
@@ -80,7 +80,7 @@ array - should blow up.:
 
 [[[ code('98007503b2') ]]]
 
-Let's see some fireworks!
+Let's see some fireworks! Boom error!
 
     Cannot use object of type BattleResult as array on line 71.
 
@@ -113,8 +113,8 @@ Start with `public function getWinningShip()`. This will just `return $this->win
 [[[ code('7152410abc') ]]]
 
 We'll do this for *each* property. But actually, I can make PhpStorm write
-these methods for me! Delete `getWinningShip()`, then right-click, go to
-"Generate" and select "Getters". Select all 3 properties and let it work
+these methods for me! Suckers! Delete `getWinningShip()`, then right-click, go to
+"Generate" and select "Getters". Select all 3 properties, say abracadabra, and let it work
 its magic.
 
 It even added some PHPDoc above each with an `@return mixed` - which basically
@@ -157,13 +157,12 @@ is a `BattleResult` object.
 
 Why? Look at `battle()`. We *are* returning a `BattleResult`, but oh no,
 the `@return` above this method still advertises that this method returns
-an array. We're calling this method from `battle.php`, and then our editor
-thinks it returns an array. Fix that with `@return BattleResult`:
+an array. Fix that with `@return BattleResult`:
 
 [[[ code('7fe3d54753') ]]]
 
 Ok, now PhpStorm is acting friendly - the angry highightling on the method
-is gone. Ok, now update the rest of the spot: `$battleResult->getWinningShip()->getName()`:
+is gone. Now update the other spots: `$battleResult->getWinningShip()->getName()`:
 thank you auto-complete. Use that same method once more, and in the `if`
 statement, use that nice `wereJediPowersUsed()` method. Finish with
 `$battleResult->getLosingShip()`:
