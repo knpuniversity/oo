@@ -35,7 +35,7 @@ chapters:
         is_free:    true
         video_key:  4v9u3kj0i1
     battle-result-model:
-        is_finished: false
+        video_key:  w5iv2ycfz9
     semantic-methods:
         is_finished: false
     by_reference:
