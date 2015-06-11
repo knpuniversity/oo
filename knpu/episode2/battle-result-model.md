@@ -26,7 +26,7 @@ a battle result - let's use that - a new class called `BattleResult`:
 
 Ok, let's think about this: it'll need to hold data for the winning ship,
 the losing ship and whether jedi powers were used. So, let's create 3 private
-properties called `$usedJediPower`, `$winningShip` and `$losingShip`:
+properties called `$usedJediPowers`, `$winningShip` and `$losingShip`:
 
 [[[ code('6a1f8cea24') ]]]
 
