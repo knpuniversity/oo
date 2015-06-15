@@ -1,13 +1,19 @@
 diff --git a/battle.php b/battle.php
-index aaca8ca..cad0378 100644
+index 5cb2fe3..143f9bc 100644
 --- a/battle.php
 +++ b/battle.php
-@@ -29,7 +29,7 @@ if (!$ship1 || !$ship2) {
+@@ -24,12 +24,13 @@ if (!$ship1 || !$ship2) {
+     die;
+ }
+ 
++$battleManager = $container->getBattleManager();
++
+ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
+     header('Location: /index.php?error=bad_quantities');
      die;
  }
  
 -$battleManager = new BattleManager();
-+$battleManager = $container->getBattleManager();
  $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
  ?>
  

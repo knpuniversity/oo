@@ -1,8 +1,8 @@
 diff --git a/battle.php b/battle.php
-index bd38342..a10d8ac 100644
+index bd38342..3ed4969 100644
 --- a/battle.php
 +++ b/battle.php
-@@ -4,28 +4,28 @@ require __DIR__.'/bootstrap.php';
+@@ -4,17 +4,20 @@ require __DIR__.'/bootstrap.php';
  $shipLoader = new ShipLoader();
  $ships = $shipLoader->getShips();
  
@@ -20,27 +20,23 @@ index bd38342..a10d8ac 100644
  }
  
 -if (!isset($ships[$ship1Name]) || !isset($ships[$ship2Name])) {
--    header('Location: /index.php?error=bad_ships');
--    die;
--}
--
- if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
-     header('Location: /index.php?error=bad_quantities');
++$ship1 = $shipLoader->findOneById($ship1Id);
++$ship2 = $shipLoader->findOneById($ship2Id);
++
++if (!$ship1 || !$ship2) {
+     header('Location: /index.php?error=bad_ships');
+     die;
+ }
+@@ -24,9 +27,6 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
      die;
  }
  
 -$ship1 = $ships[$ship1Name];
 -$ship2 = $ships[$ship2Name];
-+$ship1 = $shipLoader->findOneById($ship1Id);
-+$ship2 = $shipLoader->findOneById($ship2Id);
-+
-+if (!$ship1 || !$ship2) {
-+    header('Location: /index.php?error=bad_ships');
-+    die;
-+}
- 
+-
  $battleManager = new BattleManager();
  $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+ ?>
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
 index ad0cb0a..5f6ba5f 100644
 --- a/lib/ShipLoader.php
