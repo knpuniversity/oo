@@ -30,7 +30,7 @@ index 57e12ef..1e794ad 100644
  
  $errorMessage = '';
 diff --git a/lib/Container.php b/lib/Container.php
-index 3fddd08..8957943 100644
+index b096e8a..c8e01ec 100644
 --- a/lib/Container.php
 +++ b/lib/Container.php
 @@ -6,6 +6,8 @@ class Container
@@ -42,7 +42,7 @@ index 3fddd08..8957943 100644
      public function __construct(array $configuration)
      {
          $this->configuration = $configuration;
-@@ -26,4 +28,16 @@ class Container
+@@ -28,4 +30,16 @@ class Container
  
          return $this->pdo;
      }

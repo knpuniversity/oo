@@ -1,5 +1,5 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 7a13520..8b41745 100644
+index 5f6ba5f..7084f97 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -9,13 +9,7 @@ class ShipLoader
@@ -17,7 +17,7 @@ index 7a13520..8b41745 100644
          }
  
          return $ships;
-@@ -28,9 +22,25 @@ class ShipLoader
+@@ -29,9 +23,25 @@ class ShipLoader
          $statement->execute(array('id' => $id));
          $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
  
@@ -44,7 +44,7 @@ index 7a13520..8b41745 100644
      private function queryForShips()
      {
          $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
-@@ -40,4 +50,5 @@ class ShipLoader
+@@ -42,4 +52,5 @@ class ShipLoader
  
          return $shipsArray;
      }

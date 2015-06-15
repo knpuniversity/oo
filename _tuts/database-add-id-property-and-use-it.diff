@@ -67,7 +67,7 @@ index 76b164e..80c1744 100644
 +    }
  }
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 47c74b1..27d781d 100644
+index 81b2f7d..ad0cb0a 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -10,6 +10,7 @@ class ShipLoader

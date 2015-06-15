@@ -1,8 +1,8 @@
 diff --git a/battle.php b/battle.php
-index 0f8037d..db37a2e 100644
+index 87279d2..db37a2e 100644
 --- a/battle.php
 +++ b/battle.php
-@@ -1,11 +1,8 @@
+@@ -1,12 +1,8 @@
  <?php
  require __DIR__.'/bootstrap.php';
  
@@ -11,6 +11,7 @@ index 0f8037d..db37a2e 100644
 -    $configuration['db_user'],
 -    $configuration['db_pass']
 -);
+-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +$container = new Container();
 +$pdo = $container->getPDO();
  
@@ -29,10 +30,10 @@ index c07d335..769dfd7 100644
  require_once __DIR__.'/lib/BattleManager.php';
  require_once __DIR__.'/lib/ShipLoader.php';
 diff --git a/index.php b/index.php
-index 922ca2e..5590309 100644
+index 3adcaee..5590309 100644
 --- a/index.php
 +++ b/index.php
-@@ -1,11 +1,8 @@
+@@ -1,12 +1,8 @@
  <?php
  require __DIR__.'/bootstrap.php';
  
@@ -41,6 +42,7 @@ index 922ca2e..5590309 100644
 -    $configuration['db_user'],
 -    $configuration['db_pass']
 -);
+-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +$container = new Container();
 +$pdo = $container->getPDO();
  
@@ -48,10 +50,10 @@ index 922ca2e..5590309 100644
  $ships = $shipLoader->getShips();
 diff --git a/lib/Container.php b/lib/Container.php
 new file mode 100644
-index 0000000..1ca6b9c
+index 0000000..a8039c0
 --- /dev/null
 +++ b/lib/Container.php
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,25 @@
 +<?php
 +
 +class Container
@@ -67,10 +69,13 @@ index 0000000..1ca6b9c
 +            'db_pass' => null,
 +        );
 +
-+        return new PDO(
++        $pdo = new PDO(
 +            $configuration['db_dsn'],
 +            $configuration['db_user'],
 +            $configuration['db_pass']
 +        );
++        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
++
++        return $pdo;
 +    }
 +}

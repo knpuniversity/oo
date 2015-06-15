@@ -1,8 +1,8 @@
 diff --git a/battle.php b/battle.php
-index a10d8ac..0f8037d 100644
+index a10d8ac..87279d2 100644
 --- a/battle.php
 +++ b/battle.php
-@@ -1,7 +1,14 @@
+@@ -1,7 +1,15 @@
  <?php
  require __DIR__.'/bootstrap.php';
  
@@ -12,6 +12,7 @@ index a10d8ac..0f8037d 100644
 +    $configuration['db_user'],
 +    $configuration['db_pass']
 +);
++$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +
 +$shipLoader = new ShipLoader($pdo);
 +
@@ -19,10 +20,10 @@ index a10d8ac..0f8037d 100644
  
  $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 diff --git a/index.php b/index.php
-index e732772..922ca2e 100644
+index e732772..3adcaee 100644
 --- a/index.php
 +++ b/index.php
-@@ -1,11 +1,13 @@
+@@ -1,11 +1,14 @@
  <?php
  require __DIR__.'/bootstrap.php';
  
@@ -32,13 +33,14 @@ index e732772..922ca2e 100644
      $configuration['db_user'],
      $configuration['db_pass']
  );
++$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +
 +$shipLoader = new ShipLoader($pdo);
  $ships = $shipLoader->getShips();
  
  $errorMessage = '';
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 8a0c07a..9ccfdad 100644
+index 2ecd9d5..9ccfdad 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -4,15 +4,9 @@ class ShipLoader
@@ -59,12 +61,13 @@ index 8a0c07a..9ccfdad 100644
      }
  
      /**
-@@ -64,10 +58,6 @@ class ShipLoader
+@@ -64,11 +58,6 @@ class ShipLoader
       */
      private function getPDO()
      {
 -        if ($this->pdo === null) {
 -            $this->pdo = new PDO($this->dbDsn, $this->dbUser, $this->dbPass);
+-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 -        }
 -
          return $this->pdo;

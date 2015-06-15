@@ -42,16 +42,17 @@ index bd38342..a10d8ac 100644
  $battleManager = new BattleManager();
  $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 27d781d..7a13520 100644
+index ad0cb0a..5f6ba5f 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -21,6 +21,16 @@ class ShipLoader
+@@ -21,6 +21,17 @@ class ShipLoader
          return $ships;
      }
  
 +    public function findOneById($id)
 +    {
 +        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +        $statement = $pdo->prepare('SELECT * FROM ship WHERE id = :id');
 +        $statement->execute(array('id' => $id));
 +        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);

@@ -149,10 +149,10 @@ index 6da8c81..0000000
 -}
 diff --git a/lib/Container.php b/lib/Container.php
 deleted file mode 100644
-index 8795ce4..0000000
+index 6e159ca..0000000
 --- a/lib/Container.php
 +++ /dev/null
-@@ -1,57 +0,0 @@
+@@ -1,59 +0,0 @@
 -<?php
 -
 -class Container
@@ -176,11 +176,13 @@ index 8795ce4..0000000
 -    public function getPDO()
 -    {
 -        if ($this->pdo === null) {
--            return new PDO(
+-            $this->pdo = new PDO(
 -                $this->configuration['db_dsn'],
 -                $this->configuration['db_user'],
 -                $this->configuration['db_pass']
 -            );
+-
+-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 -        }
 -
 -        return $this->pdo;
@@ -483,10 +485,10 @@ index 0000000..e4dc5bc
 +}
 diff --git a/lib/Service/Container.php b/lib/Service/Container.php
 new file mode 100644
-index 0000000..8795ce4
+index 0000000..6e159ca
 --- /dev/null
 +++ b/lib/Service/Container.php
-@@ -0,0 +1,57 @@
+@@ -0,0 +1,59 @@
 +<?php
 +
 +class Container
@@ -510,11 +512,13 @@ index 0000000..8795ce4
 +    public function getPDO()
 +    {
 +        if ($this->pdo === null) {
-+            return new PDO(
++            $this->pdo = new PDO(
 +                $this->configuration['db_dsn'],
 +                $this->configuration['db_user'],
 +                $this->configuration['db_pass']
 +            );
++
++            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +        }
 +
 +        return $this->pdo;

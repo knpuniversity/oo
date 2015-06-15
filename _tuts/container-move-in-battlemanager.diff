@@ -12,7 +12,7 @@ index aaca8ca..cad0378 100644
  ?>
  
 diff --git a/lib/Container.php b/lib/Container.php
-index 8957943..8795ce4 100644
+index c8e01ec..6e159ca 100644
 --- a/lib/Container.php
 +++ b/lib/Container.php
 @@ -8,6 +8,8 @@ class Container
@@ -24,7 +24,7 @@ index 8957943..8795ce4 100644
      public function __construct(array $configuration)
      {
          $this->configuration = $configuration;
-@@ -40,4 +42,16 @@ class Container
+@@ -42,4 +44,16 @@ class Container
  
          return $this->shipLoader;
      }

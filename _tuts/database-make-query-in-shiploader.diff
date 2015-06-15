@@ -1,12 +1,13 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 012ddd4..55e7a50 100644
+index 012ddd4..060fa0e 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
-@@ -4,6 +4,12 @@ class ShipLoader
+@@ -4,6 +4,13 @@ class ShipLoader
  {
      public function getShips()
      {
 +        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
++        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +        $statement = $pdo->prepare('SELECT * FROM ship');
 +        $statement->execute();
 +        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);

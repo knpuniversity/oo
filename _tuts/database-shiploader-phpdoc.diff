@@ -1,5 +1,5 @@
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 8b41745..f888043 100644
+index 7084f97..cd0756b 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -2,6 +2,9 @@
