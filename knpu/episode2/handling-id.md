@@ -164,5 +164,4 @@ This says: "I return an array of Ship objects". And when we loop over something
 returned by `getShips()`, we get happy code completion. Do the same thing
 above `findOneById()` - it returns just *one* `Ship` or null:
 
-[[[ code('') ]]]
-
+[[[ code('3f815a1be4') ]]]
