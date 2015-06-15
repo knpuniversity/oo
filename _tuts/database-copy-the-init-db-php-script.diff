@@ -1,6 +1,6 @@
 diff --git a/init_db.php b/init_db.php
 new file mode 100644
-index 0000000..e0a3a03
+index 0000000..af3febc
 --- /dev/null
 +++ b/init_db.php
 @@ -0,0 +1,56 @@
@@ -18,7 +18,7 @@ index 0000000..e0a3a03
 + */
 +$pdoDatabase = new PDO('mysql:host=localhost', 'root', $databasePassword);
 +$pdoDatabase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-+$pdoDatabase->exec('CREATE DATABASE oo_battle');
++$pdoDatabase->exec('CREATE DATABASE IF NOT EXISTS oo_battle');
 +
 +/*
 + * CREATE THE TABLE
