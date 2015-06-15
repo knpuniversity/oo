@@ -1,10 +1,27 @@
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+/*
+ * SETTINGS!
+ */
+$databaseName = 'oo_battle';
+$databaseUser = 'root';
+$databasePassword = '';
+
+/*
+ * CREATE THE DATABASE
+ */
+$pdoDatabase = new PDO('mysql:host=localhost', 'root', $databasePassword);
+$pdoDatabase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdoDatabase->exec('CREATE DATABASE oo_battle');
+
+/*
+ * CREATE THE TABLE
+ */
+$pdo = new PDO('mysql:host=localhost;dbname='.$databaseName, 'root', $databasePassword);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // initialize the table
-$pdo->exec('DROP IF EXISTS ship;');
-$pdo->exec('TRUNCATE ship;');
+$pdo->exec('DROP TABLE IF EXISTS ship;');
 
 $pdo->exec('CREATE TABLE `ship` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -16,6 +33,9 @@ $pdo->exec('CREATE TABLE `ship` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
 
+/*
+ * INSERT SOME DATA!
+ */
 $pdo->exec('INSERT INTO ship
     (name, weapon_power, jedi_factor, strength, is_under_repair) VALUES
     ("Jedi Starfighter", 5, 15, 30, 0)'
