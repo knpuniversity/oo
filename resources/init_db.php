@@ -12,7 +12,7 @@ $databasePassword = '';
  */
 $pdoDatabase = new PDO('mysql:host=localhost', 'root', $databasePassword);
 $pdoDatabase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$pdoDatabase->exec('CREATE DATABASE oo_battle');
+$pdoDatabase->exec('CREATE DATABASE IF NOT EXISTS oo_battle');
 
 /*
  * CREATE THE TABLE
