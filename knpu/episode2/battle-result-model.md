@@ -8,7 +8,7 @@ keys:
 [[[ code('3dbe0136fd') ]]]
 
 We use this in `battle.php`, set it to an `$outcome` variable, then reference
-all those keys to print stuff further down:
+all those keys to print stuff further down:s
 
 [[[ code('d64dab1bd2') ]]]
 
@@ -26,7 +26,7 @@ a battle result - let's use that - a new class called `BattleResult`:
 
 Ok, let's think about this: it'll need to hold data for the winning ship,
 the losing ship and whether jedi powers were used. So, let's create 3 private
-properties called `$usedJediPower`, `$winningShip` and `$losingShip`:
+properties called `$usedJediPowers`, `$winningShip` and `$losingShip`:
 
 [[[ code('6a1f8cea24') ]]]
 
@@ -38,7 +38,7 @@ pass in the name as an argument":
 [[[ code('dd176e3d18') ]]]
 
 For the other properties, we created public functions - like `setStrength()`,
-`setWeaponPower()` and `setJediFactor()`:
+`setWeaponPower()` and `getJediFactor()`:
 
 [[[ code('149593f6a7') ]]]
 

@@ -29,12 +29,14 @@ tuts_hero:
 
 chapters:
     service-classes:
-        is_finished: false
+        is_free:    true
+        video_key:  73z2uxfb9v
     army-of-services:
-        is_finished: false
+        is_free:    true
+        video_key:  4v9u3kj0i1
     battle-result-model:
-        is_finished: false
+        video_key:  w5iv2ycfz9
     semantic-methods:
-        is_finished: false
+        video_key:  l5hvk7wtpt
     by_reference:
-        is_finished: false
+        video_key:  zyke8wf59x
