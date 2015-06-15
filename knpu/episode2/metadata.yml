@@ -40,3 +40,11 @@ chapters:
         video_key:  l5hvk7wtpt
     by_reference:
         video_key:  zyke8wf59x
+    objects-from-database:
+        is_finished: false
+    handling-id:
+        is_finished: false
+    centralize-configuration:
+        is_finished: false
+    centralize-connection:
+        is_finished: false
