@@ -3,14 +3,13 @@
 Getting our Ship objects is easy: create a `ShipLoader` and call `getShips()`
 on it. We don't care *how* `ShipLoader` is getting these - that's *its* problem.
 
-And right now, these Ship objects are hardcoded. Can we load objects from
-the database? We sure can - and with an organized project like this, it'll
-be easier than you think.
+Hardcoding is so 1990, let's load objects from the database! We need to 
+get these ships to their battlestations!
 
 ## Database Setup
 
-At the root of your project, open up a `resources` directory that came with
-our project. Copy `init_db.php` to the root of your project and open it up:
+At the root of your project, open up a `resources` directory. Copy `init_db.php` 
+out of there to the root of your project and open it up:
 
 [[[ code('c81b1f58d2') ]]]
 
@@ -24,7 +23,7 @@ hardcoded right now:
 
 [[[ code('efb0ce24bd') ]]]
 
-If we run this file, it should get everything setup. Head to your browser
+If we run this file, it should get everything powered up. Head to your browser
 and run it there:
 
     http://localhost:8000/init_db.php
@@ -33,12 +32,12 @@ If you see - Ding! - you know it worked. If you see a terrible error, check
 the database credentials at the top - make sure the user can create a new
 database.
 
-If you want to check the database with someting like phpMyAdmin, you'll see
+If you want to check the database with something like phpMyAdmin, you'll see
 one `ship` table with 4 rows.
 
 ## Querying for Ships
 
-Now let's query! For convenience, copy the two lines that create the PDO
+You look ready to query, copy the two lines that create the PDO
 object in `init_db` and head into `ShipLoader`. Keep things simple: `getShips()`
 needs to make a query. So for now, paste the PDO lines right here. Update
 the database name to be `oo_battle` and I'll fill in `root` as the user with
@@ -46,7 +45,7 @@ no password:
 
 [[[ code('c797ee5213') ]]]
 
-Ok, let's query! Create a `$statement` variable and set it to `$pdo->prepare()`
+Ok, query time! Create a `$statement` variable and set it to `$pdo->prepare()`
 with the query inside - `SELECT * FROM ship`:
 
 [[[ code('012bea7cb6') ]]]
@@ -54,9 +53,9 @@ with the query inside - `SELECT * FROM ship`:
 If PDO or prepared statements are new to you, don't worry - they're pretty
 easy. And besides, using PDO is another chance to play with objects!
 
-Run `$statement->execute()` to run the query and create a new `$shipsArray`
+Run `$statement->execute()` to send the query into hyperdrive and create a new `$shipsArray`
 that's set to `$statement->fetchAll()` with an argument: `PDO::FETCH_ASSOC`.
-var_dump this this variable:
+var_dump this variable:
 
 [[[ code('') ]]]
 
@@ -88,15 +87,15 @@ Make sure things still work - cool! Now, why did we do this? Well, we had
 a chunk of code that did something - it made a query. Moving it into its
 own function has two advantages. First, we can re-use it later if we need
 to. But more importantly, it gives the code a name: `queryForShips()`. Now
-it's easy to see what it does - a lot easier than when the code is stuck
+it's easy to see what it does - a lot easier than when this was stuck
 in the middle of other code.
 
 So, creating private functions to help split code into small chunks is awesome.
 
 ## Give me Objects!
 
-Back to work: we have an array from the database, but we need to return `Ship`
-objects. So let's create some!
+Back to the ship factory to create ship objects from the array we
+have now.
 
 In `getShips()`, I'll rename the variable to `$shipsData` - it sounds cool
 to me. Now, loop over `$shipsData` as `$shipData`. Each time we loop, we'll
@@ -109,13 +108,13 @@ Next, we can use the public functions to set the other data: `$ship->setWeaponPo
 and pass it `$shipData['weapon_power']`. Do the same for the `jedi_factor`
 and `strength` columns: `$ship->setJediFactor()` from the `jedi_factor` key
 and `$ship->setStrength()` from the `strength` key. The last column - `is_under_repair`
-we'll save until later. Finish the loop by putting `$ship` into the `$ships`
-array:
+we'll save that one for later. Can't have all the fun stuff at once! Finish the loop by 
+putting `$ship` into the `$ships` array:
 
 [[[ code('5197fa8ce8') ]]]
 
 Wasn't that easy? Now get rid of *all* of the hardcoded `Ship` objects. We
-have less code than we started.
+have less code than we started. That's always my preference.
 
 We've only changed this *one* file, but we're ready! Refresh! Welcome to
 our dynamic application in under 10 minutes.
