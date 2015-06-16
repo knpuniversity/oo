@@ -117,4 +117,4 @@ Wasn't that easy? Now get rid of *all* of the hardcoded `Ship` objects. We
 have less code than we started. That's always my preference.
 
 We've only changed this *one* file, but we're ready! Refresh! Welcome to
-our dynamic application in under 10 minutes.
+our dynamic application in under 10 minutes. Ship it!
