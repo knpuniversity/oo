@@ -1,18 +1,19 @@
 # Handling the Object Id
 
 Ships are loading dynamically, buuuuuut, I've got some bad news: we broke
-our app. Start a battle - select the Jedi Starfighter for one of these.
+our app. Start a battle - select the Jedi Starfighter as one of the ships 
+and engage.
 
 Huh, so instead of the results, we see:
 
     Don't forget to select some ships to battle!
 
-The URL has a `?error=missing_data` part. `index.php` is reading this. It
-all comes from `battle.php` and it happens if we POST here, but are missing
-`ship1_name` or `ship2_name`. In other words, if we forget to select a ship.
-But we *did* select a ship! Somehow, these select menus are broken. Check
-out the code: we're looping over `$ships` and using `$key` as the option
-value:
+Pretty sure we selected a ship... But the URL has a `?error=missing_data` part, 
+`index.php` is reading this. It all comes from `battle.php` and it happens 
+if we POST here, but we are missing `ship1_name` or `ship2_name`. In other words, 
+if we forget to select a ship. But we *did* select a ship! Somehow, these select 
+menus are broken. Check out the code: we're looping over `$ships` and using `$key` 
+as the option value:
 
 [[[ code('bb5a5ddcc3') ]]]
 
@@ -24,13 +25,13 @@ string in `battle.php`.
 
 We *still* need something unique so that we can tell `battle.php` exactly
 which ships are fighting. Fortunately, the `ship` table has exactly that:
-an auto-incrementing primary key `id` column. If use this as the option value,
+an auto-incrementing primary key `id` column. If we use this as the option value,
 we can query for the ships using that in `battle.php`. Blast off! I mean,
 we should totally do that.
 
 In `ShipLoader`, we could put the `id` as the key of the array. But instead,
 since `id` *is* a column on the `ship` table, why not also make it a property
-on the `Ship` table? Open up `Ship` and add a new `private $ship`:
+on the `Ship` class? Open up `Ship` and add a new `private $id`:
 
 [[[ code('31c33764f8') ]]]
 
@@ -58,7 +59,7 @@ loop, and finish with `$ship->getId()`:
 [[[ code('13f5e3fd7b') ]]]
 
 Ok, before we touch battle, try this out. No errors! And the select items
-have values 1, 2, 3 and 4 - the auto-increment ids in the database.
+have values 1, 2, 3 and 4 - the auto-increment ids in the database. Success!
 
 ## Querying for One Ship
 
@@ -74,7 +75,7 @@ Before, we got *all* the `$ships` then used the array key to find the right
 ones. That won't work anymore - the key is just an index, but we have the
 id from the database.
 
-But instead, we can use that id to query for a single ship's data. Where
+Instead, we can use that id to query for a single ship's data. Where
 should that logic live? In `ShipLoader`! It's *only* job is to query for
 ship information, so it's perfect. 
 
@@ -100,7 +101,7 @@ code further up *above* the `bad_ships` error message. We'll use it in a second:
 [[[ code('3e1fbbca2c') ]]]
 
 Try it! Fight some Starfighters against a Cloakshape Fighter. There's the
-dump for just *one* row! Let's finish this!
+dump for just *one* row! Sweet, let's finish this!
 
 ## Going from Array to Ship Object
 
@@ -125,9 +126,10 @@ Do the same thing in `findOneById()`:
 
 In `battle.php`, `$ship1` and `$ship2` *should* now be `Ship` objects. The
 next if statement is a way to make sure that *valid* ship ids were passed:
-maybe someone is messing with our form!
+maybe someone is messing with our form! With these tough ships in my database
+I should hope not. 
 
-I still want this check, so back in `ShipLoader`, add one more check. If
+I still want this check, so back in `ShipLoader`, add one more thing. If
 the `id` is invalid - like 10 or the word "pirate ship" - then `$shipArray`
 will be `null`. So, `if (!$shipArray)` then just `return null`:
 
@@ -148,7 +150,7 @@ to really worry about this.
 
 ## PHPDoc for Autocomplete!
 
-But let's fix one little thing that's bothering me. In `index.php`, we call
+Let's fix one little thing that's bothering me. In `index.php`, we call
 `getShips()`. But when we loop over `$ships`, PhpStorm acts like all of the
 methods on the `Ship` object don't exist: `getName` not found in class.
 
