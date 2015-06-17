@@ -44,6 +44,8 @@ chapters:
         is_finished: false
     handling-id:
         is_finished: false
+    one-db-conn-with-property:
+        is_finished: false
     centralize-configuration:
         is_finished: false
     centralize-connection:
