@@ -25,10 +25,10 @@ index 5590309..57e12ef 100644
  
  $shipLoader = new ShipLoader($pdo);
 diff --git a/lib/Container.php b/lib/Container.php
-index a8039c0..e54559c 100644
+index a8039c0..b4ee023 100644
 --- a/lib/Container.php
 +++ b/lib/Container.php
-@@ -2,6 +2,13 @@
+@@ -2,21 +2,22 @@
  
  class Container
  {
@@ -42,3 +42,21 @@ index a8039c0..e54559c 100644
      /**
       * @return PDO
       */
+     public function getPDO()
+     {
+-        $configuration = array(
+-            'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
+-            'db_user' => 'root',
+-            'db_pass' => null,
+-        );
+-
+         $pdo = new PDO(
+-            $configuration['db_dsn'],
+-            $configuration['db_user'],
+-            $configuration['db_pass']
++            $this->configuration['db_dsn'],
++            $this->configuration['db_user'],
++            $this->configuration['db_pass']
+         );
+         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ 

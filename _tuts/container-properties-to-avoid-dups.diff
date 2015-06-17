@@ -1,5 +1,5 @@
 diff --git a/lib/Container.php b/lib/Container.php
-index e54559c..b096e8a 100644
+index b4ee023..b096e8a 100644
 --- a/lib/Container.php
 +++ b/lib/Container.php
 @@ -4,6 +4,8 @@ class Container
@@ -11,28 +11,23 @@ index e54559c..b096e8a 100644
      public function __construct(array $configuration)
      {
          $this->configuration = $configuration;
-@@ -14,19 +16,16 @@ class Container
+@@ -14,13 +16,16 @@ class Container
       */
      public function getPDO()
      {
--        $configuration = array(
--            'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
--            'db_user' => 'root',
--            'db_pass' => null,
+-        $pdo = new PDO(
+-            $this->configuration['db_dsn'],
+-            $this->configuration['db_user'],
+-            $this->configuration['db_pass']
 -        );
+-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +        if ($this->pdo === null) {
 +            $this->pdo = new PDO(
 +                $this->configuration['db_dsn'],
 +                $this->configuration['db_user'],
 +                $this->configuration['db_pass']
 +            );
- 
--        $pdo = new PDO(
--            $configuration['db_dsn'],
--            $configuration['db_user'],
--            $configuration['db_pass']
--        );
--        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
++
 +            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 +        }
  
