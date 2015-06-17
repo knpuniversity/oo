@@ -35,9 +35,8 @@ on the `Ship` class? Open up `Ship` and add a new `private $id`:
 
 [[[ code('31c33764f8') ]]]
 
-And at the bottom, right click, go to generate, then make the getter and
-setter for the `id` property. Update the PHPDoc to show that `$id` is an
-integer. Optional, but nice:
+And at the bottom, right click, then make the getter and setter for the `id` 
+property. Update the PHPDoc to show that `$id` is an integer. Optional, but nice:
 
 [[[ code('4a3960f847') ]]]
 
