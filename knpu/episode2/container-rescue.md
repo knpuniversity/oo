@@ -88,7 +88,7 @@ and it's one of the harder things to grasp about OO. So if it doesn't totally
 make sense yet - stick with us - we'll keep practicing.
 
 Now a quick warning. When you look at other projects, this idea of model objects
-- that hold data but don't do anything - and service objects - that do work but
+-- that hold data but don't do anything - and service objects - that do work but
 don't really hold any data - is not always followed. Sometimes you'll see
 these mixed together you might have a class like `Ship` that has methods
 in it that do work - like `battle()` or even `save()` that would save the
