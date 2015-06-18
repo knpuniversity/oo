@@ -7,22 +7,22 @@ have - meaning every object that does work like `BattleManager`, `PDO` and
 ### Adding Arguments? Simple
 
 The benefits are huge. Here's one. Imagine we need to give `BattleManager`
-a few constructor arguments. Once we've done that, the only other code we
-need to touch is right here inside Container. We *don't* need to go everywhere
-in our code - like `battle.php` - and change *anything*. We just say
-`$container->getBattleManager()` and the `Container` class will take care
-of all of the work to create that object.
+a few constructor arguments. Once we've done that, the *only* code we
+need to touch outside of `BattleManager` is right here inside Container. 
+We *don't* need to go anywhere else - like `battle.php` - and change *anything*. 
+We just say `$container->getBattleManager()` and the `Container` class will 
+take care of all of the work to create that object.
 
 ### Objects aren't Created Until/Unless Needed
 
 But wait, there's more! Before, at the top of our files - like `index.php` -
 we created *all* of our objects. So if we had 50 different useful service
-objects, we'd create them all right here.
+objects, we'd create them all right here. How wasteful.
 
 But with the `Container` idea, none of these objects are created until and
 *unless* you ask for them. For example, `index.php` never calls
 `$container->getBattleManager()`. So the `BattleManager` object is never
-created. We save previous CPUs and memory.
+created. We save precious CPUs and memory.
 
 ## Containers: A Pattern
 
@@ -36,17 +36,17 @@ job, *all* service objects will be created here - you won't instantiate them
 
 ## Model Classes versus Service Classes
 
-Remember - *model* objects - like `Ship` and `BattleResult` - are the classes
-that just hold data and don't really do much work. And you can create these
+Remember - *model* objects - like `Ship` and `BattleResult` - are classes
+that just hold data and don't really do much work. And you can create *these*
 whenever you need them - they're *not* created by the Container. So in `BattleManager`
 at the bottom of `battle()`, we needed a new `BattleResult` to be a container
 for our data. And in `ShipLoader`, whenever you query for a ship, we create
 a new `Ship` model object.
 
 Model objects *can* be created anywhere in your code, whenever you need them.
-But these service objects - the ones that do work for you and don't really
+But these *service* objects - the ones that do work for you and don't really
 hold data - these should be created in a central spot. And the `Container`
-idea is a nice way to do that.
+is a nice way to do that.
 
 ### Reorganizing Models and Services
 
