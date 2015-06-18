@@ -54,3 +54,5 @@ chapters:
         is_finished: false
     container-wrapup:
         is_finished: false
+    container-rescue:
+        is_finished: false
