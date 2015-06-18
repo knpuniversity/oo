@@ -8,7 +8,7 @@ we've got here.
 
 To do that, we'll create *one* special class whose only job is to create
 these service objects. This class is called a service container, ya know,
-because it'll basically a container for all the service objects. You'll
+because it's basically a container for all the service objects. You'll
 see.
 
 In `lib/` create a new file called `Container.php`. Inside create a class
