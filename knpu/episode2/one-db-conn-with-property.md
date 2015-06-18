@@ -1,6 +1,6 @@
 # Making only one DB Connection with a Property
 
-I can's stand it any longer. The app is small, but our database credentials
+I can't stand it any longer. The app is small, but our database credentials
 are already duplicated *and* hidden inside this one class. What if we added
 a second table - like `battle` - and a `BattleLoader` class? At this rate,
 we'd be copying and pasting the database password *there* too. Gross.
