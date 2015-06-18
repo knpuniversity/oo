@@ -3,7 +3,7 @@
 I can's stand it any longer. The app is small, but our database credentials
 are already duplicated *and* hidden inside this one class. What if we added
 a second table - like `battle` - and a `BattleLoader` class? At this rate,
-we'd be copying and pasting the database password *there* too.
+we'd be copying and pasting the database password *there* too. Gross.
 
 ## Isolate the PDO Creation in ShipLoader
 
@@ -28,7 +28,7 @@ Head back to the homepage! Ha! Nothing broken yet.
 Ok, a little bit better. Here's the next problem: what if a single page calls
 `findOneById()` multiple times? Well, `getPDO()` would be called twice, two
 `PDO` objects would be created *and* this would mean that *two* database
-connections would be made. Waste! We only need one connection and we only
+connections would be made. Such waste! We only need one connection and we only
 need *one* `PDO` object.
 
 How can we guarantee that only one PDO object is created?
@@ -38,9 +38,8 @@ we've only put properties on our model classes - like `Ship` - and that has
 been to hold data about the object, like `name`, `weaponPower`, etc.
 
 In service classes - any class whose main job is to do *work* instead of
-hold data - you use properties to hold options about *how* the class should
-behave and also to hold other tools - like a PDO object - that help this
-class get its work done.
+hold data - you use properties for two reasons: to hold options about *how* the class should
+behave. And to hold other tools - like a PDO object.
 
 Create a `private $pdo` property:
 
