@@ -35,7 +35,7 @@ to the `__construct()` function.
 
 ## Creating PDO
 
-But now, we need to find go to `index.php` and change the arguments we're
+But now, we need go to `index.php` and change the arguments we're
 passing to the `new ShipLoader()`. We're not passing these three configuration
 pieces anymore. Copy those. Above this, create the `PDO` object. `$pdo = new PDO()`
 and paste in the arguments:
@@ -63,7 +63,7 @@ from PHP, it *is* a service class: it does work. If we create that service
 object from within a class, we can't easily share it *or* control it.
 
 Instead, create all of your service objects in *one* place and then pass
-them into each other. This is stuff is hard - a lot of system violate the
+them into each other. This stuff is hard - a lot of systems violate the
 heck out of these rules! And that's ok - I want you to learn to become a
 *great* object-oriented developer, so we're looking at the *best* way to
 do things.
