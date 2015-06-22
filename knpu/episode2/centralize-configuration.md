@@ -5,7 +5,7 @@ information is hardcoded. That's a problem for two reasons. First, if this
 works on my computer, it probably won't work on production, unless everything
 matches up. And second, what if we need a database connection inside some
 other class? Right now, we'd just have to copy and paste those credentials
-into yet *another* spot. Gross.
+into yet *another* spot. Eww.
 
 Here's the goal: move the database configuration *out* of this class to somewhere
 more central so it can be re-used. And good news: the way you do this is
@@ -37,8 +37,8 @@ it on its own. The most common way to do this is by creating a constructor.
 
 Create a `public function __construct()` and make an argument for *each*
 piece of configuration this class needs. `ShipLoader` needs  *three* pieces
-of configuration. First, the database DSN - which is connection parameter,
-the `mysql:host=localhost` line. It also needs the `$dbUser` and the `$dbPassword`:
+of configuration. First, the database DSN - which is the connection parameter,
+thing `mysql:host=localhost`. It also needs the `$dbUser` and the `$dbPassword`:
 
 [[[ code('fb52759207') ]]]
 
@@ -66,12 +66,12 @@ And this class is done!
 ## Passing Configuration *to* the Class
 
 But now, when we create `ShipLoader`, we need to pass arguments. In `index.php`,
-PhpStorm is angry - `required parameters $dbDsn` - we're missing the first
+PhpStorm is angry - `required parameter $dbDsn` - we're missing the first
 argument. We could just paste our database credentials right here. But we'll
 probably want them somewhere central.
 
 Open `bootstrap.php` and create a new `$configuration` array. We'll use this
-for now as sort of a "global configuration" variable. Put the 3 database
+now as sort of a "global configuration" variable. Put the 3 database
 credential things here - `db_dsn` - then paste the string - `db_user` is `root`
 and `db_pass` is an empty string:
 
@@ -94,7 +94,7 @@ Make sure our ships are still battling. Refresh! *Still* not broken!
 
 Here's the rule to remember: don't put configuration inside of a service
 class. Replace that hardcoded configuration with an argument. This allows
-anyone using your argument to pass in whatever *they* want. The hardcoding
+anyone using your class to pass in whatever *they* want. The hardcoding
 is gone, and your class is more flexible.
 
 Oh, and by the way - this little strategy is called dependency injection.

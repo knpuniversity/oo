@@ -1,14 +1,14 @@
 # Service Container
 
 Good news: we've got great flexibility! Bad news: we have to create the service
-objects by hand *and* this stuff is duplicated. We need to centralize this
-stuff.
+objects by hand *and* this stuff is duplicated. We need to centralize what 
+we've got here.
 
 ## Creating a Service Container
 
 To do that, we'll create *one* special class whose only job is to create
 these service objects. This class is called a service container, ya know,
-because it'll basically be a container for all the service objects. You'll
+because it's basically a container for all the service objects. You'll
 see.
 
 In `lib/` create a new file called `Container.php`. Inside create a class
@@ -85,5 +85,5 @@ We were passing in the configuration, but I had forgot to set it on my property.
 Try it again. Excellent!
 
 This keeps my requirement of a centralized configuration array *and* centralizing
-where we create service objects. But we've still need to move a few more
+where we create service objects. But we still need to move a few more
 service objects in here and fix one more issue. Almost there!

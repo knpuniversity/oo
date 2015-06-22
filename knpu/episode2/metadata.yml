@@ -41,9 +41,9 @@ chapters:
     by_reference:
         video_key:  zyke8wf59x
     objects-from-database:
-        is_finished: false
+        video_key:  false
     handling-id:
-        is_finished: false
+        video_key:  owj7ry18cp
     one-db-conn-with-property:
         is_finished: false
     centralize-configuration:
@@ -53,4 +53,6 @@ chapters:
     service-container:
         is_finished: false
     container-wrapup:
+        is_finished: false
+    container-rescue:
         is_finished: false
