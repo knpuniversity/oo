@@ -74,10 +74,10 @@ Time for a sanity check! Refresh! Oh no!
     PDOException on Container.php line 21
 
 Put on your debugging cap! That's the line that creates the new `PDO` object.
-Hmm, we didn't change anything - this is fishy. Dump `$this->container` and
+Hmm, we didn't change anything - this is fishy. Dump `$this->configuration` and
 refresh. Ah, it's `null`. Well, clearly that's not right. I see it. Silly
 mistake: in `__construct()`, I wasn't assigning the property. Make sure you
-have `$this->container = $container`:
+have `$this->configuration = $configuration`:
 
 [[[ code('08b3e796fb') ]]]
 
