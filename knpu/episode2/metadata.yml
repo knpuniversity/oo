@@ -45,11 +45,11 @@ chapters:
     handling-id:
         video_key:  owj7ry18cp
     one-db-conn-with-property:
-        is_finished: false
+        video_key:  x1x7vy6g5p
     centralize-configuration:
-        is_finished: false
+        video_key:  5wvfntwki0
     centralize-connection:
-        is_finished: false
+        video_key:  vj2123rc2o
     service-container:
         is_finished: false
     container-wrapup:
