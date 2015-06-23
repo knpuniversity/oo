@@ -57,13 +57,11 @@ Run `$statement->execute()` to send the query into hyperdrive and create a new `
 that's set to `$statement->fetchAll()` with an argument: `PDO::FETCH_ASSOC`.
 var_dump this variable:
 
-[[[ code('') ]]]
+[[[ code('36ce0ea4df') ]]]
 
 This queries for every row and returns an associative array. The `PDO::FETCH_ASSOC`
 part is a class constant - a nice little feature of classes we'll talk about
 later.
-
-[[[ code('36ce0ea4df') ]]]
 
 Let's see what this looks like! Head back to the homepage and refresh!
 AND... I was not expecting an error: "Unknown database oo_battles". The
