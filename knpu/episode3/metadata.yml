@@ -1,0 +1,15 @@
+title:  "OOP (ep 3)"
+summary: |
+    OOP Ep 3 summary here
+    
+    
+
+illustration: oo-ep3.png
+hasVideoDownload: false
+
+tuts_hero:
+    start_step: start
+
+chapters:
+    intro:
+        is_finished: false
