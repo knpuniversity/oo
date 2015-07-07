@@ -8,8 +8,6 @@ illustration: oo-ep3.png
 hasVideoDownload: false
 
 tuts_hero:
-    start_step: start
+    start_step:
 
 chapters:
-    intro:
-        is_finished: false
