@@ -1,8 +1,21 @@
-title:  "OOP (ep 3)"
+title:  "OOP (ep 2): Inheritance, Traits, Interfaces and other amazing things"
 summary: |
-    OOP Ep 3 summary here
-    
-    
+    Things are about to get crazy.
+
+    You've learned the basics ([Episode 1](http://knpuniversity.com/screencast/oo)).
+    Heck, you even mastered service objects, model objects and service containers
+    in [Episode 2](http://knpuniversity.com/screencast/oo-ep2)!
+
+    Now we're getting into the meat of OO:
+
+    * Class inheritance!
+    * What is an interface? How can I leverage them?
+    * What about abstract classes?
+    * Introducing the "protected" visibility
+    * Traits for code-reuse!
+
+    This stuff will start to separate you from a beginner OO developer to someone
+    who can really understand and flex OO code. It's hard stuff. So let's get started.
 
 illustration: oo-ep3.png
 hasVideoDownload: false
