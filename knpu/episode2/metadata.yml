@@ -22,7 +22,8 @@ summary: |
     Do it!
 
 illustration: oo-ep2.png
-hasVideoDownload: false
+hasVideoDownload: 1
+videoDownloadExtension: mov
 
 tuts_hero:
     start_step: constructor-passing-an-argument
