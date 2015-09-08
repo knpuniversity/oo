@@ -1,0 +1,62 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index b7d1bc5..9f97fc3 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -13,5 +13,6 @@ require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Model/BrokenShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
+ require_once __DIR__.'/lib/Service/PdoShipStorage.php';
++require_once __DIR__.'/lib/Service/JsonFileShipStorage.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+ require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+index 9422406..4957f25 100644
+--- a/lib/Service/Container.php
++++ b/lib/Service/Container.php
+@@ -50,7 +50,8 @@ class Container
+     public function getShipStorage()
+     {
+         if ($this->shipStorage === null) {
+-            $this->shipStorage = new PdoShipStorage($this->getPDO());
++            //$this->shipStorage = new PdoShipStorage($this->getPDO());
++            $this->shipStorage = new JsonFileShipStorage(__DIR__.'/../../resources/ships.json');
+         }
+ 
+         return $this->shipStorage;
+diff --git a/lib/Service/JsonFileShipStorage.php b/lib/Service/JsonFileShipStorage.php
+new file mode 100644
+index 0000000..893a41a
+--- /dev/null
++++ b/lib/Service/JsonFileShipStorage.php
+@@ -0,0 +1,31 @@
++<?php
++
++class JsonFileShipStorage
++{
++    private $filename;
++
++    public function __construct($jsonFilePath)
++    {
++        $this->filename = $jsonFilePath;
++    }
++
++    public function fetchAllShipsData()
++    {
++        $jsonContents = file_get_contents($this->filename);
++
++        return json_decode($jsonContents, true);
++    }
++
++    public function fetchSingleShipData($id)
++    {
++        $ships = $this->fetchAllShipsData();
++
++        foreach ($ships as $ship) {
++            if ($ship['id'] == $id) {
++                return $ship;
++            }
++        }
++
++        return null;
++    }
++}

@@ -479,7 +479,32 @@
             "id": "abstract-fill-in-abstract-methods",
             "name": "Abstract: Fill in abstract methods",
             "description": null
+        },
+        {
+            "id": "interface-refactor-to-pdoshipstorage",
+            "name": "Interface: Refactor to PdoShipStorage",
+            "description": null
+        },
+        {
+            "id": "interface-jsonfileshipstorage",
+            "name": "Interface: JsonFileShipStorage",
+            "description": null
+        },
+        {
+            "id": "interface-extend-pdoshipstorage",
+            "name": "Interface: extend PdoShipStorage",
+            "description": null
+        },
+        {
+            "id": "interface-abstractshipstorage",
+            "name": "Interface: AbstractShipStorage",
+            "description": null
+        },
+        {
+            "id": "interface-shipstorageinterface",
+            "name": "Interface: ShipStorageInterface",
+            "description": null
         }
     ],
-    "sha": "ce46352c39795f89c7a4f4c2880dade0b988b89e"
+    "sha": "8ec808762725efbbfbaa38b68f5302f81bc0f249"
 }

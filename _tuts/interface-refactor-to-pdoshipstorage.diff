@@ -1,0 +1,142 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 5cb9958..b7d1bc5 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -12,5 +12,6 @@ require_once __DIR__.'/lib/Model/Ship.php';
+ require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Model/BrokenShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
++require_once __DIR__.'/lib/Service/PdoShipStorage.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+ require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+index 6e159ca..9422406 100644
+--- a/lib/Service/Container.php
++++ b/lib/Service/Container.php
+@@ -10,6 +10,8 @@ class Container
+ 
+     private $battleManager;
+ 
++    private $shipStorage;
++
+     public function __construct(array $configuration)
+     {
+         $this->configuration = $configuration;
+@@ -39,12 +41,21 @@ class Container
+     public function getShipLoader()
+     {
+         if ($this->shipLoader === null) {
+-            $this->shipLoader = new ShipLoader($this->getPDO());
++            $this->shipLoader = new ShipLoader($this->getShipStorage());
+         }
+ 
+         return $this->shipLoader;
+     }
+ 
++    public function getShipStorage()
++    {
++        if ($this->shipStorage === null) {
++            $this->shipStorage = new PdoShipStorage($this->getPDO());
++        }
++
++        return $this->shipStorage;
++    }
++
+     /**
+      * @return BattleManager
+      */
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+new file mode 100644
+index 0000000..ab0279d
+--- /dev/null
++++ b/lib/Service/PdoShipStorage.php
+@@ -0,0 +1,32 @@
++<?php
++
++class PdoShipStorage
++{
++    private $pdo;
++
++    public function __construct(PDO $pdo)
++    {
++        $this->pdo = $pdo;
++    }
++
++    public function fetchAllShipsData()
++    {
++        $statement = $this->pdo->prepare('SELECT * FROM ship');
++        $statement->execute();
++
++        return $statement->fetchAll(PDO::FETCH_ASSOC);
++    }
++
++    public function fetchSingleShipData($id)
++    {
++        $statement = $this->pdo->prepare('SELECT * FROM ship WHERE id = :id');
++        $statement->execute(array('id' => $id));
++        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
++
++        if (!$shipArray) {
++            return null;
++        }
++
++        return $shipArray;
++    }
++}
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index cadfb58..fc084c9 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -2,11 +2,11 @@
+ 
+ class ShipLoader
+ {
+-    private $pdo;
++    private $shipStorage;
+ 
+-    public function __construct(PDO $pdo)
++    public function __construct(PdoShipStorage $shipStorage)
+     {
+-        $this->pdo = $pdo;
++        $this->shipStorage = $shipStorage;
+     }
+ 
+     /**
+@@ -31,13 +31,7 @@ class ShipLoader
+      */
+     public function findOneById($id)
+     {
+-        $statement = $this->getPDO()->prepare('SELECT * FROM ship WHERE id = :id');
+-        $statement->execute(array('id' => $id));
+-        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
+-
+-        if (!$shipArray) {
+-            return null;
+-        }
++        $shipArray = $this->shipStorage->fetchSingleShipData($id);
+ 
+         return $this->createShipFromData($shipArray);
+     }
+@@ -58,21 +52,9 @@ class ShipLoader
+         return $ship;
+     }
+ 
+-    /**
+-     * @return PDO
+-     */
+-    private function getPDO()
+-    {
+-        return $this->pdo;
+-    }
+-
+     private function queryForShips()
+     {
+-        $statement = $this->getPDO()->prepare('SELECT * FROM ship');
+-        $statement->execute();
+-        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+-
+-        return $shipsArray;
++        return $this->shipStorage->fetchAllShipsData();
+     }
+ }
+ 

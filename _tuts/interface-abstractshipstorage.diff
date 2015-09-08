@@ -1,0 +1,64 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 9f97fc3..32b2a72 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -12,6 +12,7 @@ require_once __DIR__.'/lib/Model/Ship.php';
+ require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Model/BrokenShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
++require_once __DIR__.'/lib/Service/AbstractShipStorage.php';
+ require_once __DIR__.'/lib/Service/PdoShipStorage.php';
+ require_once __DIR__.'/lib/Service/JsonFileShipStorage.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+diff --git a/lib/Service/AbstractShipStorage.php b/lib/Service/AbstractShipStorage.php
+new file mode 100644
+index 0000000..b903b7e
+--- /dev/null
++++ b/lib/Service/AbstractShipStorage.php
+@@ -0,0 +1,8 @@
++<?php
++
++abstract class AbstractShipStorage
++{
++    abstract public function fetchAllShipsData();
++
++    abstract public function fetchSingleShipData($id);
++}
+\ No newline at end of file
+diff --git a/lib/Service/JsonFileShipStorage.php b/lib/Service/JsonFileShipStorage.php
+index f36edb9..f398cbf 100644
+--- a/lib/Service/JsonFileShipStorage.php
++++ b/lib/Service/JsonFileShipStorage.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-class JsonFileShipStorage extends PdoShipStorage
++class JsonFileShipStorage extends AbstractShipStorage
+ {
+     private $filename;
+ 
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index ab0279d..2c0ac6f 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-class PdoShipStorage
++class PdoShipStorage extends AbstractShipStorage
+ {
+     private $pdo;
+ 
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index fc084c9..f16868c 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -4,7 +4,7 @@ class ShipLoader
+ {
+     private $shipStorage;
+ 
+-    public function __construct(PdoShipStorage $shipStorage)
++    public function __construct(AbstractShipStorage $shipStorage)
+     {
+         $this->shipStorage = $shipStorage;
+     }

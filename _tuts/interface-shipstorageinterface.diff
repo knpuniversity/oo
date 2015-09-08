@@ -1,0 +1,79 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 32b2a72..2c12330 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -12,7 +12,7 @@ require_once __DIR__.'/lib/Model/Ship.php';
+ require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Model/BrokenShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
+-require_once __DIR__.'/lib/Service/AbstractShipStorage.php';
++require_once __DIR__.'/lib/Service/ShipStorageInterface.php';
+ require_once __DIR__.'/lib/Service/PdoShipStorage.php';
+ require_once __DIR__.'/lib/Service/JsonFileShipStorage.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+diff --git a/lib/Service/AbstractShipStorage.php b/lib/Service/AbstractShipStorage.php
+deleted file mode 100644
+index b903b7e..0000000
+--- a/lib/Service/AbstractShipStorage.php
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<?php
+-
+-abstract class AbstractShipStorage
+-{
+-    abstract public function fetchAllShipsData();
+-
+-    abstract public function fetchSingleShipData($id);
+-}
+\ No newline at end of file
+diff --git a/lib/Service/JsonFileShipStorage.php b/lib/Service/JsonFileShipStorage.php
+index f398cbf..11fbc7a 100644
+--- a/lib/Service/JsonFileShipStorage.php
++++ b/lib/Service/JsonFileShipStorage.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-class JsonFileShipStorage extends AbstractShipStorage
++class JsonFileShipStorage implements ShipStorageInterface
+ {
+     private $filename;
+ 
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index 2c0ac6f..8a68e77 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-class PdoShipStorage extends AbstractShipStorage
++class PdoShipStorageInterface implements ShipStorageInterface
+ {
+     private $pdo;
+ 
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index f16868c..14991a3 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -4,7 +4,7 @@ class ShipLoader
+ {
+     private $shipStorage;
+ 
+-    public function __construct(AbstractShipStorage $shipStorage)
++    public function __construct(ShipStorageInterface $shipStorage)
+     {
+         $this->shipStorage = $shipStorage;
+     }
+diff --git a/lib/Service/ShipStorageInterface.php b/lib/Service/ShipStorageInterface.php
+new file mode 100644
+index 0000000..58c689c
+--- /dev/null
++++ b/lib/Service/ShipStorageInterface.php
+@@ -0,0 +1,8 @@
++<?php
++
++interface ShipStorageInterface
++{
++    public function fetchAllShipsData();
++
++    public function fetchSingleShipData($id);
++}
