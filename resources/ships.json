@@ -1,0 +1,35 @@
+
+[
+    {
+        "id": "1",
+        "name": "Jedi Starfighter",
+        "weapon_power": "5",
+        "jedi_factor": "15",
+        "strength": "30",
+        "team": "rebel"
+    },
+    {
+        "id": "2",
+        "name": "CloakShape Fighter",
+        "weapon_power": "2",
+        "jedi_factor": "2",
+        "strength": "70",
+        "team": "rebel"
+    },
+    {
+        "id": "3",
+        "name": "Super Star Destroyer",
+        "weapon_power": "70",
+        "jedi_factor": "0",
+        "strength": "500",
+        "team": "republic"
+    },
+    {
+        "id": "4",
+        "name": "RZ-1 A-wing interceptor",
+        "weapon_power": "4",
+        "jedi_factor": "4",
+        "strength": "50",
+        "team": "republic"
+    }
+]
