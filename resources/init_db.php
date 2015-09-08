@@ -41,7 +41,7 @@ $pdo->exec('INSERT INTO ship
     ("Jedi Starfighter", 5, 15, 30, "rebel")'
 );
 $pdo->exec('INSERT INTO ship
-    (name, weapon_power, jedi_factor, strength, teamm) VALUES
+    (name, weapon_power, jedi_factor, strength, team) VALUES
     ("CloakShape Fighter", 2, 2, 70, "rebel")'
 );
 $pdo->exec('INSERT INTO ship
