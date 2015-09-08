@@ -53,4 +53,4 @@ $pdo->exec('INSERT INTO ship
     ("RZ-1 A-wing interceptor", 4, 4, 50, "republic")'
 );
 
-echo 'Ding!';
+echo "Ding!\n";
