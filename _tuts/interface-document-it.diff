@@ -1,0 +1,28 @@
+diff --git a/lib/Service/ShipStorageInterface.php b/lib/Service/ShipStorageInterface.php
+index 58c689c..e9ebb5e 100644
+--- a/lib/Service/ShipStorageInterface.php
++++ b/lib/Service/ShipStorageInterface.php
+@@ -2,7 +2,23 @@
+ 
+ interface ShipStorageInterface
+ {
++    /**
++     * Returns an array of ship arrays, each with the following keys:
++     *  * id
++     *  * name
++     *  * weapon_power
++     *  * strength
++     *  * team
++     *
++     * @return array
++     */
+     public function fetchAllShipsData();
+ 
++    /**
++     * Returns the single ship array for this id (see fetchAllShipsData)
++     *
++     * @param integer $id
++     * @return array
++     */
+     public function fetchSingleShipData($id);
+ }
