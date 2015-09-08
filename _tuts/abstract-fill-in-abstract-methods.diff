@@ -1,0 +1,23 @@
+diff --git a/lib/Model/BrokenShip.php b/lib/Model/BrokenShip.php
+index 0174b0b..d1d249b 100644
+--- a/lib/Model/BrokenShip.php
++++ b/lib/Model/BrokenShip.php
+@@ -2,5 +2,18 @@
+ 
+ class BrokenShip extends AbstractShip
+ {
++    public function getJediFactor()
++    {
++        return 0;
++    }
+ 
++    public function getType()
++    {
++        return 'Broken';
++    }
++
++    public function isFunctional()
++    {
++        return false;
++    }
+ }

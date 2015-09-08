@@ -1,0 +1,24 @@
+diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
+index 83b4647..ac917eb 100644
+--- a/lib/Model/AbstractShip.php
++++ b/lib/Model/AbstractShip.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-class AbstractShip
++abstract class AbstractShip
+ {
+     private $id;
+ 
+@@ -10,6 +10,11 @@ class AbstractShip
+ 
+     private $strength = 0;
+ 
++    /**
++     * @return integer
++     */
++    abstract public function getJediFactor();
++
+     public function __construct($name)
+     {
+         $this->name = $name;

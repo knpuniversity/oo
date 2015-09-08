@@ -1,0 +1,41 @@
+diff --git a/lib/Model/BattleResult.php b/lib/Model/BattleResult.php
+index 6da8c81..86e15d5 100644
+--- a/lib/Model/BattleResult.php
++++ b/lib/Model/BattleResult.php
+@@ -7,11 +7,11 @@ class BattleResult
+     private $losingShip;
+ 
+     /**
+-     * @param Ship $winningShip
+-     * @param Ship $losingShip
++     * @param AbstractShip $winningShip
++     * @param AbstractShip $losingShip
+      * @param boolean $usedJediPowers
+      */
+-    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
++    public function __construct($usedJediPowers, AbstractShip $winningShip = null, AbstractShip $losingShip = null)
+     {
+         $this->usedJediPowers = $usedJediPowers;
+         $this->winningShip = $winningShip;
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index e4dc5bc..ea13d21 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -7,7 +7,7 @@ class BattleManager
+      *
+      * @return BattleResult
+      */
+-    public function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
++    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity)
+     {
+         $ship1Health = $ship1->getStrength() * $ship1Quantity;
+         $ship2Health = $ship2->getStrength() * $ship2Quantity;
+@@ -56,7 +56,7 @@ class BattleManager
+         return new BattleResult($usedJediPowers, $winningShip, $losingShip);
+     }
+ 
+-    private function didJediDestroyShipUsingTheForce(Ship $ship)
++    private function didJediDestroyShipUsingTheForce(AbstractShip $ship)
+     {
+         $jediHeroProbability = $ship->getJediFactor() / 100;
+ 

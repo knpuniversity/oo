@@ -1,0 +1,22 @@
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index b01abbc..cadfb58 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -10,7 +10,7 @@ class ShipLoader
+     }
+ 
+     /**
+-     * @return Ship[]
++     * @return AbstractShip[]
+      */
+     public function getShips()
+     {
+@@ -27,7 +27,7 @@ class ShipLoader
+ 
+     /**
+      * @param $id
+-     * @return Ship
++     * @return AbstractShip
+      */
+     public function findOneById($id)
+     {

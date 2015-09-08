@@ -424,7 +424,62 @@
             "id": "inheritance-using-parent",
             "name": "Inheritance: Using parent",
             "description": null
+        },
+        {
+            "id": "abstract-getjedifactor-override",
+            "name": "Abstract: getJediFactor override",
+            "description": null
+        },
+        {
+            "id": "abstract-abstractship-with-everything",
+            "name": "Abstract: AbstractShip with everything",
+            "description": null
+        },
+        {
+            "id": "abstract-jedifactor-into-ship",
+            "name": "Abstract: jediFactor into Ship",
+            "description": null
+        },
+        {
+            "id": "abstract-isfunctional-into-ship",
+            "name": "Abstract: isFunctional into Ship",
+            "description": null
+        },
+        {
+            "id": "abstract-gettype-into-ship",
+            "name": "Abstract: getType into Ship",
+            "description": null
+        },
+        {
+            "id": "abstract-abstractship-type-hints",
+            "name": "Abstract: AbstractShip type-hints",
+            "description": null
+        },
+        {
+            "id": "abstract-abstract-getjedifactor",
+            "name": "Abstract: abstract getJediFactor",
+            "description": null
+        },
+        {
+            "id": "abstract-abstractship-return",
+            "name": "Abstract: AbstractShip @return",
+            "description": null
+        },
+        {
+            "id": "abstract-add-2-more-abstract-methods",
+            "name": "Abstract: Add 2 more abstract methods",
+            "description": null
+        },
+        {
+            "id": "abstract-brokenship-empty",
+            "name": "Abstract: BrokenShip empty",
+            "description": null
+        },
+        {
+            "id": "abstract-fill-in-abstract-methods",
+            "name": "Abstract: Fill in abstract methods",
+            "description": null
         }
     ],
-    "sha": "c57bd43a5605ff9ff249a69c0ce6bc0acbdf9b8b"
+    "sha": "ce46352c39795f89c7a4f4c2880dade0b988b89e"
 }

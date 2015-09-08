@@ -1,0 +1,38 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 91200e8..5cb9958 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -10,6 +10,7 @@ require_once __DIR__.'/lib/Service/Container.php';
+ require_once __DIR__.'/lib/Model/AbstractShip.php';
+ require_once __DIR__.'/lib/Model/Ship.php';
+ require_once __DIR__.'/lib/Model/RebelShip.php';
++require_once __DIR__.'/lib/Model/BrokenShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+ require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/index.php b/index.php
+index 5721a54..9e1656b 100644
+--- a/index.php
++++ b/index.php
+@@ -6,6 +6,9 @@ $container = new Container($configuration);
+ $shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
++$brokenShip = new BrokenShip('Just a hunk of metal');
++$ships[] = $brokenShip;
++
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+     switch ($_GET['error']) {
+diff --git a/lib/Model/BrokenShip.php b/lib/Model/BrokenShip.php
+new file mode 100644
+index 0000000..0174b0b
+--- /dev/null
++++ b/lib/Model/BrokenShip.php
+@@ -0,0 +1,6 @@
++<?php
++
++class BrokenShip extends AbstractShip
++{
++
++}

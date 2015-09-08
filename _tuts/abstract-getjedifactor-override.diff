@@ -1,0 +1,14 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index e2f8745..c1b9301 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -27,4 +27,9 @@ class RebelShip extends Ship
+ 
+         return $val;
+     }
++
++    public function getJediFactor()
++    {
++        return rand(10, 30);
++    }
+ }
