@@ -1,0 +1,27 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index 32c638b..12ebd9e 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -22,6 +22,8 @@ class RebelShip extends Ship
+ 
+     public function getNameAndSpecs($useShortFormat = false)
+     {
++        return $this->getSecretDoorCodeToTheDeathstar();
++
+         if ($useShortFormat) {
+             return sprintf(
+                 '%s: %s/%s/%s (Rebel)',
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index cc88530..4c412c5 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -136,4 +136,9 @@ class Ship
+     {
+         return 'Republic';
+     }
++
++    private function getSecretDoorCodeToTheDeathstar()
++    {
++        return 'Ra1nb0ws';
++    }
+ }

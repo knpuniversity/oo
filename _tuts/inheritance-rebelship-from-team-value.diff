@@ -1,0 +1,78 @@
+diff --git a/index.php b/index.php
+index 958e110..5721a54 100644
+--- a/index.php
++++ b/index.php
+@@ -6,11 +6,6 @@ $container = new Container($configuration);
+ $shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
+-$rebelShip = new RebelShip('My new rebel ship');
+-$ships[] = $rebelShip;
+-
+-var_dump($rebelShip->getFavoriteJedi());die;
+-
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+     switch ($_GET['error']) {
+@@ -68,6 +63,7 @@ if (isset($_GET['error'])) {
+                         <th>Weapon Power</th>
+                         <th>Jedi Factor</th>
+                         <th>Strength</th>
++                        <th>Type</th>
+                         <th>Status</th>
+                     </tr>
+                 </thead>
+@@ -78,6 +74,7 @@ if (isset($_GET['error'])) {
+                             <td><?php echo $ship->getWeaponPower(); ?></td>
+                             <td><?php echo $ship->getJediFactor(); ?></td>
+                             <td><?php echo $ship->getStrength(); ?></td>
++                            <td><?php echo $ship->getType(); ?></td>
+                             <td>
+                                 <?php if ($ship->isFunctional()): ?>
+                                     <i class="fa fa-sun-o"></i>
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index f865290..cf9989f 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -9,4 +9,9 @@ class RebelShip extends Ship
+ 
+         return $coolJedis[$key];
+     }
++
++    public function getType()
++    {
++        return 'Rebel';
++    }
+ }
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index 80c1744..cc88530 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -131,4 +131,9 @@ class Ship
+     {
+         $this->id = $id;
+     }
++
++    public function getType()
++    {
++        return 'Republic';
++    }
+ }
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 9ccfdad..01481fe 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -44,7 +44,12 @@ class ShipLoader
+ 
+     private function createShipFromData(array $shipData)
+     {
+-        $ship = new Ship($shipData['name']);
++        if ($shipData['team'] == 'rebel') {
++            $ship = new RebelShip($shipData['name']);
++        } else {
++            $ship = new Ship($shipData['name']);
++        }
++
+         $ship->setId($shipData['id']);
+         $ship->setWeaponPower($shipData['weapon_power']);
+         $ship->setJediFactor($shipData['jedi_factor']);

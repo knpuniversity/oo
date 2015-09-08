@@ -354,7 +354,77 @@
             "id": "container-reorganizing-models-and-services",
             "name": "Container: Reorganizing models and services",
             "description": null
+        },
+        {
+            "id": "inheritance-create-rebelship",
+            "name": "Inheritance: Create RebelShip",
+            "description": null
+        },
+        {
+            "id": "inheritance-extends-ship",
+            "name": "Inheritance: extends Ship",
+            "description": null
+        },
+        {
+            "id": "inheritance-add-methods",
+            "name": "Inheritance: Add methods",
+            "description": null
+        },
+        {
+            "id": "inheritance-rebelship-from-team-value",
+            "name": "Inheritance: RebelShip from team value",
+            "description": null
+        },
+        {
+            "id": "inheritance-echo-in-parent",
+            "name": "Inheritance: Echo in parent",
+            "description": null
+        },
+        {
+            "id": "inheritance-override-isfunctional",
+            "name": "Inheritance: override isFunctional",
+            "description": null
+        },
+        {
+            "id": "inheritance-copy-getnameandspecs",
+            "name": "Inheritance: Copy getNameAndSpecs",
+            "description": null
+        },
+        {
+            "id": "inheritance-try-protected-visibility",
+            "name": "Inheritance: Try protected visibility",
+            "description": null
+        },
+        {
+            "id": "inheritance-use-public-functions",
+            "name": "Inheritance: Use public functions",
+            "description": null
+        },
+        {
+            "id": "inheritance-cannot-call-private-function",
+            "name": "Inheritance: Cannot call private function",
+            "description": null
+        },
+        {
+            "id": "inheritance-protected-function",
+            "name": "Inheritance: protected function",
+            "description": null
+        },
+        {
+            "id": "inheritance-remove-dummy-function",
+            "name": "Inheritance: Remove dummy function",
+            "description": null
+        },
+        {
+            "id": "inheritance-calling-the-parent-function-incorrectly",
+            "name": "Inheritance: Calling the parent function incorrectly",
+            "description": null
+        },
+        {
+            "id": "inheritance-using-parent",
+            "name": "Inheritance: Using parent",
+            "description": null
         }
     ],
-    "sha": "a0cdf2a135835e1b5a9c7713abe3b55f93b52643"
+    "sha": "c57bd43a5605ff9ff249a69c0ce6bc0acbdf9b8b"
 }

@@ -1,0 +1,29 @@
+diff --git a/index.php b/index.php
+index 4bfb59b..958e110 100644
+--- a/index.php
++++ b/index.php
+@@ -9,6 +9,8 @@ $ships = $shipLoader->getShips();
+ $rebelShip = new RebelShip('My new rebel ship');
+ $ships[] = $rebelShip;
+ 
++var_dump($rebelShip->getFavoriteJedi());die;
++
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+     switch ($_GET['error']) {
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index 89af484..f865290 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -2,5 +2,11 @@
+ 
+ class RebelShip extends Ship
+ {
++    public function getFavoriteJedi()
++    {
++        $coolJedis = array('Yoda', 'Ben Kenobi');
++        $key = array_rand($coolJedis);
+ 
++        return $coolJedis[$key];
++    }
+ }

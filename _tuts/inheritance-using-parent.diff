@@ -1,0 +1,13 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index f2fcbea..e2f8745 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -22,7 +22,7 @@ class RebelShip extends Ship
+ 
+     public function getNameAndSpecs($useShortFormat = false)
+     {
+-        $val = $this->getNameAndSpecs($useShortFormat);
++        $val = parent::getNameAndSpecs($useShortFormat);
+         $val .= ' (Jedi)';
+ 
+         return $val;

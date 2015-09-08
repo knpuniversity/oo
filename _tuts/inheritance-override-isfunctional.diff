@@ -1,0 +1,26 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index cf9989f..a489cd8 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -14,4 +14,9 @@ class RebelShip extends Ship
+     {
+         return 'Rebel';
+     }
++
++    public function isFunctional()
++    {
++        return true;
++    }
+ }
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index 9063207..cc88530 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -134,7 +134,6 @@ class Ship
+ 
+     public function getType()
+     {
+-        echo 'Parent function!';
+         return 'Republic';
+     }
+ }

@@ -1,0 +1,30 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index a489cd8..80ef58c 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -19,4 +19,25 @@ class RebelShip extends Ship
+     {
+         return true;
+     }
++
++    public function getNameAndSpecs($useShortFormat = false)
++    {
++        if ($useShortFormat) {
++            return sprintf(
++                '%s: %s/%s/%s (Rebel)',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        } else {
++            return sprintf(
++                '%s: w:%s, j:%s, s:%s (Rebel)',
++                $this->name,
++                $this->weaponPower,
++                $this->jediFactor,
++                $this->strength
++            );
++        }
++    }
+ }

@@ -1,0 +1,59 @@
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index 80ef58c..32c638b 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -25,18 +25,18 @@ class RebelShip extends Ship
+         if ($useShortFormat) {
+             return sprintf(
+                 '%s: %s/%s/%s (Rebel)',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
++                $this->getName(),
++                $this->getWeaponPower(),
++                $this->getJediFactor(),
++                $this->getStrength()
+             );
+         } else {
+             return sprintf(
+                 '%s: w:%s, j:%s, s:%s (Rebel)',
+-                $this->name,
+-                $this->weaponPower,
+-                $this->jediFactor,
+-                $this->strength
++                $this->getName(),
++                $this->getWeaponPower(),
++                $this->getJediFactor(),
++                $this->getStrength()
+             );
+         }
+     }
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index 4fff7d7..cc88530 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -2,17 +2,17 @@
+ 
+ class Ship
+ {
+-    protected $id;
++    private $id;
+ 
+-    protected $name;
++    private $name;
+ 
+-    protected $weaponPower = 0;
++    private $weaponPower = 0;
+ 
+-    protected $jediFactor = 0;
++    private $jediFactor = 0;
+ 
+-    protected $strength = 0;
++    private $strength = 0;
+ 
+-    protected $underRepair;
++    private $underRepair;
+ 
+     public function __construct($name)
+     {

@@ -1,0 +1,24 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 6b701be..760a7cc 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -8,6 +8,7 @@ $configuration = array(
+ 
+ require_once __DIR__.'/lib/Service/Container.php';
+ require_once __DIR__.'/lib/Model/Ship.php';
++require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Service/BattleManager.php';
+ require_once __DIR__.'/lib/Service/ShipLoader.php';
+ require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+new file mode 100644
+index 0000000..03dbd3f
+--- /dev/null
++++ b/lib/Model/RebelShip.php
+@@ -0,0 +1,6 @@
++<?php
++
++class RebelShip
++{
++
++}
