@@ -1,5 +1,5 @@
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
-index bec59a7..83b4647 100644
+index 6532e95..83b4647 100644
 --- a/lib/Model/AbstractShip.php
 +++ b/lib/Model/AbstractShip.php
 @@ -104,9 +104,4 @@ class AbstractShip
@@ -9,11 +9,11 @@ index bec59a7..83b4647 100644
 -
 -    public function getType()
 -    {
--        return 'Republic';
+-        return 'Empire';
 -    }
  }
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index 8d89a01..c78d8c7 100644
+index 8d89a01..b054138 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -34,4 +34,9 @@ class Ship extends AbstractShip
@@ -23,6 +23,6 @@ index 8d89a01..c78d8c7 100644
 +
 +    public function getType()
 +    {
-+        return 'Republic';
++        return 'Empire';
 +    }
  }

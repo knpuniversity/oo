@@ -12,12 +12,12 @@ index 32c638b..12ebd9e 100644
              return sprintf(
                  '%s: %s/%s/%s (Rebel)',
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index cc88530..4c412c5 100644
+index fb02eb2..0437137 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -136,4 +136,9 @@ class Ship
      {
-         return 'Republic';
+         return 'Empire';
      }
 +
 +    private function getSecretDoorCodeToTheDeathstar()

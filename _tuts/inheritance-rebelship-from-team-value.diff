@@ -45,7 +45,7 @@ index f865290..cf9989f 100644
 +    }
  }
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index 80c1744..cc88530 100644
+index 80c1744..fb02eb2 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -131,4 +131,9 @@ class Ship
@@ -55,7 +55,7 @@ index 80c1744..cc88530 100644
 +
 +    public function getType()
 +    {
-+        return 'Republic';
++        return 'Empire';
 +    }
  }
 diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php

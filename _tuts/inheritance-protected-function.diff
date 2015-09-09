@@ -1,9 +1,9 @@
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index 4c412c5..515ec25 100644
+index 0437137..0c77749 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -137,7 +137,7 @@ class Ship
-         return 'Republic';
+         return 'Empire';
      }
  
 -    private function getSecretDoorCodeToTheDeathstar()

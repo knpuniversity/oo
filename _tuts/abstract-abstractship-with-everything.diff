@@ -12,7 +12,7 @@ index 760a7cc..91200e8 100644
  require_once __DIR__.'/lib/Service/BattleManager.php';
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
 new file mode 100644
-index 0000000..e340586
+index 0000000..f4f8a46
 --- /dev/null
 +++ b/lib/Model/AbstractShip.php
 @@ -0,0 +1,139 @@
@@ -152,7 +152,7 @@ index 0000000..e340586
 +
 +    public function getType()
 +    {
-+        return 'Republic';
++        return 'Empire';
 +    }
 +}
 diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
@@ -168,7 +168,7 @@ index c1b9301..8d00bb0 100644
      public function getFavoriteJedi()
      {
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index cc88530..8e0d822 100644
+index fb02eb2..8e0d822 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -1,139 +1,5 @@
@@ -309,6 +309,6 @@ index cc88530..8e0d822 100644
 -
 -    public function getType()
 -    {
--        return 'Republic';
+-        return 'Empire';
 -    }
  }

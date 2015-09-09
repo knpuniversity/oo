@@ -13,7 +13,7 @@ index cf9989f..a489cd8 100644
 +    }
  }
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index 9063207..cc88530 100644
+index f5fe019..fb02eb2 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -134,7 +134,6 @@ class Ship
@@ -21,6 +21,6 @@ index 9063207..cc88530 100644
      public function getType()
      {
 -        echo 'Parent function!';
-         return 'Republic';
+         return 'Empire';
      }
  }
