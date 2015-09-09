@@ -22,7 +22,7 @@
         "weapon_power": "70",
         "jedi_factor": "0",
         "strength": "500",
-        "team": "republic"
+        "team": "empire"
     },
     {
         "id": "4",
@@ -30,6 +30,6 @@
         "weapon_power": "4",
         "jedi_factor": "4",
         "strength": "50",
-        "team": "republic"
+        "team": "empire"
     }
 ]

@@ -46,11 +46,11 @@ $pdo->exec('INSERT INTO ship
 );
 $pdo->exec('INSERT INTO ship
     (name, weapon_power, jedi_factor, strength, team) VALUES
-    ("Super Star Destroyer", 70, 0, 500, "republic")'
+    ("Super Star Destroyer", 70, 0, 500, "empire")'
 );
 $pdo->exec('INSERT INTO ship
     (name, weapon_power, jedi_factor, strength, team) VALUES
-    ("RZ-1 A-wing interceptor", 4, 4, 50, "republic")'
+    ("RZ-1 A-wing interceptor", 4, 4, 50, "empire")'
 );
 
 echo "Ding!\n";
