@@ -24,3 +24,11 @@ tuts_hero:
     start_step:
 
 chapters:
+    extends:
+        is_finished: false
+    override:
+        is_finished: false
+    protected-visibility:
+        is_finished: false
+    parent:
+        is_finished: false
