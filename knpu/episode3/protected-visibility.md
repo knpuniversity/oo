@@ -21,4 +21,47 @@ extends `Ship` it has access to everything inside of it like the properties and 
 as if they also exist inside of `RebelShip`. However, this error really does seem to be
 saying something different than that. 
 
-We can see that in `Ship` there is a name property so why isn't this working? 
+We can see that in `Ship` there is a name property so why isn't this working? The answer
+has to do with this word `private` in front of `$name`. All functions and properties so
+far are either `private` or `public`. If a function or a property is `private` it means
+you can only access it from within the ship class. Like here where we say `$this->name`.
+As we can see here, `private`functions and properties can't be accessed inside of subclasses. 
+So only things inside of `Ship` class can access this `private $name;` property.  
+
+I always recommend that you make things `private` until you need to access them from outside
+of the class you are working in. 
+
+Now, there is another designation between `private` and `public` which is called `protected`. 
+`Proctected` works exactly like `private` except that subclasses can access it, so when we change
+it here the error goes away. Cool! Let's do a temporary fix for the error we're getting by making
+all of these things `protected`. Everything in our `RebelShip` file looks happy again so let's refresh.
+Ah ha! Our dropdown is back in business and showing the rebel designation. 
+
+I just mentioned that our fix was 'temporary' because I don't actually want to make these `protected`
+I really prefer to keep things `private` whenever possible. So even those these properties are
+`private` we have a `public` function that access them like `getName`, `getStrength`, `getWeaponPower`.
+Which means that in the subclass we can just use these instead of the properties. So let's go ahead
+and just change those in `RebelShip`. And to save me some effort I'll copy and paste these from
+the if to the else. 
+
+I like this, I mean I already have these `public` functions so why not use them? It allows me to 
+keep these properties `private` which is looking ahead a little bit, but the more things you
+have marked as `private` the easier it's going to be to maintain and update your code later.
+
+Back to the browser and refresh, and things still work! 
+
+Let's temporarily add a new `private` function to `Ship` called `getSecretDoorCodeToTheDeathstar()`.
+Since only Empire ships should have access to this you can see why setting it as `private` makes sense.
+And let's return the secret code 'Ra1nb0ws'. 
+
+Over in `RebelShip` I should not be able to access this new function since we set it to `private`. 
+We see the 'Member has private access' error so when we refresh we can check the dropdown to confirm
+that things aren't working. `Fatal error: Call to private method Ship::getSecretDoorCodeToTheDeathstar() from`
+and we need to view the source to see the full error message. 
+
+But, if we go back and change that function to `protected`, our error is gone, the rebels have access
+to the secret door code and life is good.  
+
+Remove all that nonsense. The moral of the story is this, make things `private` at first, `proctected` 
+once you need to access them in a subclass. And finally `public` when you need to use it outside of its class
+and subclass. 
