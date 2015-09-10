@@ -35,4 +35,29 @@ Now back in `index.php` towards the bottom add a new column for this called `Typ
 joined to fight for the Empire! Which makes sense.
 
 Time for the next really powerful thing with inheritance. In addition to adding methods
-to a sub class like `RebelShip` 
+to a sub class like `RebelShip` you can override methods. Copy the `getType` from `Ship`
+and paste it into `RebelShip` and change what it returns to 'Rebel'. 
+
+`RebelShip` copies all of the entire blue print of `Ship` but it can replace any of those
+pieces. When we refresh now, we have 2 'Rebel' ships in addition to our two 'Empire' ships.
+Excellent!
+
+A key part of this is that the parent `getType` class is never called for all rebel ship
+objects it is completely replaced. If I echo 'Parent Function' inside of `getType` in the
+`Ship` class and refresh to see our ugly text echoing for the Empire ships and not the Rebel
+ships. This is thanks to our parent function not being called in `RebelShip`. 
+
+On to more methods, another one on `Ship` is `isFunctional` which we setup to have a 30%
+chance of a ship being broken down, which is what our cute cloud here indicates. But, we
+all know that the Rebels are really scrappy and they don't have the luxury of letting
+their ships get broken. Even if they are kinda broken they still fly and make it work. Which
+is just one more reason why the rebels are awesome. 
+
+So I need to set this up so the Rebel ships are never showing as broken which we can do
+really easily by overriding `isFunctional` inside of `RebelShip`.  Let's update this to
+`return true;` which will never show a rebel ship as broken. When we refresh now the Rebel
+ships always have sunshine, and the Empire ships sometimes have adorable clouds. 
+
+By having two classes we are starting to shape the different behaviors and properties of those
+two classes, while still keeping most things in common and not duplicated.
+
