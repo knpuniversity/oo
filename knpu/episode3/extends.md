@@ -53,4 +53,19 @@ can just add this to the ships array. Remember, down here we iterate over the sh
 and call things like `getName`, `getWeaponPower` and `getJediFactor` which don't
 actually live inside of `RebelShip`. But when we refresh, it works perfectly!
 
+Lesson number 1: when you have one class that extends another, it inherits (and
+that's the word you'll hear alot) all of the stuff inside that parent class. So
+we can call methods like `getName` or `getNameAndSpecs` on `RebelShip` because it
+inherits that from `Ship`.
 
+Really, `RebelShip` works just like a normal class. If you want to, you can add
+completely new functions. Let's do that with `public function getFavoriteJedi` that
+has an array of some cool Jedis and then use `array_rand` to select one of those.
+
+Since this was all done on `RebelShip`, head over to `index.php` and call that method.
+`var_dump($rebelShip->getFavoriteJedi)` and you can see with my autocomplete it's showing
+me all of my public functions on both `Ship` and `RebelShip`. You can even see that the
+`RebelShip` options are bolder to show that they are in a seperate file than the parent class.
+
+When we refresh, we see our favorite Jedi, it works perfectly! Extending classes is great for
+reusing code without the sad duplication.
