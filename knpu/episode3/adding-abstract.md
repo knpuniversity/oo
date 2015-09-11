@@ -18,3 +18,81 @@
  error. But good news, the fix is simple! We don't care if we get a ship object in battle anymore.
  What we actually care about is that we get an `AbstractShip` object or any of its subclasses
  which we know includes `Ship` and `RebelShip`. 
+
+ Refresh and give this another try, and we get the same exact error. Let's see we're being
+ notified about something in `BattleManager` on line 58. Let's scroll down and look there.
+ 
+ Ah yes, it's this type hinting right here. This function is called up here, and we pass it the
+ ship object, so let's update this one to be expecting an `AbstractShip`. Let's try this again!
+ Cool, one more error! This one is having issues with `BattleResult::__construct()`. In our IDE
+ we can see that when we instantiate the `BattleResult` object we pass it the `$winningShip` and
+ the `$losingShip`. Over in `BattleResult` we can see that these are also typehinted with `Ship`. 
+ Update those to both be `AbstractShip`. 
+ 
+ This is nice, our code is a lot more flexible now.  Before, it had to be a ship instance. Now
+ we don't care what class you have as long as it extends `AbstractShip`. 
+ 
+ Refresh again! Awesome, battling is back on.
+ 
+ Now we have a few minor, but interesting, problems. First, in `AbstractShip` head down to
+ `getNameAndSpecs` and we can see that `getJediFactor` is highlighted with an error that says
+ "Method `getJediFactor` not found in class AbstractShip". Now, this is working because we have
+ a `getJediFactor` method in `Ship` and `RebelShip`. So it doesn't matter if we have a `Ship` or
+ `RebelShip` , when we call `getNameAndSpecs` it's able to call `getJediFactor`. But this should
+ look a little fishy to you. There is no `getJediFactor` function inside of `AbstractShip`,
+ so just looking at this class you should feel suspicious and question whether or not this works. 
+ 
+ Here's what's going on, we have an implied rule that says, "Every class that extends `AbstractShip`
+ must have a `getJediFactor` function." If it doesn't everything is going to break when we call this
+ function and get a 'method not found' error. As you can probably tell we aren't enforcing this rule.
+ So we could easily create a new ship class, extend `AbstractShip`, and forget to add a `getJediFactor`
+ function. Our application would break and no battles would be happening. 
+ 
+ You're in luck, there's a feature called Abstract Classes that can handle this issue for us. I'll scroll
+ up, but really the position of this doesn't matter. Add a new `abstract public function  getJediFactor();`.
+ You may notice there are two different things about this. One is the word abstract before `public function`
+ and the other is that I just have a semicolon on the end, I didn't actually make a function. The best part, 
+ this line doesn't add any functionality to our app, but it does force any class that extends this class
+ to have this method. 
+ 
+ For example, if `RebelShip` didn't have this `getJediFactor` method, then when we refresh the browser
+ we'll get a huge error that says: "Hey! RebelShip must have a getJediFactor function!". This is because 
+ it has been defined as an abstract function inside of the parent class.
+ 
+ Up until now we could have instantiated an abstract ship directly, but that isn't what we had intended.
+ But we could have written `new AbstractShip`. But once you have an abstract function in here, that is
+ no longer possible, it's only purpose then becomes to be a blueprint for other classes to extend.
+ 
+ Up here at the top of the file you can see that there is an error highlight with a message that says
+ "Class must be declared abstract or implement method `getJediFactor`". Once your class has one or more
+ abstract functions you need to add the abstract keyword in front of it, which enforces the rule that
+ you can't say new abstract ship. 
+ 
+ Now when we scroll down, we can see that `getJediFactor` isn't highlighted anymore since we know that
+ inside `AbstractShip` any subclasses will be forced to have that function. Back to the browser and
+ refresh! Everything still works just fine.
+ 
+ Related to this, there is one more little thing we need to fix up. Start in `ShipLoader`, notice that our
+ `getShips` and `findOneById` functions still have PHPDoc above them that say they return a ship object.
+ That's not the biggest deal, but it would be more accurate if it said `AbstractShip`. 
+ 
+ We know that when we call this `createShipFromData` function down here we create either a `RebelShip` or a
+ `Ship`. Since they both extend `AbstractShip` this is now correctly advertising that we return some instance
+ of `AbstractShip`. 
+ 
+ Now check this out, inside of `index.php`, remember this `ships` variable we get by calling that `getShips` 
+ function. So that returns an array of `AbstractShip` objects. When we loop over it, the `isFunctional` and 
+ the `getType` functions aren't found. The message here says "Method `getType` not found in class `AbstractShip`".
+ This is just like the `getJediFactor` problem we just fixed. We don't have a `getType` function inside of here.
+ Both of our subclasses do, which is why our app still works, but technically we're not enforcing that. Any new
+ subclasses to `AbstractShip` could easily end up missing these functions which would again stop all the battles.
+ 
+ What we need is another abstract public function for `getType` and `isFunctional`. This doesn't change anything
+ in our application, it just forces our subclasses to have those methods. And now `index.php` is really happy again!
+ 
+ That's the power of abstract classes, you can have a whole bunch of shared logic in there, but if there are a
+ couple of pieces that you can't fill in in your abstract class because they are specific to your subclasses,
+ no problem! Just put them in there as abstract functions and your subclasses will be forced to have those.
+ 
+ In my example these are abstract public functions but you could also have abstract protected functions as well.
+ Which one you use just depends on your use case. It's a very powerful feature of object oriented code.
