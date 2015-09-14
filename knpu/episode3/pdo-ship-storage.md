@@ -30,4 +30,17 @@ Right now, all of the logic of querying things from the database is hardcoded in
 So let's create a new class whose only job is to load ship data through the database, or PDO. 
 Let's start through this process, and it will make even more sense as we go along. 
 
-Create a new class called `PdoShipStorage`. Looking back inside `ShipLoader`
+Create a new class called `PdoShipStorage`. Looking back inside `ShipLoader` there are two
+types of queries that we make. Sometimes we query for all of the ships and sometimes we query
+for just one ship by ID. 
+
+Back to our `PdoShipStorage` I'll create two methods, to cover both of those actions. First,
+create a `public function fetchAllShipsData()` which we'll fill out in just one second. Second,
+add `public function fetchSingleShipData()` and pass it the id that we want to query for. 
+
+Before we go any further head back to our `boostrap.php` file and make sure that we require this. 
+Perfect!
+
+What I want to do is move all the querying logic from `ShipLoader` into this `PdoShipStorage` class.
+Let's start with the logic that queries for one ship and pasting that over here. Notice, that we're
+not returning object here
