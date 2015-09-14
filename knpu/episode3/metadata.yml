@@ -32,3 +32,13 @@ chapters:
         is_finished: false
     parent:
         is_finished: false
+    abstract-ship:
+        is_finished: false
+    adding-abstract:
+        is_finished: false
+    broken-ship:
+        is_finished: false
+    pdo-ship-storage:
+        is_finished: false
+    interfaces:
+        is_finished: false
