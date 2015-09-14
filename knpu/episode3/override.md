@@ -20,35 +20,35 @@ objects from that table. This is nice because we'll be able to have these two ob
 behave differently. 
 
 So far `RebelShip` and `Ship` have all the same stuff except for the one extra method
-I have on `RebelShip` that I'm not using yet. 
+I have on `RebelShip` that I'm not using. 
 
 If we go back and refresh, everything still works perfectly! Now, technically I'm fairly
 certain that two of these are `RebelShip` objects and two are `Ship` objects but we can't
 really tell right now. Clearly we need to add identifiers so we know who to cheer on.
 
-To do this, start with `public function getType()` to our `Ship` and return a description,
+To do this, start by adding `public function getType()` to our `Ship` and return a description,
 like 'Empire'. Since we added that to `Ship`,  we can call `getType` on both `Ship` and
 `RebelShip`.
 
-Now back in `index.php` towards the bottom add a new column for this called `Type` and
-`<? php echo $ship->getType(); ?>`. Back to the browser and refresh and everything has 
-joined to fight for the Empire! Which makes sense.
+Back in `index.php` towards the bottom add a new column for this called `Type` and
+`echo $ship->getType();`. Back to the browser and refresh. Everything has joined to 
+fight for the Empire! Which makes sense. Both ship classes use this same method.
 
 Time for the next really powerful thing with inheritance. In addition to adding methods
 to a sub class like `RebelShip` you can override methods. Copy the `getType` from `Ship`
 and paste it into `RebelShip` and change what it returns to 'Rebel'. 
 
-`RebelShip` copies all of the entire blue print of `Ship` but it can replace any of those
-pieces. When we refresh now, we have 2 'Rebel' ships in addition to our two 'Empire' ships.
+`RebelShip` copies the entire blue print of `Ship` but it can replace any of those
+pieces. When we refresh now, we have two 'Rebel' ships in addition to our two 'Empire' ships.
 Excellent!
 
 A key part of this is that the parent `getType` class is never called for all rebel ship
 objects it is completely replaced. If I echo 'Parent Function' inside of `getType` in the
-`Ship` class and refresh to see our ugly text echoing for the Empire ships and not the Rebel
+`Ship` class and refresh, we see our ugly text echoing for the Empire ships and not the Rebel
 ships. This is thanks to our parent function not being called in `RebelShip`. 
 
 On to more methods, another one on `Ship` is `isFunctional` which we setup to have a 30%
-chance of a ship being broken down, which is what our cute cloud here indicates. But, we
+chance of a ship being broken, which is what our cute cloud here indicates. But, we
 all know that the Rebels are really scrappy and they don't have the luxury of letting
 their ships get broken. Even if they are kinda broken they still fly and make it work. Which
 is just one more reason why the rebels are awesome. 
@@ -58,6 +58,6 @@ really easily by overriding `isFunctional` inside of `RebelShip`.  Let's update 
 `return true;` which will never show a rebel ship as broken. When we refresh now the Rebel
 ships always have sunshine, and the Empire ships sometimes have adorable clouds. 
 
-By having two classes we are starting to shape the different behaviors and properties of those
-two classes, while still keeping most things in common and not duplicated.
+By having two classes we are starting to shape the different behaviors and properties of each, 
+while still keeping most things in common and not duplicated.
 
