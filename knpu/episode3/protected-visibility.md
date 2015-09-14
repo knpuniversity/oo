@@ -13,7 +13,7 @@ you may be thinking "guys, that's some serious code duplication...". Well you're
 absolutely right, and we'll get to fixing that!
 
 For now what we've got is pretty straightforward, so let's refresh and ....oh
-chech out our dropdown. We've got an `Undefinded property RebelShip::$name` error.
+check out our dropdown. We've got an `Undefinded property RebelShip::$name` error.
 
 Back in PhpStorm, you can see `$this->name` is highlighted with an error message of
 'Member has private access'. Interesting. So far, I've told you that since `RebelShip`
@@ -32,7 +32,7 @@ I always recommend that you make things `private` until you need to access them 
 of the class you're working in. 
 
 Now, there is another designation between `private` and `public` which is called `protected`. 
-`Proctected` works exactly like `private` except that subclasses can access it, so when we change
+`Protected` works exactly like `private` except that subclasses can access it, so when we change
 it here the error goes away. Cool! Let's do a temporary fix for the error we're getting by making
 all of these things `protected`. Everything in our `RebelShip` file looks happy again so let's refresh.
 Ah ha! Our dropdown is back in business and showing the rebel designation. 
