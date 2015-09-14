@@ -23,7 +23,7 @@ to set them straight!
 
 In the browser you can see we have two rebel ships in here coming from the database.
 
-I would really like rebal ships to fundamentally work differently. For example, they
+I would really like rebel ships to fundamentally work differently. For example, they
 break down less often and have higher jedi powers. Let me show you what I mean. 
 
 Create a new PHP class called `RebelShip`. Easy! Since rebel ships aren't exactly
