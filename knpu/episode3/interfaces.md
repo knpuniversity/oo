@@ -66,5 +66,7 @@ functions. It turns out that when you have an abstract class like this that only
 functions and no real code, well it's the perfect opportunity to use an Interface. 
 
 An interface works just like an abstract class and here's how it looks. To start, we need to rename
-our class to `ShipStorageInterface` since this more closely matches what it is. 
+our class to `ShipStorageInterface` since this more closely matches what it is. And instead of
+`abstract class` it's now labeled as an `interface`. Get it?
 
+As soon as you do that you no longer need `abstract` in front of all the functions, but these work the same. 
