@@ -71,4 +71,30 @@ thing. Remove all the pdo querying logic, and instead say `shipArray = $this->sh
 and pass it the id. This class now has no query logic anywhere. 
 
 All we know is that we're passed in some PdoShipStorage object and we're able to call methods on it. It can 
-make the queries and talk to whatever database it wants to, that's it's responsibility. 
+make the queries and talk to whatever database it wants to, that's it's responsibility. In here we're just
+calling methods instead of actually querying for things. 
+
+`ShipLoader` and `PdoShipStorage` are now fully setup and functional. The last step is going into our container
+which is responsible for creating all of our objects and just make a couple of changes. For example, when we
+have `new ShipLoader` we don't want to pass a pdo object anymore we want to pass in `PdoShipStorage`. 
+
+Just like before, create a new function called `getShipStorage` and make sure we have our property up above here.
+And the `getShipStorage` method is going to do exactly what you expect it to do. Instantiate a new `PdoShipStorage`
+and return it. The ship's storage class does need PDO as its first constructor argument which we do with
+`new PdoShipStorage($this->getPDO()); and the `getPDO` method creates the PDO object. 
+
+Up in `getShipLoader`, instead of passing the PDO object pass `$this->getShipStorage()`. 
+
+Everything used to be in `ShipLoader`, including the query logic. We've now split things up so that the query
+logic is in `PdoShipStorage` and in `ShipLoader` you're just calling methods on the `shipStorage`. Its real 
+job is to create the objects from the data, wherever that data came from. In `Container.php` we've wired
+all this stuff up. 
+
+Phew, that was a lot of coding we just did, but when we go to the browser and refresh, everything still works
+exactly the same as before. We just completed a bunch of internal refactoring. In `index.php` as always 
+we still have `$shipLoader->getShips` and that function still works as it did before, but the logic is now
+seperated into two pieces. 
+
+The cool thing about this is that our classes are now more focused and broken into smaller pieces. Initially
+we didn't need to do this, but once we had the new requirement of loading ships from a JSON file is what pushed
+that need. Next, you'll see how to actually load things from JSON instead of PDO. 
