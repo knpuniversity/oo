@@ -43,4 +43,32 @@ Perfect!
 
 What I want to do is move all the querying logic from `ShipLoader` into this `PdoShipStorage` class.
 Let's start with the logic that queries for one ship and pasting that over here. Notice, that we're
-not returning object here
+not returning object here this is just a really dumb class that returns data, an array in our case.
+
+There is one problem, we have a `getPdo` function inside of `ShipLoader` that only references a pdo
+property. Point being, our PDO storage needs access to the PDO object, so we're going to use
+dependency injection, a topic we covered a lot in episode 2. Since we need the PDO object inside of
+this class, add `public function __construct(PDO $pdo)` and store it as a property with `$this->pdo = $pdo;`.
+If this pattern is new to you just head back and watch the dependency injection video in episode 2 of
+OO.
+
+Here we're saying, whomever creates our PDO ship storage class must pass in the pdo object. This is cool
+because we need it. Now I can just reference the property there directly. 
+
+Back in `ShipLoader` copy the entire `queryForShips` and paste that into `fetchAllShipsData` and once again
+reference the public pdo property. 
+
+Now we have a class whose only job is to query for ship stuff, we're not using it anywhere yet, but it's fully
+ready to go. So let's use this inside of `ShipLoader` instead of the PDO object. Since we don't need PDO to be
+passed anymore swap that out fo a `PdoShipStorage` object. Let's update that in a few other places and change
+the property to also be called `shipStorage`. Cool!
+
+Down in `getShips` we used to call `$this->queryForShips();` but we don't need to do that anymore! Instead,
+say `$this->shipStorage->fetchAllShipsData();`. Perfect, now scroll down and get rid of the `queryForShips` 
+function all together since we're not using that anymore. And while we're cleaning things out also delete this
+`getPDO` function. We can delete this because up here where we reference it in `findOneById` we'll do the same
+thing. Remove all the pdo querying logic, and instead say `shipArray = $this->shipStorage->fetchSingleShipData();`
+and pass it the id. This class now has no query logic anywhere. 
+
+All we know is that we're passed in some PdoShipStorage object and we're able to call methods on it. It can 
+make the queries and talk to whatever database it wants to, that's it's responsibility. 
