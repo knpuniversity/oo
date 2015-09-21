@@ -50,7 +50,7 @@ object that loaded things from say XML, all they would need to do is created a c
 this interface and boom you're being told exactly what methods that XML ship storage class has to have. 
 
 This is also our opportunity to add really good documentation on these. We can label this one as an
-integer that should return an array of data. You could even go further and say "Returns and array of ship arrays,
+integer that should return an array of data. You could even go further and say "Returns an array of ship arrays,
 with keys id, name, weaponPower, defense." Adding as many details as possible here is good, that way if
 someone implements this interface later they'll know exactly what to put in their classes. 
 
