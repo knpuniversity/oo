@@ -1,6 +1,6 @@
 # Interfaces
 
-Notice, `AbstractShipStorage` unlike `AbstractShip` that we created earlier, doesn't actually have any 
+Notice, `AbstractShipStorage` unlike `AbstractShip`, doesn't actually have any 
 logic in it. All it does is have a contract that guarantees anything that extends this has these two
 functions. It turns out that when you have an abstract class like this that only contains abstract
 functions and no real code, well it's the perfect opportunity to use an Interface. 
@@ -15,7 +15,7 @@ I really like the consistency. And of course update our require line for this fi
 
 Stepping back and looking at `ShipStorageInterface` I want you to think of this as acting just like
 an abstract class with two functions that need to be filled in. An important difference is that you
-don't extend interfaces. Instead, we'll use a new keyword called `implements` and our updated file name
+don't extend interfaces. Instead, we'll use a new keyword called `implements` and our updated class name
 `ShipStorageInterface`. This new line says that the `JsonFileShipStorage` must include the functions
 inside of `ShipStorageInterface`.  
 
@@ -24,9 +24,9 @@ you need to implement `fetchAllShipsData`" so I'll comply and undelete that.
 
 Update `PdoShipStorage` to `implement ShipStorageInterface`. Time to head over to `ShipLoader` 
 and change the `AbstractShipStorage` type hint to `ShipStorageInterface` which is our way of
-saying that we don't care what class is passed here as long as it implements `ShipStorageInterface`. 
-And that file only insists that you have these two methods, which then means that `ShipLoader` is
-requiring those two methods. 
+saying that we don't care what class is passed here as long as it has the two methods that
+are in `ShipStorageInterface`. That's the only thing we care about. Well, that and getting to
+dinner on time.
 
 Over in the `container` we can also update the `@return` statement. It doesn't affect anything really,
 but it's a good practice to keep it updated. Back to the browser and refresh! Everything still works
@@ -64,7 +64,7 @@ If you're creating a reusable library that you are going to share with the world
 a lot of flexibility and interfaces would be a good thing to use. 
 
 You may not create very many interfaces, but there is a very good chance that you will use a lot of 
-interfaces. For example, you might want to use a third party library in your project and their documentation
+them. For example, you might want to use a third party library in your project and their documentation
 will say "If you want to create a custom ship storage object" then you will need to implement this 
 interface that comes with the library. So you will create your own custom class, implement the library's
 interface which then tells you which methods to fill in. 
