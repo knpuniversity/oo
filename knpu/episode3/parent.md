@@ -4,7 +4,7 @@ We covered that when you override a function, you override it entirely. In
 `RebelShip` we're overriding `getNameAndSpecs` which means that when this
 method is called on a `RebelShip` object the `getNameAndSpecs` inside of the
 original `Ship` class, i.e. the parent class, is never called. In this case 
-that's is sort of a problem because it leaves us with all this code duplication. 
+that's sort of a problem because it leaves us with all this code duplication. 
 It would be way better if we could somehow call the parent method, `getNameAndSpecs`
 inside of `Ship`, and then just add this '(rebel)' part to the end. 
 
