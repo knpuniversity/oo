@@ -14,28 +14,26 @@ Suppose that we have a new requirement, sometimes we're going to get the ship
 data from the database but other times it will come from a different source, 
 like a JSON file. 
 
-In th resources directory there's a new `ship.json` file, as you can see this
+In the resources directory there's a new `ship.json` file, as you can see this
 holds the same info as we have in the database. Now why would we want our
-application to sometimes load from the database and other times load from a
-JSOn file? Say that when we're developing locally we don't have access to our database,
+application to sometimes load from the database and other times from a
+JSON file? Say that when we're developing locally we don't have access to our database,
 so we use a JSON file. But when we push to production we'll switch back to the 
-real database. Or, supoose that our ship library is so awesome that someone else wants
+real database. Or, suppose that our ship library is so awesome that someone else wants
 to reuse it. However, this fan doesn't use a database, they only load them from
 JSON. 
 
-This leaves us needing to make our `ShipLoader` more generic in how it loads ships, since
-we'll be using both the database and JSON and maybe even something else in the future.
+This leaves us needing to make our `ShipLoader` more generic.
 
 Right now, all of the logic of querying things from the database is hardcoded in here. 
 So let's create a new class whose only job is to load ship data through the database, or PDO. 
-Let's start through this process, and it will make even more sense as we go along. 
 
 Create a new class called `PdoShipStorage`. Looking back inside `ShipLoader` there are two
 types of queries that we make. Sometimes we query for all of the ships and sometimes we query
 for just one ship by ID. 
 
 Back to our `PdoShipStorage` I'll create two methods, to cover both of those actions. First,
-create a `public function fetchAllShipsData()` which we'll fill out in just one second. Second,
+create a `public function fetchAllShipsData()` which we'll fill out in just one second. Now,
 add `public function fetchSingleShipData()` and pass it the id that we want to query for. 
 
 Before we go any further head back to our `boostrap.php` file and make sure that we require this. 
@@ -43,14 +41,13 @@ Perfect!
 
 What I want to do is move all the querying logic from `ShipLoader` into this `PdoShipStorage` class.
 Let's start with the logic that queries for one ship and pasting that over here. Notice, that we're
-not returning object here this is just a really dumb class that returns data, an array in our case.
+not returning an object here this is just a really dumb class that returns data, an array in our case.
 
-There is one problem, we have a `getPdo` function inside of `ShipLoader` that only references a pdo
+There is one problem, we have a `getPdo` function inside of `ShipLoader` that references a pdo
 property. Point being, our PDO storage needs access to the PDO object, so we're going to use
-dependency injection, a topic we covered a lot in episode 2. Since we need the PDO object inside of
-this class, add `public function __construct(PDO $pdo)` and store it as a property with `$this->pdo = $pdo;`.
-If this pattern is new to you just head back and watch the dependency injection video in episode 2 of
-OO.
+dependency injection, a topic we covered a lot in episode 2. Add `public function __construct(PDO $pdo)` 
+and store it as a property with `$this->pdo = $pdo;`. If this pattern is new to you just head 
+back and watch the dependency injection video in episode 2 of the OO series.
 
 Here we're saying, whomever creates our PDO ship storage class must pass in the pdo object. This is cool
 because we need it. Now I can just reference the property there directly. 
@@ -61,11 +58,11 @@ reference the public pdo property.
 Now we have a class whose only job is to query for ship stuff, we're not using it anywhere yet, but it's fully
 ready to go. So let's use this inside of `ShipLoader` instead of the PDO object. Since we don't need PDO to be
 passed anymore swap that out fo a `PdoShipStorage` object. Let's update that in a few other places and change
-the property to also be called `shipStorage`. Cool!
+the property to be called `shipStorage`. Cool!
 
 Down in `getShips` we used to call `$this->queryForShips();` but we don't need to do that anymore! Instead,
 say `$this->shipStorage->fetchAllShipsData();`. Perfect, now scroll down and get rid of the `queryForShips` 
-function all together since we're not using that anymore. And while we're cleaning things out also delete this
+function all together: we're not using that anymore. And while we're cleaning things out also delete this
 `getPDO` function. We can delete this because up here where we reference it in `findOneById` we'll do the same
 thing. Remove all the pdo querying logic, and instead say `shipArray = $this->shipStorage->fetchSingleShipData();`
 and pass it the id. This class now has no query logic anywhere. 
@@ -75,15 +72,15 @@ make the queries and talk to whatever database it wants to, that's it's responsi
 calling methods instead of actually querying for things. 
 
 `ShipLoader` and `PdoShipStorage` are now fully setup and functional. The last step is going into our container
-which is responsible for creating all of our objects and just make a couple of changes. For example, when we
+which is responsible for creating all of our objects to make a couple of changes. For example, when we
 have `new ShipLoader` we don't want to pass a pdo object anymore we want to pass in `PdoShipStorage`. 
 
-Just like before, create a new function called `getShipStorage` and make sure we have our property up above here.
-And the `getShipStorage` method is going to do exactly what you expect it to do. Instantiate a new `PdoShipStorage`
+Just like before, create a new function called `getShipStorage` and make sure we have our property up above.
+The `getShipStorage` method is going to do exactly what you expect it to do. Instantiate a new `PdoShipStorage`
 and return it. The ship's storage class does need PDO as its first constructor argument which we do with
-`new PdoShipStorage($this->getPDO()); and the `getPDO` method creates the PDO object. 
+`new PdoShipStorage($this->getPDO());`.
 
-Up in `getShipLoader`, instead of passing the PDO object pass `$this->getShipStorage()`. 
+Up in `getShipLoader`, now pass `$this->getShipStorage()`. 
 
 Everything used to be in `ShipLoader`, including the query logic. We've now split things up so that the query
 logic is in `PdoShipStorage` and in `ShipLoader` you're just calling methods on the `shipStorage`. Its real 
@@ -91,10 +88,10 @@ job is to create the objects from the data, wherever that data came from. In `Co
 all this stuff up. 
 
 Phew, that was a lot of coding we just did, but when we go to the browser and refresh, everything still works
-exactly the same as before. We just completed a bunch of internal refactoring. In `index.php` as always 
+exactly the same as before. That was a lot of internal refactoring. In `index.php` as always 
 we still have `$shipLoader->getShips` and that function still works as it did before, but the logic is now
 seperated into two pieces. 
 
 The cool thing about this is that our classes are now more focused and broken into smaller pieces. Initially
-we didn't need to do this, but once we had the new requirement of loading ships from a JSON file is what pushed
-that need. Next, you'll see how to actually load things from JSON instead of PDO. 
+we didn't need to do this, but once we had the new requirement of needing to load ships from a JSON file this
+refactoring became necessary. Now let's see how to actually load things from JSON instead of PDO. 
