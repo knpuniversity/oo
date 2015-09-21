@@ -1,4 +1,4 @@
-# Interfaces
+# AbstractShipLoader
 
 Our goal is to make `ShipLoader` load things from the database or from a JSON file.
 In the resources directory I've already created a `JsonFileShipStorage` class. 
