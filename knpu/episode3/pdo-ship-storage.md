@@ -57,7 +57,7 @@ reference the public pdo property.
 
 Now we have a class whose only job is to query for ship stuff, we're not using it anywhere yet, but it's fully
 ready to go. So let's use this inside of `ShipLoader` instead of the PDO object. Since we don't need PDO to be
-passed anymore swap that out fo a `PdoShipStorage` object. Let's update that in a few other places and change
+passed anymore swap that out for a `PdoShipStorage` object. Let's update that in a few other places and change
 the property to be called `shipStorage`. Cool!
 
 Down in `getShips` we used to call `$this->queryForShips();` but we don't need to do that anymore! Instead,
