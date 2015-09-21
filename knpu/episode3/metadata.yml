@@ -40,5 +40,7 @@ chapters:
         is_finished: false
     pdo-ship-storage:
         is_finished: false
+    abstract-ship-loader:
+        is_finished: false
     interfaces:
         is_finished: false
