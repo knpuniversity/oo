@@ -9,21 +9,21 @@ figure out if some super awesome Jedi powers are used during the battle.
 
 For Rebel Ships, the Jedi Powers work differently than Empire ships. They always
 have at least some Jedi Power, sometimes there's a lot and sometimes it's lower,
-depending on what side of the bed they woke up on that day. So, instead of making 
-this a dynamic value that we set in the datbase let's create a `public function
-getJediFactor` that returns the `rand` function with levels between 10 and 30. 
-Setting it up like this overrides the function in the `Ship` parent class. 
+depending on what side of the galaxy they woke up on that day. So, instead of making 
+this a dynamic value that we set in the datbase let's create a `public function getJediFactor` 
+that returns the `rand` function with levels between 10 and 30. Setting it up like 
+this overrides the function in the `Ship` parent class. 
 
-Back in the browswer, when we refresh we can see the Jedi Factor keeps changing on
+Back in the browser, when we refresh we can see the Jedi Factor keeps changing on
 the first two Rebel ships only. 
 
-Back in PhpStorm, when we look at this function now, `Ship` has a Jedi Factor property
-but `RebelShip` doesn't need that at all. But since `RebelShip` is extending `Ship` it is
+Over in PhpStorm, when we look at this function now, `Ship` has a Jedi Factor property
+but `RebelShip` doesn't need that at all. Since `RebelShip` is extending `Ship` it is
 still inheriting that property. While this doesn't hurt anything it is a bit weird to have
 this extra property on our class that we aren't using at all. And this is also true for
-the `isFunctional`. In `RebelShip` it's always true, but in `Ship` it reads from an `underRepair`
-property, which is not something that we need in `RebelShip`. The point being, `Ship` comes with
-extra stuff that we aren't using in `RebelShip`. 
+the `isFunctional` method. In `RebelShip` it's always true, but in `Ship` it reads from an `underRepair`
+property, and again that's just not needed in `RebelShip`. The point being, `Ship` comes with
+extra stuff that we are inheriting but not using in `RebelShip`. 
 
 These classes are like blueprints, so maybe, instead of having `RebelShip` extend `Ship` and
 inherit all these things it won't use, we should have a third class that would hold the properties
@@ -38,9 +38,9 @@ into `AbstractShip`. I know this looks like where we just were, but trust me we'
 this.
 
 Now, let's write `Ship extends AbstractShip` and do the same thing in `RebelShip` changing it from
-`Ship` to `AbstractShip`. Then in `Bootstrap` add our require line for our new class. Perfect!
+`Ship` to `AbstractShip`. Then in `Bootstrap` add our require line for our new class. Perfecto!
 
-After just that change, let's refresh our browser and see what's happening. Hey nothing is broken,
+After just that change, refresh the browser and see what's happening. Hey nothing is broken,
 which makes sense since nothing has really changed in our code's functionality -- yet. 
 
 Let's trim down `AsbstractShip` to only the items that are truly shared between our two ships. 
@@ -75,7 +75,7 @@ the under repair calculation line.
 The last thing that's extra right now in the `AbstractShip` class is the `getType` method. Both ships need a 
 `getType` function, but this one here is specific to the `Ship` class so we'll cut and paste that over.
 
-Back to the browser and refresh, everything looks great. The Rebel Ships aren't breaking, Jedi Factors are 
+Back to the browser and refresh, everything looks great. The Rebel Ships aren't breaking and Jedi Factors are 
 random, awesome!
 
 This is the same functionality we had a second ago but the `RebelShip` class is a lot simpler. It only inherits
