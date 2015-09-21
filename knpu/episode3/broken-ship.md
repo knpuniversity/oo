@@ -18,7 +18,7 @@ is always broken.
 Create a new php class called `BrokenShip`. Of course now make it extend `AbstractShip`.
 Let's pretend like we don't know that there are any abstract methods in the parent class.
 So we won't do anything here except putting in the extends code. Head over to `Bootstrap.php`
-and require our cool new `BrokenShip`. 
+and require our useless new `BrokenShip`. 
  
 Back in `index.php` for now, let's just add `$brokenShip = new BrokenShip();` and add it 
 to our ships array. We can do this because we know that `BrokenShip` extends `AbstractShip`. 
@@ -28,13 +28,13 @@ Back to the browser, refresh! Yes, what a huge beautiful error. It says "Class B
 3 abstract methods and must therefore be declared abstract or implement the remaining methods."
 And then it goes on and lists the methods. 
 
-In otherwords, it's saying "Hey buddy! You need to add those three methods into this class!"
+In other words, it's saying "Hey buddy! You need to add those three methods into this class!"
 It's always giving you an out to declare the class abstract if you want to, and you might do this
 if you wanted an abstract class inside an abstract class with some additional public functions.
 But we've all seen where that goes in the move inception. 
 
 In our case we want this to be a concrete class, meaning one that we can instantiate. When we go
-over to `AbstractShip` we say "Oh yea, I see there's a `getJediFactor` function that I need to do. 
+over to `AbstractShip` we say "Oh yea, I see there's a `getJediFactor` function that I need to add." 
 Take off the abstract to turn it into a real function, and since this ship is always broken we don't
 care about the Jedi factor so let's just return 0. 
 
@@ -49,7 +49,7 @@ Without really knowing anything I extended `AbstractShip` and that class told me
 to have in my subclasses. 
 
 And when we refresh, we have one more error! We're missing argument 1 to AbstractShip::__construct.
-That's my bad. In `index.php` here broken shio still has a constructor argument which is the name
+That's my bad. In `index.php` here broken ship still has a constructor argument which is the name
 so let's not forget to fill that in with "I am so broken". 
 
 Refresh again, and things look great! We've got our four original ships and our new broken one. Which
