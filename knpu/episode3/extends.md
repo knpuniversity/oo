@@ -26,12 +26,18 @@ In the browser you can see we have two rebel ships in here coming from the datab
 I would really like rebel ships to fundamentally work differently. For example, they
 break down less often and have higher jedi powers. Let me show you what I mean. 
 
-Create a new PHP class called `RebelShip`. Easy! Since rebel ships aren't exactly
-like boring old Empire ships let's create a new class or blueprint that models 
-how these work. 
+Create a new PHP class called `RebelShip`:
 
-Head on into `bootstrap.php` and require the `RebelShip` file there. We don't have
-an `autoloader` yet so we still have to worry about these require statements. 
+[[[ code('8f42785e26') ]]]
+
+Easy! Since rebel ships aren't exactly like boring old Empire ships let's create
+a new class or blueprint that models how these work.
+
+Head on into `bootstrap.php` and require the `RebelShip` file there:
+
+[[[ code('e35b725cee') ]]]
+
+We don't have an `autoloader` yet so we still have to worry about these require statements.
 
 Rebel ships are different than Empire ones but they do share about 99% of their 
 attributes. For example, they both have wings, fire power, defense power, etc. 
@@ -43,26 +49,43 @@ would make everyone sad. This is our chance to let classes help us not be sad by
 the extends keyword.
 
 By saying `class RebelShip extends Ship` everything that's in the `Ship` class
-is automatically inside of `RebelShip`. It's as if all the properties and methods
-of `Ship` are now a part of the `RebelShip` blueprint.
+is automatically inside of `RebelShip`:
 
-In `Index.php` we can say `$rebelShip = new RebelShip('My new rebel ship');` and we
-can just add this to the ships array. Remember, down here we iterate over the ships
-and call things like `getName`, `getWeaponPower` and `getJediFactor` which don't
-actually live inside of `RebelShip`. But when we refresh, it works perfectly!
+[[[ code('89c2892307') ]]]
+
+It's as if all the properties and methods of `Ship` are now a part of the `RebelShip`
+blueprint.
+
+In `index.php` we can say `$rebelShip = new RebelShip('My new rebel ship');` and we
+can just add this to the `$ships` array:
+
+[[[ code('67cd12d1b3') ]]]
+
+Remember, down here we iterate over the ships and call things like `getName()`,
+`getWeaponPower()` and `getJediFactor()` which don't actually live inside of `RebelShip`:
+
+[[[ code('7389e861ec') ]]]
+
+But when we refresh, it works perfectly!
 
 Lesson number 1: when you have one class that extends another, it inherits (you'll hear
-that word alot) all of the stuff inside that parent class. So we can call methods 
-like `getName` or `getNameAndSpecs` on `RebelShip` because it inherits that from `Ship`.
+that word a lot) all of the stuff inside that parent class. So we can call methods
+like `getName()` or `getNameAndSpecs()` on `RebelShip` because it inherits that from `Ship`.
 
 Really, `RebelShip` works just like a normal class. If you want to, you can add
-completely new functions. Let's do that with `public function getFavoriteJedi` that
-has an array of some cool Jedis. Then use `array_rand` to select one of those.
+completely new functions. Let's do that with `public function getFavoriteJedi()` that
+has an array of some cool Jedis. Then use `array_rand` to select one of those:
+
+[[[ code('9e556f0242') ]]]
 
 Since this was all done on `RebelShip`, head over to `index.php` and call that method.
 `var_dump($rebelShip->getFavoriteJedi)` and you can see with my autocomplete it's showing
-me all of my public functions on both `Ship` and `RebelShip`. You can even see that the
-`RebelShip` methods are displayed bolder and methods from the parent class are lighter.
+me all of my public functions on both `Ship` and `RebelShip`:
+
+[[[ code('c6d83e47c0') ]]]
+
+You can even see that the `RebelShip` methods are displayed bolder and methods from
+the parent class are lighter.
 
 When we refresh, we see our favorite random Jedi, it works perfectly! Extending classes is 
 great for reusing code without the sad duplication.
