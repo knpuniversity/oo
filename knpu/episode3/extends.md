@@ -15,6 +15,8 @@ directory.
 In my terminal I've also started the built in web server with `php -S localhost:8000`.
 Be careful to do that in the start directory of the project.
 
+## Creating a new RebelShip class
+
 So far in our project we have just this one lonely ship object. We query things
 from the database and we load this ship. But exciting things are happening
 and we have a new problem! We want to model two different types of ships. We have
@@ -41,6 +43,8 @@ We don't have an `autoloader` yet so we still have to worry about these require 
 
 Rebel ships are different than Empire ones but they do share about 99% of their 
 attributes. For example, they both have wings, fire power, defense power, etc. 
+
+## Class Inheritance with extends
 
 My first instinct should be to go into `Ship.php` and copy all of the contents and
 paste that into `RebelShip.php` since most of it will probably apply. But I shouldn't
@@ -72,6 +76,8 @@ Lesson number 1: when you have one class that extends another, it inherits (you'
 that word a lot) all of the stuff inside that parent class. So we can call methods
 like `getName()` or `getNameAndSpecs()` on `RebelShip` because it inherits that from `Ship`.
 
+## Adding new Methods?
+
 Really, `RebelShip` works just like a normal class. If you want to, you can add
 completely new functions. Let's do that with `public function getFavoriteJedi()` that
 has an array of some cool Jedis. Then use `array_rand` to select one of those:
@@ -79,7 +85,7 @@ has an array of some cool Jedis. Then use `array_rand` to select one of those:
 [[[ code('9e556f0242') ]]]
 
 Since this was all done on `RebelShip`, head over to `index.php` and call that method.
-`var_dump($rebelShip->getFavoriteJedi)` and you can see with my autocomplete it's showing
+`var_dump($rebelShip->getFavoriteJedi()` and you can see with my autocomplete it's showing
 me all of my public functions on both `Ship` and `RebelShip`:
 
 [[[ code('c6d83e47c0') ]]]
