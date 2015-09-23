@@ -26,6 +26,9 @@ tuts_hero:
 chapters:
     extends:
         is_finished: false
+        challenges:
+            - Challenges/Extending/InheritFunctionalityCoding
+            - Challenges/Extending/CallNonexistentMethodMC
     override:
         is_finished: false
     protected-visibility:
