@@ -31,6 +31,9 @@ chapters:
             - Challenges\Extending\CallNonexistentMethodMC
     override:
         is_finished: false
+        challenges:
+            - Challenges\Override\OverrideInheritMethodCoding
+            - Challenges\Override\CallOverriddenMethodMC
     protected-visibility:
         is_finished: false
     parent:
