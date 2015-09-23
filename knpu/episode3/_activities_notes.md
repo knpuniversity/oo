@@ -53,7 +53,7 @@ class Ship
 ```
 
 ```php
-class JediShip
+class JediShip extends Ship
 {
     public function getFavoriteJedi()
     {
