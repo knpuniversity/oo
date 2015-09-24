@@ -12,7 +12,9 @@ function and paste it over here. And then just add '(rebel)' at the end. Now
 you may be thinking "guys, that's some serious code duplication...". Well you're
 absolutely right, and we'll get to fixing that!
 
-For now what we've got is pretty straightforward, so let's refresh and ....oh
+[[[ code('7db3c66c91') ]]]
+
+For now what we've got is pretty straightforward, so let's refresh and... oh
 check out our dropdown. We've got an `Undefinded property RebelShip::$name` error.
 
 Back in PhpStorm, you can see `$this->name` is highlighted with an error message of
@@ -34,7 +36,11 @@ of the class you're working in.
 Now, there is another designation between `private` and `public` which is called `protected`. 
 `Protected` works exactly like `private` except that subclasses can access it, so when we change
 it here the error goes away. Cool! Let's do a temporary fix for the error we're getting by making
-all of these things `protected`. Everything in our `RebelShip` file looks happy again so let's refresh.
+all of these things `protected`:
+
+[[[ code('168b3c39f4') ]]]
+
+Everything in our `RebelShip` file looks happy again so let's refresh.
 Ah ha! Our dropdown is back in business and showing the rebel designation. 
 
 I just mentioned that our fix was 'temporary' because I don't actually want to make these `protected`
@@ -42,7 +48,9 @@ I really prefer to keep things `private` whenever possible. So even though these
 `private` we have `public` functions that access them like `getName`, `getStrength`, `getWeaponPower`.
 Which means that in the subclass we can just use these instead of the properties. Let's go ahead
 and just change those in `RebelShip`. And to save me some effort I'll copy and paste these from
-the if to the else. 
+the if to the else:
+
+[[[ code('ebf19037ff') ]]]
 
 I like this, I mean I already have these `public` functions so why not use them? It allows me to 
 keep these properties `private` which is looking ahead a little bit, but the more things you
@@ -52,7 +60,9 @@ Back to the browser and refresh, and things still work!
 
 Let's temporarily add a new `private` function to `Ship` called `getSecretDoorCodeToTheDeathstar()`.
 Since only Empire ships should have access to this you can see why setting it as `private` makes sense.
-And let's return the secret code 'Ra1nb0ws'. 
+And let's return the secret code 'Ra1nb0ws':
+
+[[[ code('d3f3bf13b0') ]]]
 
 Over in `RebelShip` I should not be able to access this new function since we set it to `private`. 
 We see the 'Member has private access' error so when we refresh we can check the dropdown to confirm
@@ -60,7 +70,9 @@ that things aren't working. `Fatal error: Call to private method Ship::getSecret
 and we need to view the source to see the full error message. 
 
 But, if we go back and change that function to `protected`, our error is gone, the rebels have access
-to the secret door code and life is good.  
+to the secret door code and life is good:
+
+[[[ code('cfc501a273') ]]]
 
 Remove all that nonsense. The moral of the story is this, make things `private` at first, `proctected` 
 once you need to access them in a subclass. And finally `public` when you need to use it outside of its class
