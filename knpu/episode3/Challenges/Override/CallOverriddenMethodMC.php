@@ -75,7 +75,7 @@ EOF;
         return <<<EOF
 For `Ship`, `printType()` prints "Empire Ship" and then also
 calls `printMotto()`. But for `RebelShip`, `printType()` only
-prints "Rebel Ship": it does *nothing* calls the `printMotto()`
+prints "Rebel Ship". *Nothing* calls the `printMotto()`
 function in this case.
 EOF;
     }

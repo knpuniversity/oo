@@ -27,22 +27,6 @@ EOF;
     {
         $fileBuilder = new FileBuilder();
 
-        $fileBuilder->addFileContents('index.php', <<<EOF
-<?php
-
-require 'DeathStar.php';
-require 'DeathStarII.php';
-
-\$original = new DeathStar();
-\$new = new DeathStarII();
-
-?>
-
-<h2>Original DeathStar Weakness: <?php echo \$original->getWeakness(); ?></h2>
-<h2>New DeathStar Weakness: <?php echo \$new->getWeakness(); ?></h2>
-EOF
-        );
-
         $fileBuilder->addFileContents('DeathStarII.php', <<<EOF
 <?php
 
@@ -67,6 +51,22 @@ class DeathStar
         return 'Thermal Exhaust Port';
     }
 }
+EOF
+        );
+
+        $fileBuilder->addFileContents('index.php', <<<EOF
+<?php
+
+require 'DeathStar.php';
+require 'DeathStarII.php';
+
+\$original = new DeathStar();
+\$new = new DeathStarII();
+
+?>
+
+<h2>Original DeathStar Weakness: <?php echo \$original->getWeakness(); ?></h2>
+<h2>New DeathStar Weakness: <?php echo \$new->getWeakness(); ?></h2>
 EOF
         );
 
@@ -99,17 +99,16 @@ EOF
         if (!$new instanceof \DeathStar) {
             throw new GradingException('The `DeathStarII` class is not extending `DeathStar` one.');
         }
-        $result->assertVariableEquals(
-            'original.weakness',
-            'Thermal Exhaust Port',
-            'The return value of `getWeakness()` method in a `DeathStar` class was changed. '.
-            'You should override it.'
-        );
-        $result->assertVariableEquals(
-            'new.weakness',
-            null,
-            'The `getWeakness()` method of `DeathStarII` class does not return `null`.'
-        );
+        if ('Thermal Exhaust Port' != $original->getWeakness()) {
+            throw new GradingException(
+                'The return value of `getWeakness()` method in a `DeathStar` class was changed. You should override it.'
+            );
+        }
+        if (null !== $new->getWeakness()) {
+            throw new GradingException(
+                'The `getWeakness()` method of `DeathStarII` class does not return `null`.'
+            );
+        }
     }
 
     public function configureCorrectAnswer(CorrectAnswer $correctAnswer)
