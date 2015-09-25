@@ -5,7 +5,7 @@ In this dropdown you can see a short summary of each ship that is currently
 functional. It shows their name, weapon power, jedi power and strength which
 all comes from the `getNameAndSpecs` function. But I would like a way to tell 
 which ships in this list align with the rebels, so let's add that word in 
-paranthesis at the end. 
+parenthesis at the end.
 
 As usual to do that, we'll override this in `RebelShip`. Copy the `getNameAndSpecs`
 function and paste it over here. And then just add '(rebel)' at the end. Now
