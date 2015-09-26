@@ -19,6 +19,8 @@ case for multiple classes. We have a database table, and you can create differen
 objects from that table. This is nice because we'll be able to have these two objects
 behave differently. 
 
+## Overriding Class Methods
+
 So far `RebelShip` and `Ship` have all the same stuff except for the one extra method
 I have on `RebelShip` that I'm not using. 
 
@@ -41,6 +43,8 @@ and paste it into `RebelShip` and change what it returns to 'Rebel'.
 `RebelShip` copies the entire blue print of `Ship` but it can replace any of those
 pieces. When we refresh now, we have two 'Rebel' ships in addition to our two 'Empire' ships.
 Excellent!
+
+## Overridden Methods are not Called
 
 A key part of this is that the parent `getType` class is never called for all rebel ship
 objects it is completely replaced. If I echo 'Parent Function' inside of `getType` in the
