@@ -10,12 +10,14 @@ figure out if some super awesome Jedi powers are used during the battle.
 For Rebel Ships, the Jedi Powers work differently than Empire ships. They always
 have at least some Jedi Power, sometimes there's a lot and sometimes it's lower,
 depending on what side of the galaxy they woke up on that day. So, instead of making 
-this a dynamic value that we set in the datbase let's create a `public function getJediFactor` 
+this a dynamic value that we set in the datbase let's create a `public function getJediFactor()` 
 that returns the `rand` function with levels between 10 and 30. Setting it up like 
 this overrides the function in the `Ship` parent class. 
 
 Back in the browser, when we refresh we can see the Jedi Factor keeps changing on
 the first two Rebel ships only. 
+
+## Fat Classes
 
 Over in PhpStorm, when we look at this function now, `Ship` has a Jedi Factor property
 but `RebelShip` doesn't need that at all. Since `RebelShip` is extending `Ship` it is
@@ -31,6 +33,8 @@ and methods that actually overlap between the two called `AbstractShip`. From he
 would both extend `AbstractShip` to get access to those common things. 
 
 This is a way of changing the class heirachy so that each class has only what it actually needs.
+
+## Creating an AbstractShip
 
 Let's start this! Create a new PHP Class called `AbstractShip`, since it is the most abstract idea of
 a ship in our project. To start, I'm going to copy everything out of the `Ship` class and paste it
