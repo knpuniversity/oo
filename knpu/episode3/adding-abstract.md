@@ -1,4 +1,4 @@
-# Adding Abstract
+# Abstract Classes
 
  Since everything seems to be working on our site, let's start a battle!
  Four Jedi Starfighters against three Super Star Destroyers. Engage.
