@@ -20,8 +20,11 @@ our select box. Ah there we go: `(!) Fatal error: Maximum function nesting level
 This means that we have a loop in our code, on index line 98 we call `getNameAndSpecs` and
 then on line 25 of `RebelShip` we call `getNameAndSpecs` again. This isn't working because
 when we call `$this->getNameAndSpecs`, it's literally calling this same method again
-inside of `RebelShip` not the parent function in `Ship`. The way you get this to call the parent
-function is with a special key word called `parent::`.
+inside of `RebelShip` not the parent function in `Ship`.
+
+## The parent Keyword
+
+The way you get this to call the parent function is with a special key word called `parent::`.
 
 Let's try this again in our browser, refresh, and checking our dropdown everything is working again.
 Except, maybe I could use a space here to make things look nicer. There we go. 
