@@ -1,4 +1,4 @@
-# Parent
+# Calling Parent Class Methods
 
 We covered that when you override a function, you override it entirely. In
 `RebelShip` we're overriding `getNameAndSpecs` which means that when this
