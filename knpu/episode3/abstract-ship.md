@@ -1,4 +1,4 @@
-# Abstract Ship
+# Creating an Abstract Ship
 
 There is one more thing that is special about the Rebel Ships. Since, they're
 the good guys we're going to give them some extra Jedi power. 
