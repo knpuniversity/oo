@@ -36,6 +36,9 @@ chapters:
             - Challenges\Override\CallOverriddenMethodMC
     protected-visibility:
         is_finished: false
+        challenges:
+            - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
+            - Challenges\ProtectedVisibility\PropertyVisibilityMC
     parent:
         is_finished: false
     abstract-ship:
