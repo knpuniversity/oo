@@ -496,7 +496,7 @@ these two blueprints totally independent. In a future
 episode, we'll talk about traits: a cool way to help
 remove duplication without inheritance.
 
-## Chapter 6
+## Chapter 6 Adding Abstract
 
 ### Question 1
 
