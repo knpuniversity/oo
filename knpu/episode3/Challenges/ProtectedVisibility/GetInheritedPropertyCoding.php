@@ -94,12 +94,12 @@ EOF
         try {
             assertTrue(
                 $class->hasProperty('planetarySuperLaserRange'),
-                'The `planetarySuperLaserRange` property does not exist in `DeathStar` class.'
+                'The `planetarySuperLaserRange` property does not exist in the `DeathStar` class.'
             );
             $property = $class->getProperty('planetarySuperLaserRange');
             assertTrue(
                 $property->isProtected(),
-                'The `planetarySuperLaserRange` property should has protected visibility.'
+                'The `planetarySuperLaserRange` property should have protected visibility.'
             );
         } catch (\Exception $e) {
             throw new GradingException($e->getMessage());
