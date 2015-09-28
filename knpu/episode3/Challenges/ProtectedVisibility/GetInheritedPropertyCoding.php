@@ -91,18 +91,12 @@ EOF
     public function grade(CodingExecutionResult $result)
     {
         $class = new \ReflectionClass('\DeathStar');
-        try {
-            assertTrue(
-                $class->hasProperty('planetarySuperLaserRange'),
-                'The `planetarySuperLaserRange` property does not exist in the `DeathStar` class.'
-            );
-            $property = $class->getProperty('planetarySuperLaserRange');
-            assertTrue(
-                $property->isProtected(),
-                'The `planetarySuperLaserRange` property should have protected visibility.'
-            );
-        } catch (\Exception $e) {
-            throw new GradingException($e->getMessage());
+        if (!$class->hasProperty('planetarySuperLaserRange')) {
+            throw new GradingException('The `planetarySuperLaserRange` property does not exist in the `DeathStar` class.');
+        }
+        $property = $class->getProperty('planetarySuperLaserRange');
+        if (!$property->isProtected()) {
+            throw new GradingException('The `planetarySuperLaserRange` property should have protected visibility.');
         }
     }
 
