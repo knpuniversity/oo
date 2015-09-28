@@ -23,7 +23,6 @@ summary: |
 
 illustration: oo-ep2.png
 hasVideoDownload: 1
-videoDownloadExtension: mov
 
 tuts_hero:
     start_step: constructor-passing-an-argument
@@ -31,29 +30,29 @@ tuts_hero:
 chapters:
     service-classes:
         is_free:    true
-        video_key:  73z2uxfb9v
+        video_key:    140093157
     army-of-services:
         is_free:    true
-        video_key:  4v9u3kj0i1
+        video_key:    140093160
     battle-result-model:
-        video_key:  w5iv2ycfz9
+        video_key:    140093159
     semantic-methods:
-        video_key:  l5hvk7wtpt
+        video_key:    140093158
     by_reference:
-        video_key:  zyke8wf59x
+        video_key:    140093161
     objects-from-database:
-        video_key:  w6yivz7fyv
+        video_key:    140093162
     handling-id:
-        video_key:  owj7ry18cp
+        video_key:    140093164
     one-db-conn-with-property:
-        video_key:  x1x7vy6g5p
+        video_key:    140093163
     centralize-configuration:
-        video_key:  5wvfntwki0
+        video_key:    140093165
     centralize-connection:
-        video_key:  vj2123rc2o
+        video_key:    140093167
     service-container:
-        video_key:  zujjxmiaa3
+        video_key:    140093166
     container-wrapup:
-        video_key:  gtom78kpg9
+        video_key:    140093168
     container-rescue:
-        video_key:  2e56yalq2y
+        video_key:    140093169
