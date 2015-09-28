@@ -1,4 +1,4 @@
-# PDO Ship Storage
+# Abstracting a Class into 2 Smaller Pieces
 
 To get our ships we use `ShipLoader` which queries the database
 and creates ship objects. This `queryForShips` goes out, selects all
@@ -53,7 +53,7 @@ Here we're saying, whomever creates our PDO ship storage class must pass in the 
 because we need it. Now I can just reference the property there directly. 
 
 Back in `ShipLoader` copy the entire `queryForShips` and paste that into `fetchAllShipsData` and once again
-reference the public pdo property. 
+reference the pdo property. 
 
 Now we have a class whose only job is to query for ship stuff, we're not using it anywhere yet, but it's fully
 ready to go. So let's use this inside of `ShipLoader` instead of the PDO object. Since we don't need PDO to be

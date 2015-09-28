@@ -620,3 +620,135 @@ $deathstar2 = new DeathstarII();
     Deathstar 2
     <p><?php echo $deathstar2->getDescription(); ?></p>
 </h3>
+
+## Chapter 7-broken-ship
+
+- Create a new deathstar, implement the methods
+
+### Question 1
+
+I feel like we're *always* designing new Deathstars. Well, time to start
+the DeathstarIII! Create a new `DeathstarIII` class, make it extend
+`AbstractDeathstar`, and fill in any missing abstract methods. Finally,
+print out the description in `index.php`.
+
+**Starting Code**
+`AbstractDeathstar.php`
+<?php
+
+class AbstractDeathstar()
+{
+    abstract protected function getLaserRange();
+    
+    public function getDescription()
+    {
+        // replace this with a call to get the correct
+        // range based on which Deatstar class is used
+        $range = getLaserRange();
+    
+        return <<<EOF
+A fantastic death machine, made to be extra cold and
+intimidating. It comes complete with a "superlaser"
+capable of destroying planets, with a range of $range.    
+EOF;
+    }
+}
+
+`DeathstarIII.php`
+    empty
+
+`index.php`
+<?php
+require 'AbstractDeathstar.php';
+require 'DeathstarII|.php';
+
+<h3>
+    The Deathstar 3
+    
+    <!-- print the description here -->
+</h3>
+
+## Chapter 8 PdoShipStorage
+
+### Question 1
+
+Tired from working on the Deathstar, you challenged the intern (let's call him
+"Bob") to create a class that can reverse a string and upper case every other letter.
+"Ha!" John says, "This is simple!". To show off, John creates the `StringTransformer`
+class and *even* makes it cache the results to be super-performant.
+
+But wait you say! Combining the string transformation *and* caching into the same
+class make `StringTransformer` responsible for two jobs. Help show Bob the intern
+a better way, by creating a new `Cache` class with two methods `fetchFromCache($key)`
+and `saveToCache($key, $val)`. Then, pass this into `StringTransformer` and use it
+to cache, instead of using your own logic:
+
+**Starting Code**
+```StringTransformer.php
+class StringTransformer
+{
+    public function transformString($str)
+    {        
+        $cacheFile = __DIR__.'/cache/'.md5($str);
+        
+        if (file_exists($cacheFile)) {
+            return file_get_contents($cacheFile);
+        }
+        
+        $newString = '';
+        foreach (str_split(strrev($str), 2) as $twoChars) {
+            var_dump($twoChars);
+            // capitalize the first of 2 characters
+            $newString .= ucfirst($twoChars);
+            
+        }
+
+        if (!file_exists(dirname($cacheFile))) {
+            mkdir(dirname($cacheFile));
+        }
+        file_put_contents($cacheFile, $newString);
+        
+        return $newString;
+    }
+}
+```
+
+```Cache.php
+(empty)
+```
+
+```index.php
+require 'Cache.php';
+require 'StringTransformer.php';
+
+$str = 'Judge me by my size, do you?';
+
+$transformer = new StringTransformer();
+var_dump($transformer->transformString($str));
+```
+
+### Question 2
+
+In the previous challenge, you split the logic from StringTransformer into two
+different classes. What are the advantages of this?
+
+A) Each class is smaller and so easier to understand.
+
+B) The Cache class could be re-used to cache other things
+
+C) You could easily use the StringTransformer, but cache using a different
+mechanism, like Redis.
+
+D) All of these are real advantages
+
+Answer: D (kind of easy)
+
+**Explanation** All of these are advantages! Before, you might not even realize that
+the StringTransformer had caching logic, but now its very obvious: the caching logic
+is in a class called `Cache` and you can see that the `StringTransformer` requires
+a `Cache` object. You could also use the `Cache` class in other situations to cache
+other things. And you could even - with a little bit of work - create a new `Cache`
+class that caches via something like Redis, and pass *this* to `StringTransformer`
+to cache using a different method.
+
+
