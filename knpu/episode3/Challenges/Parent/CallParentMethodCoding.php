@@ -20,11 +20,9 @@ class CallParentMethodCoding implements CodingChallengeInterface
 It took too long to travel to planets to destroy them
 in the first DeathStar, so Darth wants the laser range
 on the new DeathStar to be *twice* as far! Override
-the `getLaserRange()` method in `DeathStarII` to this
-happen. But don't repeat the `2000000` value! Call the
-parent function!
-
-Make the `getLaserRange()` method of `DeathStartII` return 2 times.
+the `getLaserRange()` method in `DeathStarII` to make
+this happen. But don't repeat the `2000000` value!
+Call the parent function and then multiple that value by 2!
 EOF;
     }
 
@@ -84,13 +82,12 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
-        $result->isVariableDeclared('deathStar');
         $deathStar = $result->getDeclaredVariableValue('deathStar');
         if (!method_exists($deathStar, 'getLaserRange')) {
-            throw new GradingException('The `getLaserRange` method does not exist for the `DeathStarII` class - do you create it?');
+            throw new GradingException('The `getLaserRange` method does not exist for the `DeathStarII` class - did you create it?');
         }
         if (4000000 != $deathStar->getLaserRange()) {
-            throw new GradingException('The `getLaserRange` method in the `DeathStarII` class should return a doubled value of parent method.');
+            throw new GradingException('The `getLaserRange` method in the `DeathStarII` class should return a doubled value of the parent method.');
         }
     }
 
