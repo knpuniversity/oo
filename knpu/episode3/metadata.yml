@@ -25,30 +25,30 @@ tuts_hero:
 
 chapters:
     extends:
-        is_finished: false
+        video_key: 140701988
         challenges:
             - Challenges\Extending\InheritFunctionalityCoding
             - Challenges\Extending\CallNonexistentMethodMC
     override:
-        is_finished: false
+        video_key: 140703255
         challenges:
             - Challenges\Override\OverrideInheritMethodCoding
             - Challenges\Override\CallOverriddenMethodMC
     protected-visibility:
-        is_finished: false
+        video_key: 140705348
         challenges:
             - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
             - Challenges\ProtectedVisibility\PropertyVisibilityMC
     parent:
-        is_finished: false
+        video_key: 140706130
     abstract-ship:
-        is_finished: false
+        video_key: 140707815
     adding-abstract:
-        is_finished: false
+        video_key: STILL MISSING
     broken-ship:
-        is_finished: false
+        video_key: 140711954
     pdo-ship-storage:
-        is_finished: false
+        video_key: 140715843
     abstract-ship-loader:
         is_finished: false
     interfaces:
