@@ -21,7 +21,8 @@ illustration: oo-ep3.png
 hasVideoDownload: false
 
 tuts_hero:
-    start_step:
+    start_step: 'Container: Reorganizing models and services'
+    finish_step: 'Interface: Document it'
 
 chapters:
     extends:
