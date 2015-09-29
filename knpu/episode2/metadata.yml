@@ -26,6 +26,7 @@ hasVideoDownload: 1
 
 tuts_hero:
     start_step: constructor-passing-an-argument
+    finish_step: 'Container: Reorganizing models and services'
 
 chapters:
     service-classes:
