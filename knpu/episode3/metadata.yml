@@ -26,11 +26,13 @@ tuts_hero:
 
 chapters:
     extends:
+        is_free:    true
         video_key: 140701988
         challenges:
             - Challenges\Extending\InheritFunctionalityCoding
             - Challenges\Extending\CallNonexistentMethodMC
     override:
+        is_free:    true
         video_key: 140703255
         challenges:
             - Challenges\Override\OverrideInheritMethodCoding
