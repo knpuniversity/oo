@@ -49,6 +49,9 @@ chapters:
     abstract-ship:
         video_key: 140707815
         is_finished: false
+        challenges:
+            - Challenges\AbstractShip\ExtendAbstractClassCoding
+            - Challenges\AbstractShip\InheritanceOverheadMC
     adding-abstract:
         video_key: 140720151
         is_finished: false
