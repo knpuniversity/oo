@@ -149,30 +149,34 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
-        try {
-            $abstractClass = new \ReflectionClass('\AbstractDeathStar');
-        } catch (\Exception $e) {
-            throw new GradingException($e->getMessage().'. Did you create it?');
+        if (!class_exists('\AbstractDeathStar')) {
+            throw new GradingException('Class `AbstractDeathStar` does not exist! Did you create it?');
         }
+        $abstractClass = new \ReflectionClass('\AbstractDeathStar');
         if (!$abstractClass->isAbstract()) {
             throw new GradingException('The `AbstractDeathStar` class should be declared as abstract.');
         }
         if (false
-            or !$abstractClass->hasMethod('setCrewSize')
-            or !$abstractClass->hasMethod('getCrewSize')
-            or !$abstractClass->hasMethod('setWeaponPower')
-            or !$abstractClass->hasMethod('getWeaponPower')
-            or !$abstractClass->hasMethod('makeFiringNoise')
+            || !$abstractClass->hasMethod('getCrewSize')
+            || !$abstractClass->hasMethod('setWeaponPower')
+            || !$abstractClass->hasMethod('getWeaponPower')
+            || !$abstractClass->hasMethod('makeFiringNoise')
         ) {
             throw new GradingException(''
-                .'The `AbstractDeathStar` class should have `setCrewSize`, `getCrewSize`, '
-                .'`setWeaponPower`, `getWeaponPower` and `makeFiringNoise` methods '
-                .'from `DeathStar` one.'
+                .'The `AbstractDeathStar` class should have `getCrewSize`, `setWeaponPower`, '
+                .'`getWeaponPower` and `makeFiringNoise` methods from `DeathStar`. '
+            );
+        }
+        if ($abstractClass->hasMethod('setCrewSize')) {
+            throw new GradingException(''
+                .'The `AbstractDeathStar` class should not have `setCrewSize` method! '
+                .'The `DeathStarII` just has a hardcoded crew size, so does not need this setter. '
             );
         }
         $deathStarClass = new \ReflectionClass('\DeathStar');
-        if (!$deathStarClass->isSubclassOf('\AbstractDeathStar')) {
-            throw new GradingException('The `DeathStar` class should extend the `AbstractDeathStar` one.');
+        $deathStarIIClass = new \ReflectionClass('\DeathStarII');
+        if (!$deathStarClass->isSubclassOf('\AbstractDeathStar') || !$deathStarIIClass->isSubclassOf('\AbstractDeathStar')) {
+            throw new GradingException('The both `DeathStar` and `DeathStarII` classes should extend `AbstractDeathStar` one.');
         }
     }
 
@@ -187,11 +191,6 @@ abstract class AbstractDeathStar
     private \$crewSize;
 
     private \$weaponPower;
-
-    public function setCrewSize(\$numberOfPeople)
-    {
-        \$this->crewSize = \$numberOfPeople;
-    }
 
     public function getCrewSize()
     {
@@ -220,6 +219,28 @@ EOF
 
 class DeathStar extends AbstractDeathStar
 {
+    public function setCrewSize(\$numberOfPeople)
+    {
+        \$this->crewSize = \$numberOfPeople;
+    }
+}
+EOF
+            )
+            ->setFileContents('DeathStarII.php', <<<EOF
+<?php
+
+class DeathStarII extends AbstractDeathStar
+{
+    // this DeathStar must *always* have 5000 people on it
+    public function getCrewSize()
+    {
+        return 5000;
+    }
+
+    public function makeFiringNoise()
+    {
+        echo 'SUPER BOOM';
+    }
 }
 EOF
             )
