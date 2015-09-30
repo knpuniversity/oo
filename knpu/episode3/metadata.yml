@@ -40,8 +40,8 @@ chapters:
     protected-visibility:
         video_key: 140705348
         challenges:
-            - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
-            - Challenges\ProtectedVisibility\PropertyVisibilityMC
+            # - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
+            # - Challenges\ProtectedVisibility\PropertyVisibilityMC
         is_finished: false
     parent:
         video_key: 140706130
