@@ -42,16 +42,22 @@ chapters:
         challenges:
             - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
             - Challenges\ProtectedVisibility\PropertyVisibilityMC
+        is_finished: false
     parent:
         video_key: 140706130
+        is_finished: false
     abstract-ship:
         video_key: 140707815
+        is_finished: false
     adding-abstract:
         video_key: 140720151
+        is_finished: false
     broken-ship:
         video_key: 140711954
+        is_finished: false
     pdo-ship-storage:
         video_key: 140715843
+        is_finished: false
     abstract-ship-loader:
         is_finished: false
     interfaces:
