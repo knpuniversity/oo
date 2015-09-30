@@ -751,4 +751,320 @@ other things. And you could even - with a little bit of work - create a new `Cac
 class that caches via something like Redis, and pass *this* to `StringTransformer`
 to cache using a different method.
 
+## Chapter 9-abstract-ship-loader
 
+Tired of their Deathstars being destroyed, the Empire has decided to transform into
+a video game company. Awesome! Two different teammates have already created two
+classes to model this: `SolidPlanet` and `GasPlanet`. They look and work differently,
+but both have `getRadius()` and `getHexColor()` methods. You've built a `PlanetRenderer`
+class with a `render()` method, but it's not quite working yet.
+
+Create an `AbstractPlanet` class and update any other code you need to make these
+planets render!
+
+**Starting Code**
+```SolidPlanet.php
+<?php
+
+class SolidPlanet
+{
+    private $radius;
+    private $hexColor;
+    
+    public function __construct($radius, $hexColor)
+    {
+        $this->radius = $radius;
+        $this->hexColor = $hexColor;
+    }
+    
+    public function getRadius()
+    {
+        return $this->radius;
+    }
+    
+    public fucntion getHexColor()
+    {
+        return $this->hexColor;
+    }
+}
+```
+
+```GasPlanet.php
+class GasPlanet
+{
+    private $diameter;
+    
+    private $mainElement;
+    
+    public function __construct($mainElement, $diameter)
+    {
+        $this->diameter = $diameter;
+        $this->mainElement = $mainElement;
+    }
+    
+    public function getRadius()
+    {
+        return $this->diameter/2;
+    }
+    
+    public function getHexColor()
+    {
+        // a "fake" map of elements to colors
+        switch ($this->mainElement) {
+            case 'ammonia':
+                return '663300';
+            case 'hydrogen':
+            case 'helium':
+                return 'FFFF66';
+            case 'methane':
+                return '0066FF';
+            default:
+                return '464646;
+        }
+    }
+}
+```
+
+```AbstractPlanet.php
+empty
+```
+
+```PlanetRenderer.php
+<?php
+class PlanetRenderer
+{
+    public function render(SolidPlanet $planet)
+    {
+        return sprintf(
+            '<div style="width: %spx; height: %spx; border-radius: %spx; background-color: #%s;"></div>',
+            $planet->getRadius() * 2,
+            $planet->getRadius() * 2,
+            $planet->getRadius(),
+            $planet->getHexColor()
+        );
+    }
+}
+```
+
+```index.php
+<?php
+
+require 'AbstractPlanet.php';
+require 'SolidPlanet.php';
+require 'GasPlanet.php';
+require 'PlanetRenderer.php';
+
+$planets = array(
+    new SolidPlanet(10, 'CC66FF'),
+    new SolidPlanet(50, '00FF99'),
+    new GasPlanet('ammonia', 100),
+    new GasPlanet('methane', 150),
+);
+
+$renderer = new PlanetRenderer();
+
+foreach ($planets as $planet) {
+    echo $renderer->render($planet);
+}
+```
+
+## Chapter 10 interfaces
+
+### Question 1
+
+After watching this last episode, you realize that `AbstractPlanet` should really
+be an interface. I've given you a head start by creating the `PlanetInterface`.
+Now, update all of your code to use it and get these planets rendering again!
+
+**Starting Code**
+```SolidPlanet.php
+<?php
+
+class SolidPlanet extends AbstractPlanet
+{
+    private $radius;
+    private $hexColor;
+    
+    public function __construct($radius, $hexColor)
+    {
+        $this->radius = $radius;
+        $this->hexColor = $hexColor;
+    }
+    
+    public function getRadius()
+    {
+        return $this->radius;
+    }
+    
+    public fucntion getHexColor()
+    {
+        return $this->hexColor;
+    }
+}
+```
+
+```GasPlanet.php
+class GasPlanet extends AbstractPlanet
+{
+    private $diameter;
+    
+    private $mainElement;
+    
+    public function __construct($mainElement, $diameter)
+    {
+        $this->diameter = $diameter;
+        $this->mainElement = $mainElement;
+    }
+    
+    public function getRadius()
+    {
+        return $this->diameter/2;
+    }
+    
+    public function getHexColor()
+    {
+        // a "fake" map of elements to colors
+        switch ($this->mainElement) {
+            case 'ammonia':
+                return '663300';
+            case 'hydrogen':
+            case 'helium':
+                return 'FFFF66';
+            case 'methane':
+                return '0066FF';
+            default:
+                return '464646;
+        }
+    }
+}
+```
+
+```PlanetInterface.php
+<?php
+
+interface PlanetInterface
+{
+    /**
+     * Return the radius if the planet, in thousands of kilometers.
+     *
+     * @return integer
+     */
+    public function getRadius();
+    
+    /**
+     * Return the hex color (without the #) for the planet.
+     *
+     * @return string
+     */
+    public function getHexColor();
+}
+```
+
+```PlanetRenderer.php
+<?php
+class PlanetRenderer
+{
+    public function render(AbstractPlanet $planet)
+    {
+        return sprintf(
+            '<div style="width: %spx; height: %spx; border-radius: %spx; background-color: #%s;"></div>',
+            $planet->getRadius() * 2,
+            $planet->getRadius() * 2,
+            $planet->getRadius(),
+            $planet->getHexColor()
+        );
+    }
+}
+```
+
+```index.php
+<?php
+
+require 'PlanetInterface.php';
+require 'SolidPlanet.php';
+require 'GasPlanet.php';
+require 'PlanetRenderer.php';
+
+$planets = array(
+    new SolidPlanet(10, 'CC66FF'),
+    new SolidPlanet(50, '00FF99'),
+    new GasPlanet('ammonia', 100),
+    new GasPlanet('methane', 150),
+);
+
+$renderer = new PlanetRenderer();
+
+foreach ($planets as $planet) {
+    echo $renderer->render($planet);
+}
+```
+
+### Question 2
+
+You over-hear the intern Bob telling another teammate about the differences between
+abstract classes and interfaces. He's *mostly* right, but he got one detail wrong.
+Which of the following is *not* true:
+
+A) Classes an implement many interfaces, but only extend one class.
+B) Abstract classes can contain concerete methods, but interfaces can't.
+C) Interfaces force the user to implement certain methods, abstract classes do not.
+D) Even though Interfaces don't use the `abstract` keyword before methods, those
+methods act just like abstract methods in an abstract class.
+
+Answer: (C)
+
+C is the only answer that's incorrect: both interfaces and abstract classes can
+force you to implement methods in the classes that use them. So in many ways, they
+are the same.
+
+So why use one or the other? Well, a class can implement *many* interfaces, which
+makes interfaces more attractive, especially for re-usable code. But, an abstract
+class can contain *real* methods, which can help you reduce code duplication between
+classes. They're similar, but not the same.
+
+
+### Question 3
+
+Now you're working on creating different weapons for the spaceships in our game.
+By looking at the `WeaponInterface` create a new `LaserWeapon` class that implements
+this interface. You can return anything you want from the methods. Use the class
+to print out the weapon's range, just to see that things are working:
+
+**Starting Code**
+```WeaponInterface.php
+<?php
+
+interface WeaponInterface
+{
+    /**
+     * @return integer The weapon's range in kilometers
+     */
+    public function getWeaponRange();
+    
+    /**
+     * @return bool Is this weapon effective in space
+     */
+    public function canBeUsedInSpace();
+    
+    /**
+     * @return integer The amount of damage the weapon will cause against the given material
+     */
+    public function getWeaponStrengthAgainstMaterial($material);
+}
+
+```LaserWeapon.php
+empty
+```
+
+```index.php
+require 'WeaponInterface.php';
+require 'LaserWeapon.php';
+
+// instantiate a new LaserWeapon here
+
+?>
+
+<h1>
+    <!-- print your weapon's getWeaponRange() here -->
+</h1>
+```

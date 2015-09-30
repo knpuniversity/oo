@@ -19,10 +19,10 @@ class InheritFunctionalityCoding implements CodingChallengeInterface
         return <<<EOF
 Your team has been working hard building the `DeathStar` class, only
 to find out that the Rebels have just destroyed it! Time to rebuild!
-Create a new class called `DeathStarII` and make it inherit all of
-the functionality from the original `DeathStar`. In `index.php`, instantiate
-a new `DeathStarII` object and set it to a `\$deathStar` variable.
-Long live the Empire!
+Create a new class called `DeathStarII` in the `DeathStarII.php` file
+and make it inherit all of the functionality from the original `DeathStar`.
+In `index.php`, instantiate a new `DeathStarII` object and set it to 
+a `\$deathStar` variable. Long live the Empire!
 EOF;
     }
 

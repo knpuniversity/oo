@@ -22,7 +22,6 @@ summary: |
 
 illustration: oo.png
 hasVideoDownload: 1
-videoDownloadExtension: mov
 
 tuts_hero:
     start_step: start
@@ -31,25 +30,25 @@ tuts_hero:
 chapters:
     the-project:
         is_free:    true
-        video_key:  v9z4xgg745
+        video_key:    140214288
     basic-class:
         is_free:    true
-        video_key:  gjf2535dsg
+        video_key:    140214286
     methods:
-        video_key:  dhhi0xlj3c
+        video_key:    140214285
     methods-work:
-        video_key:  skllcdfl51
+        video_key:    140214283
     multiple-objects:
-        video_key:  pbii2wp7ny
+        video_key:    140214284
     objects-interact:
-        video_key:  vjailwj7at
+        video_key:    140214287
     editor-autocomplete:
-        video_key:  0t55y0eirm
+        video_key:    140214292
     using-objects:
-        video_key:  8yife9jirq
+        video_key:    140214290
     private-access:
-        video_key:  pjjubaasb2
+        video_key:    140214293
     type-hinting:
-        video_key:  4up3h78l8r
+        video_key:    140214291
     constructor:
-        video_key:  t2z930wgr8
+        video_key:    140214294
