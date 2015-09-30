@@ -57,6 +57,9 @@ chapters:
     adding-abstract:
         video_key: 140720151
         is_finished: false
+        challenges:
+            # - Challenges\AddingAbstract\FunctionTypeHintWithClassNameMC
+            # - Challenges\AddingAbstract\CreateAbstractMethodCoding
     broken-ship:
         video_key: 140711954
         is_finished: false
