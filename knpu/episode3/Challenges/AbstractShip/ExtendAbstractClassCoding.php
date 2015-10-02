@@ -163,14 +163,14 @@ EOF
             || !$abstractClass->hasMethod('makeFiringNoise')
         ) {
             throw new GradingException(''
-                .'The `AbstractDeathStar` class should have `getCrewSize`, `setWeaponPower`, '
-                .'`getWeaponPower` and `makeFiringNoise` methods from `DeathStar`. '
+                .'The `AbstractDeathStar` class should have `getWeaponPower`, `setWeaponPower`, '
+                .'`getCrewSize` and `makeFiringNoise` methods (but the last two could/should be abstract). '
             );
         }
         if ($abstractClass->hasMethod('setCrewSize')) {
             throw new GradingException(''
-                .'The `AbstractDeathStar` class should not have `setCrewSize` method! '
-                .'The `DeathStarII` just has a hardcoded crew size, so does not need this setter. '
+                .'The `AbstractDeathStar` class should not have a `setCrewSize` method! '
+                .'The `DeathStarII` just has a hardcoded crew size, so does not need this setter. Move it to `Deathstar`'
             );
         }
         $deathStarClass = new \ReflectionClass('\DeathStar');
@@ -188,28 +188,23 @@ EOF
 
 abstract class AbstractDeathStar
 {
-    private \$crewSize;
+    private $weaponPower;
+    
+    abstract public function getCrewSize();
 
-    private \$weaponPower;
-
-    public function getCrewSize()
+    public function setWeaponPower($power)
     {
-        return \$this->crewSize;
-    }
-
-    public function setWeaponPower(\$power)
-    {
-        \$this->weaponPower = \$power;
+        $this->weaponPower = $power;
     }
 
     public function getWeaponPower()
     {
-        return \$this->weaponPower;
+        return $this->weaponPower;
     }
 
     public function makeFiringNoise()
     {
-        echo 'BOOM x '.\$this->weaponPower;
+        echo 'BOOM x '.$this->weaponPower;
     }
 }
 EOF
@@ -219,9 +214,16 @@ EOF
 
 class DeathStar extends AbstractDeathStar
 {
-    public function setCrewSize(\$numberOfPeople)
+    private $crewSize;
+    
+    public function setCrewSize($numberOfPeople)
     {
-        \$this->crewSize = \$numberOfPeople;
+        $this->crewSize = $numberOfPeople;
+    }
+    
+    public function getCrewSize()
+    {
+        return $this->crewSize;
     }
 }
 EOF
