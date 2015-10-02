@@ -157,14 +157,13 @@ EOF
             throw new GradingException('The `AbstractDeathStar` class should be declared as abstract.');
         }
         if (false
-            || !$abstractClass->hasMethod('getCrewSize')
             || !$abstractClass->hasMethod('setWeaponPower')
             || !$abstractClass->hasMethod('getWeaponPower')
             || !$abstractClass->hasMethod('makeFiringNoise')
         ) {
             throw new GradingException(''
                 .'The `AbstractDeathStar` class should have `getWeaponPower`, `setWeaponPower`, '
-                .'`getCrewSize` and `makeFiringNoise` methods (but the last two could/should be abstract). '
+                .'and `makeFiringNoise` methods. '
             );
         }
         if ($abstractClass->hasMethod('setCrewSize')) {
@@ -188,23 +187,21 @@ EOF
 
 abstract class AbstractDeathStar
 {
-    private $weaponPower;
+    private \$weaponPower;
     
-    abstract public function getCrewSize();
-
-    public function setWeaponPower($power)
+    public function setWeaponPower(\$power)
     {
-        $this->weaponPower = $power;
+        \$this->weaponPower = \$power;
     }
 
     public function getWeaponPower()
     {
-        return $this->weaponPower;
+        return \$this->weaponPower;
     }
 
     public function makeFiringNoise()
     {
-        echo 'BOOM x '.$this->weaponPower;
+        echo 'BOOM x '.\$this->weaponPower;
     }
 }
 EOF
@@ -214,16 +211,16 @@ EOF
 
 class DeathStar extends AbstractDeathStar
 {
-    private $crewSize;
+    private \$crewSize;
     
-    public function setCrewSize($numberOfPeople)
+    public function setCrewSize(\$numberOfPeople)
     {
-        $this->crewSize = $numberOfPeople;
+        \$this->crewSize = \$numberOfPeople;
     }
     
     public function getCrewSize()
     {
-        return $this->crewSize;
+        return \$this->crewSize;
     }
 }
 EOF
