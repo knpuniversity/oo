@@ -9,20 +9,31 @@ you just need to extend `AbstractShip`.
 
 What's really great is that `AbstractShip` now tells you exactly what you need
 to do to create a new ship class with its three abstract functions that you must
-fill in.
+fill in:
+
+[[[ code('4d7153990d') ]]]
 
 A third group has joined the battle and we have a new type of ship. They're not
 very good mechanics, so we'll call this a broken ship. This is simple, the ship
 is always broken. 
 
-Create a new php class called `BrokenShip`. Of course now make it extend `AbstractShip`.
+Create a new php class called `BrokenShip`. Of course now make it extend `AbstractShip`:
+
+[[[ code('19f350c07d') ]]]
+
 Let's pretend like we don't know that there are any abstract methods in the parent class.
-So we won't do anything here except putting in the extends code. Head over to `Bootstrap.php`
-and require our useless new `BrokenShip`. 
+So we won't do anything here except putting in the extends code. Head over to `bootstrap.php`
+and require our useless new `BrokenShip`:
+
+[[[ code('ac130fc069') ]]]
  
 Back in `index.php` for now, let's just add `$brokenShip = new BrokenShip();` and add it 
-to our ships array. We can do this because we know that `BrokenShip` extends `AbstractShip`. 
-And down here, when we use those ship objects we're just calling methods on the abstract ship.
+to our ships array:
+
+[[[ code('be307a1387') ]]]
+
+We can do this because we know that `BrokenShip` extends `AbstractShip`. And down here,
+when we use those ship objects we're just calling methods on the abstract ship.
 
 Back to the browser, refresh! Yes, what a huge beautiful error. It says "Class BrokenShip contains
 3 abstract methods and must therefore be declared abstract or implement the remaining methods."
@@ -36,21 +47,27 @@ But we've all seen where that goes in the move inception.
 In our case we want this to be a concrete class, meaning one that we can instantiate. When we go
 over to `AbstractShip` we say "Oh yea, I see there's a `getJediFactor` function that I need to add." 
 Take off the abstract to turn it into a real function, and since this ship is always broken we don't
-care about the Jedi factor so let's just return 0. 
+care about the Jedi factor so let's just return 0:
+
+[[[ code('57f9f75188') ]]]
 
 When we refresh after that we get the same error, but we're down to just 2 missing abstract methods,
-`getType` and `isFunctional`. 
+`getType` and `isFunctional`.
 
 Head back into `AbstractShip` and grab those, pop off the abstract word at the beginning after we paste
 them into `BrokenShip`. And we'll fill in the details of `getType` by returning 'Broken'. And we'll
-fill in `isFunctional` by returning false. 
+fill in `isFunctional` by returning false:
+
+[[[ code('866149eaa3') ]]]
 
 Without really knowing anything I extended `AbstractShip` and that class told me exactly what I needed
 to have in my subclasses. 
 
 And when we refresh, we have one more error! We're missing argument 1 to AbstractShip::__construct.
 That's my bad. In `index.php` here broken ship still has a constructor argument which is the name
-so let's not forget to fill that in with "I am so broken". 
+so let's not forget to fill that in with "I am so broken":
+
+[[[ code('6907f7b39d') ]]]
 
 Refresh again, and things look great! We've got our four original ships and our new broken one. Which
 is always broken with its little cute cloud. 
