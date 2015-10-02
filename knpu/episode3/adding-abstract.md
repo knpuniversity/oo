@@ -17,7 +17,7 @@ And `BattleManager` line 10:
 
 Back to our IDE and open up `battle.php`. 
 
-# Trouble With Type Hints
+## Trouble With Type Hints
 
 Down on line 32, what we see is that `$ship1` is actually a `RebelShip`
 object, which makes sense since one of the ships I selected was a Rebel. But
@@ -48,17 +48,20 @@ ship object, so let's update this one to be expecting an `AbstractShip`:
 
 Let's try this again! Cool, one more error! This one is having issues with `BattleResult::__construct()`.
 In our IDE we can see that when we instantiate the `BattleResult` object we pass it the `$winningShip` and
-the `$losingShip`. Over in `BattleResult` we see that these are also typehinted with `Ship`. 
-Update those two:
+the `$losingShip`:
+
+[[[ code('3595ea08c9') ]]]
+
+Over in `BattleResult` we see that these are also typehinted with `Ship`. Update those two:
 
 [[[ code('d6a843d6c5') ]]]
  
-This is nice, our code is a lot more flexible now. Before, it had to be a ship instance. Now
+This is nice, our code is a lot more flexible now. Before, it had to be a `Ship` instance. Now
 we don't care what class you have as long as it extends `AbstractShip`. 
 
 Refresh again! Awesome, battling is back on.
 
-What Methods are *really* on AbstractShip?
+## What Methods are *really* on AbstractShip?
 
 Now we have a few minor, but interesting, problems. First, in `AbstractShip` head down to
 `getNameAndSpecs()` and we see that `getJediFactor()` is highlighted with an error that says
@@ -114,9 +117,17 @@ returns a mixture of `RebelShip` and `Ship` objects:
 
 [[[ code('99148c2fa8') ]]]
 
-Now check this out, inside of `index.php`, remember this `ships` variable we get by calling that `getShips()` 
-function? So that returns an array of `AbstractShip` objects. When we loop over it, the `isFunctional()` and 
-the `getType()` functions aren't found. The message here says "Method `getType()` not found in class `AbstractShip`".
+Now check this out, inside of `index.php`, remember this `$ships` variable we get by calling
+that `getShips()` function?
+
+[[[ code('84b483c9ce') ]]]
+
+So that returns an array of `AbstractShip` objects. When we loop over it, the `isFunctional()` and 
+the `getType()` functions aren't found:
+
+[[[ code('b2ad47484e') ]]]
+
+The message here says "Method `getType()` not found in class `AbstractShip`".
 This is just like the `getJediFactor()` problem we just fixed. We don't have a `getType()` function inside of here.
 Both of our subclasses do, which is why our app still works, but technically we're not enforcing that. Any new
 subclasses to `AbstractShip` could easily end up missing these functions which would again stop all the battles.
