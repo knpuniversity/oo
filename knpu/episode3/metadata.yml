@@ -58,6 +58,8 @@ chapters:
     broken-ship:
         video_key: 140711954
         is_finished: false
+        challenges:
+            - Challenges\BrokenShip\CreateDeathStarIIICoding
     pdo-ship-storage:
         video_key: 141070888
         is_finished: false
