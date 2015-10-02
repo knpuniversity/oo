@@ -46,10 +46,12 @@ class Puppy extends SomeClass
 }
 ```
 
+```php
 function doSomething(OtherClass \$thing)
 {
     // ...
 }
+```
 
 Based on the type-hint, which classes could be passed to the `doSomething()` function?
 EOF;
