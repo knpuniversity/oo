@@ -33,7 +33,7 @@ to our ships array:
 [[[ code('be307a1387') ]]]
 
 We can do this because we know that `BrokenShip` extends `AbstractShip`. And down here,
-when we use those ship objects we're just calling methods on the abstract ship.
+when we use those ship objects we're just calling methods on the `AbstractShip`.
 
 Back to the browser, refresh! Yes, what a huge beautiful error. It says:
 
@@ -70,7 +70,7 @@ Without really knowing anything I extended `AbstractShip` and that class told me
 exactly what I needed to have in my subclasses. 
 
 And when we refresh, we have one more error! We're missing argument 1 to
-`AbstractShip::__construct`. That's my bad. In `index.php` here broken ship still
+`AbstractShip::__construct`. That's my bad. In `index.php` here `BrokenShip` still
 has a constructor argument which is the name so let's not forget to fill that in
 with "I am so broken":
 
