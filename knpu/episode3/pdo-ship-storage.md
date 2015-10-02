@@ -65,7 +65,7 @@ that returns data, an array in our case.
 
 There is one problem, we have a `getPdo()` function inside of `ShipLoader` that references a pdo
 property. Point being, our PDO storage needs access to the PDO object, so we're going to use
-*dependency injection*, a topic we covered a lot in `episode 2`_. Add `public function __construct(PDO $pdo)` 
+*dependency injection*, a topic we covered a lot in `episode 2`_ . Add `public function __construct(PDO $pdo)` 
 and store it as a property with `$this->pdo = $pdo;`:
 
 [[[ code('d74b08dbde') ]]]
@@ -144,4 +144,4 @@ we didn't need to do this, but once we had the new requirement of needing to loa
 refactoring became necessary. Now let's see how to actually load things from JSON instead of PDO. 
 
 
-_`episode 2`: https://knpuniversity.com/screencast/oo-ep2
+.. _`episode 2`: https://knpuniversity.com/screencast/oo-ep2
