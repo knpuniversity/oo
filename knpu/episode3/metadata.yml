@@ -18,7 +18,6 @@ summary: |
     who can really understand and flex OO code. It's hard stuff. So let's get started.
 
 illustration: oo-ep3.png
-hasVideoDownload: false
 
 tuts_hero:
     start_step: 'Container: Reorganizing models and services'
