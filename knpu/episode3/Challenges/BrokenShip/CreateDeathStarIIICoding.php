@@ -129,28 +129,6 @@ require 'DeathStarIII.php';
 </h3>
 EOF
             )
-            ->setFileContents('AbstractDeathStar.php', <<<EOF
-<?php
-
-abstract class AbstractDeathStar
-{
-    abstract protected function getLaserRange();
-
-    public function getDescription()
-    {
-        // replace this with a call to get the correct
-        // range based on which DeathStar class is used
-        \$range = \$this->getLaserRange();
-
-        return <<<HEREDOC
-A fantastic death machine, made to be extra cold and
-intimidating. It comes complete with a "super-laser"
-capable of destroying planets, with a range of \$range.
-HEREDOC;
-    }
-}
-EOF
-            )
         ;
     }
 }
