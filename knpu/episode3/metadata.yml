@@ -65,5 +65,7 @@ chapters:
         is_finished: false
     abstract-ship-loader:
         is_finished: false
+#        challenges:
+#            - Challenges\AbstractShipLoader\CreateAbstractPlanetCoding
     interfaces:
         is_finished: false
