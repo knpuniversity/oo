@@ -67,3 +67,7 @@ chapters:
         is_finished: false
     interfaces:
         is_finished: false
+#        challenges:
+#            - Challenges\Interfaces\ImplementPlanetInterfaceCoding
+#            - Challenges\Interfaces\InterfaceVsAbstractClassMC
+#            - Challenges\Interfaces\ImplementWeaponInterfaceCoding
