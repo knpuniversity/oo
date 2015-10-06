@@ -65,13 +65,15 @@ that returns data, an array in our case.
 
 There is one problem, we have a `getPdo()` function inside of `ShipLoader` that references a pdo
 property. Point being, our PDO storage needs access to the PDO object, so we're going to use
-*dependency injection*, a topic we covered a lot in `episode 2`_ . Add `public function __construct(PDO $pdo)` 
-and store it as a property with `$this->pdo = $pdo;`:
+*dependency injection*, a topic we covered a lot in
+[episode 2](https://knpuniversity.com/screencast/oo-ep2) . Add
+`public function __construct(PDO $pdo)`  and store it as a property with
+`$this->pdo = $pdo;`:
 
 [[[ code('d74b08dbde') ]]]
 
 If this pattern is new to you just head back and watch the dependency injection video
-in `episode 2`_ of the OO series.
+in [episode 2](https://knpuniversity.com/screencast/oo-ep2) of the OO series.
 
 Here we're saying, whomever creates our PDO ship storage class must pass
 in the pdo object. This is cool because we need it. Now I can just reference
@@ -142,6 +144,3 @@ And that function still works as it did before, but the logic is now separated i
 The cool thing about this is that our classes are now more focused and broken into smaller pieces. Initially
 we didn't need to do this, but once we had the new requirement of needing to load ships from a JSON file this
 refactoring became necessary. Now let's see how to actually load things from JSON instead of PDO. 
-
-
-.. _`episode 2`: https://knpuniversity.com/screencast/oo-ep2
