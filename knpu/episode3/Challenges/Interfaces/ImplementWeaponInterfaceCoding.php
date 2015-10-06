@@ -98,7 +98,7 @@ EOF
         $laserWeapon = $laserWeaponClass->newInstance();
         $result->assertOutputContains(
             $laserWeapon->getWeaponRange(),
-            'Seems you forgot to output laser weapon range. Did you print result of `getWeaponRange()` method?'
+            'Seems you forgot to output the laser weapon range. Did you print the result of the `getWeaponRange()` method?'
         );
     }
 
