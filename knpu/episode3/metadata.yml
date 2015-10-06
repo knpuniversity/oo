@@ -57,15 +57,13 @@ chapters:
             - Challenges\AddingAbstract\CreateAbstractMethodCoding
     broken-ship:
         video_key: 140711954
-        is_finished: false
         challenges:
             - Challenges\BrokenShip\CreateDeathStarIIICoding
     pdo-ship-storage:
         video_key: 141070888
-        is_finished: false
-#        challenges:
-#            - Challenges\PdoShipStorage\DecomposeStringTransformerCoding
-#            - Challenges\PdoShipStorage\StringTransformerDecompositionAdvantagesMC
+        challenges:
+            - Challenges\PdoShipStorage\DecomposeStringTransformerCoding
+            - Challenges\PdoShipStorage\StringTransformerDecompositionAdvantagesMC
     abstract-ship-loader:
         video_key: 141435296
         is_finished: false
