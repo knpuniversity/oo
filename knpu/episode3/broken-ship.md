@@ -37,8 +37,8 @@ when we use those ship objects we're just calling methods on the `AbstractShip`.
 
 Back to the browser, refresh! Yes, what a huge beautiful error. It says:
 
->Class BrokenShip contains 3 abstract methods and must therefore be declared
->abstract or implement the remaining methods.
+> Class BrokenShip contains 3 abstract methods and must therefore be declared
+> abstract or implement the remaining methods.
 
 And then it goes on and lists the methods. 
 
