@@ -52,7 +52,6 @@ class StringTransformer
 
         \$newStr = '';
         foreach (str_split(strrev(\$str), 2) as \$twoChars) {
-            var_dump(\$twoChars);
             // capitalize the first of 2 characters
             \$newStr .= ucfirst(\$twoChars);
         }
@@ -103,9 +102,27 @@ EOF
         if (!$cacheClass->hasMethod('fetchFromCache')) {
             throw new GradingException('Method `fetchFromCache` does not exist in the `Cache` class.');
         }
+
         if (!$cacheClass->hasMethod('saveToCache')) {
             throw new GradingException('Method `saveToCache` does not exist in the `Cache` class.');
         }
+
+        $result->assertVariableExists('transformer', 'I don\'t see the $transformer variable in index.php anymore - did you delete it?');
+        $transformer = $result->getDeclaredVariableValue('transformer');
+        $transformerClass = new \ReflectionObject($transformer);
+
+        if (!$transformerClass->hasMethod('__construct')) {
+            throw new GradingException('Make sure you give the `StringTransformer` class a `__construct()`. It should have one argument: a `Cache` object.');
+        }
+
+        $result->assertInputDoesNotContain(
+            'StringTransformer.php',
+            'file_get_contents',
+            'I still see `file_get_contents()` inside of `StringTransformer`. Make sure you\'ve moved all of the caching logic into the Cache class'
+        );
+
+        // todo - create a mocked Cache, pass it into
+        // $transformer and assert that its cache methods are called
     }
 
     public function configureCorrectAnswer(CorrectAnswer $correctAnswer)
@@ -118,7 +135,7 @@ class Cache
 {
     public function fetchFromCache(\$key)
     {
-        \$cacheFile = __DIR__.'/cache/'.md5(\$key);
+        \$cacheFile = \$this->getCacheFilename(\$key);
 
         if (file_exists(\$cacheFile)) {
             return file_get_contents(\$cacheFile);
@@ -129,13 +146,21 @@ class Cache
 
     public function saveToCache(\$key, \$val)
     {
-        \$cacheFile = __DIR__.'/cache/'.md5(\$key);
+        \$cacheFile = \$this->getCacheFilename(\$key);
 
         if (!file_exists(dirname(\$cacheFile))) {
             mkdir(dirname(\$cacheFile));
         }
 
         return file_put_contents(\$cacheFile, \$val);
+    }
+
+    /**
+     * Extra credit private method to avoid duplication
+     */
+    private function getCacheFilename(\$key)
+    {
+        return __DIR__.'/cache/'.md5(\$key);
     }
 }
 EOF
@@ -160,7 +185,6 @@ class StringTransformer
 
         \$newStr = '';
         foreach (str_split(strrev(\$str), 2) as \$twoChars) {
-            var_dump(\$twoChars);
             // capitalize the first of 2 characters
             \$newStr .= ucfirst(\$twoChars);
         }
