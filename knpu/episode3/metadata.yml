@@ -67,6 +67,8 @@ chapters:
     abstract-ship-loader:
         video_key: 141435296
         is_finished: false
+#        challenges:
+#            - Challenges\AbstractShipLoader\CreateAbstractPlanetCoding
     interfaces:
         video_key: 141440167
         is_finished: false
