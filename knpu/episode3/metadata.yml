@@ -63,6 +63,9 @@ chapters:
     pdo-ship-storage:
         video_key: 141070888
         is_finished: false
+#        challenges:
+#            - Challenges\PdoShipStorage\DecomposeStringTransformerCoding
+#            - Challenges\PdoShipStorage\StringTransformerDecompositionAdvantagesMC
     abstract-ship-loader:
         video_key: 141435296
         is_finished: false
