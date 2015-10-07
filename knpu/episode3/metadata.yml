@@ -72,3 +72,7 @@ chapters:
     interfaces:
         video_key: 141440167
         is_finished: false
+#        challenges:
+#            - Challenges\Interfaces\ImplementPlanetInterfaceCoding
+#            - Challenges\Interfaces\InterfaceVsAbstractClassMC
+#            - Challenges\Interfaces\ImplementWeaponInterfaceCoding
