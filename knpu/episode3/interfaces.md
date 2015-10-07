@@ -6,23 +6,25 @@ logic in it:
 [[[ code('ac1e62b667') ]]]
 
 All it does is have a contract that guarantees anything that extends this has these two
-functions. It turns out that when you have an abstract class like this that only contains abstract
-functions and no real code, well it's the perfect opportunity to use an Interface. 
+functions. It turns out that when you have an abstract class like this that only contains
+abstract functions and no real code, well it's the perfect opportunity to use an Interface. 
 
-An interface works just like an abstract class and here's how it looks. To start, we need to rename
-our class to `ShipStorageInterface` since this more closely matches what it is. And instead of
-`abstract class` it's now labeled as an `interface`:
+An interface works just like an abstract class and here's how it looks. To start,
+we need to rename our class to `ShipStorageInterface` since this more closely matches
+what it is. And instead of `abstract class` it's now labeled as an `interface`:
 
 [[[ code('b28f1fc946') ]]]
 
 Get it?
 
-As soon as you do that you no longer need `abstract` in front of all the functions, but these work the same:
+As soon as you do that you no longer need `abstract` in front of all the functions,
+but these work the same:
 
 [[[ code('14e2bf45e6') ]]]
 
-On the `AbstractShipStorage` file in the tree, go to "Refactor" and click to "Rename" our file to `ShipStorageInterface`.
-I really like the consistency. And of course update our require line for this file in `bootstrap.php`:
+On the `AbstractShipStorage` file in the tree, go to "Refactor" and click to "Rename"
+our file to `ShipStorageInterface`. I really like the consistency. And of course update
+our require line for this file in `bootstrap.php`:
 
 [[[ code('1552f24119') ]]]
 
