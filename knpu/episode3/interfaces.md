@@ -28,6 +28,8 @@ our require line for this file in `bootstrap.php`:
 
 [[[ code('1552f24119') ]]]
 
+## Implment an Interface
+
 Stepping back and looking at `ShipStorageInterface`. I want you to think of this as acting just like
 an abstract class with two functions that need to be filled in. An important difference is that you
 don't extend interfaces. Instead, we'll use a new keyword called `implements` and our updated class name
@@ -67,6 +69,8 @@ PhpStorm highlights it with the message:
 
 And it will freak out when we refresh. 
 
+## What's so Great about an Interface?
+
 The purpose of an interface is to allow you to make your code very generic since you're not requiring
 a concrete class just an interface. Why do interfaces exist? Sheesh you ask a lot of questions!
 Well, the answer is that in PHP you can only extend one base class but you can implement many
@@ -79,6 +83,8 @@ ship storage objects must look like. So if someone in the future needed to creat
 object that loaded things from say XML, all they would need to do is created a class that implements
 this interface and boom you're being told exactly what methods that XML ship storage class has to have. 
 
+## Interfaces Document what you need to do
+
 This is also our opportunity to add really good documentation on these. We can label this one as an
 integer that should return an array of data. You could even go further and say "Returns an array of ship arrays,
 with keys id, name, weaponPower, defense.":
@@ -87,6 +93,8 @@ with keys id, name, weaponPower, defense.":
 
 Adding as many details as possible here is good, that way if someone implements this interface later
 they'll know exactly what to put in their classes. 
+
+## Interfaces in third-party Libraries
 
 One last note about interfaces, they are a bit more advanced. It's not that they are difficult, but in your
 code you may not find many reasons to create these. How often is it that you need to make a class
