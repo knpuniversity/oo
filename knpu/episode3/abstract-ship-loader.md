@@ -86,7 +86,7 @@ the type hint to `AbstractShipStorage`. Not a requirement, but it is a good idea
 Go back to the browser and refresh... oh, class `AbstractShipStorage` not found because we forgot to require it
 in our `bootstrap` file. We will eventually fix the need to have all of these require statements:
 
-[[[ code('f57ad5052c) ]]]
+[[[ code('f57ad5052c') ]]]
 
 Refresh again and now it works perfectly. 
 
