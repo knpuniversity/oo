@@ -100,10 +100,11 @@ You may not create very many interfaces, but there is a very good chance that yo
 them. For example, you might want to use a third party library in your project and their documentation
 will say:
 
-> If you want to create a custom ship storage object.
+> "If you want to create a custom ship storage object, then you will need to
+> implement this interface that comes with the library."
 
-Then you will need to implement this interface that comes with the library. So you will create
-your own custom class, implement the library's interface which then tells you which methods to fill in. 
+So you will create your own custom class, implement the library's interface which
+then tells you which methods to fill in.
 
 Understanding interfaces is really important because you will probably be implementing a lot of them. 
 
