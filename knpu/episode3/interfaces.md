@@ -55,8 +55,9 @@ the two methods that are in `ShipStorageInterface`:
 
 That's the only thing we care about. Well, that and getting to dinner on time.
 
-Over in the `Container` we can also update the `@return` statement. It doesn't affect anything really,
-but it's a good practice to keep it updated. Back to the browser and refresh! Everything still works perfectly. 
+Over in the `Container` we can also update the `@return` statement. It doesn't affect
+anything really, but it's a good practice to keep it updated. Back to the browser
+and refresh! Everything still works perfectly.
 
 Interfaces are just like abstract classes that don't have any functionality, they only contain
 abstract functions. If you try to add a real function inside of an interface you can see that
