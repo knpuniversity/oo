@@ -54,6 +54,8 @@ Perfect, our site is working.
 But having to put that extends in our JSON file kinda sucks, when we do this we're overriding
 every single method and getting some extra stuff that we aren't going to use. 
 
+## Creating a "Ship storage" contract
+
 Instead, you should be thinking, "This is a good spot for Abstract Ship Storage!" And well, I
 agree so let's create that. Inside the `Service` directory add a new PHP Class called
 `AbstractShipStorage`. The two methods that this is going to need to have are: `fetchSingleShipData()`
