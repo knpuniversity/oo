@@ -36,7 +36,7 @@ class Ship
 ```php
 // JediShip.php
 
-class JediShip
+class JediShip extends Ship
 {
     public function getWeaponPower()
     {
@@ -65,7 +65,7 @@ EOF;
         $builder
             ->addAnswer('`$jediShip->weaponPower` in `index.php`', true)
             ->addAnswer('`return $this->defense` in `Ship.php`')
-            ->addAnswer('`return $this->weaponPower` in `RebelShip.php`')
+            ->addAnswer('`return $this->weaponPower` in `JediShip.php`')
             ->addAnswer('None of the above is bad code - we\'re awesome!')
         ;
     }
