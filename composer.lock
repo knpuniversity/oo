@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "2226eaa7d977565d9c75caacbad4dc10",
+    "content-hash": "5ba940ce86cd8a01cf3814b1961a8f9f",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "knpuniversity/gladiator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/knpuniversity/Gladiator.git",
+                "reference": "6e77e6f4988d4b803600d138f991298bb94d294d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/knpuniversity/Gladiator/zipball/6e77e6f4988d4b803600d138f991298bb94d294d",
+                "reference": "6e77e6f4988d4b803600d138f991298bb94d294d",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KnpU\\Gladiator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpUniversity",
+                    "email": "hello@knpuniversity.com"
+                }
+            ],
+            "description": "Classes to support KnpUniversity challenges",
+            "time": "2015-10-21 19:29:31"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "knpuniversity/gladiator": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
