@@ -2,12 +2,14 @@
 
 namespace Challenges\Interfaces;
 
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingContext;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CorrectAnswer;
-use KnpU\ActivityRunner\Activity\CodingChallengeInterface;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingExecutionResult;
-use KnpU\ActivityRunner\Activity\CodingChallenge\FileBuilder;
-use KnpU\ActivityRunner\Activity\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\ChallengeBuilder;
+use KnpU\Gladiator\CodingChallenge\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\CodingContext;
+use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
+use KnpU\Gladiator\CodingChallengeInterface;
+use KnpU\Gladiator\CodingChallenge\CodingExecutionResult;
+use KnpU\Gladiator\Grading\HtmlOutputGradingTool;
+use KnpU\Gladiator\Worker\WorkerLoaderInterface;
 
 class ImplementWeaponInterfaceCoding implements CodingChallengeInterface
 {
@@ -24,10 +26,11 @@ to print out the weapon's range, just to see that things are working:
 EOF;
     }
 
-    public function getFileBuilder()
+    public function getChallengeBuilder()
     {
-        $fileBuilder = new FileBuilder();
-        $fileBuilder
+        $builder = new ChallengeBuilder();
+
+        $builder
             ->addFileContents('LaserWeapon.php', <<<EOF
 EOF
             )
@@ -72,12 +75,12 @@ EOF
             ->setEntryPointFilename('index.php')
         ;
 
-        return $fileBuilder;
+        return $builder;
     }
 
-    public function getExecutionMode()
+    public function getWorkerConfig(WorkerLoaderInterface $loader)
     {
-        return self::EXECUTION_MODE_PHP_NORMAL;
+        return $loader->load(__DIR__.'/../php_worker.yml');
     }
 
     public function setupContext(CodingContext $context)
@@ -86,6 +89,7 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
+        $htmlGrader = new HtmlOutputGradingTool($result);
         if (!class_exists('\LaserWeapon')) {
             throw new GradingException('Class `LaserWeapon` could not be found. Did you create it?');
         }
@@ -96,7 +100,7 @@ EOF
             );
         }
         $laserWeapon = $laserWeaponClass->newInstance();
-        $result->assertOutputContains(
+        $htmlGrader->assertOutputContains(
             $laserWeapon->getWeaponRange(),
             'Seems you forgot to output the laser weapon range. Did you print the result of the `getWeaponRange()` method?'
         );

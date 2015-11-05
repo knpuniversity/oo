@@ -2,12 +2,14 @@
 
 namespace Challenges\BrokenShip;
 
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingContext;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CorrectAnswer;
-use KnpU\ActivityRunner\Activity\CodingChallengeInterface;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingExecutionResult;
-use KnpU\ActivityRunner\Activity\CodingChallenge\FileBuilder;
-use KnpU\ActivityRunner\Activity\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\ChallengeBuilder;
+use KnpU\Gladiator\CodingChallenge\Exception\GradingException;
+use KnpU\Gladiator\Grading\HtmlOutputGradingTool;
+use KnpU\Gladiator\CodingChallenge\CodingContext;
+use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
+use KnpU\Gladiator\CodingChallengeInterface;
+use KnpU\Gladiator\CodingChallenge\CodingExecutionResult;
+use KnpU\Gladiator\Worker\WorkerLoaderInterface;
 
 class CreateDeathStarIIICoding implements CodingChallengeInterface
 {
@@ -24,10 +26,11 @@ print out the description in `index.php`.
 EOF;
     }
 
-    public function getFileBuilder()
+    public function getChallengeBuilder()
     {
-        $fileBuilder = new FileBuilder();
-        $fileBuilder
+        $builder = new ChallengeBuilder();
+
+        $builder
             ->addFileContents('DeathStarIII.php', <<<EOF
 EOF
             )
@@ -73,12 +76,12 @@ EOF
             ->setEntryPointFilename('index.php')
         ;
 
-        return $fileBuilder;
+        return $builder;
     }
 
-    public function getExecutionMode()
+    public function getWorkerConfig(WorkerLoaderInterface $loader)
     {
-        return self::EXECUTION_MODE_PHP_NORMAL;
+        return $loader->load(__DIR__.'/../php_worker.yml');
     }
 
     public function setupContext(CodingContext $context)
@@ -87,12 +90,13 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
+        $htmlGrader = new HtmlOutputGradingTool($result);
         $deathStar3Class = new \ReflectionClass('\DeathStarIII');
         if (!$deathStar3Class->isSubclassOf('\AbstractDeathStar')) {
             throw new GradingException('The `DeathStarIII` class should extend the `AbstractDeathStar` one.');
         }
         $deathStar3 = $result->getDeclaredVariableValue('deathStar3');
-        if (!$result->doesOutputContain($deathStar3->getDescription())) {
+        if (!$htmlGrader->doesOutputContain($deathStar3->getDescription())) {
             throw new GradingException('Hmm, did you print the `DeathStarIII` description in `h3` tag?');
         }
     }
