@@ -4,7 +4,7 @@ namespace Challenges\PdoShipStorage;
 
 use KnpU\Gladiator\CodingChallenge\ChallengeBuilder;
 use KnpU\Gladiator\CodingChallenge\Exception\GradingException;
-use KnpU\Gladiator\Grading\HtmlOutputGradingTool;
+use KnpU\Gladiator\Grading\GenericGradingTool;
 use KnpU\Gladiator\Grading\PhpGradingTool;
 use KnpU\Gladiator\CodingChallenge\CodingContext;
 use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
@@ -99,8 +99,8 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
+        $grader = new GenericGradingTool($result);
         $phpGrader = new PhpGradingTool($result);
-        $htmlGrader = new HtmlOutputGradingTool($result);
         if (!class_exists('\Cache')) {
             throw new GradingException('Class `Cache` does not exist. Did you create it?');
         }
@@ -121,7 +121,7 @@ EOF
             throw new GradingException('Make sure you give the `StringTransformer` class a `__construct()`. It should have one argument: a `Cache` object.');
         }
 
-        $htmlGrader->assertInputDoesNotContain(
+        $grader->assertInputDoesNotContain(
             'StringTransformer.php',
             'file_get_contents',
             'I still see `file_get_contents()` inside of `StringTransformer`. Make sure you\'ve moved all of the caching logic into the Cache class'

@@ -8,7 +8,6 @@ use KnpU\Gladiator\CodingChallenge\CodingContext;
 use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
 use KnpU\Gladiator\CodingChallengeInterface;
 use KnpU\Gladiator\CodingChallenge\CodingExecutionResult;
-use KnpU\Gladiator\Grading\HtmlOutputGradingTool;
 use KnpU\Gladiator\Grading\PhpGradingTool;
 use KnpU\Gladiator\Worker\WorkerLoaderInterface;
 
@@ -89,8 +88,6 @@ EOF
     public function grade(CodingExecutionResult $result)
     {
         $phpGrader = new PhpGradingTool($result);
-        $htmlGrader = new HtmlOutputGradingTool($result);
-        $htmlGrader->assertElementContains('h3', 'Kitty');
         $phpGrader->assertVariableExists('original');
         $phpGrader->assertVariableExists('new');
         $original = $result->getDeclaredVariableValue('original');
