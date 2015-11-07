@@ -2,12 +2,14 @@
 
 namespace Challenges\Override;
 
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingContext;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CorrectAnswer;
-use KnpU\ActivityRunner\Activity\CodingChallengeInterface;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingExecutionResult;
-use KnpU\ActivityRunner\Activity\CodingChallenge\FileBuilder;
-use KnpU\ActivityRunner\Activity\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\ChallengeBuilder;
+use KnpU\Gladiator\CodingChallenge\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\CodingContext;
+use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
+use KnpU\Gladiator\CodingChallengeInterface;
+use KnpU\Gladiator\CodingChallenge\CodingExecutionResult;
+use KnpU\Gladiator\Grading\PhpGradingTool;
+use KnpU\Gladiator\Worker\WorkerLoaderInterface;
 
 class OverrideInheritMethodCoding implements CodingChallengeInterface
 {
@@ -23,20 +25,20 @@ and make it return `null`. Phew, problem solved!
 EOF;
     }
 
-    public function getFileBuilder()
+    public function getChallengeBuilder()
     {
-        $fileBuilder = new FileBuilder();
+        $builder = new ChallengeBuilder();
 
-        $fileBuilder->addFileContents('DeathStarII.php', <<<EOF
+        $builder
+            ->addFileContents('DeathStarII.php', <<<EOF
 <?php
 
 class DeathStarII extends DeathStar
 {
 }
 EOF
-        );
-
-        $fileBuilder->addFileContents('DeathStar.php', <<<EOF
+            )
+            ->addFileContents('DeathStar.php', <<<EOF
 <?php
 
 class DeathStar
@@ -52,9 +54,8 @@ class DeathStar
     }
 }
 EOF
-        );
-
-        $fileBuilder->addFileContents('index.php', <<<EOF
+            )
+            ->addFileContents('index.php', <<<EOF
 <?php
 
 require 'DeathStar.php';
@@ -68,16 +69,16 @@ require 'DeathStarII.php';
 <h2>Original DeathStar Weakness: <?php echo \$original->getWeakness(); ?></h2>
 <h2>New DeathStar Weakness: <?php echo \$new->getWeakness(); ?></h2>
 EOF
-        );
+            )
+            ->setEntryPointFilename('index.php')
+        ;
 
-        $fileBuilder->setEntryPointFilename('index.php');
-
-        return $fileBuilder;
+        return $builder;
     }
 
-    public function getExecutionMode()
+    public function getWorkerConfig(WorkerLoaderInterface $loader)
     {
-        return self::EXECUTION_MODE_PHP_NORMAL;
+        return $loader->load(__DIR__.'/../php_worker.yml');
     }
 
     public function setupContext(CodingContext $context)
@@ -86,8 +87,9 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
-        $result->assertVariableExists('original');
-        $result->assertVariableExists('new');
+        $phpGrader = new PhpGradingTool($result);
+        $phpGrader->assertVariableExists('original');
+        $phpGrader->assertVariableExists('new');
         $original = $result->getDeclaredVariableValue('original');
         $new = $result->getDeclaredVariableValue('new');
         if (!$original instanceof \DeathStar) {

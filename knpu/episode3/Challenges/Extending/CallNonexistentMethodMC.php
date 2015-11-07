@@ -2,8 +2,8 @@
 
 namespace Challenges\Extending;
 
-use KnpU\ActivityRunner\Activity\MultipleChoice\AnswerBuilder;
-use KnpU\ActivityRunner\Activity\MultipleChoiceChallengeInterface;
+use KnpU\Gladiator\MultipleChoice\AnswerBuilder;
+use KnpU\Gladiator\MultipleChoiceChallengeInterface;
 
 class CallNonexistentMethodMC implements MultipleChoiceChallengeInterface
 {
@@ -51,10 +51,12 @@ EOF;
      */
     public function configureAnswers(AnswerBuilder $builder)
     {
-        $builder->addAnswer('`echo $ship->getName();`')
+        $builder
+            ->addAnswer('`echo $ship->getName();`')
             ->addAnswer('`echo $ship->getFavoriteJedi();`', true)
             ->addAnswer('`echo $jediShip->getName();`')
-            ->addAnswer('Both (B) and (C) will cause an error');
+            ->addAnswer('Both (B) and (C) will cause an error')
+        ;
     }
 
 

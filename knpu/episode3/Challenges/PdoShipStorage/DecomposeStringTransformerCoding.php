@@ -2,12 +2,15 @@
 
 namespace Challenges\PdoShipStorage;
 
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingContext;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CorrectAnswer;
-use KnpU\ActivityRunner\Activity\CodingChallengeInterface;
-use KnpU\ActivityRunner\Activity\CodingChallenge\CodingExecutionResult;
-use KnpU\ActivityRunner\Activity\CodingChallenge\FileBuilder;
-use KnpU\ActivityRunner\Activity\Exception\GradingException;
+use KnpU\Gladiator\CodingChallenge\ChallengeBuilder;
+use KnpU\Gladiator\CodingChallenge\Exception\GradingException;
+use KnpU\Gladiator\Grading\GenericGradingTool;
+use KnpU\Gladiator\Grading\PhpGradingTool;
+use KnpU\Gladiator\CodingChallenge\CodingContext;
+use KnpU\Gladiator\CodingChallenge\CorrectAnswer;
+use KnpU\Gladiator\CodingChallengeInterface;
+use KnpU\Gladiator\CodingChallenge\CodingExecutionResult;
+use KnpU\Gladiator\Worker\WorkerLoaderInterface;
 
 class DecomposeStringTransformerCoding implements CodingChallengeInterface
 {
@@ -30,10 +33,11 @@ to cache, instead of using your own logic:
 EOF;
     }
 
-    public function getFileBuilder()
+    public function getChallengeBuilder()
     {
-        $fileBuilder = new FileBuilder();
-        $fileBuilder
+        $builder = new ChallengeBuilder();
+
+        $builder
             ->addFileContents('Cache.php', <<<EOF
 EOF
             )
@@ -81,12 +85,12 @@ EOF
             ->setEntryPointFilename('index.php')
         ;
 
-        return $fileBuilder;
+        return $builder;
     }
 
-    public function getExecutionMode()
+    public function getWorkerConfig(WorkerLoaderInterface $loader)
     {
-        return self::EXECUTION_MODE_PHP_NORMAL;
+        return $loader->load(__DIR__.'/../php_worker.yml');
     }
 
     public function setupContext(CodingContext $context)
@@ -95,6 +99,8 @@ EOF
 
     public function grade(CodingExecutionResult $result)
     {
+        $grader = new GenericGradingTool($result);
+        $phpGrader = new PhpGradingTool($result);
         if (!class_exists('\Cache')) {
             throw new GradingException('Class `Cache` does not exist. Did you create it?');
         }
@@ -107,7 +113,7 @@ EOF
             throw new GradingException('Method `saveToCache` does not exist in the `Cache` class.');
         }
 
-        $result->assertVariableExists('transformer', 'I don\'t see the $transformer variable in index.php anymore - did you delete it?');
+        $phpGrader->assertVariableExists('transformer', 'I don\'t see the $transformer variable in index.php anymore - did you delete it?');
         $transformer = $result->getDeclaredVariableValue('transformer');
         $transformerClass = new \ReflectionObject($transformer);
 
@@ -115,7 +121,7 @@ EOF
             throw new GradingException('Make sure you give the `StringTransformer` class a `__construct()`. It should have one argument: a `Cache` object.');
         }
 
-        $result->assertInputDoesNotContain(
+        $grader->assertInputDoesNotContain(
             'StringTransformer.php',
             'file_get_contents',
             'I still see `file_get_contents()` inside of `StringTransformer`. Make sure you\'ve moved all of the caching logic into the Cache class'
