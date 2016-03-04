@@ -1,8 +1,8 @@
-title:  Object Oriented Programming (Ep 1)
+title:  Object Oriented Programming (Course 1)
 summary: |
     Get Object-Oriented!
     
-    In this tutorial, we'll get you up and running with classes, objects,
+    In this course, we'll get you up and running with classes, objects,
     methods, properties and all that OO stuff by building a real (and epic)
     application where we battle space ships. Woh.
     
@@ -16,7 +16,7 @@ summary: |
     * Type-hinting
     * Class constructors (the `__construct` guy)
     
-    Then keep going with [episode 2](http://knpuniversity.com/screencast/oo-ep2).
+    Then keep going with [course 2](http://knpuniversity.com/screencast/oo-ep2).
     
     Blast off! `#NerdPun`
 
