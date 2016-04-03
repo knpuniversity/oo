@@ -27,49 +27,49 @@ chapters:
         is_free:    true
         video_key: 140701988
         challenges:
-            - Challenges\Extending\InheritFunctionalityCoding
-            - Challenges\Extending\CallNonexistentMethodMC
+            - extending_inheritfunctionalitycoding
+            - extending_callnonexistentmethodmc
     override:
         is_free:    true
         video_key: 140703255
         challenges:
-            - Challenges\Override\OverrideInheritMethodCoding
-            - Challenges\Override\CallOverriddenMethodMC
+            - override_overrideinheritmethodcoding
+            - override_calloverriddenmethodmc
     protected-visibility:
         video_key: 140705348
         challenges:
-            - Challenges\ProtectedVisibility\GetInheritedPropertyCoding
-            - Challenges\ProtectedVisibility\PropertyVisibilityMC
+            - protectedvisibility_getinheritedpropertycoding
+            - protectedvisibility_propertyvisibilitymc
     parent:
         video_key: 140706130
         challenges:
-            - Challenges\Parent\CallParentMethodCoding
+            - parent_callparentmethodcoding
     abstract-ship:
         video_key: 140707815
         challenges:
-            - Challenges\AbstractShip\ExtendAbstractClassCoding
-            - Challenges\AbstractShip\InheritanceOverheadMC
+            - abstractship_extendabstractclasscoding
+            - abstractship_inheritanceoverheadmc
     adding-abstract:
         video_key: 140720151
         challenges:
-            - Challenges\AddingAbstract\FunctionTypeHintWithClassNameMC
-            - Challenges\AddingAbstract\CreateAbstractMethodCoding
+            - addingabstract_functiontypehintwithclassnamemc
+            - addingabstract_createabstractmethodcoding
     broken-ship:
         video_key: 140711954
         challenges:
-            - Challenges\BrokenShip\CreateDeathStarIIICoding
+            - brokenship_createdeathstariiicoding
     pdo-ship-storage:
         video_key: 141070888
         challenges:
-            - Challenges\PdoShipStorage\DecomposeStringTransformerCoding
-            - Challenges\PdoShipStorage\StringTransformerDecompositionAdvantagesMC
+            - pdoshipstorage_decomposestringtransformercoding
+            - pdoshipstorage_stringtransformerdecompositionadvantagesmc
     abstract-ship-loader:
         video_key: 141435296
         challenges:
-            - Challenges\AbstractShipLoader\CreateAbstractPlanetCoding
+            - abstractshiploader_createabstractplanetcoding
     interfaces:
         video_key: 141440167
         challenges:
-            - Challenges\Interfaces\ImplementPlanetInterfaceCoding
-            - Challenges\Interfaces\InterfaceVsAbstractClassMC
-            - Challenges\Interfaces\ImplementWeaponInterfaceCoding
+            - interfaces_implementplanetinterfacecoding
+            - interfaces_interfacevsabstractclassmc
+            - interfaces_implementweaponinterfacecoding
