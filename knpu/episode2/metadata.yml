@@ -1,12 +1,12 @@
-title:  "OOP (ep 2): Services, Dependency Injection and Containers"
+title:  "OOP (Course 2): Services, Dependency Injection and Containers"
 summary: |
     Time to take things up a notch!
     
-    In this tutorial, we'll leverage what we learned in
-    [Episode 1](http://knpuniversity.com/screencast/oo) to *really* start
+    In this Course, we'll leverage what we learned in
+    [Course 1](http://knpuniversity.com/screencast/oo) to *really* start
     using what we know. We'll clean up old functions with new classes, learn
     a practice called dependency injection and organize our objects into
-    something called a container. This is the episode that *really* makes
+    something called a container. This is the course that *really* makes
     objects useful and sets us up for future stuff (inheritance, interfaces, etc).
     
     So let's get serious:
