@@ -81,7 +81,7 @@ Perfecto!
 After just that change, refresh the browser and see what's happening. Hey nothing
 is broken, which makes sense since nothing has really changed in our code's functionality -- yet.
 
-Let's trim down `AsbstractShip` to only the items that are truly shared between our
+Let's trim down `AbstractShip` to only the items that are truly shared between our
 two ships.
 
 First, `jediFactor` is specific to `Ship` so let's move it over there:
