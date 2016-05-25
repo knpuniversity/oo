@@ -1,0 +1,27 @@
+diff --git a/index.php b/index.php
+index 30495ee..f58a41c 100644
+--- a/index.php
++++ b/index.php
+@@ -9,8 +9,7 @@ $ships = $shipLoader->getShips();
+ $brokenShip = new BrokenShip('Just a hunk of metal');
+ $ships[] = $brokenShip;
+ 
+-$battleManager = $container->getBattleManager();
+-$battleTypes = $battleManager->getAllBattleTypesWithDescriptions();
++$battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
+ 
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index 15edef4..98c416e 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -72,7 +72,7 @@ class BattleManager
+         return new BattleResult($usedJediPowers, $winningShip, $losingShip);
+     }
+ 
+-    public function getAllBattleTypesWithDescriptions()
++    public static function getAllBattleTypesWithDescriptions()
+     {
+         return array(
+             self::TYPE_NORMAL => 'Normal',

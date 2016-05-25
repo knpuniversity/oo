@@ -1,0 +1,87 @@
+diff --git a/battle.php b/battle.php
+index 143f9bc..b76fce9 100644
+--- a/battle.php
++++ b/battle.php
+@@ -31,7 +31,8 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
+     die;
+ }
+ 
+-$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
++$battleType = $_POST['battle_type'];
++$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity, $battleType);
+ ?>
+ 
+ <html>
+diff --git a/index.php b/index.php
+index 9e1656b..6c06003 100644
+--- a/index.php
++++ b/index.php
+@@ -116,6 +116,18 @@ if (isset($_GET['error'])) {
+                             <?php endforeach; ?>
+                         </select>
+                         <br>
++
++                        <div class="text-center">
++                            <label for="battle_type">Battle Type</label>
++                            <select name="battle_type" id="battle_type" class="form-control drp-dwn-width center-block">
++                                <option value="normal">Normal</option>
++                                <option value="no_jedi">No Jedi Powers</option>
++                                <option value="only_jedi">Only Jedi Powers</option>
++                            </select>
++                        </div>
++
++                        <br/>
++
+                         <button class="btn btn-md btn-danger center-block" type="submit">Engage</button>
+                     </form>
+                 </div>
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index ea13d21..dc3a270 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -7,22 +7,23 @@ class BattleManager
+      *
+      * @return BattleResult
+      */
+-    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity)
++    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity, $battleType)
+     {
+         $ship1Health = $ship1->getStrength() * $ship1Quantity;
+         $ship2Health = $ship2->getStrength() * $ship2Quantity;
+ 
+         $ship1UsedJediPowers = false;
+         $ship2UsedJediPowers = false;
++        $i = 0;
+         while ($ship1Health > 0 && $ship2Health > 0) {
+             // first, see if we have a rare Jedi hero event!
+-            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
++            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship1)) {
+                 $ship2Health = 0;
+                 $ship1UsedJediPowers = true;
+ 
+                 break;
+             }
+-            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
++            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship2)) {
+                 $ship1Health = 0;
+                 $ship2UsedJediPowers = true;
+ 
+@@ -30,8 +31,16 @@ class BattleManager
+             }
+ 
+             // now battle them normally
+-            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+-            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
++            if ($battleType != 'only_jedi') {
++                $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
++                $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
++            }
++
++            // prevent 2 non-jedi ships from fighting forever in only_jedi mode
++            if ($i == 100) {
++                $ship1Health = 0;
++                $ship2Health = 0;
++            }
+         }
+ 
+         // update the strengths on the ships, so we can show this

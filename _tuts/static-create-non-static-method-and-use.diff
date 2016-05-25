@@ -1,0 +1,47 @@
+diff --git a/index.php b/index.php
+index a26f09e..30495ee 100644
+--- a/index.php
++++ b/index.php
+@@ -9,6 +9,9 @@ $ships = $shipLoader->getShips();
+ $brokenShip = new BrokenShip('Just a hunk of metal');
+ $ships[] = $brokenShip;
+ 
++$battleManager = $container->getBattleManager();
++$battleTypes = $battleManager->getAllBattleTypesWithDescriptions();
++
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+     switch ($_GET['error']) {
+@@ -120,9 +123,9 @@ if (isset($_GET['error'])) {
+                         <div class="text-center">
+                             <label for="battle_type">Battle Type</label>
+                             <select name="battle_type" id="battle_type" class="form-control drp-dwn-width center-block">
+-                                <option value="<?php echo BattleManager::TYPE_NORMAL ?>">Normal</option>
+-                                <option value="<?php echo BattleManager::TYPE_NO_JEDI ?>">No Jedi Powers</option>
+-                                <option value="<?php echo BattleManager::TYPE_ONLY_JEDI ?>">Only Jedi Powers</option>
++                                <?php foreach ($battleTypes as $battleType => $typeText): ?>
++                                <option value="<?php echo $battleType ?>"><?php echo $typeText; ?></option>
++                                <?php endforeach; ?>
+                             </select>
+                         </div>
+ 
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index b51001b..15edef4 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -72,6 +72,15 @@ class BattleManager
+         return new BattleResult($usedJediPowers, $winningShip, $losingShip);
+     }
+ 
++    public function getAllBattleTypesWithDescriptions()
++    {
++        return array(
++            self::TYPE_NORMAL => 'Normal',
++            self::TYPE_NO_JEDI => 'No Jedi Powers',
++            self::TYPE_ONLY_JEDI => 'Only Jedi Powers'
++        );
++    }
++
+     private function didJediDestroyShipUsingTheForce(AbstractShip $ship)
+     {
+         $jediHeroProbability = $ship->getJediFactor() / 100;

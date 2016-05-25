@@ -1,0 +1,57 @@
+diff --git a/index.php b/index.php
+index 6c06003..a26f09e 100644
+--- a/index.php
++++ b/index.php
+@@ -120,9 +120,9 @@ if (isset($_GET['error'])) {
+                         <div class="text-center">
+                             <label for="battle_type">Battle Type</label>
+                             <select name="battle_type" id="battle_type" class="form-control drp-dwn-width center-block">
+-                                <option value="normal">Normal</option>
+-                                <option value="no_jedi">No Jedi Powers</option>
+-                                <option value="only_jedi">Only Jedi Powers</option>
++                                <option value="<?php echo BattleManager::TYPE_NORMAL ?>">Normal</option>
++                                <option value="<?php echo BattleManager::TYPE_NO_JEDI ?>">No Jedi Powers</option>
++                                <option value="<?php echo BattleManager::TYPE_ONLY_JEDI ?>">Only Jedi Powers</option>
+                             </select>
+                         </div>
+ 
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index dc3a270..69486f7 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -2,6 +2,10 @@
+ 
+ class BattleManager
+ {
++    const TYPE_NORMAL = 'normal';
++    const TYPE_NO_JEDI = 'no_jedi';
++    const TYPE_ONLY_JEDI = 'only_jedi';
++
+     /**
+      * Our complex fighting algorithm!
+      *
+@@ -17,13 +21,13 @@ class BattleManager
+         $i = 0;
+         while ($ship1Health > 0 && $ship2Health > 0) {
+             // first, see if we have a rare Jedi hero event!
+-            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship1)) {
++            if ($battleType != self::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship1)) {
+                 $ship2Health = 0;
+                 $ship1UsedJediPowers = true;
+ 
+                 break;
+             }
+-            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship2)) {
++            if ($battleType != self::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship2)) {
+                 $ship1Health = 0;
+                 $ship2UsedJediPowers = true;
+ 
+@@ -31,7 +35,7 @@ class BattleManager
+             }
+ 
+             // now battle them normally
+-            if ($battleType != 'only_jedi') {
++            if ($battleType != self::TYPE_ONLY_JEDI) {
+                 $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+                 $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+             }

@@ -509,7 +509,32 @@
             "id": "interface-document-it",
             "name": "Interface: Document it",
             "description": null
+        },
+        {
+            "id": "constants-new-battle-type-feature",
+            "name": "Constants: New battle type feature",
+            "description": null
+        },
+        {
+            "id": "constants-create-and-use-constants",
+            "name": "Constants: Create and use constants",
+            "description": null
+        },
+        {
+            "id": "constants-document-them",
+            "name": "Constants: Document them",
+            "description": null
+        },
+        {
+            "id": "static-create-non-static-method-and-use",
+            "name": "Static: Create non-static method and use",
+            "description": null
+        },
+        {
+            "id": "static-refactor-to-static",
+            "name": "Static: Refactor to static",
+            "description": null
         }
     ],
-    "sha": "3db92a517d127188922080e14c4719b9c85aa9f1"
+    "sha": "27bd0b4544092092b9810e29b5c4d5751cd4f836"
 }
