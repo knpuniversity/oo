@@ -1,0 +1,34 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 5f800cc..d15ffbf 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -1,14 +1,6 @@
+ <?php
+ 
+-spl_autoload_register(function($className) {
+-    $path = __DIR__.'/lib/'.str_replace('\\', '/', $className).'.php';
+-
+-    if (file_exists($path)) {
+-        require $path;
+-    }
+-
+-    // we don't support this class!
+-});
++require __DIR__.'/vendor/autoload.php';
+ 
+ $configuration = array(
+     'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
+diff --git a/composer.json b/composer.json
+new file mode 100644
+index 0000000..3dc5204
+--- /dev/null
++++ b/composer.json
+@@ -0,0 +1,7 @@
++{
++  "autoload": {
++    "psr-4": {
++      "": "lib/"
++    }
++  }
++}
+\ No newline at end of file

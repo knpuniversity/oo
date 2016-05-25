@@ -534,7 +534,57 @@
             "id": "static-refactor-to-static",
             "name": "Static: Refactor to static",
             "description": null
+        },
+        {
+            "id": "namespaces-add-simple-namespace",
+            "name": "Namespaces: Add simple namespace",
+            "description": null
+        },
+        {
+            "id": "namespaces-show-use-statement",
+            "name": "Namespaces: Show use statement",
+            "description": null
+        },
+        {
+            "id": "autoload-remove-require-statement",
+            "name": "Autoload: Remove require statement",
+            "description": null
+        },
+        {
+            "id": "autoload-add-simple-autoloader",
+            "name": "Autoload: Add simple autoloader",
+            "description": null
+        },
+        {
+            "id": "autoload-homemade-psr0-autoloader",
+            "name": "Autoload: Homemade PSR0 autoloader",
+            "description": null
+        },
+        {
+            "id": "namespaces-add-namespace-to-everything",
+            "name": "Namespaces: Add namespace to everything",
+            "description": null
+        },
+        {
+            "id": "namespaces-add-use-in-index-php",
+            "name": "Namespaces: Add use in index.php",
+            "description": null
+        },
+        {
+            "id": "namespaces-add-use-for-classes-we-moved",
+            "name": "Namespaces: Add use for classes we moved",
+            "description": null
+        },
+        {
+            "id": "namespaces-change-to-pdo",
+            "name": "Namespaces: Change to \\PDO",
+            "description": null
+        },
+        {
+            "id": "autoload-use-composer",
+            "name": "Autoload: Use composer",
+            "description": null
         }
     ],
-    "sha": "27bd0b4544092092b9810e29b5c4d5751cd4f836"
+    "sha": "987cbbef5108b578c57fc4e11ae9b048a1b995db"
 }

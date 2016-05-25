@@ -39,14 +39,14 @@ index f398cbf..11fbc7a 100644
      private $filename;
  
 diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
-index 2c0ac6f..8a68e77 100644
+index 2c0ac6f..577bff4 100644
 --- a/lib/Service/PdoShipStorage.php
 +++ b/lib/Service/PdoShipStorage.php
 @@ -1,6 +1,6 @@
  <?php
  
 -class PdoShipStorage extends AbstractShipStorage
-+class PdoShipStorageInterface implements ShipStorageInterface
++class PdoShipStorage implements ShipStorageInterface
  {
      private $pdo;
  

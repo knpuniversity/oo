@@ -1,0 +1,67 @@
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+index a0cbed2..c4abc8f 100644
+--- a/lib/Service/Container.php
++++ b/lib/Service/Container.php
+@@ -20,18 +20,18 @@ class Container
+     }
+ 
+     /**
+-     * @return PDO
++     * @return \PDO
+      */
+     public function getPDO()
+     {
+         if ($this->pdo === null) {
+-            $this->pdo = new PDO(
++            $this->pdo = new \PDO(
+                 $this->configuration['db_dsn'],
+                 $this->configuration['db_user'],
+                 $this->configuration['db_pass']
+             );
+ 
+-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
++            $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+         }
+ 
+         return $this->pdo;
+@@ -52,8 +52,8 @@ class Container
+     public function getShipStorage()
+     {
+         if ($this->shipStorage === null) {
+-            //$this->shipStorage = new PdoShipStorage($this->getPDO());
+-            $this->shipStorage = new JsonFileShipStorage(__DIR__.'/../../resources/ships.json');
++            $this->shipStorage = new PdoShipStorage($this->getPDO());
++            //$this->shipStorage = new JsonFileShipStorage(__DIR__.'/../../resources/ships.json');
+         }
+ 
+         return $this->shipStorage;
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index 88d46f5..9826bb8 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -6,7 +6,7 @@ class PdoShipStorage implements ShipStorageInterface
+ {
+     private $pdo;
+ 
+-    public function __construct(PDO $pdo)
++    public function __construct(\PDO $pdo)
+     {
+         $this->pdo = $pdo;
+     }
+@@ -16,14 +16,14 @@ class PdoShipStorage implements ShipStorageInterface
+         $statement = $this->pdo->prepare('SELECT * FROM ship');
+         $statement->execute();
+ 
+-        return $statement->fetchAll(PDO::FETCH_ASSOC);
++        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+     }
+ 
+     public function fetchSingleShipData($id)
+     {
+         $statement = $this->pdo->prepare('SELECT * FROM ship WHERE id = :id');
+         $statement->execute(array('id' => $id));
+-        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
++        $shipArray = $statement->fetch(\PDO::FETCH_ASSOC);
+ 
+         if (!$shipArray) {
+             return null;

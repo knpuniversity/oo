@@ -1,0 +1,42 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 37627ff..ac632c6 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -1,10 +1,10 @@
+ <?php
+ 
+ spl_autoload_register(function($className) {
+-    if ($className == 'Battle\BattleManager') {
+-        require __DIR__.'/lib/Service/BattleManager.php';
++    $path = __DIR__.'/lib/'.str_replace('\\', '/', $className).'.php';
+ 
+-        return;
++    if (file_exists($path)) {
++        require $path;
+     }
+ 
+     // we don't support this class!
+diff --git a/index.php b/index.php
+index 87804b3..91813b1 100644
+--- a/index.php
++++ b/index.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-use Battle\BattleManager;
++use Service\BattleManager;
+ 
+ require __DIR__.'/bootstrap.php';
+ 
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index 7dd73f1..f6e0a69 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -1,6 +1,6 @@
+ <?php
+ 
+-namespace Battle;
++namespace Service;
+ 
+ class BattleManager
+ {

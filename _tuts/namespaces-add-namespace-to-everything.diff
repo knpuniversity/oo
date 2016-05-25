@@ -1,0 +1,139 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index ac632c6..5f800cc 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -15,14 +15,3 @@ $configuration = array(
+     'db_user' => 'root',
+     'db_pass' => null,
+ );
+-
+-require_once __DIR__.'/lib/Service/Container.php';
+-require_once __DIR__.'/lib/Model/AbstractShip.php';
+-require_once __DIR__.'/lib/Model/Ship.php';
+-require_once __DIR__.'/lib/Model/RebelShip.php';
+-require_once __DIR__.'/lib/Model/BrokenShip.php';
+-require_once __DIR__.'/lib/Service/ShipStorageInterface.php';
+-require_once __DIR__.'/lib/Service/PdoShipStorage.php';
+-require_once __DIR__.'/lib/Service/JsonFileShipStorage.php';
+-require_once __DIR__.'/lib/Service/ShipLoader.php';
+-require_once __DIR__.'/lib/Model/BattleResult.php';
+diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
+index 039fe64..eae2769 100644
+--- a/lib/Model/AbstractShip.php
++++ b/lib/Model/AbstractShip.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Model;
++
+ abstract class AbstractShip
+ {
+     private $id;
+diff --git a/lib/Model/BattleResult.php b/lib/Model/BattleResult.php
+index 86e15d5..05a88c4 100644
+--- a/lib/Model/BattleResult.php
++++ b/lib/Model/BattleResult.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Model;
++
+ class BattleResult
+ {
+     private $usedJediPowers;
+diff --git a/lib/Model/BrokenShip.php b/lib/Model/BrokenShip.php
+index d1d249b..8a83a8a 100644
+--- a/lib/Model/BrokenShip.php
++++ b/lib/Model/BrokenShip.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Model;
++
+ class BrokenShip extends AbstractShip
+ {
+     public function getJediFactor()
+diff --git a/lib/Model/RebelShip.php b/lib/Model/RebelShip.php
+index 8d00bb0..5439dec 100644
+--- a/lib/Model/RebelShip.php
++++ b/lib/Model/RebelShip.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Model;
++
+ class RebelShip extends AbstractShip
+ {
+     public function getFavoriteJedi()
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index b054138..28e29e4 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Model;
++
+ class Ship extends AbstractShip
+ {
+     private $jediFactor = 0;
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+index 4957f25..a0cbed2 100644
+--- a/lib/Service/Container.php
++++ b/lib/Service/Container.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Service;
++
+ class Container
+ {
+     private $configuration;
+diff --git a/lib/Service/JsonFileShipStorage.php b/lib/Service/JsonFileShipStorage.php
+index 11fbc7a..dbb1645 100644
+--- a/lib/Service/JsonFileShipStorage.php
++++ b/lib/Service/JsonFileShipStorage.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Service;
++
+ class JsonFileShipStorage implements ShipStorageInterface
+ {
+     private $filename;
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index 577bff4..88d46f5 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Service;
++
+ class PdoShipStorage implements ShipStorageInterface
+ {
+     private $pdo;
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 14991a3..6548f83 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Service;
++
+ class ShipLoader
+ {
+     private $shipStorage;
+diff --git a/lib/Service/ShipStorageInterface.php b/lib/Service/ShipStorageInterface.php
+index e9ebb5e..575331f 100644
+--- a/lib/Service/ShipStorageInterface.php
++++ b/lib/Service/ShipStorageInterface.php
+@@ -1,5 +1,7 @@
+ <?php
+ 
++namespace Service;
++
+ interface ShipStorageInterface
+ {
+     /**

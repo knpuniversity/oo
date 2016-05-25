@@ -1,0 +1,29 @@
+diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
+index f6e0a69..15b7ca1 100644
+--- a/lib/Service/BattleManager.php
++++ b/lib/Service/BattleManager.php
+@@ -2,6 +2,9 @@
+ 
+ namespace Service;
+ 
++use Model\BattleResult;
++use Model\AbstractShip;
++
+ class BattleManager
+ {
+     // normal battle mode
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 6548f83..54821be 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -2,6 +2,10 @@
+ 
+ namespace Service;
+ 
++use Model\RebelShip;
++use Model\Ship;
++use Model\AbstractShip;
++
+ class ShipLoader
+ {
+     private $shipStorage;

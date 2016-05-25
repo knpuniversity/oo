@@ -1,0 +1,12 @@
+diff --git a/bootstrap.php b/bootstrap.php
+index 2c12330..ad6490b 100644
+--- a/bootstrap.php
++++ b/bootstrap.php
+@@ -11,7 +11,6 @@ require_once __DIR__.'/lib/Model/AbstractShip.php';
+ require_once __DIR__.'/lib/Model/Ship.php';
+ require_once __DIR__.'/lib/Model/RebelShip.php';
+ require_once __DIR__.'/lib/Model/BrokenShip.php';
+-require_once __DIR__.'/lib/Service/BattleManager.php';
+ require_once __DIR__.'/lib/Service/ShipStorageInterface.php';
+ require_once __DIR__.'/lib/Service/PdoShipStorage.php';
+ require_once __DIR__.'/lib/Service/JsonFileShipStorage.php';

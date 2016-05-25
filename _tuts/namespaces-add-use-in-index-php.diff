@@ -1,0 +1,24 @@
+diff --git a/battle.php b/battle.php
+index b76fce9..982dd26 100644
+--- a/battle.php
++++ b/battle.php
+@@ -1,4 +1,6 @@
+ <?php
++use Service\Container;
++
+ require __DIR__.'/bootstrap.php';
+ 
+ $container = new Container($configuration);
+diff --git a/index.php b/index.php
+index 91813b1..5a13375 100644
+--- a/index.php
++++ b/index.php
+@@ -1,6 +1,8 @@
+ <?php
+ 
+ use Service\BattleManager;
++use Service\Container;
++use Model\BrokenShip;
+ 
+ require __DIR__.'/bootstrap.php';
+ 

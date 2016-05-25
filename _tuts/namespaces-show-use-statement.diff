@@ -1,0 +1,21 @@
+diff --git a/index.php b/index.php
+index 443d444..87804b3 100644
+--- a/index.php
++++ b/index.php
+@@ -1,4 +1,7 @@
+ <?php
++
++use Battle\BattleManager;
++
+ require __DIR__.'/bootstrap.php';
+ 
+ $container = new Container($configuration);
+@@ -9,7 +12,7 @@ $ships = $shipLoader->getShips();
+ $brokenShip = new BrokenShip('Just a hunk of metal');
+ $ships[] = $brokenShip;
+ 
+-$battleTypes = Battle\BattleManager::getAllBattleTypesWithDescriptions();
++$battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
+ 
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
