@@ -1,0 +1,29 @@
+title:  "OOP (course 4): Static methods, Namespaces, Exceptions & Traits! Woh!"
+summary: |
+    Finally, we can really *unload* and see all the *cool* OOP stuff
+    that we haven't covered yet. These are the last missing pieces that
+    are standing between you and understanding any OO code you meet.
+
+    * Static methods
+    * Class constants
+    * Namespaces
+    * Autoloading (RIP `require` statements)
+    * `__toString` & the other magic functions
+    * Treat that `$object[1]` like an array (`ArrayAccess`)
+    * Throwing and catching ~~a baseball~~ Exceptions
+    * Traits! Horizontal code re-use
+    * Composition Versus Inheritance: Dressing your classes for success
+
+    Finally, you're going to start to see some *serious* pay-off from
+    these new, crazy OO skills you've got. In this tutorial, OO is here
+    to impress *us*. Dig in.
+
+# illustration: oo-ep4.png
+
+#tuts_hero:
+#    start_step: 'start'
+#    finish_step: 'start'
+
+challenge_repo: knpuniversity/oo-challenges
+
+chapters: []
