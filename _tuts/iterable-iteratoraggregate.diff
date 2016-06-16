@@ -1,0 +1,23 @@
+diff --git a/lib/Model/ShipCollection.php b/lib/Model/ShipCollection.php
+index 2a4cb19..efa5cb0 100644
+--- a/lib/Model/ShipCollection.php
++++ b/lib/Model/ShipCollection.php
+@@ -2,7 +2,7 @@
+ 
+ namespace Model;
+ 
+-class ShipCollection implements \ArrayAccess
++class ShipCollection implements \ArrayAccess, \IteratorAggregate
+ {
+     /**
+      * @var AbstractShip[]
+@@ -33,4 +33,9 @@ class ShipCollection implements \ArrayAccess
+     {
+         unset($this->ships[$offset]);
+     }
++
++    public function getIterator()
++    {
++        return new \ArrayIterator($this->ships);
++    }
+ }

@@ -1,0 +1,31 @@
+diff --git a/index.php b/index.php
+index 5a13375..e7dc233 100644
+--- a/index.php
++++ b/index.php
+@@ -16,6 +16,8 @@ $ships[] = $brokenShip;
+ 
+ $battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
+ 
++$ships->removeAllBrokenShips();
++
+ $errorMessage = '';
+ if (isset($_GET['error'])) {
+     switch ($_GET['error']) {
+diff --git a/lib/Model/ShipCollection.php b/lib/Model/ShipCollection.php
+index efa5cb0..31074c6 100644
+--- a/lib/Model/ShipCollection.php
++++ b/lib/Model/ShipCollection.php
+@@ -38,4 +38,13 @@ class ShipCollection implements \ArrayAccess, \IteratorAggregate
+     {
+         return new \ArrayIterator($this->ships);
+     }
++
++    public function removeAllBrokenShips()
++    {
++        foreach ($this->ships as $key => $ship) {
++            if (!$ship->isFunctional()) {
++                unset($this->ships[$key]);
++            }
++        }
++    }
+ }

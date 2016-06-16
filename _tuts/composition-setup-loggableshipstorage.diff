@@ -1,0 +1,43 @@
+diff --git a/lib/Service/Container.php b/lib/Service/Container.php
+index c4abc8f..9d8d422 100644
+--- a/lib/Service/Container.php
++++ b/lib/Service/Container.php
+@@ -54,6 +54,9 @@ class Container
+         if ($this->shipStorage === null) {
+             $this->shipStorage = new PdoShipStorage($this->getPDO());
+             //$this->shipStorage = new JsonFileShipStorage(__DIR__.'/../../resources/ships.json');
++
++            // use "composition": put the PdoShipStorage inside the LoggableShipStorage
++            $this->shipStorage = new LoggableShipStorage($this->shipStorage);
+         }
+ 
+         return $this->shipStorage;
+diff --git a/lib/Service/LoggableShipStorage.php b/lib/Service/LoggableShipStorage.php
+new file mode 100644
+index 0000000..38a81eb
+--- /dev/null
++++ b/lib/Service/LoggableShipStorage.php
+@@ -0,0 +1,23 @@
++<?php
++
++namespace Service;
++
++class LoggableShipStorage implements ShipStorageInterface
++{
++    private $shipStorage;
++
++    public function __construct(ShipStorageInterface $shipStorage)
++    {
++        $this->shipStorage = $shipStorage;
++    }
++
++    public function fetchAllShipsData()
++    {
++        return $this->shipStorage->fetchAllShipsData();
++    }
++
++    public function fetchSingleShipData($id)
++    {
++        return $this->fetchSingleShipData($id);
++    }
++}

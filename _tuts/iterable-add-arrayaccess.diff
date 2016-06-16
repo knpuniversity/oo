@@ -1,0 +1,38 @@
+diff --git a/lib/Model/ShipCollection.php b/lib/Model/ShipCollection.php
+index 7226c62..2a4cb19 100644
+--- a/lib/Model/ShipCollection.php
++++ b/lib/Model/ShipCollection.php
+@@ -2,7 +2,7 @@
+ 
+ namespace Model;
+ 
+-class ShipCollection
++class ShipCollection implements \ArrayAccess
+ {
+     /**
+      * @var AbstractShip[]
+@@ -13,4 +13,24 @@ class ShipCollection
+     {
+         $this->ships = $ships;
+     }
++
++    public function offsetExists($offset)
++    {
++        return array_key_exists($offset, $this->ships);
++    }
++
++    public function offsetGet($offset)
++    {
++        return $this->ships[$offset];
++    }
++
++    public function offsetSet($offset, $value)
++    {
++        $this->ships[$offset] = $value;
++    }
++
++    public function offsetUnset($offset)
++    {
++        unset($this->ships[$offset]);
++    }
+ }

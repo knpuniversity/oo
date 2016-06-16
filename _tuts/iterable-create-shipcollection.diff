@@ -1,0 +1,52 @@
+diff --git a/lib/Model/ShipCollection.php b/lib/Model/ShipCollection.php
+new file mode 100644
+index 0000000..7226c62
+--- /dev/null
++++ b/lib/Model/ShipCollection.php
+@@ -0,0 +1,16 @@
++<?php
++
++namespace Model;
++
++class ShipCollection
++{
++    /**
++     * @var AbstractShip[]
++     */
++    private $ships;
++
++    public function __construct(array $ships)
++    {
++        $this->ships = $ships;
++    }
++}
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 5d91455..e3eb2c1 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -5,6 +5,7 @@ namespace Service;
+ use Model\RebelShip;
+ use Model\Ship;
+ use Model\AbstractShip;
++use Model\ShipCollection;
+ 
+ class ShipLoader
+ {
+@@ -16,7 +17,7 @@ class ShipLoader
+     }
+ 
+     /**
+-     * @return AbstractShip[]
++     * @return ShipCollection
+      */
+     public function getShips()
+     {
+@@ -28,7 +29,7 @@ class ShipLoader
+             $ships[] = $this->createShipFromData($shipData);
+         }
+ 
+-        return $ships;
++        return new ShipCollection($ships);
+     }
+ 
+     /**

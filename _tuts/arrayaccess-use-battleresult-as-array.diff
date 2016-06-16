@@ -1,0 +1,13 @@
+diff --git a/battle.php b/battle.php
+index 88c3056..411b476 100644
+--- a/battle.php
++++ b/battle.php
+@@ -75,7 +75,7 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
+                 <h3 class="text-center audiowide">
+                     Winner:
+                     <?php if ($battleResult->isThereAWinner()): ?>
+-                        <?php echo $battleResult->getWinningShip()->getName(); ?>
++                        <?php echo $battleResult['winningShip']->getName(); ?>
+                     <?php else: ?>
+                         Nobody
+                     <?php endif; ?>

@@ -1,0 +1,54 @@
+diff --git a/lib/Model/BountyHunterShip.php b/lib/Model/BountyHunterShip.php
+index 2a3cbfd..bd7b2cf 100644
+--- a/lib/Model/BountyHunterShip.php
++++ b/lib/Model/BountyHunterShip.php
+@@ -4,18 +4,25 @@ namespace Model;
+ 
+ class BountyHunterShip extends AbstractShip
+ {
++    private $jediFactor;
++
+     public function getJediFactor()
+     {
+-        // TODO: Implement getJediFactor() method.
++        return $this->jediFactor;
+     }
+ 
+     public function getType()
+     {
+-        // TODO: Implement getType() method.
++        return 'Bounty Hunter';
+     }
+ 
+     public function isFunctional()
+     {
+-        // TODO: Implement isFunctional() method.
++        return true;
++    }
++
++    public function setJediFactor($jediFactor)
++    {
++        $this->jediFactor = $jediFactor;
+     }
+ }
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index e3eb2c1..0f9d803 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Service;
+ 
++use Model\BountyHunterShip;
+ use Model\RebelShip;
+ use Model\Ship;
+ use Model\AbstractShip;
+@@ -28,6 +29,8 @@ class ShipLoader
+         foreach ($shipsData as $shipData) {
+             $ships[] = $this->createShipFromData($shipData);
+         }
++        // Boba Fett's ship
++        $ships[] = new BountyHunterShip('Slave I');
+ 
+         return new ShipCollection($ships);
+     }

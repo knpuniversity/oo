@@ -1,0 +1,38 @@
+diff --git a/lib/Model/BattleResult.php b/lib/Model/BattleResult.php
+index 05a88c4..e5b8637 100644
+--- a/lib/Model/BattleResult.php
++++ b/lib/Model/BattleResult.php
+@@ -2,7 +2,7 @@
+ 
+ namespace Model;
+ 
+-class BattleResult
++class BattleResult implements \ArrayAccess
+ {
+     private $usedJediPowers;
+     private $winningShip;
+@@ -53,4 +53,24 @@ class BattleResult
+     {
+         return $this->getWinningShip() !== null;
+     }
++
++    public function offsetExists($offset)
++    {
++        return property_exists($this, $offset);
++    }
++
++    public function offsetGet($offset)
++    {
++        return $this->$offset;
++    }
++
++    public function offsetSet($offset, $value)
++    {
++        $this->$offset = $value;
++    }
++
++    public function offsetUnset($offset)
++    {
++        unset($this->$offset);
++    }
+ }

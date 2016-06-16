@@ -1,0 +1,27 @@
+diff --git a/lib/Model/BountyHunterShip.php b/lib/Model/BountyHunterShip.php
+new file mode 100644
+index 0000000..2a3cbfd
+--- /dev/null
++++ b/lib/Model/BountyHunterShip.php
+@@ -0,0 +1,21 @@
++<?php
++
++namespace Model;
++
++class BountyHunterShip extends AbstractShip
++{
++    public function getJediFactor()
++    {
++        // TODO: Implement getJediFactor() method.
++    }
++
++    public function getType()
++    {
++        // TODO: Implement getType() method.
++    }
++
++    public function isFunctional()
++    {
++        // TODO: Implement isFunctional() method.
++    }
++}

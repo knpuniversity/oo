@@ -1,0 +1,88 @@
+diff --git a/lib/Model/BountyHunterShip.php b/lib/Model/BountyHunterShip.php
+index bd7b2cf..6b9d3ed 100644
+--- a/lib/Model/BountyHunterShip.php
++++ b/lib/Model/BountyHunterShip.php
+@@ -4,12 +4,7 @@ namespace Model;
+ 
+ class BountyHunterShip extends AbstractShip
+ {
+-    private $jediFactor;
+-
+-    public function getJediFactor()
+-    {
+-        return $this->jediFactor;
+-    }
++    use SettableJediFactorTrait;
+ 
+     public function getType()
+     {
+@@ -20,9 +15,4 @@ class BountyHunterShip extends AbstractShip
+     {
+         return true;
+     }
+-
+-    public function setJediFactor($jediFactor)
+-    {
+-        $this->jediFactor = $jediFactor;
+-    }
+ }
+diff --git a/lib/Model/SettableJediFactorTrait.php b/lib/Model/SettableJediFactorTrait.php
+new file mode 100644
+index 0000000..50029d5
+--- /dev/null
++++ b/lib/Model/SettableJediFactorTrait.php
+@@ -0,0 +1,18 @@
++<?php
++
++namespace Model;
++
++trait SettableJediFactorTrait
++{
++    private $jediFactor;
++
++    public function getJediFactor()
++    {
++        return $this->jediFactor;
++    }
++
++    public function setJediFactor($jediFactor)
++    {
++        $this->jediFactor = $jediFactor;
++    }
++}
+diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
+index 28e29e4..5c80317 100644
+--- a/lib/Model/Ship.php
++++ b/lib/Model/Ship.php
+@@ -4,7 +4,7 @@ namespace Model;
+ 
+ class Ship extends AbstractShip
+ {
+-    private $jediFactor = 0;
++    use SettableJediFactorTrait;
+ 
+     private $underRepair;
+ 
+@@ -16,22 +16,6 @@ class Ship extends AbstractShip
+         $this->underRepair = mt_rand(1, 100) < 30;
+     }
+ 
+-    /**
+-     * @return int
+-     */
+-    public function getJediFactor()
+-    {
+-        return $this->jediFactor;
+-    }
+-
+-    /**
+-     * @param int $jediFactor
+-     */
+-    public function setJediFactor($jediFactor)
+-    {
+-        $this->jediFactor = $jediFactor;
+-    }
+-
+     public function isFunctional()
+     {
+         return !$this->underRepair;

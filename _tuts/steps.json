@@ -649,7 +649,62 @@
             "id": "magic-methods-remove-that-silliness",
             "name": "Magic Methods: Remove that silliness",
             "description": null
+        },
+        {
+            "id": "arrayaccess-use-battleresult-as-array",
+            "name": "ArrayAccess: Use BattleResult as array",
+            "description": null
+        },
+        {
+            "id": "arrayaccess-add-arrayaccess",
+            "name": "ArrayAccess: Add ArrayAccess",
+            "description": null
+        },
+        {
+            "id": "iterable-create-shipcollection",
+            "name": "Iterable: Create ShipCollection",
+            "description": null
+        },
+        {
+            "id": "iterable-add-arrayaccess",
+            "name": "Iterable: Add ArrayAccess",
+            "description": null
+        },
+        {
+            "id": "iterable-iteratoraggregate",
+            "name": "Iterable: IteratorAggregate",
+            "description": null
+        },
+        {
+            "id": "iterable-add-method-to-collection",
+            "name": "Iterable: Add method to collection",
+            "description": null
+        },
+        {
+            "id": "traits-add-bountyhuntership-empty",
+            "name": "Traits: Add BountyHunterShip empty",
+            "description": null
+        },
+        {
+            "id": "traits-fill-in-bountyhuntership",
+            "name": "Traits: Fill in BountyHunterShip",
+            "description": null
+        },
+        {
+            "id": "traits-add-the-jedifactor-trait",
+            "name": "Traits: Add the jediFactor trait",
+            "description": null
+        },
+        {
+            "id": "composition-setup-loggableshipstorage",
+            "name": "Composition: Setup LoggableShipStorage",
+            "description": null
+        },
+        {
+            "id": "composition-add-some-logging",
+            "name": "Composition: Add some logging",
+            "description": null
         }
     ],
-    "sha": "92f3c045d7aeea2625b87bf24692b616f0554064"
+    "sha": "8d101c3933b690b8a637866dc23b84b7ca4ca93d"
 }
