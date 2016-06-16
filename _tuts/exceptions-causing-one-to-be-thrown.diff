@@ -1,0 +1,12 @@
+diff --git a/index.php b/index.php
+index 5a13375..283f2cf 100644
+--- a/index.php
++++ b/index.php
+@@ -12,6 +12,7 @@ $shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
+ $brokenShip = new BrokenShip('Just a hunk of metal');
++$brokenShip->setStrength('banana');
+ $ships[] = $brokenShip;
+ 
+ $battleTypes = BattleManager::getAllBattleTypesWithDescriptions();

@@ -1,0 +1,16 @@
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 2eb590c..5d91455 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -62,9 +62,8 @@ class ShipLoader
+     {
+         try {
+             return $this->shipStorage->fetchAllShipsData();
+-        } catch (\Exception $e) {
+-            var_dump($e);
+-            trigger_error('Exception! '.$e->getMessage());
++        } catch (\PDOException $e) {
++            trigger_error('Database Exception! '.$e->getMessage());
+             // if all else fails, just return an empty array
+             return [];
+         }

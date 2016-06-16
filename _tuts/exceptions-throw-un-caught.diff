@@ -1,0 +1,12 @@
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index 56650f5..874c284 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -13,6 +13,7 @@ class PdoShipStorage implements ShipStorageInterface
+ 
+     public function fetchAllShipsData()
+     {
++        throw new \InvalidArgumentException('something else went wrong!');
+         $statement = $this->pdo->prepare('SELECT * FROM FOOOOO');
+         $statement->execute();
+ 

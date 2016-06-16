@@ -1,0 +1,12 @@
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 42ef771..b52296f 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -63,6 +63,7 @@ class ShipLoader
+         try {
+             return $this->shipStorage->fetchAllShipsData();
+         } catch (\Exception $e) {
++            trigger_error('Exception! '.$e->getMessage());
+             // if all else fails, just return an empty array
+             return [];
+         }

@@ -1,0 +1,27 @@
+diff --git a/battle.php b/battle.php
+index cd0f441..88c3056 100644
+--- a/battle.php
++++ b/battle.php
+@@ -95,7 +95,7 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
+                 <h3>Remaining Strength</h3>
+                 <dl class="dl-horizontal">
+                     <dt><?php echo $ship1->getName(); ?></dt>
+-                    <dd><?php echo $ship1->strength; ?></dd>
++                    <dd><?php echo $ship1->getStrength(); ?></dd>
+                     <dt><?php echo $ship2->getName(); ?></dt>
+                     <dd><?php echo $ship2->getStrength(); ?></dd>
+                 </dl>
+diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
+index cdbdf52..bb36f92 100644
+--- a/lib/Model/AbstractShip.php
++++ b/lib/Model/AbstractShip.php
+@@ -126,9 +126,4 @@ abstract class AbstractShip
+     {
+         return $this->getName();
+     }
+-
+-    public function __get($propertyName)
+-    {
+-        return $this->$propertyName;
+-    }
+ }

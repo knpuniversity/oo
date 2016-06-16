@@ -1,0 +1,43 @@
+diff --git a/index.php b/index.php
+index 283f2cf..5a13375 100644
+--- a/index.php
++++ b/index.php
+@@ -12,7 +12,6 @@ $shipLoader = $container->getShipLoader();
+ $ships = $shipLoader->getShips();
+ 
+ $brokenShip = new BrokenShip('Just a hunk of metal');
+-$brokenShip->setStrength('banana');
+ $ships[] = $brokenShip;
+ 
+ $battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
+diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
+index 9826bb8..56650f5 100644
+--- a/lib/Service/PdoShipStorage.php
++++ b/lib/Service/PdoShipStorage.php
+@@ -13,7 +13,7 @@ class PdoShipStorage implements ShipStorageInterface
+ 
+     public function fetchAllShipsData()
+     {
+-        $statement = $this->pdo->prepare('SELECT * FROM ship');
++        $statement = $this->pdo->prepare('SELECT * FROM FOOOOO');
+         $statement->execute();
+ 
+         return $statement->fetchAll(\PDO::FETCH_ASSOC);
+diff --git a/lib/Service/ShipLoader.php b/lib/Service/ShipLoader.php
+index 54821be..42ef771 100644
+--- a/lib/Service/ShipLoader.php
++++ b/lib/Service/ShipLoader.php
+@@ -60,7 +60,12 @@ class ShipLoader
+ 
+     private function queryForShips()
+     {
+-        return $this->shipStorage->fetchAllShipsData();
++        try {
++            return $this->shipStorage->fetchAllShipsData();
++        } catch (\Exception $e) {
++            // if all else fails, just return an empty array
++            return [];
++        }
+     }
+ }
+ 

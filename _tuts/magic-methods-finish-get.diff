@@ -1,0 +1,12 @@
+diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
+index f947613..cdbdf52 100644
+--- a/lib/Model/AbstractShip.php
++++ b/lib/Model/AbstractShip.php
+@@ -129,6 +129,6 @@ abstract class AbstractShip
+ 
+     public function __get($propertyName)
+     {
+-        var_dump($propertyName);die;
++        return $this->$propertyName;
+     }
+ }

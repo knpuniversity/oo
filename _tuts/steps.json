@@ -584,7 +584,72 @@
             "id": "autoload-use-composer",
             "name": "Autoload: Use composer",
             "description": null
+        },
+        {
+            "id": "exceptions-causing-one-to-be-thrown",
+            "name": "Exceptions: Causing one to be thrown",
+            "description": null
+        },
+        {
+            "id": "exceptions-catch-an-exception",
+            "name": "Exceptions: Catch an exception",
+            "description": null
+        },
+        {
+            "id": "exceptions-using-exception-object",
+            "name": "Exceptions: Using Exception object",
+            "description": null
+        },
+        {
+            "id": "exceptions-dump-object",
+            "name": "Exceptions: Dump object",
+            "description": null
+        },
+        {
+            "id": "exceptions-only-catch-pdoexception",
+            "name": "Exceptions: Only catch PDOException",
+            "description": null
+        },
+        {
+            "id": "exceptions-throw-un-caught",
+            "name": "Exceptions: Throw un-caught",
+            "description": null
+        },
+        {
+            "id": "exceptions-remove-debug-code",
+            "name": "Exceptions: Remove debug code",
+            "description": null
+        },
+        {
+            "id": "tostring-print-an-object-crazy",
+            "name": "__toString: Print an object. Crazy!",
+            "description": null
+        },
+        {
+            "id": "tostring-add-tostring",
+            "name": "__toString: Add __toString()",
+            "description": null
+        },
+        {
+            "id": "magic-methods-try-to-access-private-property",
+            "name": "Magic Methods: Try to access private property",
+            "description": null
+        },
+        {
+            "id": "magic-methods-get-and-dump-arg",
+            "name": "Magic Methods: __get() and dump arg",
+            "description": null
+        },
+        {
+            "id": "magic-methods-finish-get",
+            "name": "Magic Methods: Finish __get()",
+            "description": null
+        },
+        {
+            "id": "magic-methods-remove-that-silliness",
+            "name": "Magic Methods: Remove that silliness",
+            "description": null
         }
     ],
-    "sha": "987cbbef5108b578c57fc4e11ae9b048a1b995db"
+    "sha": "92f3c045d7aeea2625b87bf24692b616f0554064"
 }
