@@ -526,6 +526,11 @@
             "description": null
         },
         {
+            "id": "static-use-self",
+            "name": "Static: Use self",
+            "description": null
+        },
+        {
             "id": "static-create-non-static-method-and-use",
             "name": "Static: Create non-static method and use",
             "description": null
@@ -706,5 +711,5 @@
             "description": null
         }
     ],
-    "sha": "8d101c3933b690b8a637866dc23b84b7ca4ca93d"
+    "sha": "795d51447b740b42a76536a6be81b2ba19bdcb1c"
 }

@@ -36,7 +36,7 @@ index 9e1656b..6c06003 100644
                      </form>
                  </div>
 diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
-index ea13d21..dc3a270 100644
+index ea13d21..0e488d4 100644
 --- a/lib/Service/BattleManager.php
 +++ b/lib/Service/BattleManager.php
 @@ -7,22 +7,23 @@ class BattleManager
@@ -66,7 +66,7 @@ index ea13d21..dc3a270 100644
                  $ship1Health = 0;
                  $ship2UsedJediPowers = true;
  
-@@ -30,8 +31,16 @@ class BattleManager
+@@ -30,8 +31,17 @@ class BattleManager
              }
  
              // now battle them normally
@@ -82,6 +82,7 @@ index ea13d21..dc3a270 100644
 +                $ship1Health = 0;
 +                $ship2Health = 0;
 +            }
++            $i++;
          }
  
          // update the strengths on the ships, so we can show this

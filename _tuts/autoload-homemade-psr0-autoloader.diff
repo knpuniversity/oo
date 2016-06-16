@@ -29,7 +29,7 @@ index 87804b3..91813b1 100644
  require __DIR__.'/bootstrap.php';
  
 diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
-index 7dd73f1..f6e0a69 100644
+index cc340ef..9bd982e 100644
 --- a/lib/Service/BattleManager.php
 +++ b/lib/Service/BattleManager.php
 @@ -1,6 +1,6 @@

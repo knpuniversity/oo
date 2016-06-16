@@ -26,10 +26,10 @@ index a26f09e..30495ee 100644
                          </div>
  
 diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
-index b51001b..15edef4 100644
+index 60ee10f..0f8e2a9 100644
 --- a/lib/Service/BattleManager.php
 +++ b/lib/Service/BattleManager.php
-@@ -72,6 +72,15 @@ class BattleManager
+@@ -73,6 +73,15 @@ class BattleManager
          return new BattleResult($usedJediPowers, $winningShip, $losingShip);
      }
  

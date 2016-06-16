@@ -12,7 +12,7 @@ index f58a41c..443d444 100644
  $errorMessage = '';
  if (isset($_GET['error'])) {
 diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
-index 98c416e..7dd73f1 100644
+index 97cd6c5..cc340ef 100644
 --- a/lib/Service/BattleManager.php
 +++ b/lib/Service/BattleManager.php
 @@ -1,5 +1,7 @@

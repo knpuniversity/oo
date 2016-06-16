@@ -13,10 +13,10 @@ index 30495ee..f58a41c 100644
  $errorMessage = '';
  if (isset($_GET['error'])) {
 diff --git a/lib/Service/BattleManager.php b/lib/Service/BattleManager.php
-index 15edef4..98c416e 100644
+index 0f8e2a9..97cd6c5 100644
 --- a/lib/Service/BattleManager.php
 +++ b/lib/Service/BattleManager.php
-@@ -72,7 +72,7 @@ class BattleManager
+@@ -73,7 +73,7 @@ class BattleManager
          return new BattleResult($usedJediPowers, $winningShip, $losingShip);
      }
  
