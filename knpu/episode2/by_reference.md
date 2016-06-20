@@ -51,11 +51,17 @@ that's not needed, because this is *always* true.
 The takeaway is that if you change an object, you're changing that object
 *everywhere*. To prove this, take our `$ship1` and `$ship2` - which are *not*
 returned by the `battle()` function - and add a new section that prints the
-finished strength. Add a `dl` element to make them a little pretty. First,
-echo `$ship1->getName()` and then `$ship1->getStrength()`. Do the same thing
-for `$ship2`:
+finished strength. Add a `dl` element to make them a little pretty:
 
-[[[ code('c81b1f58d2') ]]]
+[[[ code('93c9fb7e7e') ]]]
+
+First, echo `$ship1->getName()` and then `$ship1->getStrength()`:
+
+[[[ code('9ec1f88ea3') ]]]
+
+Do the same thing for `$ship2`:
+
+[[[ code('ad3fdf77a7') ]]]
 
 We're missing auto-complete because we have some bad PHPDoc somewhere. We'll
 fix that in a bit.
