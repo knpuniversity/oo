@@ -1,32 +1,137 @@
-# Class Constants
+# The Wonder of Class Constants
 
-Well hey guys. Welcome back for part four of our Object Oriented Programming series. You guys are already really dangerous at this point. In this course we're going to have some fun and talk about a lot of the little features that we haven't mentioned yet. This is going to cross you over that final gap that will allow you to recognize all of the different object oriented things that you see in other people's code. There's lots to get through. Let's not delay. Let's get started.
+Hi friends! I'm so glad you're here for part *4* of "Baking Delicious Chocolate Chip Cookies"
+course. Wait, they're telling me that's not right. Oh, ok, I'm so glad you're here
+for part *4* of our Object Oriented Programming series!
 
-As always you should code along with me. The best way to do that is to download the source code from this page on Zip It and move into the start directory. When you do that, you'll have the same code that I have here. You should also have a readme file in there. If you check that out, it will tell you instructions on how to get things setup.
+After the first 3 parts, you guys are already dangerous, so I'm impressed you're
+still showing up and aren't off coding up something cool. But, you made the right
+choice: in this course we're going to really have fun with some of the coolest parts
+of OO, showing off features that we haven't mentioned yet. This is packed with the
+*final* pieces that will let you recognize all the different OO things that you see
+in other people's code. There's lots to get through, so let's go!
 
-When you finally do have things setup, I want you to open your favorite terminal application, move into the directory, and like we've done in the previous courses we're going to start the built in php web server by running php-S localhost: 8000. That's just a really good server to use for development. Then in our browser we can go to localhost: 8000 and here is our beautiful Battles application.
+## Get the Starting Code!
 
-We're going to start by adding a brand new feature. In index.php, near the bottom, right after we choose our ships but before we hit submit, I'm going to paste in a new select box. I'm going to show you what it looks like first. It's a new select box called "Battle Type" with a normal, no Jedi powers, and only Jedi powers. If you look at the code, this is a single select field as a name of battle_type. Then it has these three options on it.
+If you're serious about getting *really* good at this stuff, code along with me.
+To do that, download the source code from this page, unzip it, and move into the
+start directory. When you do that, you'll have the same code that I have here. Open
+up the README file and follow the instructions inside to get things setup.
 
-What we're going to do is we're going to allow you to select a normal battle which will be how things work, and have worked, where the two ships battle each other. No Jedi powers which means the ships will have to battle each other to the death and the Jedis can't come and use their special powers. Only Jedi powers where the Jedi's magically use their powers and overcome a stronger ship.
+When your setup, open your favorite terminal application, move into the directory,
+and - like we've done in the previous courses - start the built in php web server
+by running:
 
-Before we do anything special, we're just going to hook this up in the normal way. We have a battle_type field here, let's go in a battle.php where this submits to. Before we actually call the battle method on the Battle Manager, let's create a new variable called battletype and set that equal to $_POST add on to score type. Then we'll pass battletype as a new fifth argument to the battle function which we'll create in a second. Battletype is being passed as the fifth argument here.
+```bash
+php -S localhost:8000
+```
 
-Let's open up Battle Manager and to the battle function we will add the new fifth argument, battletype. Great. Now as you can see this would be one of these strings normal, no Jedi, or only Jedi. Now we just need to hook up the logic. First, these two blocks here should only be run if Jedi powers are being used. We can do an if statement. We can add to the if statement and say if battletype does not equal the no Jedi type, then we can run this. I'm going to copy that and put it down here on the second thing. If normal or only Jedi are executed, then we will totally use these types.
+This is a great server to use for development. Then, in our browser, we can go to
+`http://localhost:8000`. Here is our beautiful Battles app!
 
-Down here, this is spot where the two ships actually battle each other and bring down their health. If we're in the only Jedi mode, then that shouldn't happen. They should only kill each other by using the modes up here. Let's add another if statement that says if battletype does not equal only Jedi, then go ahead and run these things. Perfect. That takes care of it.
+## New Feature! Battle Types
 
-The only other little detail we need to add is we need to make sure that if two ships that have no Jedi powers fight each other with the only Jedi mode, they don't fight forever because this would loop it over forever and ever. I'm going to create a new I variable set to zero. Then just at the bottom of this we'll say if I equals 100, then probably we're stuck in an infinite loop because those two non-Jedi ships are fighting each other, so we'll just set ship one health equal to zero and ship two health equal to zero and below this we'll increment that. That should do it.
+People have been *clamoring* for a new feature: a way to battle that *forces* Jedi
+powers to be used or completely avoided. Let's add this - it'll show off a new cool
+thing: class constants.
 
-Let's give it a try here. We'll select one Jedi Starfighter, one CloakShape fighter, and let's check do only Jedi powers. Hit engage and there we go. The Jedi Starfighter used it's Jedi powers for a stunning victory. If we refreshed every single time, it will use it's Jedi star powers to win.
+Open `index.php` and scroll down. Right *after* the ship `select` boxes, but *before*
+the submit button, I'll paste some HTML for a *new* select box.
 
-Perfect. That was easy. What's the problem? The problem is if you look at these strings normal, no Jedi, only Jedi, they're just kind of random strings. Especially in Battle Manager when you see these strings, it's not really clear what other strings you could have. I see no Jedi here, only Jedi down here. What other modes are there? What do these modes mean? When you have kind of magic strings like this, they can become a little bit hard to keep track of in your application because you end up references these exact little strings many, many places in your application and it's difficult to keep things organized.
+Let's refresh and see what it looks like. Ok, it's a new drop-down called "Battle Type"
+with option for "Normal", "No Jedi Powers" and "Only Jedi Powers". If you look at
+the code, this is a single `select` field that has a name of `battle_type`.
 
-Object oriented code gives us a really nice way to solve this called "class constants". It works like this. Inside any class, and I'm going to use Battle Manager because these types of battles deal most closely with Battle Manager, you can use a special keyword called "const" followed by a word, which is usually in all upper case, type normal, set to a string. I'm going to repeat this. Const no Jedi for the other two types. Const type only Jedi equals only Jedi. Constants are like variables except they can't be changed, but we can reference them. The names of the constants, like type_normal, those can be anything. I prefixed it with type so that it helps me understand that these are probably battletypes.
+Here's the idea: each *type* will cause the `BattleManager` to battle these two ships
+in *slightly* different ways. Let's hook this up as *simply* as possible.
 
-As soon as you do this, instead of having this random string, you can say self, because remember ... You can say BattleManager:: and then type no Jedi. Then down here, you do the same thing. BattleManager type no Jedi. Then down here BattleManager only Jedi. That's going to work the exact same way as those strings. In index.php, you do the same thing. Open php echo. BattleManager type normal. We'll copy that and replace it with type no Jedi and type only Jedi. Just to [preview 00:08:58] it still works, let's refresh this page and everything's still happy.
+Since the field is named `battle_type`, open `battle.php` - the file that handles
+the submit. Right before calling the `battle()` method, create a new variable called
+`$battleType` set to `$_POST['battle_type']`. Then, pass `$battleType` as a new *fifth*
+argument to the `battle()` method.
 
-You can see that's the exact same thing as before, we've just given these strings a single home at the top of Battle Manager. If we need to change this string value for some reason, we could do it in this one spot and nothing would break in our application and everything would be happy. This also gives our strings some context. What I mean is we can actually document them now. We could put some documentation above that says this is the normal battle mode don't allow Jedi powers. Above the last one you could say something like you can only use when with Jedi powers.
+## Hooking up the Logic: No Magic Yet
 
-Then later when another developer, or you in the future, is looking inside index.php, instead of these random strings that don't hold meaning, they go, "Oh, Battle Manager type normal. Let me go look in that class. Oh." Here they are and explained. Constants are just a really nice thing that we inherit. Anytime you have a string of value, or maybe a number value, which is not really meaningful in itself, but will never change, stick it on a constant and you'll be very happy.
+Now, let's go add that! Open `BattleManager` and find `battle()`. Give this a new
+fifth argument: `$battleType`. Great! *We* know that this will be one of the three
+special strings, either `normal`, `no_jedi` or `only_jedi`. We can use those to change
+the behavior.
 
+First, the two blocks near the top should *only* be run if Jedi powers are being
+used. Add to the if statement: if `$battleType != 'no_jedi'`, then we can run this.
+Copy that and add it to the second block.
+
+Perfect! If the battle type is `normal` or `only_jedi`, these blocks will execute.
+
+Next, the last two lines are when the two ships battle each other normally. If we're
+on `only_jedi` mode, this shouldn't happen. Surround them with an `if` statement:
+`if ($battleType != 'only_jedi')` then run these lines.
+
+Awesome! Now, there's just *one* little last detail: if two ships are fighting in
+`only_jedi` mode, and both have *zero* Jedi powers, they'll get caught in this loop
+and right forever! To prevent that, above the `while`, add a new `$i = 0` variable.
+
+Then, at the bottom, if `$i = 100`, we're probably stuck in a loop. Just set
+`$ship1Health = 0;` and `$ship2Health = 0` and increment `$i` below that.
+
+Done!
+
+Give it a try!. Select one Jedi Starfighter, one CloakShape fighter, and choose
+"Only Jedi Powers". Hit engage and ... the Jedi Starfighter used its Jedi powers
+for a stunning victory! If we refresh, one of the ships will use its Jedi powers
+*every* single time.
+
+## Magic Strings Make Kittens Cry
+
+Feature complete! And it was easy. So... what's the problem? Look at these strings:
+`normal`, `no_jedi` and `only_jedi`: they're kind of magic. I mean, we chose them
+randomly and if you misspell one somewhere, you won't get an error, but things won't
+work right. 
+
+To make things worse, in `BattleManager`, when you see these strings, it's not clear
+what *other* strings might be possible. Are there other battle types we're forgetting
+to handle? And if we wanted to add or remove a battle type, what other files would
+we need to change? It's really common to have "magic strings" like these, but they
+can become a hard to keep track of: you end up referencing these exact little strings
+in many places.
+
+## Class Constants to the Rescue
+
+But of course, object-oriented code has a answer! It's called "class constants",
+and it works like this. Inside any class, you can use a special keyword called
+`const` followed by a word - which is usually in all uppercase - like `TYPE_NORMAL`
+and equals a value - `normal`. Repeat this for `const TYPE_NO_JEDI = 'no_jedi'`
+and `const TYPE_ONLY_JEDI = 'only_jedi'`.
+
+Constants are like variables, except they can never be changed. You can call the
+constants anything - by adding `TYPE_` before each one, it helps me remember what
+these are used for - battle types. You can also add these to *any* class. I choice
+`BattleManager` because these types are used here.
+
+## Using Class Constants
+
+As soon as you do this, you can replace the random string with `BattleManager::TYPE_NO_JEDI`.
+Below that, use `BattleManager::TYPE_ONLY_JEDI`. That will work the *exact* same
+way as before. In `index.php`, do the same thing: `<?php echo BattleManager::TYPE_NORMAL`.
+Copy that and replace it with `TYPE_NO_JEDI` and `TYPE_ONLY_JEDI`.
+
+To prove it still works, refresh this page. Everything's still happy!
+
+In a sense, nothing changed! But now, these magic strings have a *single* home: at
+the top of `BattleManager`. If we ever needed to *change* these strings for some
+reason, we can do it in just *once* place.
+
+This *also* gives these strings some context - these are obviously related to
+`BattleManager`, and we can probably look here to see how they're used. We can also
+*document* what they mean by adding some details above each type - describing what
+they *mean*.
+
+Now, check this out. When some *other* developer looks inside `index.php`, instead
+of seeing some magic, meaningless strings like before, they'll see these constants
+and think:
+
+> Oh, `BattleManager::TYPE_NORMAL`. Let me go look in that class to see what this
+> means. Oh hey, there's even some documentation!
+
+So anytime you have a special string or other value that has some special meaning
+but will never change, make it a constant and stay happy.

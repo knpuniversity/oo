@@ -1,26 +1,65 @@
 # Static Methods
 
-Now a really important thing just happened. For the first time ever we referred to our class by the class name. What I mean is we said, "Battle manager, colon, colon, type no Jedi." That is completely different than everything we've done with object-oriented code so far. Up until now, we always go through the same process. First, we instantiate a new instance of something by saying, "New Battle Manager," and that's what happens inside of the container. Then we call a method, or reference a property on it by saying, "Battle manager arrow," and then the method name. The constants, they're totally different. We just suddenly say, "The class name, colon, colon, type no Jedi." That's because constants are what we call static.
+In `index.php`, the three battle types are hard coded right in the HTML. So what
+happens if we decide to add a *fourth* battle type to `BattleManager`. No problem:
+add a new constant, then update the `battle()` method lgoic for whatever this new
+type does.
 
-What that basically means is that everything that you can put into a class, when you add something to a class, like a property or a method, you can chose to attach that to individual instances of the object or to the class itself. When something is static, that property is kind of global. It's attached to the class itself. When you create something that is non-static, it's attached to the individual instances, the individual objects of that type.
+But surprise! If we forget to *also* add the new type to `index.php`, then nobody's
+going to be able to use it. Really, I'd `BattleManager` to be *completely* in charge
+of the battle types so that it's the *only* file I need to touch when something changes.
 
-I'll give you a better example. In abstract ship, the property's ID, name, weapon power, and strength are not static. What that means is that if you have two ship objects, they might have a different ID, name, weapon power, or strength value. They change independent of each other. If we were to change these properties to static, which is something that you can do, then suddenly that name property would be global to all ships, meaning Ship 1 and Ship 2 couldn't have different names. This would be the name of abstract ships in general. The name property would be attached globally to the abstract ship class, not to the individual property. This is a very difficult thing to understand, which is why we actually avoided the topic until now.
+## Using a Handle, Non-Static Method
 
-In battle manager, constants by their very nature are static. They're information that is attached to the class, not individual instances of battle manager. When you reference something statically, you always reference it by saying, "The class name, colon, colon," and then whatever you're referencing after that. In this case, the constant.
+To do that, create a new function in `BattleManager` that will return all of the
+types and their descriptions: call it `public function getAllBattleTypesWithDescription()`.
+Here, return an array with the type as the key and the description that should be
+used in the drop-down as the value.
 
-Now, before I talk more about that, there's one other special property of static things. Notice that we're inside a battle manager and we're referencing the battle manager class. If you want to, you can change this to, "Self, colon, colon, type no Jedi." That will have the same effect as before. In the same way that this refers to the current object, self refers to the class that we're inside of right now. This didn't change our behavior at all. It's the exact same thing as before.
+Awesome! Next, if we call this method in `index.php`, we can remove the hardcoded
+values there. Of course, this method is *non-static*. That means that we need to
+call this method on a `BattleManager` *object*. Create a new one by saying
+`$battleManager = $container->getBattleManager()`.
 
-Now, let's build on top of this idea. In index.php, we have the three types, hard coded, right inside of our html. What happens if, in battle manager, we decide to add a fourth type? All we would need to do is update our battle function and add some extra if-statements for whatever this fourth type does, but surprise. If we forget to update index.php, then nobody's going to be able to use our feature. What I'd like to do is have battle manager be in charge of those three types. We're going to create a new function down here that we can call from inside of index.php to get all of the types and their descriptions. We'll call it, "Public function, get all battle types with description," and we'll return an array with the type as the key and then the description that should be in the drop-down as the value. "No Jedi powers, self. Only Jedi powers set to only Jedi powers." Awesome.
+Now add `$battleTypes = $battleManager->getAllBattleTypesWithDescription()`. Finally,
+scroll down. In place of the hardcoded values, `foreach` over `$battleTypes` as
+`$battleType => $typeText`. End the `foreach` and make the option dynamic by printing
+`$battleType` and `<?php echo $typeText; ?>`.
 
-Now if we call this, we don't have to hard-code those values in there. In order to call this method, we're going to need to create a new instance of our battle manager. We'll say, "Battle manager equals container arrow get battle manager," because of course we know that this is creating the battle manager for us.
+Ok! Give it a try! Click the "Battle Again" link. And yes! The drop-down has the
+same three values as before.
 
-Great. Now we'll say, "Battle types equals battle manager get all battle types with description." Super easy. This is nothing new. Then down here, instead of having these hard-coded, we will just create a nice little for each. "For each over battle types as battle type." That's the constant sting and, "Type text," and the for each, and then go ahead and make the option dynamic by echoing battle type in open php echo type text. Beautiful.
+## Why not make the Method Static?
 
-Let's just over check that that works. Hit battle again. Down at the bottom we have normal, no Jedi powers, only Jedi powers, so this is great. Here's the interesting part about this. There's nothing wrong with this, but these values right here, these three types and their description, these are currently not static, so every individual instance of battle manager, if we had multiple, would be managing their own battle types with description. The battle types are really global, right? It's not like we need to have different battle types for each individual object.
+Here's where things get interesting! We made `getAllBattleTypesWithDescription()`
+*non-static*. Could we make it static instead?
 
-The battle manager class itself says, "These are my three types." In other words, if we want to, we can make this a static function. We could do that by saying, "Public static function," and the only thing that changes is the way that we call the method. We no longer need a battle manager instance at all. Instead, we would say, "Battle manager, colon, colon, get all battle types with description." Now refresh and that works just fine.
+To know, ask yourself these two questions:
 
-Look. Understanding static versus non static, it's hard at first, and in a lot of other tutorials, you'll see it actually taught in reverse. They'll show you the static stuff first because it's actually a little easier, and then they'll show you the non static stuff, but that's not how people program in the real world. I want you guys to run around and make everything not static, and then as you get more comfortable, you will start to see different situations where it's okay to make something static.
+1. Does it make sense - philosphically - for the `getAllBattleTypesWithDescription()`
+   method to be attached to the *class* instead an object? I would say yes: the
+   battle types and descriptions will *not* be different for different `BattleManager`
+   objects; these are global to the class.
 
-The most important thing is that you guys understand that you will call these differently, and that I want you to try to make things non static because it's going to force you down a road where you're going to be building better code.
+2. Does the method need the `$this` variable? If you need to reference non-static
+   properties using `$this`, then the method *must* be non-static. But we're not
+   using `$this`.
 
+So let's make this method `static` by saying `public static function`. The only
+thing that changes now is *how* we call our method. First, we don't need a `BattleManager`
+object at all. Instead, just say `BattleManager::getAllBattleTypesWithDescription()`.
+
+Ok, try it out! It works!
+
+## When to use Static versus Non-Static
+
+So look, this static versus non-static stuff can be tough. And in a lot of other
+tutorials, you'll see this taught in reverse: they'll show you static stuff first,
+because it's a little easier. *Then* they'll teach non-static properties and methods.
+
+But guess what: that's not how *good* programmers code in the real world: they make
+most things *non-static*. And to start, I want you guys to also make everything not
+static. Then, as you get more comfortable, you will start to see different situations
+where it's okay to make some things static. It's actually much easier to change things
+from `non-static` to `static` than the other way around. And when you make things
+non-static, it forces you to build better code.

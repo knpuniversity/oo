@@ -20,10 +20,66 @@ summary: |
 
 # illustration: oo-ep4.png
 
-#tuts_hero:
-#    start_step: 'start'
-#    finish_step: 'start'
+# todo - fill in correctly!
+tuts_hero:
+#   start_step: 'start'
+   finish_step: 'start'
 
 challenge_repo: knpuniversity/oo-challenges
 
-chapters: []
+chapters:
+    class-constants:
+        is_free:    true
+        is_finished: false
+        video_key: ~
+        challenges: []
+    static-vs-non-static-and-self:
+        is_free:    true
+        is_finished: false
+        video_key: ~
+        challenges: []
+    static-methods:
+        is_free:    true
+        is_finished: false
+        video_key: ~
+        challenges: []
+    namespaces-make-class-names-longer:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    autoloading-awesomeness:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    more-with-use-statements:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    namespaces-core-php-classes:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    composer-autoloading:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    throw-exceptions:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    magic-methods:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    array-access-iterator-aggregate:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    traits-reuse:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    composition-ftw:
+        is_finished: false
+        video_key: ~
+        challenges: []
