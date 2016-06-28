@@ -5,12 +5,12 @@ something on our class by using its *class name*. To use the constant, we said
 `BattleManager::TYPE_NO_JEDI`.
 
 That makes sense, but notice: it's *completely* different than how we've referred
-to class properties and methods so far. Normally, we start by creating a new object
+to class properties and methods so far. Normally, we create a new object
 by saying `new BattleManager()`. For us, this lives inside the `Container`. But here's
-the important part: to reference a method or property, we use *object* and say
+the important part: to reference a method or property, we use the *object* by saying
 `$battleManager->` followed by the method name. 
 
-For constants, it's totally different. We don't ever need to instantatiate an object.
+For constants, it's totally different. We don't ever need to instantiate an object.
 Instead, at any point, you can just say the class name `::TYPE_NO_JEDI`.
 
 So sometimes, we need to create an object and reference that *object*. But other
@@ -22,7 +22,7 @@ Here's the deal: constants are *static*, and so far, all of our properties and m
 are *non-static*. 
 
 You see, whenever you add something to a class - like a property or a method - you
-can choose to attach it to an individual instances of the object or to the class
+can choose to attach it to an individual instance of the object or to the class
 itself. When you choose to attach something to a class, it's said to be "static".
 
 Let's look at a real example. In `AbstractShip`, the properties `id`, `name`,
@@ -31,7 +31,7 @@ objects, each has a different `id`, `name`, `weaponPower` and `strength`. If you
 change the `name` in one `Ship` it does *not* affect any other ship objects.
 
 But, if we were to change these properties to `static` - which *is* something you
-can do - then suddenly the `name` property would be global to *all* ship, meaning
+can do - then suddenly the `name` property would be global to *all* ships, meaning
 two ship objects could *not* have different names. This would be the *one* name for
 all `AbstractShip`.
 
@@ -58,7 +58,7 @@ name, `::`, and then whatever you're referencing.
 
 ## The Special Self Keyword
 
-Before we try an example, there's on other special property of static things. Notice
+Before we try an example, there's another special property of static things. Notice
 that we're inside `BattleManager` and we're referencing the `BattleManager` class.
 If you want to, you can change this to, `self::TYPE_NO_JEDI`. In the same way that
 `$this` refers to the current object, `self` refers to the *class* that we're inside
