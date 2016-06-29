@@ -1,11 +1,11 @@
 # The Wonder of Class Constants
 
-Hi friends! I'm so glad you're here for part *4* of "Baking Delicious Chocolate Chip Cookies"
-course. Wait, they're telling me that's not right. Oh, ok, I'm so glad you're here
+Hey friends! I'm so glad you're here for part *4* of "Baking Delicious Chocolate Chip Cookies". 
+Wait, they're telling me that's not right. Oh, ok, I'm so glad you're here
 for part *4* of our Object Oriented Programming series!
 
 After the first 3 parts, you guys are already dangerous, so I'm impressed you're
-still showing up and aren't off coding up something cool. But, you made the right
+still showing up and aren't off coding something cool. You made the right
 choice: in this course we're going to really have fun with some of the coolest parts
 of OO, showing off features that we haven't mentioned yet. This is packed with the
 *final* pieces that will let you recognize all the different OO things that you see
@@ -18,7 +18,7 @@ To do that, download the source code from this page, unzip it, and move into the
 start directory. When you do that, you'll have the same code that I have here. Open
 up the README file and follow the instructions inside to get things setup.
 
-When your setup, open your favorite terminal application, move into the directory,
+When that's done, open your favorite terminal application, move into the directory,
 and - like we've done in the previous courses - start the built in php web server
 by running:
 
@@ -52,8 +52,8 @@ argument to the `battle()` method.
 
 ## Hooking up the Logic: No Magic Yet
 
-Now, let's go add that! Open `BattleManager` and find `battle()`. Give this a new
-fifth argument: `$battleType`. Great! *We* know that this will be one of the three
+Let's add that! Open `BattleManager` and find `battle()`. Give this a new
+fifth argument: `$battleType`. Great! *We* know that this will be one of three
 special strings, either `normal`, `no_jedi` or `only_jedi`. We can use those to change
 the behavior.
 
@@ -69,7 +69,7 @@ on `only_jedi` mode, this shouldn't happen. Surround them with an `if` statement
 
 Awesome! Now, there's just *one* little last detail: if two ships are fighting in
 `only_jedi` mode, and both have *zero* Jedi powers, they'll get caught in this loop
-and right forever! To prevent that, above the `while`, add a new `$i = 0` variable.
+and fight forever! To prevent that, above the `while`, add a new `$i = 0` variable.
 
 Then, at the bottom, if `$i = 100`, we're probably stuck in a loop. Just set
 `$ship1Health = 0;` and `$ship2Health = 0` and increment `$i` below that.
@@ -92,12 +92,12 @@ To make things worse, in `BattleManager`, when you see these strings, it's not c
 what *other* strings might be possible. Are there other battle types we're forgetting
 to handle? And if we wanted to add or remove a battle type, what other files would
 we need to change? It's really common to have "magic strings" like these, but they
-can become a hard to keep track of: you end up referencing these exact little strings
+can become hard to keep track of: you end up referencing these exact little strings
 in many places.
 
 ## Class Constants to the Rescue
 
-But of course, object-oriented code has a answer! It's called "class constants",
+Of course, object-oriented code has a answer! It's called "class constants",
 and it works like this. Inside any class, you can use a special keyword called
 `const` followed by a word - which is usually in all uppercase - like `TYPE_NORMAL`
 and equals a value - `normal`. Repeat this for `const TYPE_NO_JEDI = 'no_jedi'`
@@ -118,13 +118,12 @@ Copy that and replace it with `TYPE_NO_JEDI` and `TYPE_ONLY_JEDI`.
 To prove it still works, refresh this page. Everything's still happy!
 
 In a sense, nothing changed! But now, these magic strings have a *single* home: at
-the top of `BattleManager`. If we ever needed to *change* these strings for some
-reason, we can do it in just *once* place.
+the top of `BattleManager`. If we ever needed to *change* these strings, we can do 
+it in just *once* place.
 
 This *also* gives these strings some context - these are obviously related to
 `BattleManager`, and we can probably look here to see how they're used. We can also
-*document* what they mean by adding some details above each type - describing what
-they *mean*.
+*document* what they mean by adding some details above each type.
 
 Now, check this out. When some *other* developer looks inside `index.php`, instead
 of seeing some magic, meaningless strings like before, they'll see these constants
