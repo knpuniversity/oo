@@ -1,16 +1,94 @@
-# More with Use Statements
+# More Fun with use Statements
 
-You guys ready to get rid of all these require statements? Let's do it. The only thing we need to do is add the correct name space to every single class and auto [letter 00:00:16] will take care of the rest. This will be a little bit of work because we didn't do it up front. It would have been easier had we done this from the very beginning but we're going to learn some really important stuff about namespaces along the way so life's good.
+I hate needing all these `require` statements. But thanks to our autoloader, the
+*only* thing we need to do is give every class the namespace that matches its directory.
+This will be a little bit of work because we didn't do it up front - life is much
+easier when you use namespaces like this from the very beginning. But, we'll learn
+some other stuff along the way.
 
-An abstract shift, this is the model directory so lets give it name space Model. I'll copy that and do the same thing in BattleResult, BrokenShip, RebelShip and Ship. Perfect. BattleManager already has a namespace of Service because it's in the service directory. In Container, let's paste it there. JsonFileShipStorage, paste it. PdoShipStorage, paste that and ShipLoader paste and ShipStorageInterface should also live in the Service namespace.
+The `AbstractShip` class lives in the `Model` directory, so give the namespace
+Model. Copy that and do the same thing in `BattleResult`, `BrokenShip`,
+`RebelShip` and `Ship`.
 
-Great. Let's see what breaks. We go back and refresh. First error we get is Class Container not found in next.phb. With class not found errors with namespaces you need to read the error very closely. It's saying Class container is not found. We don't have a class called container. The only class we have is a class called Service\Container. This tells me that on index.phb in line 6 we're referencing the class name not the full namespace. Index.php line 6, sure enough we have new container so we could say service\container here or we can add a use statement for service\container and that's what we'll do. So live is good. We're going to have the same problem down here for BrokenShip and you can see it says undefined class BrokenShip. We need use Model\BrokenShip and that will take care of that. Finally there's ... no there's not one more. We will probably have the same problem in Battle.phb so let's open there, sure enough, use service\container and that looks like it's it. Cool.
+Perfect. `BattleManager` already has the correct `Service` namespace.
+In Container, paste that same namespace. Repat that in `JsonFileShipStorage`,
+`PdoShipStorage`, `ShipLoader`and `ShipStorageInterface`. These all live in the
+`Service` directory.
 
-Let's try it again. Refresh. Class Service\RebelShip no found in ShipLoader. Look at the class name really closely here, Service\RebelShip. We don't have a class by that name. Our RebelShip class is Model\RebelShip. Something is wrong inside of ShipLoader. Let's open it up and take a look. It's at line 43. Look. Line 43 says New RebelShip and what you're about to see is the most common mistake you can make with namespaces. We have New RebelShip here but we do not have a use statement up there. This is, in some ways, the same problem we just had inside of index.phb and battle.phb. However, the difference is that because this file has a namespace called Service phb thinks, right now, that the RebelShip is inside of the Service namespace.
+## Missing use Statements = Common Error
 
-This is the logic that happens, when phb parses this file it sees the RebelShip down on line 43. It then looks up on the top of the file to see if there is any use statements that end in RebelShip. Since there aren't, it assumes that RebelShip is in the Service namespace, so Service\RebelShip. Think about it, this is just like Directory [inaudible 00:04:12] directories on your file system. if you are inside of a directory called Service and you say lsRebelShip it's going to look for RebelShip inside of the Service directory but if you say ls\Model\RebelShip then it will look for it in the \Model\RebelShip namespace.
+Ok! Let's see what breaks! Go back and refresh. The First error we get is:
 
-In the case of index.phb there's no classes in this file so we didn't give this a namespace. If you for get to have the use statement for BrokenShip here this is equivalent to saying lsBrokenShip from the root of your file system. It assumes that the class is called BrokenShip. In both cases the solution is the same. You find where the error is in ShipLoader and that file is missing a use statement. Use Model\RebelShip and now you can see the highlighting goes away. The same problem down here for ship. We'll say, Use Model\Ship and actually we also have the same problem with our phb documentation. It assumes that this we're talking about a Service\AbstractShip let's use Model\AbstractShip. If I scroll down the highlighting goes away and everything else looks just fine.
+> Class Container not found in index.php
 
-The moral of the story is whenever you reference a class don't forget to put your use statement for it. The only exception to that is if you reference a class that happens to be in the same namespace as use. Like this ShipStorage interface. We don't need a use statement here because ShipStorage interface also exists in the service namespace so phb correctly guesses that this lives in the service namespace and it works. That's the edge case. As a rule of thumb, when you reference a class name remember to put the use statement for it. In a few edge cases you might not need it but it never hurts to put it there. In BattleManager we're going to have the same problem so I'll add a few other use statements here. Use Model\BattleResults and we need one for AbstractShip as well use Model\AbstractShip and there we go, all of our warnings go away. Go back, refresh, and our application is back to life.
+Ok, you're going to see *a lot* of class not found errors in your future. When you
+see them, read the error very closely: it always contains a hint. This says class
+`Container` is not found. Well, we don't have a class called `Container`: our class
+is called `Service\Container`. This tells me that in `index.php` on line 6, we're
+referencing the class name *without* the namespace. Sure enough, we have `new Container`.
 
+To fix this, we *could* say `Service\Container` here *or* we can add a `use` statement
+for `Service\Container`. Let's do that.
+
+And I can already see that we'll have the same problem down below with `BrokenShip`:
+PhpStorm is trying to warn me! Add a `use Model\BrokenShip` to take care of that.
+
+We'll probably have the same problem in `battle.php` - so open that up. Yep, add
+`use Service\Container`.
+
+Looking good!
+
+## Reading the Error Messages... Closely
+
+Try it again - refresh! Ok:
+
+> Class `Service\RebelShip` not found in `ShipLoader`.
+
+Remember what I just said about reading the error messages closely? This one has
+a clue: it's looking for `Service\RebelShip`. But we do'nt have a class called
+`Service\RebelShip` - our class is called `Model\RebelShip`. The problem exists
+where we're *referencing* this class - so in `ShipLoader` at line 43.
+
+This is the most *common* mistake with namespaces: we have `new RebelShip`, but we
+*don't* have a `use` statement on top for this. This is the same problem we just
+solved in `index.php`, but with a small difference. Unlike `index.php` and `battle.php`,
+this file lives in a namespace called `Service`. That causes PHP to assume that
+`RebelShip` *also* lives in that namespace.
+
+Here's how it works: when PHP parses this file, it sees the `RebelShip` class on
+line 43. Next, it looks up at the top of the file to see if there are any `use`
+statements that end in `RebelShip`. Since there aren't, it assumes that `RebelShip`
+also lives in `Service` namespace, so `Service\RebelShip`.
+
+Think about it: this is *just* like directories on your filesystem. If you are inside
+of a directory called `Service` and you say `ls RebelShip`,  it's going to look for
+`RebelShip` inside of the `Service` directory.
+
+But in `index.php` - since this doesn't hold a class - we didn't give this file a
+namespace. If you forget a `use` statement for `BrokenShip` here, this is equivalent
+to saying `ls BrokenShip` from the *root* of your file system, instead of from inside
+some directory.
+
+In both cases the solution is the same: add the missing `use` statement: `use Model\RebelShip`.
+PhpStorm *stops* highlighting this as an error.
+
+We have the same problem below for `Ship`: add `use Model\Ship`. Finally, there's
+one more spot in the PHP documentation itself. Because we don't have a `use` statement
+in this file yet for `AbstractShip`, PhpStorm assumes that this class is `Service\AbstractShip`.
+To fix that, also `use Model\AbstractShip`.
+
+Now, everything looks happy!
+
+The moral of the story is this: whenever you reference a class, don't forget to put
+a `use` statement for it. Now, there is *one* exception to this rule. If you reference
+a class that happens to be in the *same* namespace as the file you're in - like
+`ShipStorageInterface` - then you don't need a `use` statement. Php correctly assumes
+that `ShipStorageInterface` lives in the `Service` namespace. But you don't get
+lucky like this *too* often.
+
+I already know we need to fix *one* more spot in `BattleManager`. Add a `use` statement
+for `Model\BattleResults` and another for `Model\AbstractShip`.
+
+Phew! I promise, this is all a lot easier if you just use namespaces from the beginning!
+Let's refresh the page. Our app is back to life, and the `require` statements are
+gone!

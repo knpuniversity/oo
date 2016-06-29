@@ -1,16 +1,83 @@
-# Namespaces make Class Names longer
+# Namespaces make Class Names Longer
 
-We all know that the name of this class is Battle Manager, simple. When we want to use it we reference Battle Manager. No matter what we do, static or not static if we want to work with this class we call it by it's name, Battle Manager. Easy. Now why am I telling you this? Because I'm about to make it's class name longer. Maybe not in the way that you expect.
+We all know that the name of this class is `BattleManager`. When we want to use it,
+we reference `BattleManager`. No matter what we do - static or not static - if we want
+to work with this class we call it by its name, `BattleManager`. Simple.
 
-I'm going to show you a feature called name spaces. At first, why name spaces exist might not be obvious to you so hold on that. Here's how it works, above any class you can if you want to, add a name space keyword followed by some string.  Like, battle or something more complicated like /battle/hi guys/nice name space. Name spaces are a string that can have many parts if you want to and if you do have many parts you separate them by the back slash, that's the slash that feels a little wrong when you type it. It's usually the escape character.
+Why am I pointing out the painfully obvious? Because we're about to make this class
+name *longer*, but maybe how you'd expect. We're going to use a namespace.
 
-Now I want to make this simple and go back to name space battle. As soon as we did that we actually changed the name of the Battle Manager class. It is no longer called Battle Manager, in fact you can see undefined class Battle Manager. The name of this class is now Battle/Battle Manager. If we refresh to prove it everything still works just fine.
+## Let's see some Namespaces
 
-That's ... Name spaces are a big topic but that's the fundamental thing right there. You can optionally add the word name space above a class and when you do that the full class name becomes the name space/the class name.  Everywhere that you reference that class you need to update it. I won't do it yet because we're going to do a little bit more work but I would also need to update it inside of container or reference it here. Great.
+At first, *why* namespaces exist might not be obvious, so hold onto that question.
+First, let's see how tehy work.
 
-Now why do name spaces exist? Because that seems insane to me. How does this help me in my coding? Well the short answer is that it doesn't. Name spaces exist because as we get more into development we're going to start using third party libraries written by other people. Those third party libraries will provide us classes that we can use. Those classes will always have name spaces on them. The reason that name spaces exist is that if we use library a and library b and they both have a class called battle, well then we'd have a problem because we'd get 2 classes with the same name. But if library a has the name space of library a and library b has the name space of library b then these names will not collide. The class names will be library a/battle and library b/battle. Name spaces do help us but only indirectly. When we're working with name spaces it just makes our class names longer.
+Above any class, you can - if you want to - add a `namespace` keyword followed by
+some string. Like, `Battle` or something more complicated like `Battle\HiGuys\NiceNameSpace`.
+A namespace is a string, and you can give it different parts by separating each with
+a backslash - that's the slash that feels a little wrong when you type it - it's
+usually an escape character.
 
-Now the one other thing that you need to know about with name spaces is the u statement. Using the full class [inaudible 00:04:07] name like this is completely valid. But in practice what you're going to see is people add a u statement at the top of their file. When you reference Battle Manager whatever file you're in when you're referencing Battle Manager and the other top you'll say use, battle/battle manager. As soon as you do that back down here you can once again just reference the shortened version of the class. Now the u statement is not an important thing to name spaces in how they work. It's just a bit of a shortcut. What PHB literally does is when it sees this word Battle Manager it goes, huh, Battle Manager? Let me check all of the u statements at the top of this file, because you can have as many u statements as you want in a file and if I find a u statement that ends in the word Battle Manager then I will basically copy this long string and paste it down here at run time. What I just did is what PHB basically does at run time.
+To keep things simple, just set the namespace to `Battle` for now. As soon as we
+did that, we actually *changed* the name of this class: it is no longer called
+`BattleManager`. In fact, you can see that PhpStorm now highlights our code with
+an "Undefined class BattleManager" error. Thanks to the namespace, the class is
+*now* called `Battle/BattleManager`.
 
-Use statements don't change the behavior at all and if you wanted to you could never have a use statements. But in practice, you see people use them. Got it? All right we're going to do a lot more with name spaces but first we need to turn a very related topic called auto-loading.
+After updating the name, everything should. Refresh to prove it. Great!
 
+So... that's really it! When you add a `namespace` above a class, the full class
+name becomes that namespace, a `\`, and then class name. *Every* place we reference
+this class name will now need to change - like inside of `Container`. We'll do that
+in a few minute - we've got a few other things to do first.
+
+## So Why do Namespaces Exist?
+
+Now that you know how namespaces work, you're probably wondering, why do these even
+exist? How does this help me in my coding? Well, the short answer is... it doesn't
+help you. In fact, namespaces weren't *meant* to help you - they were meant to help
+external library developers.
+
+In a nut shell, as you go further into development, you'll start to use a lot of
+3rd-party, libraries written by other people. That's cool because those libraries
+will give *us* new classes to help solve problems.
+
+The reason that namespaces exist is to avoid collisions in those external libraries.
+Imagine we're using library A and library B, but that they *both* have a class called
+`Battle`. Without namespaces, we'd be dead in the water: we wouldn't be able to use
+both libraries. But if each library has a unique namespace, we won't collide: they'll
+simply be called something like `LibraryA\Battle` and `LibraryB\Battle`.
+
+This means that namespaces *do* help us, but only indirectly. When we're working with
+namespaces it just makes our class names longer.
+
+## The use Statement
+
+There is *one* other thing that you need to know about with namespace: it's the
+mystical `use` statement.
+
+When you want to reference a class, it's perfectly valid to type out the *entire*
+long class name right where you need to use it. But in practice, you won't see this
+very often. Instead, people typically add a `use` statement at the top of the file
+that references the *full* class name: `Battle\BattleManager`. 
+
+As soon as you do, when you need to work with the class, you can once again write
+out *only* the short class name. And while you'll only have *one* `namespace` per
+file, you'll have as many `use` statements as you need.
+
+To be clear, the `use` statement does *not* change how namespaces work: it's just
+a shortcut. When PHP executes this file, it sees class `BattleManager` and says:
+
+> Huh, BattleManager? Let me check all of the use statements at the top of this file.
+
+PHP then looks to see if any of the `use` statements *ends* in the word `BattleManager`.
+If it finds one, it basically copies the long class name and pastes in down below
+*right* before executing the file. What I just did manually is what PHP basically
+does at run-time.
+
+So `use` statements are just this nice, extra feature. And technically, you could
+avoid using them and instead write-out full class names right where you need
+them.
+
+Ok! We're going to do a lot more with namespaces. But first, we need to turn to
+a very related topic called autoloading.

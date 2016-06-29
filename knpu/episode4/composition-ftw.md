@@ -1,19 +1,96 @@
-# Composition FTW!
+# Object Composition FTW!
 
-In modern PHP, a lot of time, you're going to be working with other people's classes, outside external libraries that you bring into your project to help you do your work. When you do that, of course, you can't edit their code because if you do that, next time you upgrade their library, it's going to run over all of your changes. This gives us some very interesting ways to approach how to accomplish some tasks.
+In modern PHP, you're going to spend a lot of time working with *other* people's
+classes: via external libraries that you bring into your project to get things done
+faster. Of course, when you do tha: you can't actually *edit* their code if you need
+to change or add some behavior.
 
-For this purpose, I want you to pretend like our PDO ship story is actually an external class. We can't edit this class at all. Now, my goal is to add some logging, so let's say it's really important in our application that whenever we call fetch all ships data, we want to log how many ships were found to some file somewhere, but if we can't touch this file, how can we do that? Here's the thing, we're going to be able to accomplish this logging right inside of fetch all ships data very easily, without changing almost any of our existing code.
+Fortunately, OO code gives us some really neat ways to deal with this limitation.
 
-There's actually two ways to do this. The first way is we could create a new class that extends PDO ship storage, like log-able PDO ship storage, and then we could just override this fetch all ships data method, call the parent method, and then log how many ships are returned. I'm going to show you a better method. It's called composition and it works like this. First, create a new class in your service called log-able ship storage. Now, the only rule with any of our ship storage is that they need to implement the ship storage interface, and of course, when we implement an interface we have to add a couple methods. Let's go to code generate, implement methods, and select those two methods. So far this is how every ship storage ever starts.
+## Modifying a Class without Modifying it?
 
-Now, what we're going to have log-able ship storage do is not actually do the work. It's going to offload all of the work to our normal PDO ship storage, and the way we're going to do that is we're actually going to add a new private method called ship storage, and the public function underscore [inaudible 00:02:36] or construct that takes in a ship storage interface argument. Then we're just going to set the ship storage onto that property. What we're doing is we have a ship storage with another ship storage inside of it.
+For the next few minutes, I want you to pretend like our `PDOShipStorage` is actually
+from a third-party library. In other words, we *can't* modify it.
 
-Then on all of the methods in there, we're just going to say return this arrow ship storage, arrow fetch all ships data, and this arrow ship storage, arrow fetch single ship data. You see, if we use this log-able ship storage, when we pass the PDO ship storage into it, nothing should change. We've just basically added a wrapping layer around a ship storage. Actually, let's do that. Open up the container class, which is what creates the ship storage, and down here, we'll override the ship storage property and say this arrow ship storage equals new log-able ship storage. We'll pass it, this arrow ship storage, which is the PDO ship storage.
+Now, let's say whenever we call `fetchAllShipsData()`, it's *really* important for
+us to log to a file, how many ships were found. But if we can't edit this file, how
+can we do that?
 
-We've pulled a fast one on our application. Our entire application thinks we're using the PDO ship storage and we changed that, but we can do that because everywhere in our code we're expecting a ship storage interface, and we're still returning a ship storage interface from this method. If you refresh right now, nothing changes. Everything's still going through PDO, but now we have the opportunity to add more functionality, or change functionality in either of these methods.
+## Using Inheritance
 
-To give a really simple imitation, we can say ships equals, and return ships, and in between there we could call some new log function on here, maybe in log [inaudible 00:04:37] like, just fetched percent s ships, or passed that count of ships. Then down here, let's make a new private function. Log message and I'll make a comment. Do something more intelligent because right now just to prove it's working, let's echo that message. Perfect. Go back. Refresh, and there it is.
+There's actually two ways to do this, and both are pretty awesome. The first way
+is to create a new class that *extends* `PDOShipStorage`, like `LoggablePDOShipStorage`,
+and override some methods to add logging.
 
-This is called composition. It's the basic idea that when you want to override some behavior of an existing class, the first thing we always think of is, "Oh, just extend that class. It overrides the methods," but this is another way where you take that existing object and you don't change it at all. You just put it inside of you, and changed the methods on it. The advantage of this is that with the other method, we would have had log-able ship storage extends PDO ship storage. If we had wanted to change back to our Jason file ship storage, then all of a sudden we would have needed to change our log-able ship storage to extend Jason file ship storage. The way we built it with composition, our log-able ship storage works with any ship storage interface, so if we decided to suddenly used the Jason file ship storage instead, everything is just going to work out of the box.
+## Nah, Use Composition
 
-It's not a huge thing, but that's what people are referring to when they talk about composition. It's a really, really nice object oriented strategy. All right, guys. I have tried to think of all the weird stuff that we haven't talked about with object oriented-ness. I really really like you're super qualified at this point, so get out there, find some classes, find some interfaces, make some trades, do some good, and just keep practicing this stuff. It's going to sink in more and more over time. All right, guys. See you next time.
+But forget that, let's skip to a better method called composition. First, create
+a new class in the `Service` directory called `LoggableShipStorage`, but do *not*
+extend `PDOShipStorage`. 
+
+Now, the only rule for any ship storage object is that it needs to implement the
+`ShipStorageInterface`. Add that, and then go to our handy Code->Generate method
+to implement the 2 methods we need.
+
+So far, this is how every ship storage starts.
+
+But `LoggableShipStorage` will *not* actually do any of the ship-loading work - it'll
+offload all that hard work to some *other* ship storage object, like `PDOShipStorage`.
+To do that, add a new `private $shipStorage` property and a `public function __construct()`
+method that accepts one `ShipStorageInterface` argument. Then, set that value onto
+the `$shipStorage` property.
+
+Then, for `fetchSingleShipData()`, just `return $this->shipStorage->fetchSingleShipData()`.
+Repeat for the other method: `return $this->shipStorage->fetchSingleShipData()`.
+
+We've now created a *wrapper* object that offloads all of the work to an internal
+ship storage object. This is composition: you put one object *inside* of another.
+
+To use the new class, open up `Container`. Inside `getShipStorage`, add
+`$this->shipStorage = new LoggableShipStorage()` and pass it `$this->shipStorage`,
+which is the `PDOShipStorage` object.
+
+We've just pulled a "fast one" on our application: our entire application thinks
+we're using the `PDOShipStorage`, but we just changed that! If you refresh now, nothing
+changes: everything still even eventually goes through the `PDOShipStorage` object.
+
+But now, we have the opportunity to add *more* functionality - or to change functionality -
+in either of these methods.
+
+## Add some Logging!
+
+To give a really simple example, replace the return statement with `$ships =` and
+add `return $ships` below that. Un between, we could call some new `log()`, passing
+it a string like: `just fetched %s ships` - passing that a `count()` of `$ships`.
+
+Below, add a new `private function log()` with a `$message` argument. You should
+do something more intelligent in a real app, but to prove it's working, echo that
+message.
+
+Try it out: refresh! There's our message!
+
+## Why is Composition Cool?
+
+Wrapping one object inside of another like this is called composition. You see,
+when you want to change the behavior of an existing class, the first thing we always
+think of is
+
+> Oh, just extend that class and overrides some methods
+
+But composition is another option, and it *does* have some subtle advantages. If
+we had *extended* `PDOShipStorage` and then later wanted to change back to our
+`JsonFileShipStorage`, then all of a sudden we would need to change our `LoggableShipStorage`
+to extend `JsonFileShipStorage`. But with composition, our wrapper class can work
+with *any* `ShipStorageInterface`. We could change just one line to go back to loading
+files from JSON and not lose our logging.
+
+This isn't always a ground-breaking difference, but this is what people mean when
+they talk about "composition over inheritance".
+
+Alright guys! I have tried to think of all the weird stuff that we haven't talked
+about with object oriented coding, and I've run out! You are now *super* qualified
+with this stuff - so get out there, find some classes, find some interfaces, make
+some traits, do some good, and just keep practicing. It's going to sink in more and
+more over time, and serve you for *years* to come, in many different languages.
+
+All right, guys. See you next time!

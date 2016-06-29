@@ -1,20 +1,72 @@
 # Composer Autoloading
 
-All right, guys. Confession time. This cool little autoloader idea where we make our class name match our file name and our name space match our directory structure so we can write a really simple autoloader to find it ... That was not my idea. In fact, this idea has been around at php for years, and every modern project follows this rule, which is both nice for consistency and organization and is also nice because we can all autoload our files in the same way.
+Ok, guys: confession time. This cool little autoloader idea where we make our class
+name match our file name and our namespace match our directory structure ... well,
+that was *not* my idea. In fact, this idea has been around in PHP for years, and
+every modern project follows it. That's nice for consistency and organization, but
+it's also nice for a much more important reason: we can write a single autoloader
+function that can find *anyone's* code: our code or third-party code that we include
+in our project.
 
-In fact, this idea of naming your classes and files in this way is called 'psr-0'. There's a group in the phps called the php Fig which comes together and agrees on standards, and psr-0 was the first standard they came out with because obviously, we start counting with 0. It just says that Thou shalt call your class names the same as your file names .php and you should have your directory structures match up with your name spaces. Cool?
+## The Famous PSR-0
 
-Why do you care? You care because instead of having to write this autoloader by hand, you can actually include an outside library that is just going to take care of all of that for us. The library's called 'Composer' and you may have heard of it.
+The idea of naming your classes and files in this way is called `PSR-0`. You see,
+there's a lovable group called the PHP FIG. It's basically the United Nations of
+PHP: they coem together to agree on standards that everyone should follow. PSR-0
+was the first standard... called 0 because we geeks start counting at 0.
 
-First, let's download it. Go to getcompser.org , and hit download. Then copy the lines up here. If you're on Windows, you might see a slightly different download instructions. Then move into your terminal, open a new tab, and paste those in. This is downloading Composer. It's an executable file, and its main job is actually to help you download PHP packages. Composer's a package manager that we're not going to talk about today. Usually people use Composer to download external libraries they want to use in their project. But it has a second superpower, which is autoloading. So, when you're done, you'll end up with a composer.phar file which is a php executable. We're going to come back to it in a second.
+It simply says that Thou shalt call your class names the same as your filenames plus
+`.php` and you should have your directory structures match up with your namespaces.
 
-Now, to teach Composer to do the autoloading for us, all you need to do is create a new file called composer.json and we're just going to add a little bit of configuration inside of here; an autoload key, a psr-4 key, and empty quotes set to lib. That's it.
+## Hello Composer
 
-Remember I said this rule is called psr-0? Well psr-4 is a slight amendment to that. So psr-0 and psr-4 basically refer to this idea of naming your classes in a certain way. We're telling Composer that we want it to autoload our files using that convention, and the empty quote here says load every single class, no matter what it looks like, from my lib directory. That's it.
+Why do we care? Because instead of having to write this autoloader by hand, you can
+actually include an *outside* library that takes care of all of it for us. The library
+is called [Composer](https://getcomposer.org/): you may have heard of it.
 
-Now, back in the [trentroom 00:04:18], just run php composer.phar install. This normally would download any external packages that we need, but of course we're not using it that way. The second thing it does is it generates some autoload files. Specifically, it creates a new directory called Vendor, and inside of there, a couple files are going to help with autoloading.
+First, let's download it: Go to [getcomposer.org](https://getcomposer.org/) and hit
+download. Copy the lines up here: if you're on Windows, you may see slightly different
+instructions. Then move into your terminal, open a new tab, and paste those in.
 
-The cool part about this is all that we need to do now is inside of bootstrap.php, delete all this stuff and just say require__DIR__vendor/autoload.php which is one of the files that composer just generated for us. You also usually don't commit the Vendor directory to the depository. You have people on Composer install whenever they pull down a project.
+This is downloading Composer, which is just a single, executable file. Usually people
+use Composer to download external libraries they want to use in their project. It's
+PHP's package manager.
 
-So, go back, refresh ours, and we're good to go. As we add more classes and more directories to our lib directory, everything's going to work just fine. And if you guys want to start downloading external libraries into your project via Composer, you can do that, and you can reference those classes in the same way without doing any more work, so this is a cool thing.
+But it has a second superpower: autoloading. When this command finishes, you'll end
+up with a composer.phar file. This is a php executable. We'll come back to it in
+a second.
 
+## Configuring Autoloading
+
+To tell Composer to do the autoloading for us, all you need is a small configuration
+file called composer.json. Inside, add an `autoload` key, then a `psr-4` key, and
+empty quotes set to `lib`.
+
+That's it.
+
+Remember how I said this rule is called PSR-0? Well PSR-4 is a slight amendment to
+PSR-0, but they both refer to the same thing. This tells Composer that we want to
+autoload using the PSR-0 convention, and that it should look for *all* classes inside
+the `lib` directory. That's it.
+
+Back in your terminal, run:
+
+```bash
+php composer.phar install
+```
+
+This command normally downloads any external packages that we need - but we haven't
+defined any. But it *also* generates some autoload files inside a new `vendor/` directory.
+
+To use those, open `bootstrap.php`, delete all the manual autoload stuff, and replace
+it with just `require __DIR__vendor/autoload.php`, which is one of the files that
+composer just generated. That's it.
+
+You also usually don't commit the `vendor/` directory to your git repository: team
+members just run this same command when they download the project.
+
+Let's see if it works! Go back and refresh! It does! And as we add more classes and
+more directories to `lib/`, everything will keep working. AND, if you guys want to
+start downloading external libraries into your project via Composer, you can do that
+too and immediately reference those classes without needing to worry about require
+statements or autoloaders. Composer takes care of everything.

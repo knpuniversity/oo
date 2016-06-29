@@ -1,16 +1,76 @@
-# Magic Methods
+# Magic Methods: __toString() __get, __set()
 
-Could you print an object? What I mean is, for example, in battle dot PHP, after we determine the winners, we actually echo ship one arrow get name, which is a string, but could we just print ship one and ship two. Does it make sense to print an object? The answer is no. If you battle, you're going to get a very clear error that says object of class model slash rebel ship could not be converted to string. Notice that error because you're going to make that mistake eventually and you're going to see that error. You're going to realize that somewhere you are trying to print an object, and you cannot print objects.
+If I give you an object, could you print it? What I mean is, in `battle.php`, after
+we determine the winners, we echo `$ship1->getName()`, which is of course a string.
 
-Why am I telling you this seemingly small detail? Because I'm lying. You can print objects if you want to. You just have to do a little bit more work. In general, objects have super powers that you can give them. I want to show you a couple of the most interesting ones. Right now we can't print our ship object, it just doesn't work. How do you make it possible to print a ship object? Open abstract ship, go to the bottom, create a new public function underscore underscore two string. In return, this arrow will get named. Go back, refresh and now it works just fine.
+But could we just print `$ship1` and `$ship2`?. Does it make sense to print an object?
+The answer is... no. Try to battle:, you get a very clear error that says:
 
-Really what we are talking about here, is when you try to print an object first PHP needs to convert that object to a string, and it can't do that unless you add this underscore underscore two string method and return it. As soon as you do that, it's totally okay to print an object.
+> Object of class `Model\RebelShip` could not be converted to string.
 
-There's actually a bunch of different methods that start with underscore underscore, and we've actually already seen one, it's underscore underscore construct. These collectively are called Magic Methods. There's not that many of them, but there's a set of methods inside of PHP, and if you add them to your class then your class starts having different behavior.
+Remember this error: you'll eventually try to print an object on accident and see
+this!
 
-Let's look at a different one. Go back to battle dot PHP and scroll down a little bit to where it shows the ship health. Let's change it. Instead of saying ship one get string let's say ship one arrow strength. Now that should not work because PHP Storm tells us that member means that property has private access, and abstract ship you can see that, there's strength property but it's private so we can't access it directly like this. We know this, that's why we have a get strength method, but once again, via magic methods you can bend the rules if you want to.
+## But you CAN Print an Object
 
-This time it's a method called public function underscore underscore get. You'll be passed a single argument, let's call it property name. For now, let's just dump that. Go back. Refresh. There it is. It dumps the string strength. If you reference a property on your object that is not accessible either because the property does doesn't exist or it's private and protected, if you have a underscore underscore get method, PHP will call that pass through the property, and then if you want to you can return its value. We'll say return this arrow, dollar sign property name which looks a little weird but PHP will actually look at dollar sign property name, turn that into the string strength and then look for this arrow strength. Go back, refresh, now it works perfectly.
+Why am I telling you this seemingly small and obvious fact? Because I'm lying! You
+*can* print objects! You just have to do a little bit more work.
 
-Now surprisingly, there's also another method called underscore underscore set, which allows you to do the same thing where you can say ship arrow strength equals and actually set the strength name. Now that being said just because we have super powers doesn't mean we should use them. As soon as you start having like underscore underscore get, it starts to kind of break object orientedness. All of a sudden it looks like I can't access this, it looks like the strength property is private, but really it's not private because I'm letting you get at it down here. You also won't get very good auto completions from your editor, so my recommendation is avoid using that magic method. The biggest reason I showed it to you is so that you are aware of it, and because you will see it sometimes in side of libraries. If you're ever trying to figure out how some external library, it might be using that magic underscore, underscore get. In fact objects actually have a whole extra set of super powers that I'm talking about next.
+Here's the big picture: there are ways to give a class super-power - like the ability
+to be printed or - as we'll see next - the ability to pretend like it's an array.
 
+Open up `AbstractShip`. To make objects of this class printable, go to the bottom
+and  create a new `public function __toString()`. Inside, `return $this->getName()`.
+
+Go back, refresh, and now it works just fine.
+
+Buy adding the `__toString()` method - we gave PHP the ability to convert our object
+into a string. The `__toString()` *must* be called exactly this, and there are other
+methods that take on special meaning. They all start with `__`, and we've already
+seen one: `__construct()`. These are collectively called Magic Methods.
+
+## The Magic __get()
+
+There are actually just a few magic methods: let's look at another common one.
+In `battle.php`, scroll down a little bit to where it shows the ship health. Change
+this: instead of `$ship1->getStrength()`, say `$ship2->strength`.
+
+This should *not* work, and PHPStorm tells us why: the member - meaning property -
+has private access. We can't access a `private` property from outside the class.
+
+But once again - via a magic method - you can bend the rules. This time, add a
+`public function __get()` with a single argument: `$propertyName`. For now, just
+dump that.
+
+Refresh to see what happens. Interesting! It dumps the string `strength`. Here's
+the magic: if you refrence a property on your object that is not accessible - either
+because it doesn't exist or is private or protected - *and* you have an `__get()`
+method, then PHP will call that and pass you the property name.
+
+Then - if you want - you can return its value. Add `return $this->$propertyName`.
+This looks weird: PHP will see `$propertyName`, evaluate that to `strength`, adn
+then return `$this->strength`.
+
+Refresh again. It *works*!
+
+Not surprisingly, there's also a method called `__set()`, which allows you to *assign*
+a value to a non-existent property, like `$ship->strength = 100`.
+
+## Don't be Too Clever
+
+Now, *just* because you have all this new power *doesn't* mean you should use it.
+As soon as you add things like `__get()`, it starts to break your object oriented
+rules. All of a sudden, even though it *looks* like `strength` is private, I actually
+*can* get it... so it's not really private.
+
+You also won't get reliable auto completions from your editor - it has a hard time
+figuring out what you're doing in these magic methods.
+
+So my recommendation is: avoid using magic methods, except for `__string()` and
+`__construct()`.
+
+But, you *do* need to know these exists: even if *you* don't use them, other libraries
+will, which might be confusing if you're not watching for it.
+
+But beyond magic methods, there *are* other super powers you can give your objects
+that I *do* love. Let's look at those.

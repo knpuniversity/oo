@@ -1,18 +1,85 @@
-# Traits Reuse
+# Traits: "Horizontal" Reuse
 
-We need to have a new ship class, the bounty hunter ship. Let's start real simple here. Mild directory, put a new bounty hunter ship. Course, make sure you have the name space to put it in the model directory. Like every other ship, we'll have an extend the abstract ship class. We don't need to use them there because it lives in the same name space. As soon as we extend an abstract class, it has some abstract methods. Just like with an interface, we need to implement a few methods. I'll go to code generate, implement methods, and I'll select the 3 methods that this class has to have. Cool.
+Ok team: we need a new ship class - a `BountyHunterShip`. Start simple: in the
+model directory, add a new class: `BountyHunterShip`. Once again, PhpStorm already
+added the correct namespace for us.
 
-Now, bounty hunter ships are special, because a, they're never broken. Return functional true. They're type is going to be bounty hunter. Their Jedi factor, we're actually going to control with a property. Above this we'll create a private Jedi factor property, and from inside, get Jedi factor, we'll return this aero Jedi factor. At the bottom of this class, we'll make a set up function for it. Select function, set Jedi, factor. This arrow Jedi factor equals Jedi factor. Cool. Easy enough.
+Like every other ship, extend `AbstractShip`. Ah, but we do *not* need a `use` statement
+for this: that class lives in the same namespace as us.
 
-Now, to get one of these into our system, let's just go into ship loader, and inside get ships at the bottom, we'll just add a new ship to our ship collection. Ships, left square bracket, right square bracket equals new bounty hunter ship called the slave eye which is oak [fett's 02:02] ship. Beautiful. Let's go back, refresh. Slave 1, bounty hunter. It's not broken, life is good.
+Just like with an interface, when you extend an abstract class, you usually need
+ti implement some methods. Go back to Code->Generate "Implement Methods". Select
+the 3 that this class needs.
 
-Let's see here. What's the problem? If you look at bounty hunter ship, and you look at the ship class, there are some duplication. Both of these classes have the same idea where the Jedi factors of property, and then we have a get Jedi factor method that returns that, and a set Jedi factor method that helps set it. Between these 2 classes I have duplication. Now, usually, to remove duplication between 2 classes, we'll have 1 extend the other, but in this case, it gets a little weird. For example, we could have bounty hunter ship extend ship, but then it would get all this extra stuff that it doesn't need, like this is functional that we'd have to over ride. To get type we'd have to over ride. It would also have an extra under repair property. It just doesn't feel right. Okay?
+Great! 
 
-We could have ship extend bounty hunter ship. Again, this just doesn't feel right, because then it feels like all ships are bounty hunter ships. Just from a human level, it just doesn't feel right. In this case, we could extend some classes, but it just doesn't feel right. Unfortunately with PHP, we also can't have our classes extend multiple things. What we basically want is a way just to share these 3 methods. The Jedi factor property, get Jedi factor, and set Jedi factor. When there's just a couple of pieces that you want to share like this, the way to do it is with something called a tricked.
+Now, bounty hunter ships are special for a few reasons. First, they're never broken:
+those bounty hunters can always get the ship started. For `isFunctional()`, return
+`true`. For `getType()`, return `Bounty Hunter`.
 
-Let me show you how it works. In the model directory, let's create a new PHP class called sortable Jedi settable Jedi factor trait. I'm going to change it from kind of class to kind trait. Now, all I did was put this word trait in the front instead of class. Traits look and feel exactly like a normal class. In fact, what I'm going to do is go to the bounty hunter. I'm going to remove the property and the get Jedi factor, and we're going to put those right there. I'm also going to go grab the set Jedi factor and move that into the trait. The only difference between classes and traits is that traits can't be instantiated directly. Their purpose is for sharing code.
+Simple. But the `jediFactor` will vary ship-by-ship. Add a `JediFactor` property
+and return that from inside `getJediFactor()`.
 
-In bounty hunter ship, we can effectively copy and paste the contents of that trait into this class by going inside a bounty hunter ship and saying use settable Jedi factor trait. That use statement there has nothing to do with the normal name space use statement. It's just a coincidence. As soon as we do this when PHP runs, it goes and copies the contents of this file and pastes them right inside of this class, so as if all the code here lives inside of bounty hunter ship.
+At the bottom of the class add a `public function setJediFactor()` so that we can
+change this property: `$this->jediFactor = $jediFactor`.
 
-It allows us to do the same thing inside of ship, so we can get rid of Jedi factor property. We can get rid of get Jedi factor, and set Jedi factor. Instead at the top, we just say use settable Jedi factor trait. Everything is happy. Go back. Refresh. There it is. Nothing changes at all. This is called horizontal reuse. It's where you just have a couple of classes that really don't have that much in common, so you don't necessarily want to use extension. You create a trait and that allows you to copy and paste methods and properties. It's pretty cool.
+Cool!
 
+To get one of these into our system, let's do something simple. Open `ShipLoader`.
+At the bottom of `getShips()`, add a new ship to the collection:
+`$ships[] = new BountyHunterShip()` called 'Slave I' - Boba Fett's famous ship.
+
+Ok, head back and refresh! Yes! Slave I - Bounty Hunter, and it's not broken. That
+was easy.
+
+## Code Duplication
+
+So, what's the problem? Look at `BountyHunterShip` and also look at `Ship`: there's
+some duplication. Both classes have a `jediFactor` property, a `getJediFactor()`
+method that returns this, and a `setJediFactor` that changes it.
+
+Duplication is a bummer. How can we fix this? Well, we could use inheritance. But
+in this case, it's weird.
+
+For example, we could make `BountyHunterShip` extend `Ship`, but then it would inherit
+this extra stuff that we don't really want or need. We could make it work, but I
+just don't like it.
+
+Ok, what about making `Ship` extend `BountyHunterShip`? That just completely *feels*
+wrong: philosophically, not all `Ships` are `BountyHunterShips` - it's just not the
+right way to model these classes.
+
+Are we stuck? What we want is a way to *just* share these 3 things: the `jediFactor`
+property, `getJediFactor()` and `setJediFactor()`. When you only need to share a
+few things, the right answer might be a *trait*.
+
+## Hello Mr Trait
+
+Let's see what this trait thing is. In the `Model` directory, create a new PHP class
+called `SettableJediFactorTrait`. Now, change the `class` keyword to `trait`. Traits
+look and feel *exactly* like a normal class.
+
+In fact, open up `BountyHunterShip` and move the property and first method into the
+trait. Also grab `setJediFactor()` and put that in the trait too.
+
+The only difference between classes and traits is that traits can't be instantiated
+directly. Their purpose is for sharing code.
+
+In `BountyHunterShip`, we can effectively copy and paste the contents of that
+trait into this class by going inside the class and adding `use SettableJediFactorTrait`.
+
+That `use` statement has *nothing* to do with the  namespace `use` statement: it's
+just a coincidence. As soon as we do this, when PHP runs, it will copy the contents
+of the trait and pastes them into this class right before it executes our code. It's
+as if all the code from the trait actually lives inside this class.
+
+And now, we can do the same thing inside of `Ship`: remove the `jediFactor` property
+and the two methods. At the top, `use SettableJediFactorTrait`.
+
+Give it a try! Refresh. No errors! In fact, nothing changes at all. This is called
+horizontal reuse: because you're not extending a parent class, you're just methods
+and properties from other classes.
+
+This is perfect for when you have a couple of classes that really don't have that
+much in common, but *do* have some shared functionality. Traits are *also* cool because
+you *cannot* extend multiple classes, but you *can* use multiple traits.

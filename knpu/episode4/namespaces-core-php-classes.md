@@ -1,20 +1,68 @@
 # Namespaces and Core PHP Classes
 
-Let's close all these tabs and open up container. A reminder from last time, we actually created two different ways to load ship objects. One of them is from a Json file called JsonFileShipStorage and the other one is from the database using PDO. You can actually just switch and use either of these and the system doesn't care at all because of this cool ship storage interface. Anyways, I just changed it, let's go back, refresh and [woah 00:00:35], new error. Service slash PDO not fount, container line 28. Let's check that out.
+Let's close all our tabs and open up `Container`. In the last tutorial, we created
+*two* different ways to load `Ship` objects: one that reads a JSON file - `JSONFileShipStorage`
+and another that reads from a database - `PDOShipStorage`.
 
-Here we see a classic undefined class PDO and so far the answer to this is always been, "Oh I must have forgotten a Use statement." I referenced a class, this class lives in some other names space so I probably need to reference it. Here's the kicker though, PDO is a core [PHP 00:01:04] class, it does not live in a namespace. In other-words it's like a file that lives at the root of you file system.
+And you could switch back and forth between these without breaking anything, thanks
+to our cool `ShipStorageInterface`. Change it to use the PDO version and refresh.
 
-Really the problem is the same as before, when PHPC is the class PDO here, it looks at the top of the class for a Use statement that ends in PDO, doesn't find one so it assumes that PDO lives in the service namespace when in fact PDO lives in the root of the namespace.
+Woh, new error:
 
-The way to fix this is to add a slash in front of the PDO which should feel very natural, again, if you think of namespace like a directory structure. This is like us saying LS slash PDO. It doesn't matter what directory we're in, when we do that it means from the root of the namespace so I add up here slash PDO and down here, where we reference it again.
+> Class Service\PDO not found on Container.php line 28
 
-This is true of all core PHP classes, they do not live in namespaces so when you reference them, you'll reference them as slash PDO. Now, technically, if you were inside of a file that didn't' have a namespace, you don't have to do that but it's always safe to say slash new slash PDO. That will work inside of a namespace file or a non-namespace file. It's just more portable.
+Let's check that out.
 
-If you refresh now you still get an error and this is for the same reason but this error is less clear. Argument 1 pass to PDO [shipshotageconstruct 00:02:58] must be an instance of service slash PDO instance of PDO given. This should jump out at you, "Instance of service PDO." So PHP thinks that argument 1 to PDO shipstorage should be this nonsense class, service slash PDO.
+## use Statements for core PHP Classes?
 
-There reason is that in PDO shipshorage we have type hinted our construct argument with PDO and of course to PHP that looks like service slash PDO so you need to put the slash in front of that as well.
+Here, we see the *exact* same error as before: "Undefined Class PDO". So far, the
+answer to this has always been:
 
-I'm spending time on this because these are the mistakes that you'll make with name spaces in the very beginning and they're annoying but the answer is almost always the same. You either forgot a use statement or if you're referencing a core PHP class you forgot the opening slash.
+> Oh, I must have forgotten a `use` statement. I referenced a class, so I probably
+> need to add a `use` statement for it.
 
-We'll do the same thing down here and down here. Finally we can refresh and life is good. You just saw the ugliest parts of namespaces.
+But here's the kicker: `PDO` is a *core* PHP class that happens to *not* live in
+a namespace. In other words, it's like a file that lives at the root of you file
+system: not in any directory.
 
+So when PHP sees `PDO` mentioned, it looks at the top of the class for a `use` statement
+that ends in PDO, it doesn't find one, and it assumes that `PDO` lives in the `Service`
+namespace. But in fact, `PDO` lives at the root namespace.
+
+The fix is easy: add a `\` at the front of `PDO`. This makes sense: if you think
+of namespaces like a directory structure, This is like saying `ls /PDO` . It doesn't
+matter *what* directory, or namespace, we're in, adding the `\` tells PHP that this
+class lives at the root namespace. Update the other places were we reference this
+class.
+
+## The Opening Slash is Portable
+
+This is true for *all* core PHP classes: none of them live in namespaces. So, *always*
+include that beginning `\`. Now, technically, if you were inside of a file that did
+*not* have a `namespace` - like `index.php` - then you don't need the opening `\`
+there. But it's *always* safe to say `new \PDO`: it'll work in all files, regardless
+of whether or not they have a namespace.
+
+## When Type-Hints Fail
+
+If you refresh now, you'll see another error that's caused by this same problem.
+But this one is less clear:
+
+> Argument 1 passed to PDOShipStorage::__construct() must be an instance of
+> `Service\PDO`, instance of `PDO` given.
+
+This should jump out at you: "Instance of `Service\PDO`". PHP thinks that argument
+1 to `PDOShipStorage` should be this, *nonsense* class. There is no class `Service\PDO`!
+
+Check out `PDOShipStorage`: the `__construct()` argument is type-hinted with `PDO`.
+But of course, this *looks* like `Service\PDO` to PHP, and that causes problems.
+Add the `\` there as well.
+
+Phew! We spent time on these because these are the mistakes and errors that we *all*
+make when starting with namespaces. They're annoying, unless you can debug them quickly.
+If you're ever not sure about a "Class Not Found" error, the problem is almost always
+a missing `use` statement.
+
+Update the other spots that reference `PDO`.
+
+Finally, refresh! Life is good. You just saw the ugliest parts of namespaces.

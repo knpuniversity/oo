@@ -1,15 +1,83 @@
 # Autoloading Awesomeness
 
-Have you ever heard of an autoloader? This is something a lot of us a lot of us have heard before, but we don't actually know what it does or how it works. Autoloaders change everything. Right now, still, in our bootstrap dot PHP file, every single class that we want to reference we have to require before we create it. This is no good because it means that I have to come here every time I create a new class. You know why else it's not good? If I don't use a couple of these classes on a given request, I'm loading them into memory and then never using them. It's actually going to slow down my application.
+Have you ever heard of an autoloader? Even if you *have*, you might not know what
+they do or how they work.
 
-In modern PHP development, you know what you never see? Require statements. They're gone. How is that possible? Answer is auto loaders. First, let's kill the BattleManager require statements. Not surprisingly, we get Class Battle slash BattleManager not found because you have to require a class before you can reference what's inside of it, and that actually hasn't changed.
+## What does an Autoloader Do?
 
-How do we fix this? The answer is by calling a very special function from the core of PHP called SPL underscore autoload underscore register. You pass this a single argument, which is actually a function with a class name argument. I'm going to use [an anonymous 00:01:37] function. Here's the deal. As soon as you call SPL autoload register and pass it a function, right before PHP throws a class not found error like this, it will call our function and pass it the class name, and if we somehow inside of this function can locate the file that holds that class and require it, then PHP will continue on like normal, like nothing ever happened. In fact, in modern PHP development, this is how every single class is loaded into the system, and often times, this little function is called hundreds of times on every request.
+Autoloaders change everything. In PHP, you can't reference a class or a function
+unless you - or someone - requires or includes that file first. That's why - in
+`bootstrap.php` - we have a `require` statement for *every* file. Without these,
+we can't access the classes inside of them.
 
-Let's do a really simple one and fix our application for the BattleManager. It can look as simple as this. If class name equals, and then the full name of our BattleManager class, which of course is Battle slash BattleManager, and we know where that file is, let's go ahead and require underscore, underscore, DIR slash lib slash service slash BattleManager dot PHP, and then we will return because we're done. Of course if we don't match that we won't do anything, and this will cause PHP to throw the class not found error for any other class that it's unable to locate.
+This is no bueno: it means that I have to remember to add another line here, whenever
+I create a new class. You know why else it's not good? Suppose I don't use all of
+these classes during some requests? Well, right now, I'm loading *every* class into
+memory, even if we never need to use them. This is actually slowing down my app!
 
-With just that, refresh. Mind blown. We just got our application to work without us having to manually require the BattleManager file. Now, of course this isn't much better than having a require statement, is it? It's actually more work. How could we make this function something that could scale, something that could automatically find new classes and files as we added it to the system? Well I have an idea. Notice that the BattleManager is in the Service directory. If we changed its namespace to service and we did this for all of our classes, what I mean is we made the namespace match the directory structure, then inside of our autoload function we could use the namespace in order to locate the file. We would know that if something had the namespace service, it lives in the service directory. Since the class name always matches the file name [plus 00:04:15] dot PHP, we're in business. Let's do that.
+Well, guess what: in modern PHP, you *never* see require or include statements.
+They're gone. How is that possible? The Answer is: autoloaders.
 
-In BattleManager, change namespace to Service. Of course, when we do that anywhere that we reference the BattleManager we need to update, like index that PHP. I'll change the use statement up here to Service. Great. Finally, in Bootstrap, instead of it manually look in the class, we'll say that the path is always equal to underscore underscore DIR slash lib slash and then STR replace and we're going to search for our back slashes and notice I put slash, slash. Slash is the escape character. In this case if you only have one slash it actually escapes the next quote so you have to have two slashes, but that means one slash. It's kind of an ugly detail. Then I'm going to replace that with a forward slash for the directory structure and we'll pass that the class name. Then at the end we'll add our dot PHP. Make sense?
+First, kill the `BattleManager.php` require statement.
 
-Just in case we'll check to see if that file exists. If it does, require path. That's it. Go back, refresh, and everything still works, and we are now incredibly dangerous because we're going to be able to get rid of every single require statement really easily. Let's do that next and learn a few other things about namespaces.
+Not surprisingly, we get an error: `Class Battle\BattleManager not found`.
+
+## Adding your Autoloader
+
+How do we fix this? The answer is by calling a very special function from the core
+of PHP called `spl_autoload_register()`. Pass this a single argument: a function
+with a `$className` argument. We'll use an anonymous function.
+
+Here's the deal: as soon as you call `spl_autoload_register`, right before PHP throws
+the dreaded "class not found" error like this, it will call *our* function and pass
+it the class name. Then, if we - somehow - can locate the file that contains this
+class and require it, PHP will continue on like normal with no error.
+
+In fact, in modern PHP development, this is how *every single class* is loaded. In
+some cases, this little function is called *hundreds* of times on every request.
+
+## Making your Autoloader Work (a little)
+
+Let's start coding our autoloader with some simple logic: `if ($className == 'Battle\BattleManager')`,
+then we know where that file lives. require `__DIR__.'/lib/Service/BattleManager.php`.
+Then, add a `return`: we're done!
+
+For now, if the autoloader function is called for any other classes, we'll do nothing.
+PHP will throw its normal "class not found" error.
+
+With *just* that, refresh. Mind blown. We just got our app to work *without* manually
+requiring the `BattleManager.php` file. Of course, right now, this isn't much better
+than having a require statement. Actually, it's *more* work.
+
+## Creating a Smarter Autoloader
+
+How could we make this function smarter? How could we make it automatically find
+*new* classes and files as we add them to the system?
+
+Well I have an idea. `BattleManager` lives in the `Service` directory. What if we
+changed its namespace to match that? Or to get crazier, what if we made *every* class
+a namespace that matched its directory?
+
+If we did that, the autoload function could use the namespace in to locate the file
+For the class `Service\BattleManager`, we would look in the `Service` directory
+for a file called `BattleManager.php`. It's brilliant!
+
+Now that we've changed the namespace t o`Service,` we need to update any references
+to `BattleManager` - like in `index.php`. Change the `use` statement to `Service`.
+
+Yes!
+
+Finally, in `bootstrap.php`, instead of manually checking for *just* this one class,
+say that the path is always equal to `__DIR__/lib/` then `str_replace()` - we'll
+replace the back slash with a forward slash. Notice I put *two* back-slashes. Since
+this is the escape character, if you only have one, it looks like you're escaping
+the next quote character. So, to get one slash, we need to use two - it's an ugly
+detail. Anyways, replace backslashes with a forward slash and pass that the class
+name. Finally, add the `.php` at the end.
+
+Just in case, check to see if that file exists. If it does, `require $path`.
+
+That's it. Go back, refresh, and... everything still works.
+
+And now, we are incredibly dangerous. We can now get rid of every single require
+statement really easily. Let's do it!

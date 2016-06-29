@@ -67,11 +67,19 @@ chapters:
         is_finished: false
         video_key: ~
         challenges: []
+    exception-classes:
+        is_finished: false
+        video_key: ~
+        challenges: []
     magic-methods:
         is_finished: false
         video_key: ~
         challenges: []
-    array-access-iterator-aggregate:
+    array-access:
+        is_finished: false
+        video_key: ~
+        challenges: []
+    iterator-aggregate:
         is_finished: false
         video_key: ~
         challenges: []
