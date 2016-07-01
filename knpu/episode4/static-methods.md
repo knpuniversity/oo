@@ -2,7 +2,7 @@
 
 In `index.php`, the three battle types are hard coded right in the HTML. So what
 happens if we decide to add a *fourth* battle type to `BattleManager`. No problem:
-add a new constant, then update the `battle()` method lgoic for whatever this new
+add a new constant, then update the `battle()` method logic for whatever this new
 type does.
 
 But surprise! If we forget to *also* add the new type to `index.php`, then nobody's

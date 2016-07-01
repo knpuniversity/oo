@@ -10,7 +10,7 @@ name *longer*, but maybe how you'd expect. We're going to use a namespace.
 ## Let's see some Namespaces
 
 At first, *why* namespaces exist might not be obvious, so hold onto that question.
-First, let's see how tehy work.
+First, let's see how they work.
 
 Above any class, you can - if you want to - add a `namespace` keyword followed by
 some string. Like, `Battle` or something more complicated like `Battle\HiGuys\NiceNameSpace`.
