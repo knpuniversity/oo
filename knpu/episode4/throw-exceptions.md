@@ -6,7 +6,7 @@ code called *exceptions*.
 In `index.php`, we create a `BrokenShip` object. I'm going to do something crazy,
 guys. I'm going to say, `$brokenShip->setStrength()` and pass it... `banana`.
 
-That strength makes no sense. And if we try to battle usin`g this ship, we should
+That strength makes no sense. And if we try to battle using this ship, we should
 get *some* sort of error. But when we refresh... well, it *is* an error: but not
 exactly what I expected.
 
