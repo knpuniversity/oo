@@ -24,9 +24,9 @@ a `new ShipCollection()` object and pass it `$ships`.
 
 Now, stop: we're referencing `ShipCollection` inside of `ShipLoader`, so we need
 a `use` statement for it. Go to the top to add it. But wait! It's already there!
-Thank you PhpStorm: added it automatically for me when I auto-completed the class
+Thank you PhpStorm: it added it automatically for me when I auto-completed the class
 name. Whether your editor does this or not, just make sure to *not* forget those
-`use` statements!s
+`use` statements!
 
 Finally, above the method, we're *not* returning an array of `AbstractShip` objects
 anymore: we're now returning a `ShipCollection`
@@ -40,12 +40,12 @@ First, go to `index.php`. Boom!
 
 > Cannot use object of type ShipCollection as array, index.php line 13.
 
-No surprise. After creating the `$brokenShip`, we're tring to add it to the `ShipCollection`
+No surprise. After creating the `$brokenShip`, we're trying to add it to the `ShipCollection`
 as if it were an array! That's not allowed.... oh wait it is! Open `ShipCollection`
 and make it implement `\ArrayAccess`.
 
-Now,at the bottom, I'll openthe Code->Generate menu and implement the same 4 methods
-as before. This is even easier than before: in `offsetExists()`, use
+Now, at the bottom, I'll open the Code->Generate menu and implement the same 4 methods
+as before. This is even easier now: in `offsetExists()`, use
 `array_key_exists($offset, $this->ships)`. The other methods are even easier: I'll
 fill each in by acting on the `$ships` array property.
 
@@ -59,7 +59,7 @@ Ok, let's start a battle. Woh: check this out - there are *no* ships. What's goi
 on here?
 
 Look back at `index.php`: eventually we try to *loop* over the `$ships` variable
-But this is a `ShipCollection` object! It turns out that after implementing `ArrayAccess`,
+but this is a `ShipCollection` object! It turns out that after implementing `ArrayAccess`,
 we can use the array syntax with an object, but we still *cannot* loop over it like
 an array.
 
@@ -67,11 +67,11 @@ an array.
 
 *Can* we teach PHP *how* to loop over our object? Absolutely: and the answer is
 another interface. To implement a second interface, add a comma and then use
-`\IteratorAggregate`. 
+`\IteratorAggregate`.
 
 Repeat our trick from before: Code->Generate and then "Implement Methods". This time
 we only need to add *one* method: `getIterator()`. The easiest way to make this work
-is to return another core helper class: `reutrn new \ArrayIterator()` and pass that
+is to return another core helper class: `return new \ArrayIterator()` and pass that
 `$this->ships`.
 
 This tells PHP that when we try to loop over this object, it should actually loop
@@ -84,7 +84,7 @@ ShipCollection object look and act almost *exactly* like an array.
 
 Ok, let's *finally* answer the question: why did we do this? Because sometimes, it
 might be useful to add some helpful *methods* to an array. Well, of course you can't
-do that, but you *can* add methods to a clss.
+do that, but you *can* add methods to a class.
 
 For example, add a new method called `public function removeAllBrokenShips()`,
 because maybe we want a collection of *only* working ships. By adding this method,
