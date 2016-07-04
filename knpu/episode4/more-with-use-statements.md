@@ -6,18 +6,19 @@ This will be a little bit of work because we didn't do it up front - life is muc
 easier when you use namespaces like this from the very beginning. But, we'll learn
 some other stuff along the way.
 
-The `AbstractShip` class lives in the `Model` directory, so give the namespace
+The `AbstractShip` class lives in the `Model` directory, so give it the namespace
 Model. Copy that and do the same thing in `BattleResult`, `BrokenShip`,
-`RebelShip` and `Ship`.
+`RebelShip`, `Ship` and `FriendShip` -- just kidding there's none of that in epic code
+battles.
 
 Perfect. `BattleManager` already has the correct `Service` namespace.
-In Container, paste that same namespace. Repat that in `JsonFileShipStorage`,
+In Container, paste that same one. Repeat that in `JsonFileShipStorage`,
 `PdoShipStorage`, `ShipLoader`and `ShipStorageInterface`. These all live in the
 `Service` directory.
 
 ## Missing use Statements = Common Error
 
-Ok! Let's see what breaks! Go back and refresh. The First error we get is:
+Ok! Let's see what breaks! Go back and refresh. The first error we get is:
 
 > Class Container not found in index.php
 
@@ -40,12 +41,12 @@ Looking good!
 
 ## Reading the Error Messages... Closely
 
-Try it again - refresh! Ok:
+Try it again! Ok:
 
 > Class `Service\RebelShip` not found in `ShipLoader`.
 
 Remember what I just said about reading the error messages closely? This one has
-a clue: it's looking for `Service\RebelShip`. But we do'nt have a class called
+a clue: it's looking for `Service\RebelShip`. But we don't have a class called
 `Service\RebelShip` - our class is called `Model\RebelShip`. The problem exists
 where we're *referencing* this class - so in `ShipLoader` at line 43.
 
@@ -53,12 +54,12 @@ This is the most *common* mistake with namespaces: we have `new RebelShip`, but 
 *don't* have a `use` statement on top for this. This is the same problem we just
 solved in `index.php`, but with a small difference. Unlike `index.php` and `battle.php`,
 this file lives in a namespace called `Service`. That causes PHP to assume that
-`RebelShip` *also* lives in that namespace.
+`RebelShip` *also* lives in that namespace -- you know like roommates.
 
 Here's how it works: when PHP parses this file, it sees the `RebelShip` class on
 line 43. Next, it looks up at the top of the file to see if there are any `use`
 statements that end in `RebelShip`. Since there aren't, it assumes that `RebelShip`
-also lives in `Service` namespace, so `Service\RebelShip`.
+also lives in the `Service` namespace, so `Service\RebelShip`.
 
 Think about it: this is *just* like directories on your filesystem. If you are inside
 of a directory called `Service` and you say `ls RebelShip`,  it's going to look for
@@ -70,12 +71,12 @@ to saying `ls BrokenShip` from the *root* of your file system, instead of from i
 some directory.
 
 In both cases the solution is the same: add the missing `use` statement: `use Model\RebelShip`.
-PhpStorm *stops* highlighting this as an error.
+Now PhpStorm *stops* highlighting this as an error. Much better.
 
 We have the same problem below for `Ship`: add `use Model\Ship`. Finally, there's
 one more spot in the PHP documentation itself. Because we don't have a `use` statement
 in this file yet for `AbstractShip`, PhpStorm assumes that this class is `Service\AbstractShip`.
-To fix that, also `use Model\AbstractShip`.
+To fix that, add `use Model\AbstractShip`.
 
 Now, everything looks happy!
 
