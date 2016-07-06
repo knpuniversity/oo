@@ -4,11 +4,11 @@ class Ship
 {
     public $name;
 
-    public $weaponPower;
+    public $weaponPower = 0;
 
-    public $jediFactor;
+    public $jediFactor = 0;
 
-    public $strength;
+    public $strength = 0;
 
     public function sayHello()
     {
