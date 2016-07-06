@@ -126,9 +126,4 @@ abstract class AbstractShip
     {
         return $this->getName();
     }
-
-    public function __get($propertyName)
-    {
-        return $this->$propertyName;
-    }
 }
