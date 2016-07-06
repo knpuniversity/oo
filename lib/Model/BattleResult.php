@@ -7,11 +7,11 @@ class BattleResult
     private $losingShip;
 
     /**
-     * @param Ship $winningShip
-     * @param Ship $losingShip
+     * @param AbstractShip $winningShip
+     * @param AbstractShip $losingShip
      * @param boolean $usedJediPowers
      */
-    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
+    public function __construct($usedJediPowers, AbstractShip $winningShip = null, AbstractShip $losingShip = null)
     {
         $this->usedJediPowers = $usedJediPowers;
         $this->winningShip = $winningShip;
