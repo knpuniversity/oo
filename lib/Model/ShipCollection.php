@@ -38,4 +38,13 @@ class ShipCollection implements \ArrayAccess, \IteratorAggregate
     {
         return new \ArrayIterator($this->ships);
     }
+
+    public function removeAllBrokenShips()
+    {
+        foreach ($this->ships as $key => $ship) {
+            if (!$ship->isFunctional()) {
+                unset($this->ships[$key]);
+            }
+        }
+    }
 }
