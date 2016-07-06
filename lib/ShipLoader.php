@@ -2,6 +2,8 @@
 
 class ShipLoader
 {
+    private $pdo;
+
     /**
      * @return Ship[]
      */
@@ -51,10 +53,12 @@ class ShipLoader
      */
     private function getPDO()
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if ($this->pdo === null) {
+            $this->pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
 
-        return $pdo;
+        return $this->pdo;
     }
 
     private function queryForShips()
