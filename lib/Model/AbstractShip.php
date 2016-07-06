@@ -104,9 +104,4 @@ class AbstractShip
     {
         $this->id = $id;
     }
-
-    public function getType()
-    {
-        return 'Empire';
-    }
 }

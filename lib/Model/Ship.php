@@ -34,4 +34,9 @@ class Ship extends AbstractShip
     {
         return !$this->underRepair;
     }
+
+    public function getType()
+    {
+        return 'Empire';
+    }
 }
