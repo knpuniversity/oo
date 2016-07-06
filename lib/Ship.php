@@ -8,7 +8,7 @@ class Ship
 
     public $jediFactor = 0;
 
-    public $strength = 0;
+    private $strength = 0;
 
     public function sayHello()
     {
