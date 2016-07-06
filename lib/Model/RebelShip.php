@@ -14,4 +14,9 @@ class RebelShip extends Ship
     {
         return 'Rebel';
     }
+
+    public function isFunctional()
+    {
+        return true;
+    }
 }
