@@ -8,6 +8,8 @@ class Container
 
     private $shipLoader;
 
+    private $battleManager;
+
     public function __construct(array $configuration)
     {
         $this->configuration = $configuration;
@@ -41,5 +43,17 @@ class Container
         }
 
         return $this->shipLoader;
+    }
+
+    /**
+     * @return BattleManager
+     */
+    public function getBattleManager()
+    {
+        if ($this->battleManager === null) {
+            $this->battleManager = new BattleManager();
+        }
+
+        return $this->battleManager;
     }
 }

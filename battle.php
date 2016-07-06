@@ -24,12 +24,13 @@ if (!$ship1 || !$ship2) {
     die;
 }
 
+$battleManager = $container->getBattleManager();
+
 if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
     header('Location: /index.php?error=bad_quantities');
     die;
 }
 
-$battleManager = new BattleManager();
 $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
