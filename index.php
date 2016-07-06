@@ -1,4 +1,7 @@
 <?php
+
+use Battle\BattleManager;
+
 require __DIR__.'/bootstrap.php';
 
 $container = new Container($configuration);
@@ -9,7 +12,7 @@ $ships = $shipLoader->getShips();
 $brokenShip = new BrokenShip('Just a hunk of metal');
 $ships[] = $brokenShip;
 
-$battleTypes = Battle\BattleManager::getAllBattleTypesWithDescriptions();
+$battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
 
 $errorMessage = '';
 if (isset($_GET['error'])) {
