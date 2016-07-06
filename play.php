@@ -28,3 +28,5 @@ $myShip->name = 'TIE Fighter';
 echo 'Ship Name: '.$myShip->getName();
 echo '<hr/>';
 $myShip->sayHello();
+echo '<hr/>';
+var_dump($myShip->weaponPower);
