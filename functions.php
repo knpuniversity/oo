@@ -7,9 +7,9 @@ function get_ships()
     $ships = array();
 
     $ship = new Ship();
-    $ship->name = 'Jedi Starfighter';
-    $ship->weaponPower = 5;
-    $ship->jediFactor = 15;
+    $ship->setName('Jedi Starfighter');
+    $ship->setWeaponPower(5);
+    $ship->setJediFactor(15);
     $ship->setStrength(30);
     $ships['starfighter'] = $ship;
 

@@ -2,11 +2,11 @@
 
 class Ship
 {
-    public $name;
+    private $name;
 
-    public $weaponPower = 0;
+    private $weaponPower = 0;
 
-    public $jediFactor = 0;
+    private $jediFactor = 0;
 
     private $strength = 0;
 
@@ -60,4 +60,43 @@ class Ship
         return $givenShip->strength > $this->strength;
     }
 
+    /**
+     * @return int
+     */
+    public function getWeaponPower()
+    {
+        return $this->weaponPower;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJediFactor()
+    {
+        return $this->jediFactor;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param int $weaponPower
+     */
+    public function setWeaponPower($weaponPower)
+    {
+        $this->weaponPower = $weaponPower;
+    }
+
+    /**
+     * @param int $jediFactor
+     */
+    public function setJediFactor($jediFactor)
+    {
+        $this->jediFactor = $jediFactor;
+    }
 }
