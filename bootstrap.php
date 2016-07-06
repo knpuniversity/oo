@@ -1,5 +1,15 @@
 <?php
 
+spl_autoload_register(function($className) {
+    if ($className == 'Battle\BattleManager') {
+        require __DIR__.'/lib/Service/BattleManager.php';
+
+        return;
+    }
+
+    // we don't support this class!
+});
+
 $configuration = array(
     'db_dsn'  => 'mysql:host=localhost;dbname=oo_battle',
     'db_user' => 'root',
