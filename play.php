@@ -7,5 +7,6 @@ class Ship
 
 // but it doesn't do anything yet...
 $myShip = new Ship();
+$myShip->name = 'TIE Fighter';
 
-echo 'IT\'S A TRAAAAAAPPPP!';
+echo 'Ship Name: '.$myShip->name;
