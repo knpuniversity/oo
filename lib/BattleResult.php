@@ -11,7 +11,7 @@ class BattleResult
      * @param Ship $losingShip
      * @param boolean $usedJediPowers
      */
-    public function __construct($usedJediPowers, Ship $winningShip, Ship $losingShip)
+    public function __construct($usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
     {
         $this->usedJediPowers = $usedJediPowers;
         $this->winningShip = $winningShip;
@@ -27,7 +27,7 @@ class BattleResult
     }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getWinningShip()
     {
@@ -35,10 +35,20 @@ class BattleResult
     }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getLosingShip()
     {
         return $this->losingShip;
+    }
+
+    /**
+     * Was there a winner? Or did everybody die :(
+     *
+     * @return bool
+     */
+    public function isThereAWinner()
+    {
+        return $this->getWinningShip() !== null;
     }
 }
