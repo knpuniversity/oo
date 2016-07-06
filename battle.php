@@ -75,7 +75,7 @@ $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Qua
                 <h3 class="text-center audiowide">
                     Winner:
                     <?php if ($battleResult->isThereAWinner()): ?>
-                        <?php echo $battleResult->getWinningShip()->getName(); ?>
+                        <?php echo $battleResult['winningShip']->getName(); ?>
                     <?php else: ?>
                         Nobody
                     <?php endif; ?>
