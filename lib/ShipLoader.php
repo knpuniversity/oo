@@ -4,14 +4,10 @@ class ShipLoader
 {
     public function getShips()
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement = $pdo->prepare('SELECT * FROM ship');
-        $statement->execute();
-        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($shipsArray);die;
-
         $ships = array();
+
+        $shipsData = $this->queryForShips();
+        var_dump($shipsData);die;
 
         $ship = new Ship('Jedi Starfighter');
         //$ship->setName('Jedi Starfighter');
@@ -41,4 +37,14 @@ class ShipLoader
         return $ships;
     }
 
+    private function queryForShips()
+    {
+        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $statement = $pdo->prepare('SELECT * FROM ship');
+        $statement->execute();
+        $shipsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $shipsArray;
+    }
 }
