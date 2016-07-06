@@ -25,18 +25,18 @@ class RebelShip extends Ship
         if ($useShortFormat) {
             return sprintf(
                 '%s: %s/%s/%s (Rebel)',
-                $this->name,
-                $this->weaponPower,
-                $this->jediFactor,
-                $this->strength
+                $this->getName(),
+                $this->getWeaponPower(),
+                $this->getJediFactor(),
+                $this->getStrength()
             );
         } else {
             return sprintf(
                 '%s: w:%s, j:%s, s:%s (Rebel)',
-                $this->name,
-                $this->weaponPower,
-                $this->jediFactor,
-                $this->strength
+                $this->getName(),
+                $this->getWeaponPower(),
+                $this->getJediFactor(),
+                $this->getStrength()
             );
         }
     }

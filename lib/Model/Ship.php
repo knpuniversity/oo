@@ -2,17 +2,17 @@
 
 class Ship
 {
-    protected $id;
+    private $id;
 
-    protected $name;
+    private $name;
 
-    protected $weaponPower = 0;
+    private $weaponPower = 0;
 
-    protected $jediFactor = 0;
+    private $jediFactor = 0;
 
-    protected $strength = 0;
+    private $strength = 0;
 
-    protected $underRepair;
+    private $underRepair;
 
     public function __construct($name)
     {
