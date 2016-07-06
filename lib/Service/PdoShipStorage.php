@@ -13,8 +13,7 @@ class PdoShipStorage implements ShipStorageInterface
 
     public function fetchAllShipsData()
     {
-        throw new \InvalidArgumentException('something else went wrong!');
-        $statement = $this->pdo->prepare('SELECT * FROM FOOOOO');
+        $statement = $this->pdo->prepare('SELECT * FROM ship');
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
