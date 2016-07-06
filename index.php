@@ -68,7 +68,7 @@ if (isset($_GET['error'])) {
                             <td><?php echo $ship->getName(); ?></td>
                             <td><?php echo $ship->weaponPower; ?></td>
                             <td><?php echo $ship->jediFactor; ?></td>
-                            <td><?php echo $ship->strength; ?></td>
+                            <td><?php echo $ship->getStrength(); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

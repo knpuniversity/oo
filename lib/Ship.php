@@ -19,6 +19,16 @@ class Ship
     {
         return $this->name;
     }
+    
+    public function setStrength($number)
+    {
+        $this->strength = $number;
+    }
+
+    public function getStrength()
+    {
+        return $this->strength;
+    }
 
     public function getNameAndSpecs($useShortFormat = false)
     {
