@@ -1,6 +1,6 @@
 <?php
 
-class JsonFileShipStorage
+class JsonFileShipStorage extends PdoShipStorage
 {
     private $filename;
 
