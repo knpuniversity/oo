@@ -4,12 +4,7 @@ namespace Model;
 
 class BountyHunterShip extends AbstractShip
 {
-    private $jediFactor;
-
-    public function getJediFactor()
-    {
-        return $this->jediFactor;
-    }
+    use SettableJediFactorTrait;
 
     public function getType()
     {
@@ -19,10 +14,5 @@ class BountyHunterShip extends AbstractShip
     public function isFunctional()
     {
         return true;
-    }
-
-    public function setJediFactor($jediFactor)
-    {
-        $this->jediFactor = $jediFactor;
     }
 }
