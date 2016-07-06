@@ -6,6 +6,9 @@ $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
 $ships = $shipLoader->getShips();
 
+$rebelShip = new RebelShip('My new rebel ship');
+$ships[] = $rebelShip;
+
 $errorMessage = '';
 if (isset($_GET['error'])) {
     switch ($_GET['error']) {
