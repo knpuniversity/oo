@@ -2,6 +2,10 @@
 
 class BattleManager
 {
+    const TYPE_NORMAL = 'normal';
+    const TYPE_NO_JEDI = 'no_jedi';
+    const TYPE_ONLY_JEDI = 'only_jedi';
+
     /**
      * Our complex fighting algorithm!
      *
@@ -17,13 +21,13 @@ class BattleManager
         $i = 0;
         while ($ship1Health > 0 && $ship2Health > 0) {
             // first, see if we have a rare Jedi hero event!
-            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship1)) {
+            if ($battleType != BattleManager::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship1)) {
                 $ship2Health = 0;
                 $ship1UsedJediPowers = true;
 
                 break;
             }
-            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship2)) {
+            if ($battleType != BattleManager::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship2)) {
                 $ship1Health = 0;
                 $ship2UsedJediPowers = true;
 
@@ -31,7 +35,7 @@ class BattleManager
             }
 
             // now battle them normally
-            if ($battleType != 'only_jedi') {
+            if ($battleType != BattleManager::TYPE_ONLY_JEDI) {
                 $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
                 $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
             }
