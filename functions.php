@@ -74,8 +74,7 @@ function get_ships()
 function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
 {
     $ship1Health = $ship1->getStrength() * $ship1Quantity;
-    var_dump($ship1Health);die;
-    $ship2Health = $ship2['strength'] * $ship2Quantity;
+    $ship2Health = $ship2->getStrength() * $ship2Quantity;
 
     $ship1UsedJediPowers = false;
     $ship2UsedJediPowers = false;
@@ -95,8 +94,8 @@ function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
         }
 
         // now battle them normally
-        $ship1Health = $ship1Health - ($ship2['weapon_power'] * $ship2Quantity);
-        $ship2Health = $ship2Health - ($ship1['weapon_power'] * $ship1Quantity);
+        $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+        $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
     }
 
     if ($ship1Health <= 0 && $ship2Health <= 0) {
@@ -121,9 +120,9 @@ function battle(Ship $ship1, $ship1Quantity, Ship $ship2, $ship2Quantity)
     );
 }
 
-function didJediDestroyShipUsingTheForce(array $ship)
+function didJediDestroyShipUsingTheForce(Ship $ship)
 {
-    $jediHeroProbability = $ship['jedi_factor'] / 100;
+    $jediHeroProbability = $ship->getJediFactor() / 100;
 
     return mt_rand(1, 100) <= ($jediHeroProbability*100);
 }
