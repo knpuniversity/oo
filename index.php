@@ -88,11 +88,11 @@ if (isset($_GET['error'])) {
                     <form method="POST" action="/battle.php">
                         <h2 class="text-center">The Mission</h2>
                         <input class="center-block form-control text-field" type="text" name="ship1_quantity" placeholder="Enter Number of Ships" />
-                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_id">
                             <option value="">Choose a Ship</option>
-                            <?php foreach ($ships as $key => $ship): ?>
+                            <?php foreach ($ships as $ship): ?>
                                 <?php if ($ship->isFunctional()): ?>
-                                    <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
+                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
@@ -100,11 +100,11 @@ if (isset($_GET['error'])) {
                         <p class="text-center">AGAINST</p>
                         <br>
                         <input class="center-block form-control text-field" type="text" name="ship2_quantity" placeholder="Enter Number of Ships" />
-                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_id">
                             <option value="">Choose a Ship</option>
-                            <?php foreach ($ships as $key => $ship): ?>
+                            <?php foreach ($ships as $ship): ?>
                                 <?php if ($ship->isFunctional()): ?>
-                                    <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
+                                    <option value="<?php echo $ship->getId(); ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
