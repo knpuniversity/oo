@@ -15,6 +15,16 @@ abstract class AbstractShip
      */
     abstract public function getJediFactor();
 
+    /**
+     * @return string
+     */
+    abstract public function getType();
+
+    /**
+     * @return bool
+     */
+    abstract public function isFunctional();
+
     public function __construct($name)
     {
         $this->name = $name;
