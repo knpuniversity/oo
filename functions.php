@@ -63,10 +63,3 @@ function get_ships()
     );
     */
 }
-
-function didJediDestroyShipUsingTheForce(Ship $ship)
-{
-    $jediHeroProbability = $ship->getJediFactor() / 100;
-
-    return mt_rand(1, 100) <= ($jediHeroProbability*100);
-}

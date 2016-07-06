@@ -16,13 +16,13 @@ class BattleManager
         $ship2UsedJediPowers = false;
         while ($ship1Health > 0 && $ship2Health > 0) {
             // first, see if we have a rare Jedi hero event!
-            if (didJediDestroyShipUsingTheForce($ship1)) {
+            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
                 $ship2Health = 0;
                 $ship1UsedJediPowers = true;
 
                 break;
             }
-            if (didJediDestroyShipUsingTheForce($ship2)) {
+            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
                 $ship1Health = 0;
                 $ship2UsedJediPowers = true;
 
@@ -54,5 +54,12 @@ class BattleManager
             'losing_ship' => $losingShip,
             'used_jedi_powers' => $usedJediPowers,
         );
+    }
+
+    private function didJediDestroyShipUsingTheForce(Ship $ship)
+    {
+        $jediHeroProbability = $ship->getJediFactor() / 100;
+
+        return mt_rand(1, 100) <= ($jediHeroProbability*100);
     }
 }
