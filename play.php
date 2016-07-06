@@ -62,3 +62,11 @@ $myShip->name = 'TIE Fighter';
 $myShip->weaponPower = 10;
 
 printShipSummary($myShip);
+
+$otherShip = new Ship();
+$otherShip->name = 'Imperial Shuttle';
+$otherShip->weaponPower = 5;
+$otherShip->strength = 50;
+
+echo '<hr/>';
+printShipSummary($otherShip);
