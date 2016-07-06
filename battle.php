@@ -1,12 +1,8 @@
 <?php
 require __DIR__.'/bootstrap.php';
 
-$pdo = new PDO(
-    $configuration['db_dsn'],
-    $configuration['db_user'],
-    $configuration['db_pass']
-);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$container = new Container();
+$pdo = $container->getPDO();
 
 $shipLoader = new ShipLoader($pdo);
 
