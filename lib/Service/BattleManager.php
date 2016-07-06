@@ -2,8 +2,11 @@
 
 class BattleManager
 {
+    // normal battle mode
     const TYPE_NORMAL = 'normal';
+    // don't allow jedi powers
     const TYPE_NO_JEDI = 'no_jedi';
+    // you can *only* win with jedi powers
     const TYPE_ONLY_JEDI = 'only_jedi';
 
     /**
