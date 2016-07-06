@@ -24,6 +24,7 @@ class Ship
 // but it doesn't do anything yet...
 $myShip = new Ship();
 $myShip->name = 'TIE Fighter';
+$myShip->weaponPower = 10;
 
 echo 'Ship Name: '.$myShip->getName();
 echo '<hr/>';
