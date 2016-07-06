@@ -11,7 +11,7 @@ class Ship
 
     public function getName()
     {
-        return 'FAKE NAME';
+        return $this->name;
     }
 }
 
