@@ -7,22 +7,23 @@ class BattleManager
      *
      * @return BattleResult
      */
-    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity)
+    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity, $battleType)
     {
         $ship1Health = $ship1->getStrength() * $ship1Quantity;
         $ship2Health = $ship2->getStrength() * $ship2Quantity;
 
         $ship1UsedJediPowers = false;
         $ship2UsedJediPowers = false;
+        $i = 0;
         while ($ship1Health > 0 && $ship2Health > 0) {
             // first, see if we have a rare Jedi hero event!
-            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
+            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship1)) {
                 $ship2Health = 0;
                 $ship1UsedJediPowers = true;
 
                 break;
             }
-            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
+            if ($battleType != 'no_jedi' && $this->didJediDestroyShipUsingTheForce($ship2)) {
                 $ship1Health = 0;
                 $ship2UsedJediPowers = true;
 
@@ -30,8 +31,17 @@ class BattleManager
             }
 
             // now battle them normally
-            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
-            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            if ($battleType != 'only_jedi') {
+                $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+                $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            }
+
+            // prevent 2 non-jedi ships from fighting forever in only_jedi mode
+            if ($i == 100) {
+                $ship1Health = 0;
+                $ship2Health = 0;
+            }
+            $i++;
         }
 
         // update the strengths on the ships, so we can show this
