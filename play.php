@@ -2,7 +2,7 @@
 
 class Ship
 {
-    
+    public $name;
 }
 
 // but it doesn't do anything yet...
