@@ -62,9 +62,8 @@ class ShipLoader
     {
         try {
             return $this->shipStorage->fetchAllShipsData();
-        } catch (\Exception $e) {
-            var_dump($e);
-            trigger_error('Exception! '.$e->getMessage());
+        } catch (\PDOException $e) {
+            trigger_error('Database Exception! '.$e->getMessage());
             // if all else fails, just return an empty array
             return [];
         }
