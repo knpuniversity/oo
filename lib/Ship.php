@@ -12,8 +12,9 @@ class Ship
 
     private $underRepair;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->name = $name;
         // randomly put this ship under repair
         $this->underRepair = mt_rand(1, 100) < 30;
     }
