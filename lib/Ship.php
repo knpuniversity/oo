@@ -20,7 +20,7 @@ class Ship
         return $this->name;
     }
 
-    public function getNameAndSpecs($useShortFormat)
+    public function getNameAndSpecs($useShortFormat = false)
     {
         if ($useShortFormat) {
             return sprintf(
