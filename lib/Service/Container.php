@@ -54,6 +54,9 @@ class Container
         if ($this->shipStorage === null) {
             $this->shipStorage = new PdoShipStorage($this->getPDO());
             //$this->shipStorage = new JsonFileShipStorage(__DIR__.'/../../resources/ships.json');
+
+            // use "composition": put the PdoShipStorage inside the LoggableShipStorage
+            $this->shipStorage = new LoggableShipStorage($this->shipStorage);
         }
 
         return $this->shipStorage;
