@@ -134,6 +134,7 @@ class Ship
 
     public function getType()
     {
+        echo 'Parent function!';
         return 'Empire';
     }
 }
