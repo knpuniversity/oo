@@ -71,7 +71,7 @@ function get_ships()
  *
  * @return array With keys winning_ship, losing_ship & used_jedi_powers
  */
-function battle(array $ship1, $ship1Quantity, array $ship2, $ship2Quantity)
+function battle($ship1, $ship1Quantity, $ship2, $ship2Quantity)
 {
     $ship1Health = $ship1['strength'] * $ship1Quantity;
     $ship2Health = $ship2['strength'] * $ship2Quantity;
