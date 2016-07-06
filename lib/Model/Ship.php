@@ -137,7 +137,7 @@ class Ship
         return 'Empire';
     }
 
-    private function getSecretDoorCodeToTheDeathstar()
+    protected function getSecretDoorCodeToTheDeathstar()
     {
         return 'Ra1nb0ws';
     }
