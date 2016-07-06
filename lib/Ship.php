@@ -22,6 +22,10 @@ class Ship
     
     public function setStrength($number)
     {
+        if (!is_numeric($number)) {
+            throw new \Exception('Strength must be a number, duh!');
+        }
+
         $this->strength = $number;
     }
 
