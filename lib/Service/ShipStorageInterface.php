@@ -1,5 +1,7 @@
 <?php
 
+namespace Service;
+
 interface ShipStorageInterface
 {
     /**
