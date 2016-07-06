@@ -4,18 +4,25 @@ namespace Model;
 
 class BountyHunterShip extends AbstractShip
 {
+    private $jediFactor;
+
     public function getJediFactor()
     {
-        // TODO: Implement getJediFactor() method.
+        return $this->jediFactor;
     }
 
     public function getType()
     {
-        // TODO: Implement getType() method.
+        return 'Bounty Hunter';
     }
 
     public function isFunctional()
     {
-        // TODO: Implement isFunctional() method.
+        return true;
+    }
+
+    public function setJediFactor($jediFactor)
+    {
+        $this->jediFactor = $jediFactor;
     }
 }
