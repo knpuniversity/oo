@@ -14,7 +14,13 @@ class Ship
 
     public function __construct()
     {
-        echo 'Automatically called!';
+        // randomly put this ship under repair
+        $this->underRepair = mt_rand(1, 100) < 30;
+    }
+
+    public function isFunctional()
+    {
+        return !$this->underRepair;
     }
 
     public function sayHello()
