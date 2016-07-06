@@ -1,10 +1,10 @@
 <?php
 
 spl_autoload_register(function($className) {
-    if ($className == 'Battle\BattleManager') {
-        require __DIR__.'/lib/Service/BattleManager.php';
+    $path = __DIR__.'/lib/'.str_replace('\\', '/', $className).'.php';
 
-        return;
+    if (file_exists($path)) {
+        require $path;
     }
 
     // we don't support this class!

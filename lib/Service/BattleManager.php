@@ -1,6 +1,6 @@
 <?php
 
-namespace Battle;
+namespace Service;
 
 class BattleManager
 {
