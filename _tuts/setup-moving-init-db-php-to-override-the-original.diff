@@ -1,0 +1,43 @@
+diff --git a/init_db.php b/init_db.php
+index 075484b..6957706 100644
+--- a/init_db.php
++++ b/init_db.php
+@@ -29,7 +29,7 @@ $pdo->exec('CREATE TABLE `ship` (
+  `weapon_power` int(4) NOT NULL,
+  `jedi_factor` int(4) NOT NULL,
+  `strength` int(4) NOT NULL,
+- `is_under_repair` tinyint(1) NOT NULL,
++ `team` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+ 
+@@ -37,20 +37,20 @@ $pdo->exec('CREATE TABLE `ship` (
+  * INSERT SOME DATA!
+  */
+ $pdo->exec('INSERT INTO ship
+-    (name, weapon_power, jedi_factor, strength, is_under_repair) VALUES
+-    ("Jedi Starfighter", 5, 15, 30, 0)'
++    (name, weapon_power, jedi_factor, strength, team) VALUES
++    ("Jedi Starfighter", 5, 15, 30, "rebel")'
+ );
+ $pdo->exec('INSERT INTO ship
+-    (name, weapon_power, jedi_factor, strength, is_under_repair) VALUES
+-    ("CloakShape Fighter", 2, 2, 70, 0)'
++    (name, weapon_power, jedi_factor, strength, team) VALUES
++    ("CloakShape Fighter", 2, 2, 70, "rebel")'
+ );
+ $pdo->exec('INSERT INTO ship
+-    (name, weapon_power, jedi_factor, strength, is_under_repair) VALUES
+-    ("Super Star Destroyer", 70, 0, 500, 0)'
++    (name, weapon_power, jedi_factor, strength, team) VALUES
++    ("Super Star Destroyer", 70, 0, 500, "empire")'
+ );
+ $pdo->exec('INSERT INTO ship
+-    (name, weapon_power, jedi_factor, strength, is_under_repair) VALUES
+-    ("RZ-1 A-wing interceptor", 4, 4, 50, 0)'
++    (name, weapon_power, jedi_factor, strength, team) VALUES
++    ("RZ-1 A-wing interceptor", 4, 4, 50, "empire")'
+ );
+ 
+-echo 'Ding!';
++echo "Ding!\n";
