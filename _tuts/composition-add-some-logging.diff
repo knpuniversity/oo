@@ -1,5 +1,5 @@
 diff --git a/lib/Service/LoggableShipStorage.php b/lib/Service/LoggableShipStorage.php
-index 38a81eb..1acc83f 100644
+index c31b46f..6ba2376 100644
 --- a/lib/Service/LoggableShipStorage.php
 +++ b/lib/Service/LoggableShipStorage.php
 @@ -13,11 +13,21 @@ class LoggableShipStorage implements ShipStorageInterface
@@ -16,7 +16,7 @@ index 38a81eb..1acc83f 100644
  
      public function fetchSingleShipData($id)
      {
-         return $this->fetchSingleShipData($id);
+         return $this->shipStorage->fetchSingleShipData($id);
      }
 +
 +    private function log($message)

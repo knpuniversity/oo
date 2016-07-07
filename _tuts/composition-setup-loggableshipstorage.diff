@@ -14,7 +14,7 @@ index c4abc8f..9d8d422 100644
          return $this->shipStorage;
 diff --git a/lib/Service/LoggableShipStorage.php b/lib/Service/LoggableShipStorage.php
 new file mode 100644
-index 0000000..38a81eb
+index 0000000..c31b46f
 --- /dev/null
 +++ b/lib/Service/LoggableShipStorage.php
 @@ -0,0 +1,23 @@
@@ -38,6 +38,6 @@ index 0000000..38a81eb
 +
 +    public function fetchSingleShipData($id)
 +    {
-+        return $this->fetchSingleShipData($id);
++        return $this->shipStorage->fetchSingleShipData($id);
 +    }
 +}
