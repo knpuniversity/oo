@@ -2,11 +2,11 @@
 
 In `index.php`, the three battle types are hard coded right in the HTML. So what
 happens if we decide to add a *fourth* battle type to `BattleManager`. No problem:
-add a new constant, then update the `battle()` method lgoic for whatever this new
-type does.
+add a new constant, then update the `battle()` method logic for whatever cool thing
+this new type does.
 
 But surprise! If we forget to *also* add the new type to `index.php`, then nobody's
-going to be able to use it. Really, I'd `BattleManager` to be *completely* in charge
+going to be able to use it. Really, I'd prefer `BattleManager` to be *completely* in charge
 of the battle types so that it's the *only* file I need to touch when something changes.
 
 ## Using a Handle, Non-Static Method
@@ -62,4 +62,4 @@ most things *non-static*. And to start, I want you guys to also make everything 
 static. Then, as you get more comfortable, you will start to see different situations
 where it's okay to make some things static. It's actually much easier to change things
 from `non-static` to `static` than the other way around. And when you make things
-non-static, it forces you to build better code.
+non-static, it forces you to build better code. And isn't that why we're here?

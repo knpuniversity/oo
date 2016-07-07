@@ -8,9 +8,9 @@ kind of a glorified associative array.
 Let's get crazy and *treat* the object like an array: say
 `$battleResults['winningShip']->getName()`.
 
-That shouldn't work, but let's refresha nd try it. Ah yes:
+That shouldn't work, but let's refresh and try it. Ah yes:
 
-> Cannoy use object of type Model\BattleResult as an array.
+> Cannot use object of type Model\BattleResult as an array.
 
 It's right - we're breaking the rules.
 
@@ -30,7 +30,7 @@ methods. In this case, PhpStorm is telling me that I needed `offsetGet`, `offset
 `offsetExist` and `offsetSet`.
 
 Ok, let's do that, but with a little help from my editor. In PHPStorm, I can go to
-the Code->Generate menu and select Implement Methods. Select these 4 months.
+the Code->Generate menu and select Implement Methods. Select these 4.
 
 Cool!
 
@@ -38,7 +38,7 @@ And just by doing this, it's *legal* to treat our object like an array. And when
 someone tries to access some array key - like `winningShip` - we'll just return
 that property instead.
 
-So, for `offsetExists()`, use a function called `property_exists()` and passs it
+So, for `offsetExists()`, use a function called `property_exists()` and pass it
 `$this` and `$offset`: that will be whatever key the user is trying to access.
 
 For `offsetGet()`, return `$this->$offset` and in `offsetSet()`, say `$this->$offset = $value`.
@@ -47,5 +47,5 @@ let's make that legal by removing the property: `unset($this->$offset)`.
 
 Ok, this is a little weird, but it works. Now, just like with magic methods, don't
 run and use this everywhere for no reason. But occasionally, it might come in handy.
-And more importantly, you *will* see this sometines in outside libraries. This means
+And more importantly, you *will* see this sometimes in outside libraries. This means
 that even though something *looks* like an array, it might actually be an object.

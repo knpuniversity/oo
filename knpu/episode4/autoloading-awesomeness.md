@@ -42,7 +42,7 @@ Let's start coding our autoloader with some simple logic: `if ($className == 'Ba
 then we know where that file lives. require `__DIR__.'/lib/Service/BattleManager.php`.
 Then, add a `return`: we're done!
 
-For now, if the autoloader function is called for any other classes, we'll do nothing.
+For now, if the autoloader function is called for any other class, we'll do nothing.
 PHP will throw its normal "class not found" error.
 
 With *just* that, refresh. Mind blown. We just got our app to work *without* manually
@@ -55,14 +55,14 @@ How could we make this function smarter? How could we make it automatically find
 *new* classes and files as we add them to the system?
 
 Well I have an idea. `BattleManager` lives in the `Service` directory. What if we
-changed its namespace to match that? Or to get crazier, what if we made *every* class
-a namespace that matched its directory?
+changed its namespace to match that? Or to get crazier, what if we gave *every* class
+a namespace that matches its directory?
 
-If we did that, the autoload function could use the namespace in to locate the file
-For the class `Service\BattleManager`, we would look in the `Service` directory
-for a file called `BattleManager.php`. It's brilliant!
+If we did that, the autoload function could use the namespace to locate any file.
+The class - `Service\BattleManager` would live at `Service/BattleManager.php`.
+It's brilliant!
 
-Now that we've changed the namespace t o`Service,` we need to update any references
+Now that we've changed the namespace to  `Service,` we need to update any references
 to `BattleManager` - like in `index.php`. Change the `use` statement to `Service`.
 
 Yes!

@@ -1,6 +1,6 @@
 # Namespaces and Core PHP Classes
 
-Let's close all our tabs and open up `Container`. In the last tutorial, we created
+Let's close all our tabs and open up `Container`. In the last course, we created
 *two* different ways to load `Ship` objects: one that reads a JSON file - `JSONFileShipStorage`
 and another that reads from a database - `PDOShipStorage`.
 
@@ -32,15 +32,15 @@ namespace. But in fact, `PDO` lives at the root namespace.
 The fix is easy: add a `\` at the front of `PDO`. This makes sense: if you think
 of namespaces like a directory structure, This is like saying `ls /PDO` . It doesn't
 matter *what* directory, or namespace, we're in, adding the `\` tells PHP that this
-class lives at the root namespace. Update the other places were we reference this
+class lives at the root namespace. Update the other places where we reference this
 class.
 
 ## The Opening Slash is Portable
 
 This is true for *all* core PHP classes: none of them live in namespaces. So, *always*
 include that beginning `\`. Now, technically, if you were inside of a file that did
-*not* have a `namespace` - like `index.php` - then you don't need the opening `\`
-there. But it's *always* safe to say `new \PDO`: it'll work in all files, regardless
+*not* have a `namespace` - like `index.php` - then you don't need the opening `\`.
+But it's *always* safe to say `new \PDO`: it'll work in all files, regardless
 of whether or not they have a namespace.
 
 ## When Type-Hints Fail

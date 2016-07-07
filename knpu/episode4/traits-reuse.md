@@ -8,13 +8,13 @@ Like every other ship, extend `AbstractShip`. Ah, but we do *not* need a `use` s
 for this: that class lives in the same namespace as us.
 
 Just like with an interface, when you extend an abstract class, you usually need
-ti implement some methods. Go back to Code->Generate "Implement Methods". Select
+to implement some methods. Go back to Code->Generate "Implement Methods". Select
 the 3 that this class needs.
 
-Great! 
+Great!
 
-Now, bounty hunter ships are special for a few reasons. First, they're never broken:
-those bounty hunters can always get the ship started. For `isFunctional()`, return
+Now, bounty hunter ships are interesting for a few reasons. First, they're never broken:
+those scrappy bounty hunters can always get the ship started. For `isFunctional()`, return
 `true`. For `getType()`, return `Bounty Hunter`.
 
 Simple. But the `jediFactor` will vary ship-by-ship. Add a `JediFactor` property
@@ -68,7 +68,7 @@ directly. Their purpose is for sharing code.
 In `BountyHunterShip`, we can effectively copy and paste the contents of that
 trait into this class by going inside the class and adding `use SettableJediFactorTrait`.
 
-That `use` statement has *nothing* to do with the  namespace `use` statement: it's
+That `use` statement has *nothing* to do with the  namespace `use` statements: it's
 just a coincidence. As soon as we do this, when PHP runs, it will copy the contents
 of the trait and pastes them into this class right before it executes our code. It's
 as if all the code from the trait actually lives inside this class.
@@ -77,7 +77,7 @@ And now, we can do the same thing inside of `Ship`: remove the `jediFactor` prop
 and the two methods. At the top, `use SettableJediFactorTrait`.
 
 Give it a try! Refresh. No errors! In fact, nothing changes at all. This is called
-horizontal reuse: because you're not extending a parent class, you're just methods
+horizontal reuse: because you're not extending a parent class, you're just using methods
 and properties from other classes.
 
 This is perfect for when you have a couple of classes that really don't have that

@@ -12,19 +12,19 @@ in our project.
 
 The idea of naming your classes and files in this way is called `PSR-0`. You see,
 there's a lovable group called the PHP FIG. It's basically the United Nations of
-PHP: they coem together to agree on standards that everyone should follow. PSR-0
-was the first standard... called 0 because we geeks start counting at 0.
+PHP: they come together to agree on standards that everyone should follow. PSR-0
+was the first standard... called 0 because we geeks start counting, well, at 0.
 
 It simply says that Thou shalt call your class names the same as your filenames plus
-`.php` and you should have your directory structures match up with your namespaces.
+`.php` and you shall have your directory structures match up with your namespaces.
 
 ## Hello Composer
 
 Why do we care? Because instead of having to write this autoloader by hand, you can
 actually include an *outside* library that takes care of all of it for us. The library
-is called [Composer](https://getcomposer.org/): you may have heard of it.
+is called Jordi, I mean, [Composer](https://getcomposer.org/): you may have heard of it.
 
-First, let's download it: Go to [getcomposer.org](https://getcomposer.org/) and hit
+Let's get it: Go to [getcomposer.org](https://getcomposer.org/) and hit
 download. Copy the lines up here: if you're on Windows, you may see slightly different
 instructions. Then move into your terminal, open a new tab, and paste those in.
 
@@ -69,4 +69,4 @@ Let's see if it works! Go back and refresh! It does! And as we add more classes 
 more directories to `lib/`, everything will keep working. AND, if you guys want to
 start downloading external libraries into your project via Composer, you can do that
 too and immediately reference those classes without needing to worry about require
-statements or autoloaders. Composer takes care of everything.
+statements or autoloaders. Composer takes care of everything. Thanks Jordi!
