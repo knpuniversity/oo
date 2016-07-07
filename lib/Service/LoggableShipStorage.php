@@ -22,7 +22,7 @@ class LoggableShipStorage implements ShipStorageInterface
 
     public function fetchSingleShipData($id)
     {
-        return $this->fetchSingleShipData($id);
+        return $this->shipStorage->fetchSingleShipData($id);
     }
 
     private function log($message)
