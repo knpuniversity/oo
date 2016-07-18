@@ -1,3 +1,32 @@
+diff --git a/README.md b/README.md
+index 7651503..717beb6 100644
+--- a/README.md
++++ b/README.md
+@@ -8,6 +8,24 @@ from KnpUniversity.
+ Setup
+ -----
+ 
++### 1) Database Setup
++
++This project uses a small MySQL database. First, configure your database settings:
++
++A) open `init_db.php` and modify the `$databaseUser` and `$databasePassword` variables.
++Make sure the user has permissions to create a database!
++
++B) To create and pre-populate your database, open your favorite terminal application
++and run:
++
++```bash
++cd /path/to/the/project
++php init_db.php
++```
++That's it! Your database is ready to go!
++
++### 2) Web Server Setup
++
+ To get this code working, open your favorite terminal application
+ and start the built-in web server:
+ 
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
 index 7084f97..cd0756b 100644
 --- a/lib/ShipLoader.php

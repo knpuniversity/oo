@@ -1,3 +1,31 @@
+diff --git a/README.md b/README.md
+index 717beb6..952caba 100644
+--- a/README.md
++++ b/README.md
+@@ -24,7 +24,22 @@ php init_db.php
+ ```
+ That's it! Your database is ready to go!
+ 
+-### 2) Web Server Setup
++### 2) Composer Autoload Setup
++
++This project uses [Composer](https://getcomposer.org/) for autoloading (which is
++explained in the tutorial!).
++
++A) Download Composer https://getcomposer.org/ (run the commands from inside of this project)
++
++B) Run `composer install` (from this project directory):
++
++```bash
++php composer.phar install
++```
++
++That's it! You should now have a `vendor/` directory, which the project relies on.
++
++### 3) Web Server Setup
+ 
+ To get this code working, open your favorite terminal application
+ and start the built-in web server:
 diff --git a/bootstrap.php b/bootstrap.php
 index 5f800cc..d15ffbf 100644
 --- a/bootstrap.php
