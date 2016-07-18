@@ -32,21 +32,34 @@ chapters:
         is_free:    true
         is_finished: false
         video_key: ~
-        challenges: []
+        challenges:
+            - classconstants_replacestringswithconstantscoding
+            - classconstants_uppercaseconstantsmc
+            - classconstants_setconstantmc
+            - classconstants_hexcolorconstantsmc
     static-vs-non-static-and-self:
         is_free:    true
         is_finished: false
         video_key: ~
-        challenges: []
+        challenges:
+            - staticvsnonstaticandself_staticpropertymc
+            - staticvsnonstaticandself_useselfkeywordcoding
     static-methods:
         is_free:    true
         is_finished: false
         video_key: ~
-        challenges: []
+        challenges:
+            - staticmethods_staticgetallelementscoding
+            - staticmethods_fixerrorscoding
+            - staticmethods_staticvsnonstaticmc
     namespaces-make-class-names-longer:
         is_finished: false
         video_key: ~
-        challenges: []
+        challenges:
+            - namespacesmakeclassnameslonger_addnamespacecoding
+            - namespacesmakeclassnameslonger_usenamespacecoding
+            - namespacesmakeclassnameslonger_useonemorenamespacecoding
+            - namespacesmakeclassnameslonger_namespaceusagemc
     autoloading-awesomeness:
         is_finished: false
         video_key: ~
