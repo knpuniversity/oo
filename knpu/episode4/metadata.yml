@@ -22,15 +22,14 @@ illustration: oo-ep4.png
 
 # todo - fill in correctly!
 tuts_hero:
-#   start_step: 'start'
-   finish_step: 'start'
+   start_step: 'interface-document-it'
+   finish_step: 'composition-add-some-logging'
 
 challenge_repo: knpuniversity/oo-challenges
 
 chapters:
     class-constants:
         is_free:    true
-        is_finished: false
         video_key: 175372075
         challenges:
             - classconstants_replacestringswithconstantscoding
@@ -39,21 +38,18 @@ chapters:
             - classconstants_hexcolorconstantsmc
     static-vs-non-static-and-self:
         is_free:    true
-        is_finished: false
         video_key: 175248058
         challenges:
             - staticvsnonstaticandself_staticpropertymc
             - staticvsnonstaticandself_useselfkeywordcoding
     static-methods:
         is_free:    true
-        is_finished: false
         video_key: 175248837
         challenges:
             - staticmethods_staticgetallelementscoding
             - staticmethods_fixerrorscoding
             - staticmethods_staticvsnonstaticmc
     namespaces-make-class-names-longer:
-        is_finished: false
         video_key: 175260333
         challenges:
             - namespacesmakeclassnameslonger_addnamespacecoding
