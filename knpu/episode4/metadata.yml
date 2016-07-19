@@ -31,7 +31,7 @@ chapters:
     class-constants:
         is_free:    true
         is_finished: false
-        video_key: ~
+        video_key: 175372075
         challenges:
             - classconstants_replacestringswithconstantscoding
             - classconstants_uppercaseconstantsmc
@@ -40,21 +40,21 @@ chapters:
     static-vs-non-static-and-self:
         is_free:    true
         is_finished: false
-        video_key: ~
+        video_key: 175248058
         challenges:
             - staticvsnonstaticandself_staticpropertymc
             - staticvsnonstaticandself_useselfkeywordcoding
     static-methods:
         is_free:    true
         is_finished: false
-        video_key: ~
+        video_key: 175248837
         challenges:
             - staticmethods_staticgetallelementscoding
             - staticmethods_fixerrorscoding
             - staticmethods_staticvsnonstaticmc
     namespaces-make-class-names-longer:
         is_finished: false
-        video_key: ~
+        video_key: 175260333
         challenges:
             - namespacesmakeclassnameslonger_addnamespacecoding
             - namespacesmakeclassnameslonger_usenamespacecoding
