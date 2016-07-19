@@ -1,7 +1,10 @@
 # Static Methods
 
-In `index.php`, the three battle types are hard coded right in the HTML. So what
-happens if we decide to add a *fourth* battle type to `BattleManager`. No problem:
+In `index.php`, the three battle types are hard coded right in the HTML:
+
+[[[ code('6a31916a60') ]]]
+
+So what happens if we decide to add a *fourth* battle type to `BattleManager`. No problem:
 add a new constant, then update the `battle()` method logic for whatever cool thing
 this new type does.
 
@@ -12,19 +15,31 @@ of the battle types so that it's the *only* file I need to touch when something 
 ## Using a Handle, Non-Static Method
 
 To do that, create a new function in `BattleManager` that will return all of the
-types and their descriptions: call it `public function getAllBattleTypesWithDescription()`.
+types and their descriptions: call it `public function getAllBattleTypesWithDescription()`:
+
+[[[ code('628cfefcb2') ]]]
+
 Here, return an array with the type as the key and the description that should be
-used in the drop-down as the value.
+used in the drop-down as the value:
+
+[[[ code('c84a44f8cb') ]]]
 
 Awesome! Next, if we call this method in `index.php`, we can remove the hardcoded
 values there. Of course, this method is *non-static*. That means that we need to
 call this method on a `BattleManager` *object*. Create a new one by saying
-`$battleManager = $container->getBattleManager()`.
+`$battleManager = $container->getBattleManager()`:
 
-Now add `$battleTypes = $battleManager->getAllBattleTypesWithDescription()`. Finally,
-scroll down. In place of the hardcoded values, `foreach` over `$battleTypes` as
+[[[ code('536ef22f5a') ]]]
+
+Now add `$battleTypes = $battleManager->getAllBattleTypesWithDescription()`:
+
+[[[ code('c3bd67b039') ]]]
+
+Finally, scroll down. In place of the hardcoded values, `foreach` over `$battleTypes` as
 `$battleType => $typeText`. End the `foreach` and make the option dynamic by printing
-`$battleType` and `<?php echo $typeText; ?>`.
+`$battleType` and `<?php echo $typeText; ?>`:
+
+[[[ code('b1b94d082a') ]]]
 
 Ok! Give it a try! Click the "Battle Again" link. And yes! The drop-down has the
 same three values as before.
@@ -45,9 +60,14 @@ To know, ask yourself these two questions:
    properties using `$this`, then the method *must* be non-static. But we're not
    using `$this`.
 
-So let's make this method `static` by saying `public static function`. The only
-thing that changes now is *how* we call our method. First, we don't need a `BattleManager`
-object at all. Instead, just say `BattleManager::getAllBattleTypesWithDescription()`.
+So let's make this method `static` by saying `public static function`:
+
+[[[ code('ba161bea03') ]]]
+
+The only thing that changes now is *how* we call our method. First, we don't need a `BattleManager`
+object at all. Instead, just say `BattleManager::getAllBattleTypesWithDescription()`:
+
+[[[ code('24865823cd') ]]]
 
 Ok, try it out! It works!
 
