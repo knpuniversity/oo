@@ -100,4 +100,3 @@ If you still have questions about namespaces - check out our short course
 
 
 [namespaces]: https://knpuniversity.com/screencast/php-namespaces-in-120-seconds
-g
