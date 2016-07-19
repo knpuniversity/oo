@@ -2,16 +2,26 @@
 
 A really important thing just happened: for the first time *ever*, we referred to
 something on our class by using its *class name*. To use the constant, we said
-`BattleManager::TYPE_NO_JEDI`.
+`BattleManager::TYPE_NO_JEDI`:
+
+[[[ code('96f2769482') ]]]
 
 That makes sense, but notice: it's *completely* different than how we've referred
 to class properties and methods so far. Normally, we create a new object
-by saying `new BattleManager()`. For us, this lives inside the `Container`. But here's
-the important part: to reference a method or property, we use the *object* by saying
-`$battleManager->` followed by the method name. 
+by saying `new BattleManager()`:
+
+[[[ code('201aee1768') ]]]
+
+For us, this lives inside the `Container`. But here's the important part: to reference
+a method or property, we use the *object* by saying `$battleManager->` followed
+by the method name:
+
+[[[ code('c403d4be9d') ]]]
 
 For constants, it's totally different. We don't ever need to instantiate an object.
-Instead, at any point, you can just say the class name `::TYPE_NO_JEDI`.
+Instead, at any point, you can just say the class name `::TYPE_NO_JEDI`:
+
+[[[ code('96f2769482') ]]]
 
 So sometimes, we need to create an object and reference that *object*. But other
 times, we don't need an object: we just use the class name. What's going on?
@@ -26,9 +36,13 @@ can choose to attach it to an individual instance of the object or to the class
 itself. When you choose to attach something to a class, it's said to be "static".
 
 Let's look at a real example. In `AbstractShip`, the properties `id`, `name`,
-`weaponPower` and `strength` are *not* static. That means that if you have two `Ship`
-objects, each has a different `id`, `name`, `weaponPower` and `strength`. If you
-change the `name` in one `Ship` it does *not* affect any other ship objects.
+`weaponPower` and `strength` are *not* static:
+
+[[[ code('cb815add69') ]]]
+
+That means that if you have two `Ship` objects, each has a different `id`, `name`,
+`weaponPower` and `strength`. If you change the `name` in one `Ship` it does *not*
+affect any other ship objects.
 
 But, if we were to change these properties to `static` - which *is* something you
 can do - then suddenly the `name` property would be global to *all* ships, meaning
@@ -60,8 +74,11 @@ name, `::`, and then whatever you're referencing.
 
 Before we try an example, there's another special property of static things. Notice
 that we're inside `BattleManager` and we're referencing the `BattleManager` class.
-If you want to, you can change this to, `self::TYPE_NO_JEDI`. In the same way that
-`$this` refers to the current object, `self` refers to the *class* that we're inside
-of. So this didn't change our behavior: it's just a nice shortcut.
+If you want to, you can change this to, `self::TYPE_NO_JEDI`:
+
+[[[ code('ece49c4c17') ]]]
+
+In the same way that `$this` refers to the current object, `self` refers to the *class*
+that we're inside of. So this didn't change our behavior: it's just a nice shortcut.
 
 Now, let's see a real-life static method in action.
