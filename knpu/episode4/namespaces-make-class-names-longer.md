@@ -93,7 +93,7 @@ them.
 Ok! We're going to do a lot more with namespaces. But first, we need to turn to
 a very related topic called *autoloading*.
 
-***SEEALSO:
+***SEEALSO
 If you still have questions about namespaces - check out our short course
 [PHP Namespaces in 120 Seconds][namespaces] or just leave a comment.
 ***
