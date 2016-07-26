@@ -57,20 +57,16 @@ chapters:
             - namespacesmakeclassnameslonger_useonemorenamespacecoding
             - namespacesmakeclassnameslonger_namespaceusagemc
     autoloading-awesomeness:
-        is_finished: false
-        video_key: ~
+        video_key: 176368515
         challenges: []
     more-with-use-statements:
-        is_finished: false
-        video_key: ~
+        video_key: 176370043
         challenges: []
     namespaces-core-php-classes:
-        is_finished: false
-        video_key: ~
+        video_key: 176370770
         challenges: []
     composer-autoloading:
-        is_finished: false
-        video_key: ~
+        video_key: 176389505
         challenges: []
     throw-exceptions:
         is_finished: false
