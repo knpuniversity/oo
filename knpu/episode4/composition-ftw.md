@@ -40,7 +40,7 @@ To do that, add a new `private $shipStorage` property and a `public function __c
 method that accepts one `ShipStorageInterface` argument. Then, set that value onto
 the `$shipStorage` property.
 
-For `fetchSingleShipData()`, just `return $this->shipStorage->fetchAllShipsData()`.
+For `fetchAllShipData()`, just `return $this->shipStorage->fetchAllShipsData()`.
 Repeat for the other method: `return $this->shipStorage->fetchSingleShipData()`.
 
 We've now created a *wrapper* object that offloads all of the work to an internal

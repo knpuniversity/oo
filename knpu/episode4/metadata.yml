@@ -69,30 +69,23 @@ chapters:
         video_key: 176389505
         challenges: []
     throw-exceptions:
-        is_finished: false
-        video_key: ~
+        video_key: 176476893
         challenges: []
     exception-classes:
-        is_finished: false
-        video_key: ~
+        video_key: 176477715
         challenges: []
     magic-methods:
-        is_finished: false
-        video_key: ~
+        video_key: 176480231
         challenges: []
     array-access:
-        is_finished: false
-        video_key: ~
+        video_key: 176480298
         challenges: []
     iterator-aggregate:
-        is_finished: false
-        video_key: ~
+        video_key: 176484545
         challenges: []
     traits-reuse:
-        is_finished: false
-        video_key: ~
+        video_key: 176484068
         challenges: []
     composition-ftw:
-        is_finished: false
-        video_key: ~
+        video_key: 176521546
         challenges: []
