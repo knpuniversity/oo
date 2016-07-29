@@ -1,12 +1,18 @@
 # Magic Methods: __toString() __get, __set()
 
 If I give you an object, could you print it? What I mean is, in `battle.php`, after
-we determine the winners, we echo `$ship1->getName()`, which is of course a string.
+we determine the winners, we echo `$ship1->getName()`, which is of course a string:
 
-But could we just print `$ship1` and `$ship2`?. Does it make sense to print an object?
-The answer is... no. Try to battle:, you get a very clear error that says:
+[[[ code('8cc396fb50') ]]]
 
-> Object of class `Model\RebelShip` could not be converted to string.
+But could we just print `$ship1` and `$ship2`?
+
+[[[ code('377668dac7') ]]]
+
+Does it make sense to print an object? The answer is... no. Try to battle, you get
+a very clear error that says:
+
+> Object of class `Model\RebelShip` could not be converted to string in `battle.php`.
 
 Remember this error: you'll eventually try to print an object on accident and see
 this!
@@ -20,34 +26,47 @@ Here's the big picture: there are ways to give a class super-powers - like the a
 to be printed or - as we'll see next - the ability to pretend like it's an array.
 
 Open up `AbstractShip`. To make objects of this class printable, go to the bottom
-and create a new `public function __toString()`. Inside, `return $this->getName()`.
+and create a new `public function __toString()`. Inside, `return $this->getName()`:
+
+[[[ code('4496cee430') ]]]
 
 Go back, refresh, and now it works just fine.
 
 By adding the `__toString()` method - we gave PHP the ability to convert our object
 into a string. The `__toString()` *must* be called exactly like this, and there are other
 methods that take on special meaning. They all start with `__`, and we've already
-seen one: `__construct()`. These are collectively called Magic Methods.
+seen one: `__construct()`:
+
+[[[ code('fa91981700') ]]]
+
+These are collectively called Magic Methods.
 
 ## The Magic __get()
 
 There are actually just a few magic methods: let's look at another common one.
 In `battle.php`, scroll down a little bit to where it shows the ship health. Change
-this: instead of `$ship1->getStrength()`, say `$ship1->strength`.
+this: instead of `$ship1->getStrength()`, say `$ship1->strength`:
+
+[[[ code('fb51d143c4') ]]]
 
 This should *not* work, and PHPStorm tells us why: the member - meaning property -
 has private access. We can't access a `private` property from outside the class.
 
 But once again - via a magic method - you can bend the rules. This time, add a
 `public function __get()` with a single argument: `$propertyName`. For now, just
-dump that.
+dump that:
+
+[[[ code('f1d5f85726') ]]]
 
 Refresh to see what happens. Interesting! It dumps the string `strength`. Here's
 the magic: if you reference a property on your object that is not accessible - either
 because it doesn't exist or is private or protected - *and* you have an `__get()`
 method, then PHP will call that and pass you the property name.
 
-Then - if you want - you can return its value. Add `return $this->$propertyName`.
+Then - if you want - you can return its value. Add `return $this->$propertyName`:
+
+[[[ code('f8a2bf43b8') ]]]
+
 This looks weird: PHP will see `$propertyName`, evaluate that to `strength`, and
 then return `$this->strength`.
 
