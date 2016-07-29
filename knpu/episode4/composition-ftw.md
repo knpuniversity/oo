@@ -26,11 +26,15 @@ and override some methods to add logging.
 
 But forget that, let's skip to a better method called composition. First, create
 a new class in the `Service` directory called `LoggableShipStorage`, but do *not*
-extend `PDOShipStorage`.
+extend `PDOShipStorage`:
+
+[[[ code('40786ecf09') ]]]
 
 Now, the only rule for any ship storage object is that it needs to implement the
-`ShipStorageInterface`. Add that, and then go to our handy Code->Generate method
-to implement the 2 methods we need.
+`ShipStorageInterface`. Add that, and then go to our handy "Code"->"Generate" method
+to implement the 2 methods we need:
+
+[[[ code('34e210baeb') ]]]
 
 So far, this is how every ship storage starts.
 
@@ -38,17 +42,23 @@ But `LoggableShipStorage` will *not* actually do any of the ship-loading work - 
 offload all that hard work to some *other* ship storage object, like `PDOShipStorage`.
 To do that, add a new `private $shipStorage` property and a `public function __construct()`
 method that accepts one `ShipStorageInterface` argument. Then, set that value onto
-the `$shipStorage` property.
+the `$shipStorage` property:
+
+[[[ code('c8900fc74e') ]]]
 
 For `fetchAllShipData()`, just `return $this->shipStorage->fetchAllShipsData()`.
-Repeat for the other method: `return $this->shipStorage->fetchSingleShipData()`.
+Repeat for the other method: `return $this->shipStorage->fetchSingleShipData()`:
+
+[[[ code('3e8d80defd') ]]]
 
 We've now created a *wrapper* object that offloads all of the work to an internal
 ship storage object. This is composition: you put one object *inside* of another.
 
-To use the new class, open up `Container`. Inside `getShipStorage`, add
+To use the new class, open up `Container`. Inside `getShipStorage()`, add
 `$this->shipStorage = new LoggableShipStorage()` and pass it `$this->shipStorage`,
-which is the `PDOShipStorage` object.
+which is the `PDOShipStorage` object:
+
+[[[ code('3fdb4de626') ]]]
 
 We've just pulled a "fast one" on our application: our entire app thinks
 we're using `PDOShipStorage`, but we just changed that! If you refresh now, nothing
@@ -60,12 +70,21 @@ in either of these methods.
 ## Add some Logging!
 
 To give a really simple example, replace the return statement with `$ships =` and
-add `return $ships` below that. Between, we could call some new `log()` method, passing
-it a string like: `just fetched %s ships` - passing that a `count()` of `$ships`.
+add `return $ships` below that:
 
-Below, add a new `private function log()` with a `$message` argument. You should
-do something more intelligent in a real app, but to prove it's working, echo that
-message.
+[[[ code('fc19ebf717') ]]]
+
+Between, we could call some new `log()` method, passing it a string like:
+`just fetched %s ships` - passing that a `count()` of `$ships`:
+
+[[[ code('6b27d9906b') ]]]
+
+Below, add a new `private function log()` with a `$message` argument:
+
+[[[ code('481478eec8') ]]]
+
+You should do something more intelligent in a real app, but to prove it's working,
+echo that message.
 
 Let's refresh! There's our message!
 
