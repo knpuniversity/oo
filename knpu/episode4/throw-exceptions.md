@@ -4,29 +4,35 @@ Let's talk about something totally different: a powerful part of object-oriented
 code called *exceptions*.
 
 In `index.php`, we create a `BrokenShip` object. I'm going to do something crazy,
-guys. I'm going to say, `$brokenShip->setStrength()` and pass it... `banana`.
+guys. I'm going to say, `$brokenShip->setStrength()` and pass it... `banana`:
+
+[[[ code('6b0f099ba4') ]]]
 
 That strength makes no sense. And if we try to battle using this ship, we should
 get *some* sort of error. But when we refresh... well, it *is* an error: but not
 exactly what I expected.
 
 This error is coming from `AbstractShip` line 65. Open that up. I want you to look
-at 2 exceptional things here.
+at 2 exceptional things here:
+
+[[[ code('fcda6833b7') ]]]
 
 First, we planned ahead. When we created the `setStrength()` method, we said:
 
 > You know what? This needs to be a number, so if somebody passes something
-> dumb like "banana," then let's check for that and trigger an error.
+  dumb like "banana," then let's check for that and trigger an error.
 
 Second, in order to trigger an error, we threw an *exception*. And that's actually
 what I want to talk about: Exceptions are classes, but they're completely special.
 
 But first, `Exception` is a core PHP class, and when we added a `namespace` to this
-file, we forgot to change it to `\Exception`.
+file, we forgot to change it to `\Exception`:
+
+[[[ code('fcda6833b7') ]]]
 
 That's better. Now refresh again. *This* is a much better error:
 
-> Uncaught Exception: Invalid strength passed: banana
+> Uncaught `Exception`: Invalid strength passed: "banana"
 
 ## When things go Wrong: Throw an Exception
 
@@ -50,26 +56,36 @@ But when you use a `die` statement, your script is *truly* done: none of your ot
 code executes. But with an exception, you can actually try to *recover* and keep
 going!
 
-Let's look at how. Open up `PDOShipStorage`. Inside `fetchAllShipsData`, change the
-table name to `foooo`. That clearly will *not* work. This method is called by `ShipLoader`,
-inside `getShips`
+Let's look at how. Open up `PdoShipStorage`. Inside `fetchAllShipsData()`, change the
+table name to `fooooo`:
+
+[[[ code('ca6690c5bb') ]]]
+
+That clearly will *not* work. This method is called by `ShipLoader`, inside `getShips()`:
+
+[[[ code('89cfe0200e') ]]]
 
 When we try to run this, we get an *exception*:
 
 > Base table or view not found
 
-The error is coming from `PDOShipStorage` on line 18, but we can also see the line
+The error is coming from `PdoShipStorage` on line 18, but we can also see the line
 that called this: `ShipLoader` line 23.
 
 Now, what if we knew that *sometimes*, for some reason, an exception like this might
-be thrown when we call `fetchAllShipsData`. And when that happens, we *don't* want
+be thrown when we call `fetchAllShipsData()`. And when that happens, we *don't* want
 to kill the page or show an error. Instead, we want to - temporarily - render the
 page with zero ships.
 
 How can we do this? First, surround the line - or lines - that might fail with a
-try-catch block. In the `catch`, add `\Exception $e`. Now, if the `fetchAllShipsData()`
-method throws an exception, the page will *not* die. Instead, the code inside `catch`
-will be called and then execution will keep going like normal.
+try-catch block. In the `catch`, add `\Exception $e`:
+
+[[[ code('8c4ace315b') ]]]
+
+Now, if the `fetchAllShipsData()` method throws an exception, the page will *not* die.
+Instead, the code inside `catch` will be called and then execution will keep going like normal:
+
+[[[ code('7dccd14a6b') ]]]
 
 That means, we can say `$shipData = array()`.
 
@@ -83,8 +99,10 @@ and say:
 
 Of course, we probably also don't want this to fail silently without us knowing,
 so you might trigger an error and print the message for our logs. Notice, in catch,
-we have access to the `Exception` object, and every Exception has a `getMessage()`
-method on it. Use that to trigger an error to our logs.
+we have access to the `Exception` object, and every exception has a `getMessage()`
+method on it. Use that to trigger an error to our logs:
+
+[[[ code('a625dfb99a') ]]]
 
 Ok, refresh! Right now, we see the error on top of the page. But that's just because
 of our error_reporting settings in `php.ini`. On production, this wouldn't display,
