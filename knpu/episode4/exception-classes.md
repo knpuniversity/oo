@@ -2,10 +2,14 @@
 
 Catching an exception is really powerful. But you can get even fancier.
 
-For right now, `var_dump()` the Exception object. Ok, this object is actually a
-`PDOException`. Two Important things: *all* exceptions are objects, and all exception
-classes ultimately extend PHP's base `Exception` class. So if you could look at
-the source code for `PDOException`, you'd see that it extends `Exception`.
+For right now, `var_dump()` the `Exception` object:
+
+[[[ code('a7123a6d16') ]]]
+
+Ok, this object is actually a `PDOException`. Two Important things: *all* exceptions
+are objects, and all exception classes ultimately extend PHP's base `Exception` class.
+So if you could look at the source code for `PDOException`, you'd see that it
+extends `Exception`:
 
 And this ends up giving us a lot more flexibility when working with exceptions.
 Why? Remember, we're pretending that - for some reason - we occasionally have some
@@ -17,16 +21,21 @@ to do with talking to the database. Well, that would be truly unexpected, and in
 those cases, I want to let the exception be thrown like normal so we can see it
 while we're developing.
 
-So here's the question: how can we catch PDOException objects, but not *any* others?
-By changing the catch to `\PDOException`.
+So here's the question: how can we catch `PDOException` objects, but not *any* others?
+By changing the catch to `\PDOException`:
 
-I'll also change the message to "database exception".
+[[[ code('17cce56878') ]]]
+
+I'll also change the message to "Database Exception".
 
 Refresh! Cool: it still catches that exception. But check this out: go back into
-`PDOShipStorage` and - before the query - throw a different exception: there's one
-called `InvalidArgumentException`. There's nothing special about this class:
-PHP has several built-in exceptions, and you can use whatever one feels right for
-your scenario.
+`PdoShipStorage` and - before the query - throw a different exception: there's one
+called `InvalidArgumentException`:
+
+[[[ code('c57cf464b9') ]]]
+
+There's nothing special about this class: PHP has several built-in exceptions,
+and you can use whatever one feels right for your scenario.
 
 But, it should *not* be caught by our try-catch. Try it out.
 
