@@ -2,32 +2,48 @@
 
 Ok team: we need a new ship class - a `BountyHunterShip`. Start simple: in the
 model directory, add a new class: `BountyHunterShip`. Once again, PhpStorm already
-added the correct namespace for us.
+added the correct namespace for us:
+
+[[[ code('0423230a84') ]]]
 
 Like every other ship, extend `AbstractShip`. Ah, but we do *not* need a `use` statement
 for this: that class lives in the same namespace as us.
 
 Just like with an interface, when you extend an abstract class, you usually need
-to implement some methods. Go back to Code->Generate "Implement Methods". Select
-the 3 that this class needs.
+to implement some methods. Go back to "Code"->"Generate"->"Implement Methods". Select
+the 3 that this class needs:
+
+[[[ code('8f2105cfad') ]]]
 
 Great!
 
 Now, bounty hunter ships are interesting for a few reasons. First, they're never broken:
 those scrappy bounty hunters can always get the ship started. For `isFunctional()`, return
-`true`. For `getType()`, return `Bounty Hunter`.
+`true`:
+
+[[[ code('61ff31dd01') ]]]
+
+For `getType()`, return `Bounty Hunter`:
+
+[[[ code('5546bcd221') ]]]
 
 Simple. But the `jediFactor` will vary ship-by-ship. Add a `JediFactor` property
-and return that from inside `getJediFactor()`.
+and return that from inside `getJediFactor()`:
+
+[[[ code('2804be9d0d') ]]]
 
 At the bottom of the class add a `public function setJediFactor()` so that we can
-change this property: `$this->jediFactor = $jediFactor`.
+change this property: `$this->jediFactor = $jediFactor`:
+
+[[[ code('7f34d76e92') ]]]
 
 Cool!
 
 To get one of these into our system, let's do something simple. Open `ShipLoader`.
 At the bottom of `getShips()`, add a new ship to the collection:
-`$ships[] = new BountyHunterShip()` called 'Slave I' - Boba Fett's famous ship.
+`$ships[] = new BountyHunterShip()` called 'Slave I' - Boba Fett's famous ship:
+
+[[[ code('f33056bba2') ]]]
 
 Ok, head back and refresh! Yes! Slave I - Bounty Hunter, and it's not broken. That
 was easy.
@@ -57,16 +73,22 @@ few things, the right answer might be a *trait*.
 
 Let's see what this trait thing is. In the `Model` directory, create a new PHP class
 called `SettableJediFactorTrait`. Now, change the `class` keyword to `trait`. Traits
-look and feel *exactly* like a normal class.
+look and feel *exactly* like a normal class:
+
+[[[ code('b728a620e3') ]]]
 
 In fact, open up `BountyHunterShip` and move the property and first method into the
-trait. Also grab `setJediFactor()` and put that in the trait too.
+trait. Also grab `setJediFactor()` and put that in the trait too:
+
+[[[ code('af21af023a') ]]]
 
 The only difference between classes and traits is that traits can't be instantiated
 directly. Their purpose is for sharing code.
 
 In `BountyHunterShip`, we can effectively copy and paste the contents of that
-trait into this class by going inside the class and adding `use SettableJediFactorTrait`.
+trait into this class by going inside the class and adding `use SettableJediFactorTrait`:
+
+[[[ code('9c139d2855') ]]]
 
 That `use` statement has *nothing* to do with the  namespace `use` statements: it's
 just a coincidence. As soon as we do this, when PHP runs, it will copy the contents
@@ -74,7 +96,9 @@ of the trait and pastes them into this class right before it executes our code. 
 as if all the code from the trait actually lives inside this class.
 
 And now, we can do the same thing inside of `Ship`: remove the `jediFactor` property
-and the two methods. At the top, `use SettableJediFactorTrait`.
+and the two methods. At the top, `use SettableJediFactorTrait`:
+
+[[[ code('c2a69f84c7') ]]]
 
 Give it a try! Refresh. No errors! In fact, nothing changes at all. This is called
 horizontal reuse: because you're not extending a parent class, you're just using methods
