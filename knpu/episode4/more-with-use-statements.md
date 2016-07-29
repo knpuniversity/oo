@@ -7,35 +7,63 @@ easier when you use namespaces like this from the very beginning. But, we'll lea
 some other stuff along the way.
 
 The `AbstractShip` class lives in the `Model` directory, so give it the namespace
-Model. Copy that and do the same thing in `BattleResult`, `BrokenShip`,
-`RebelShip`, `Ship` and `FriendShip` -- just kidding there's none of that in epic code
-battles.
+`Model`:
 
-Perfect. `BattleManager` already has the correct `Service` namespace.
-In Container, paste that same one. Repeat that in `JsonFileShipStorage`,
-`PdoShipStorage`, `ShipLoader`and `ShipStorageInterface`. These all live in the
-`Service` directory.
+[[[ code('7426bf2333') ]]]
+
+Copy that and do the same thing in `BattleResult`, `BrokenShip`, `RebelShip`, `Ship`
+and `FriendShip` -- just kidding there's none of that in epic code battles:
+
+[[[ code('2b61f21b8a') ]]]
+[[[ code('2d93d01320') ]]]
+[[[ code('3fdc027130') ]]]
+[[[ code('8e141ab2ce') ]]]
+
+Perfect. `BattleManager` already has the correct `Service` namespace:
+
+[[[ code('1a3ce02906') ]]]
+
+In `Container`, paste that same one:
+
+[[[ code('d848875e62') ]]]
+
+Repeat that in `JsonFileShipStorage`, `PdoShipStorage`, `ShipLoader` and `ShipStorageInterface`:
+
+[[[ code('0b0fd920e7') ]]]
+[[[ code('0b7470a2aa') ]]]
+[[[ code('e023a7c832') ]]]
+[[[ code('df3515784d') ]]]
+
+These all live in the `Service` directory.
 
 ## Missing use Statements = Common Error
 
 Ok! Let's see what breaks! Go back and refresh. The first error we get is:
 
-> Class Container not found in index.php
+> Class `Container` not found in `index.php`
 
 Ok, you're going to see *a lot* of class not found errors in your future. When you
 see them, read the error very closely: it always contains a hint. This says class
 `Container` is not found. Well, we don't have a class called `Container`: our class
 is called `Service\Container`. This tells me that in `index.php` on line 6, we're
-referencing the class name *without* the namespace. Sure enough, we have `new Container`.
+referencing the class name *without* the namespace. Sure enough, we have `new Container`:
+
+[[[ code('67f01cfa4d') ]]]
 
 To fix this, we *could* say `Service\Container` here *or* we can add a `use` statement
-for `Service\Container`. Let's do that.
+for `Service\Container`. Let's do that:
+
+[[[ code('6e25b5752f') ]]]
 
 And I can already see that we'll have the same problem down below with `BrokenShip`:
-PhpStorm is trying to warn me! Add a `use Model\BrokenShip` to take care of that.
+PhpStorm is trying to warn me! Add a `use Model\BrokenShip` to take care of that:
+
+[[[ code('b879b26481') ]]]
 
 We'll probably have the same problem in `battle.php` - so open that up. Yep, add
-`use Service\Container`.
+`use Service\Container`:
+
+[[[ code('63f144785d') ]]]
 
 Looking good!
 
@@ -47,14 +75,21 @@ Try it again! Ok:
 
 Remember what I just said about reading the error messages closely? This one has
 a clue: it's looking for `Service\RebelShip`. But we don't have a class called
-`Service\RebelShip` - our class is called `Model\RebelShip`. The problem exists
-where we're *referencing* this class - so in `ShipLoader` at line 43.
+`Service\RebelShip` - our class is called `Model\RebelShip`:
+
+[[[ code('c6bfb20af0') ]]]
+
+The problem exists where we're *referencing* this class - so in `ShipLoader` at line 43.
 
 This is the most *common* mistake with namespaces: we have `new RebelShip`, but we
-*don't* have a `use` statement on top for this. This is the same problem we just
-solved in `index.php`, but with a small difference. Unlike `index.php` and `battle.php`,
-this file lives in a namespace called `Service`. That causes PHP to assume that
-`RebelShip` *also* lives in that namespace -- you know like roommates.
+*don't* have a `use` statement on top for this:
+
+[[[ code('5fb974fbcd') ]]]
+
+This is the same problem we just solved in `index.php`, but with a small difference.
+Unlike `index.php` and `battle.php`, this file lives in a namespace called `Service`.
+That causes PHP to assume that `RebelShip` *also* lives in that namespace -- you know
+like roommates.
 
 Here's how it works: when PHP parses this file, it sees the `RebelShip` class on
 line 43. Next, it looks up at the top of the file to see if there are any `use`
@@ -70,25 +105,38 @@ namespace. If you forget a `use` statement for `BrokenShip` here, this is equiva
 to saying `ls BrokenShip` from the *root* of your file system, instead of from inside
 some directory.
 
-In both cases the solution is the same: add the missing `use` statement: `use Model\RebelShip`.
+In both cases the solution is the same: add the missing `use` statement: `use Model\RebelShip`:
+
+[[[ code('1be352a10d') ]]]
+
 Now PhpStorm *stops* highlighting this as an error. Much better.
 
-We have the same problem below for `Ship`: add `use Model\Ship`. Finally, there's
-one more spot in the PHP documentation itself. Because we don't have a `use` statement
-in this file yet for `AbstractShip`, PhpStorm assumes that this class is `Service\AbstractShip`.
-To fix that, add `use Model\AbstractShip`.
+We have the same problem below for `Ship`: add `use Model\Ship`:
+
+[[[ code('88b2a3b90c') ]]]
+
+Finally, there's one more spot in the PHP documentation itself. Because we don't have
+a `use` statement in this file yet for `AbstractShip`, PhpStorm assumes that this class
+is `Service\AbstractShip`. To fix that, add `use Model\AbstractShip`:
+
+[[[ code('22acae54bd') ]]]
 
 Now, everything looks happy!
 
 The moral of the story is this: whenever you reference a class, don't forget to put
 a `use` statement for it. Now, there is *one* exception to this rule. If you reference
 a class that happens to be in the *same* namespace as the file you're in - like
-`ShipStorageInterface` - then you don't need a `use` statement. Php correctly assumes
-that `ShipStorageInterface` lives in the `Service` namespace. But you don't get
-lucky like this *too* often.
+`ShipStorageInterface` - then you don't need a `use` statement:
+
+[[[ code('e22fb0c71c') ]]]
+
+PHP correctly assumes that `ShipStorageInterface` lives in the `Service` namespace.
+But you don't get lucky like this *too* often.
 
 I already know we need to fix *one* more spot in `BattleManager`. Add a `use` statement
-for `Model\BattleResults` and another for `Model\AbstractShip`.
+for `Model\BattleResults` and another for `Model\AbstractShip`:
+
+[[[ code('060c60fdfe') ]]]
 
 Phew! I promise, this is all a lot easier if you just use namespaces from the beginning!
 Let's refresh the page. Our app is back to life, and the `require` statements are
