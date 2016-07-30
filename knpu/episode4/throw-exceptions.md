@@ -39,7 +39,7 @@ That's better. Now refresh again. *This* is a much better error:
 When things go wrong, we throw exceptions. Why? Well, first: it stops execution of
 the page and immediately shows us a nice error.
 
-**TIP
+***TIP
 If you install the XDebug extension, exception messages are more helpful, prettier
 and will fix your code for you (ok, that last part is a lie).
 ***
