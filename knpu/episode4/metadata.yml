@@ -58,34 +58,60 @@ chapters:
             - namespacesmakeclassnameslonger_namespaceusagemc
     autoloading-awesomeness:
         video_key: 176368515
-        challenges: []
+        challenges:
+            - autoloadingawesomeness_addautoloadercoding
+            - autoloadingawesomeness_betterperformancemc
     more-with-use-statements:
         video_key: 176370043
-        challenges: []
+        challenges:
+            - morewithusestatements_usesmartautoloadercoding
+            - morewithusestatements_fixnamespacecoding
     namespaces-core-php-classes:
         video_key: 176370770
-        challenges: []
+        challenges:
+            - namespacescorephpclasses_addplanetdaylengthcoding
+            - namespacescorephpclasses_datetimemc
     composer-autoloading:
         video_key: 176389505
         challenges: []
+        # not ready - requires a terminal in the challenge!
+        # - composerautoloading_composerautoloadercoding
+        # - composerautoloading_autoloadlegacycodecoding
     throw-exceptions:
         video_key: 176476893
-        challenges: []
+        challenges:
+            - throwexceptions_validateelementcoding
+            - throwexceptions_catchexceptioncoding
+            - throwexceptions_throwexceptiontmc
     exception-classes:
         video_key: 176477715
-        challenges: []
+        challenges:
+            - exceptionclasses_catchcertainexceptionmc
+            - exceptionclasses_throwcustomexceptionscoding
     magic-methods:
         video_key: 176480231
-        challenges: []
+        challenges:
+            - magicmethods_printobjectscoding
+            - magicmethods_setprivatepropertycoding
+            - magicmethods_adddesctructmethodcoding
     array-access:
         video_key: 176480298
-        challenges: []
+        challenges:
+            - arrayaccess_implementingarrayaccesscoding
+            - arrayaccess_arrayorobjectmc
     iterator-aggregate:
         video_key: 176484545
-        challenges: []
+        challenges:
+            - iteratoraggregate_implementinterfacecoding
+            - iteratoraggregate_countplanetscoding
     traits-reuse:
         video_key: 176484068
-        challenges: []
+        challenges:
+            - traitsreuse_reusenamecoding
+            - traitsreuse_inheritancevstraitsmc
     composition-ftw:
         video_key: 176521546
-        challenges: []
+        challenges:
+            - compositionftw_overrideclasscoding
+            - compositionftw_usecompositioncoding
+            - compositionftw_compositionmc
