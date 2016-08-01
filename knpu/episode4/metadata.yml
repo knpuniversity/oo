@@ -80,7 +80,8 @@ chapters:
     throw-exceptions:
         video_key: 176476893
         challenges:
-            - throwexceptions_validateelementcoding
+            # Throwing exception prevents completing challenge:
+            # - throwexceptions_validateelementcoding
             - throwexceptions_catchexceptioncoding
             - throwexceptions_throwexceptiontmc
     exception-classes:
