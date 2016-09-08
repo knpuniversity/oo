@@ -51,7 +51,7 @@ Time for the next really powerful thing with inheritance. In addition to adding 
 to a sub class like `RebelShip` you can override methods. Copy the `getType` from `Ship`
 and paste it into `RebelShip` and change what it returns to 'Rebel':
 
-[[[ code('1982da2f87') ]]]
+[[[ code('edd1c765c1') ]]]
 
 `RebelShip` copies the entire blue print of `Ship` but it can replace any of those
 pieces. When we refresh now, we have two 'Rebel' ships in addition to our two 'Empire' ships.
