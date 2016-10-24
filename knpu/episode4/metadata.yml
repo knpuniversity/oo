@@ -111,7 +111,7 @@ chapters:
             - traitsreuse_reusenamecoding
             - traitsreuse_inheritancevstraitsmc
     composition-ftw:
-        video_key: 176521546
+        video_key: 188731028
         challenges:
             - compositionftw_overrideclasscoding
             - compositionftw_usecompositioncoding
