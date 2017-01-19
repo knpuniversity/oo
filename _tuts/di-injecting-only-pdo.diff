@@ -40,7 +40,7 @@ index e732772..3adcaee 100644
  
  $errorMessage = '';
 diff --git a/lib/ShipLoader.php b/lib/ShipLoader.php
-index 2ecd9d5..9ccfdad 100644
+index 8741fc7..9ccfdad 100644
 --- a/lib/ShipLoader.php
 +++ b/lib/ShipLoader.php
 @@ -4,15 +4,9 @@ class ShipLoader
@@ -67,7 +67,7 @@ index 2ecd9d5..9ccfdad 100644
      {
 -        if ($this->pdo === null) {
 -            $this->pdo = new PDO($this->dbDsn, $this->dbUser, $this->dbPass);
--            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 -        }
 -
          return $this->pdo;
