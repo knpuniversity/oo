@@ -1,5 +1,5 @@
 diff --git a/index.php b/index.php
-index 4bfb59b..958e110 100644
+index 04ffc6d..97656b1 100644
 --- a/index.php
 +++ b/index.php
 @@ -9,6 +9,8 @@ $ships = $shipLoader->getShips();

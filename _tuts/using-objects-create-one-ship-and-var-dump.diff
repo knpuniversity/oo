@@ -33,7 +33,7 @@ index bcf21f1..4ce35fa 100644
  
  /**
 diff --git a/index.php b/index.php
-index cd72373..8ae39e1 100644
+index c5a532f..d0d5c75 100644
 --- a/index.php
 +++ b/index.php
 @@ -2,6 +2,7 @@

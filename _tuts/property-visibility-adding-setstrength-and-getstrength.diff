@@ -12,7 +12,7 @@ index f76135c..6369448 100644
  
      return $ships;
 diff --git a/index.php b/index.php
-index 3ee610c..af5c34e 100644
+index 7dba50b..094efa9 100644
 --- a/index.php
 +++ b/index.php
 @@ -68,7 +68,7 @@ if (isset($_GET['error'])) {

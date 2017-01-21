@@ -11,7 +11,7 @@ index 91200e8..5cb9958 100644
  require_once __DIR__.'/lib/Service/ShipLoader.php';
  require_once __DIR__.'/lib/Model/BattleResult.php';
 diff --git a/index.php b/index.php
-index 5721a54..9e1656b 100644
+index 296e6d5..b88b0c0 100644
 --- a/index.php
 +++ b/index.php
 @@ -6,6 +6,9 @@ $container = new Container($configuration);

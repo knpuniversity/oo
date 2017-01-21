@@ -1,13 +1,13 @@
 diff --git a/index.php b/index.php
-index 86fc0ed..fc32144 100644
+index bb42c2e..568539f 100644
 --- a/index.php
 +++ b/index.php
 @@ -88,11 +88,11 @@ if (isset($_GET['error'])) {
                      <form method="POST" action="/battle.php">
                          <h2 class="text-center">The Mission</h2>
                          <input class="center-block form-control text-field" type="text" name="ship1_quantity" placeholder="Enter Number of Ships" />
--                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
-+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_id">
+-                        <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship1_name">
++                        <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship1_id">
                              <option value="">Choose a Ship</option>
 -                            <?php foreach ($ships as $key => $ship): ?>
 +                            <?php foreach ($ships as $ship): ?>
@@ -21,8 +21,8 @@ index 86fc0ed..fc32144 100644
                          <p class="text-center">AGAINST</p>
                          <br>
                          <input class="center-block form-control text-field" type="text" name="ship2_quantity" placeholder="Enter Number of Ships" />
--                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
-+                        <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_id">
+-                        <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship2_name">
++                        <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship2_id">
                              <option value="">Choose a Ship</option>
 -                            <?php foreach ($ships as $key => $ship): ?>
 +                            <?php foreach ($ships as $ship): ?>

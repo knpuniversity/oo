@@ -20,7 +20,7 @@ index 3ed4969..e181620 100644
  
  $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 diff --git a/index.php b/index.php
-index e732772..3adcaee 100644
+index b68c6a5..7b6d9f0 100644
 --- a/index.php
 +++ b/index.php
 @@ -1,11 +1,14 @@

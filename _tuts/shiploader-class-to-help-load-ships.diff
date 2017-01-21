@@ -83,7 +83,7 @@ index 2ec4e71..872af88 100644
 -}
 +require_once __DIR__.'/lib/ShipLoader.php';
 diff --git a/index.php b/index.php
-index 0266821..483c24d 100644
+index 6c3691b..47a60ac 100644
 --- a/index.php
 +++ b/index.php
 @@ -1,7 +1,8 @@

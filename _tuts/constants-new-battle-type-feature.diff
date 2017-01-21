@@ -13,7 +13,7 @@ index 143f9bc..b76fce9 100644
  
  <html>
 diff --git a/index.php b/index.php
-index 9e1656b..6c06003 100644
+index b88b0c0..bae5928 100644
 --- a/index.php
 +++ b/index.php
 @@ -116,6 +116,18 @@ if (isset($_GET['error'])) {

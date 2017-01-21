@@ -16,7 +16,7 @@ index 4876bb7..236ad4a 100644
      $ships['starfighter'] = $ship;
  
 diff --git a/index.php b/index.php
-index af5c34e..5069fc7 100644
+index 094efa9..044d5fe 100644
 --- a/index.php
 +++ b/index.php
 @@ -66,8 +66,8 @@ if (isset($_GET['error'])) {

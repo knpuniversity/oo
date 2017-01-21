@@ -17,7 +17,7 @@ index 37627ff..ac632c6 100644
  
      // we don't support this class!
 diff --git a/index.php b/index.php
-index 87804b3..91813b1 100644
+index c1e3cd9..6ef3209 100644
 --- a/index.php
 +++ b/index.php
 @@ -1,6 +1,6 @@

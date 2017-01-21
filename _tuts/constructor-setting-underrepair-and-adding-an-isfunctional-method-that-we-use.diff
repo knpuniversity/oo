@@ -1,5 +1,5 @@
 diff --git a/index.php b/index.php
-index 5069fc7..0266821 100644
+index 044d5fe..6c3691b 100644
 --- a/index.php
 +++ b/index.php
 @@ -60,6 +60,7 @@ if (isset($_GET['error'])) {
@@ -25,7 +25,7 @@ index 5069fc7..0266821 100644
                      <?php endforeach; ?>
                  </tbody>
 @@ -82,7 +90,9 @@ if (isset($_GET['error'])) {
-                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship1_name">
+                         <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship1_name">
                              <option value="">Choose a Ship</option>
                              <?php foreach ($ships as $key => $ship): ?>
 -                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>
@@ -36,7 +36,7 @@ index 5069fc7..0266821 100644
                          </select>
                          <br>
 @@ -92,7 +102,9 @@ if (isset($_GET['error'])) {
-                         <select class="center-block form-control btn drp-dwn-width btn-default btn-lg dropdown-toggle" name="ship2_name">
+                         <select class="center-block form-control btn drp-dwn-width btn-default dropdown-toggle" name="ship2_name">
                              <option value="">Choose a Ship</option>
                              <?php foreach ($ships as $key => $ship): ?>
 -                                <option value="<?php echo $key; ?>"><?php echo $ship->getNameAndSpecs(); ?></option>

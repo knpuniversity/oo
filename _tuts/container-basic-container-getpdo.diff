@@ -30,7 +30,7 @@ index c07d335..769dfd7 100644
  require_once __DIR__.'/lib/BattleManager.php';
  require_once __DIR__.'/lib/ShipLoader.php';
 diff --git a/index.php b/index.php
-index 3adcaee..5590309 100644
+index 7b6d9f0..1408dcf 100644
 --- a/index.php
 +++ b/index.php
 @@ -1,12 +1,8 @@

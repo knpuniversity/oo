@@ -1,5 +1,5 @@
 diff --git a/index.php b/index.php
-index 1e794ad..4bfb59b 100644
+index 2f7c5d8..04ffc6d 100644
 --- a/index.php
 +++ b/index.php
 @@ -6,6 +6,9 @@ $container = new Container($configuration);
