@@ -1,4 +1,4 @@
-# Static Methods
+# Static or Non-Static Methods?
 
 In `index.php`, the three battle types are hard coded right in the HTML:
 
@@ -12,7 +12,7 @@ But surprise! If we forget to *also* add the new type to `index.php`, then nobod
 going to be able to use it. Really, I'd prefer `BattleManager` to be *completely* in charge
 of the battle types so that it's the *only* file I need to touch when something changes.
 
-## Using a Handle, Non-Static Method
+## Using a Normal, Non-Static Method
 
 To do that, create a new function in `BattleManager` that will return all of the
 types and their descriptions: call it `public function getAllBattleTypesWithDescription()`:
