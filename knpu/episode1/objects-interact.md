@@ -1,6 +1,6 @@
 # Objects Interact
 
-Since the goal of our app is to let two ship's fight each other, things
+Since the goal of our app is to let two ships fight each other, things
 are getting interesting. For example, we could fight `$myShip` against `$otherShip`
 and see who comes out as the winner.
 
@@ -10,7 +10,7 @@ strength against `$otherShip`.
 
 But we could also add a new method inside of the `Ship` class itself. Let's
 create a new method that'll tells us if one Ship's strength is greater than
-anothers. We'll call it: `doesGivenShipHaveMoreStrength()`. And of course,
+another. We'll call it: `doesGivenShipHaveMoreStrength()`. And of course,
 it needs a Ship object as an argument:
 
 [[[ code('20a5ad9c35') ]]]
