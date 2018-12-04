@@ -9,8 +9,8 @@ we could just write an `if` statement down here and manually check `$myShip`'s
 strength against `$otherShip`.
 
 But we could also add a new method inside of the `Ship` class itself. Let's
-create a new method that'll tells us if one Ship's strength is greater than
-another. We'll call it: `doesGivenShipHaveMoreStrength()`. And of course,
+create a new method that'll tell us if one Ship's strength is greater than
+another's. We'll call it: `doesGivenShipHaveMoreStrength()`. And of course,
 it needs a Ship object as an argument:
 
 [[[ code('20a5ad9c35') ]]]
