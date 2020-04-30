@@ -106,7 +106,7 @@ Now let's move `setJediFactor()` from `AsbtractShip` into `Ship`:
 
 [[[ code('7c0010172b') ]]]
 
-and that should do it! Now, `Ship` still has all the functioanlity that it had before,
+and that should do it! Now, `Ship` still has all the functionality that it had before,
 it extends `AbstractShip`, and only contains its unique code. And `RebelShip` no
 longer inherits the `jediFactor` property and anything that works with it. Now each
 file is simpler, and only has the code that it actually needs. Back to the browser
