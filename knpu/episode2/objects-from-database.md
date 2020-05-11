@@ -13,6 +13,12 @@ out of there to the root of your project and open it up:
 
 [[[ code('c81b1f58d2') ]]]
 
+***TIP
+In order for this to work, make sure that you have MySQL installed and running on your machine.
+There are various ways to install MySQL in different environments - if you have any questions,
+let us know in the comments!
+***
+
 This script will create a database and add a `ship` table with columns for
 `id`, `name`, `weapon_power`, `jedi_factor`, `strength` and `is_under_repair`:
 
