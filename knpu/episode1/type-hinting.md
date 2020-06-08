@@ -82,7 +82,7 @@ So in addition to type-hinting with the array, when we use objects we can
 type hint with the class name. Which means we can actually type `Ship` here
 and we can do that here as well:
 
-[[[ code('9a7a782809') ]]]
+[[[ code('0e4f00aa4d') ]]]
 
 That is the exact same thing. It says, "Hey, PHP, if something is passed
 to this argument that's not a `Ship` object, I want you to throw a very clear
