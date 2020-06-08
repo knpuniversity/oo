@@ -33,7 +33,7 @@ let's see that error again, it says:
 
     Argument 1 passed to battle() must be of the type array, object given
 
-since we're passing it a ship object. This is called a type hint and the
+This is called a type hint and the
 only purpose of a type hint in PHP is to get better errors: it doesn't change
 the behavior. We can just take the type hint off like this and that will
 fix the error:
@@ -79,13 +79,13 @@ in a bad value to the `battle()` function.
 ## Type-Hinting with a Class
 
 So in addition to type-hinting with the array, when we use objects we can
-type hint with the class name. This means we can actually type `Ship` here
+type hint with the class name. Which means we can actually type `Ship` here
 and we can do that here as well:
 
 [[[ code('9a7a782809') ]]]
 
 That is the exact same thing. It says, "Hey, PHP, if something is passed
-to this argument that's not a `Ship` objec, I want you to throw a very clear
+to this argument that's not a `Ship` object, I want you to throw a very clear
 error." So let's go see this new error! Refresh and there it is:
 
     Argument 1 passed to battle() must be an instance of Ship, string given
