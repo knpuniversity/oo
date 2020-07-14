@@ -32,7 +32,7 @@ file, we forgot to change it to `\Exception`:
 
 That's better. Now refresh again. *This* is a much better error:
 
-> Uncaught `Exception`: Invalid strength passed: "banana"
+> Uncaught `Exception`: Strength must be a number, duh
 
 ## When things go Wrong: Throw an Exception
 
