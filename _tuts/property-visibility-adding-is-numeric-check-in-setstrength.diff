@@ -1,5 +1,5 @@
 diff --git a/lib/Ship.php b/lib/Ship.php
-index b3ea40a..71cc61f 100644
+index b3ea40a..07da177 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -22,6 +22,10 @@ class Ship
@@ -7,7 +7,7 @@ index b3ea40a..71cc61f 100644
      public function setStrength($number)
      {
 +        if (!is_numeric($number)) {
-+            throw new \Exception('Strength must be a number, duh!');
++            throw new \Exception('Invalid strength passed '.$number);
 +        }
 +
          $this->strength = $number;

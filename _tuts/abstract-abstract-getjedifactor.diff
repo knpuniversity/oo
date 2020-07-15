@@ -1,5 +1,5 @@
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
-index 83b4647..ac917eb 100644
+index 761d992..66ee478 100644
 --- a/lib/Model/AbstractShip.php
 +++ b/lib/Model/AbstractShip.php
 @@ -1,6 +1,6 @@

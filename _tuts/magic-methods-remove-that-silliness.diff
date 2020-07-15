@@ -12,7 +12,7 @@ index cd0f441..88c3056 100644
                      <dd><?php echo $ship2->getStrength(); ?></dd>
                  </dl>
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
-index cdbdf52..bb36f92 100644
+index 0604815..9c14b08 100644
 --- a/lib/Model/AbstractShip.php
 +++ b/lib/Model/AbstractShip.php
 @@ -126,9 +126,4 @@ abstract class AbstractShip

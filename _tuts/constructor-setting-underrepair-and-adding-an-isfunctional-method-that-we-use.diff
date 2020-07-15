@@ -47,7 +47,7 @@ index 044d5fe..6c3691b 100644
                          </select>
                          <br>
 diff --git a/lib/Ship.php b/lib/Ship.php
-index b333c72..58a73b1 100644
+index a86043e..47aa34a 100644
 --- a/lib/Ship.php
 +++ b/lib/Ship.php
 @@ -14,7 +14,13 @@ class Ship

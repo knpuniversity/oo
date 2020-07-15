@@ -12,7 +12,7 @@ index 760a7cc..91200e8 100644
  require_once __DIR__.'/lib/Service/BattleManager.php';
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
 new file mode 100644
-index 0000000..f4f8a46
+index 0000000..a1f8270
 --- /dev/null
 +++ b/lib/Model/AbstractShip.php
 @@ -0,0 +1,139 @@
@@ -57,7 +57,7 @@ index 0000000..f4f8a46
 +    public function setStrength($number)
 +    {
 +        if (!is_numeric($number)) {
-+            throw new \Exception('Strength must be a number, duh!');
++            throw new \Exception('Invalid strength passed '.$number);
 +        }
 +
 +        $this->strength = $number;
@@ -168,7 +168,7 @@ index c1b9301..8d00bb0 100644
      public function getFavoriteJedi()
      {
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index fb02eb2..8e0d822 100644
+index 96ef6e0..8e0d822 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -1,139 +1,5 @@
@@ -214,7 +214,7 @@ index fb02eb2..8e0d822 100644
 -    public function setStrength($number)
 -    {
 -        if (!is_numeric($number)) {
--            throw new \Exception('Strength must be a number, duh!');
+-            throw new \Exception('Invalid strength passed '.$number);
 -        }
 -
 -        $this->strength = $number;

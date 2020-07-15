@@ -45,7 +45,7 @@ index f865290..cf9989f 100644
 +    }
  }
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index 80c1744..fb02eb2 100644
+index a4d53e8..96ef6e0 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -131,4 +131,9 @@ class Ship

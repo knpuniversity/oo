@@ -30,7 +30,7 @@ index 80ef58c..32c638b 100644
          }
      }
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
-index c477875..fb02eb2 100644
+index 6cd951e..96ef6e0 100644
 --- a/lib/Model/Ship.php
 +++ b/lib/Model/Ship.php
 @@ -2,17 +2,17 @@

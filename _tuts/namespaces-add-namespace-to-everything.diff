@@ -18,7 +18,7 @@ index ac632c6..5f800cc 100644
 -require_once __DIR__.'/lib/Service/ShipLoader.php';
 -require_once __DIR__.'/lib/Model/BattleResult.php';
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
-index 039fe64..eae2769 100644
+index 1f4446b..ac1272d 100644
 --- a/lib/Model/AbstractShip.php
 +++ b/lib/Model/AbstractShip.php
 @@ -1,5 +1,7 @@
