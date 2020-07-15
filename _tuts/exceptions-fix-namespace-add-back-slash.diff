@@ -1,0 +1,13 @@
+diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
+index f6a53af..ac1272d 100644
+--- a/lib/Model/AbstractShip.php
++++ b/lib/Model/AbstractShip.php
+@@ -45,7 +45,7 @@ abstract class AbstractShip
+     public function setStrength($number)
+     {
+         if (!is_numeric($number)) {
+-            throw new Exception('Invalid strength passed '.$number);
++            throw new \Exception('Invalid strength passed '.$number);
+         }
+ 
+         $this->strength = $number;

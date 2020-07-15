@@ -601,6 +601,11 @@
             "description": null
         },
         {
+            "id": "exceptions-fix-namespace-add-back-slash",
+            "name": "Exceptions: Fix namespace - add back slash",
+            "description": null
+        },
+        {
             "id": "exceptions-catch-an-exception",
             "name": "Exceptions: Catch an exception",
             "description": null
@@ -716,5 +721,5 @@
             "description": null
         }
     ],
-    "sha": "a390bbfaadc0556315392988d3acbfa24538bf46"
+    "sha": "d84ce9afac3875fa4c3dd4f3363407162efaf1be"
 }

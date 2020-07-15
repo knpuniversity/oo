@@ -12,7 +12,7 @@ index 760a7cc..91200e8 100644
  require_once __DIR__.'/lib/Service/BattleManager.php';
 diff --git a/lib/Model/AbstractShip.php b/lib/Model/AbstractShip.php
 new file mode 100644
-index 0000000..a1f8270
+index 0000000..01ea9cc
 --- /dev/null
 +++ b/lib/Model/AbstractShip.php
 @@ -0,0 +1,139 @@
@@ -57,7 +57,7 @@ index 0000000..a1f8270
 +    public function setStrength($number)
 +    {
 +        if (!is_numeric($number)) {
-+            throw new \Exception('Invalid strength passed '.$number);
++            throw new Exception('Invalid strength passed '.$number);
 +        }
 +
 +        $this->strength = $number;
