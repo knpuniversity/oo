@@ -15,24 +15,28 @@ exactly what I expected.
 This error is coming from `AbstractShip` line 65. Open that up. I want you to look
 at 2 exceptional things here:
 
-[[[ code('fcda6833b7') ]]]
+[[[ code('c7413a9b33') ]]]
 
 First, we planned ahead. When we created the `setStrength()` method, we said:
 
 > You know what? This needs to be a number, so if somebody passes something
   dumb like "banana," then let's check for that and trigger an error.
 
-Second, in order to trigger an error, we threw an *exception*. And that's actually
-what I want to talk about: Exceptions are classes, but they're completely special.
+And second, in order to trigger an error, we threw an *exception*:
+
+[[[ code('16071387c3') ]]]
+
+And that's actually what I want to talk about: Exceptions are classes, but they're
+completely special.
 
 But first, `Exception` is a core PHP class, and when we added a `namespace` to this
 file, we forgot to change it to `\Exception`:
 
-[[[ code('fcda6833b7') ]]]
+[[[ code('9b25c9031d') ]]]
 
 That's better. Now refresh again. *This* is a much better error:
 
-> Uncaught `Exception`: Invalid strength passed: "banana"
+> Uncaught `Exception`: Invalid strength passed "banana"
 
 ## When things go Wrong: Throw an Exception
 
