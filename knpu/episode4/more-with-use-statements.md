@@ -58,7 +58,7 @@ for `Service\Container`. Let's do that:
 And I can already see that we'll have the same problem down below with `BrokenShip`:
 PhpStorm is trying to warn me! Add a `use Model\BrokenShip` to take care of that:
 
-[[[ code('b879b26481') ]]]
+[[[ code('95ce1b947c') ]]]
 
 We'll probably have the same problem in `battle.php` - so open that up. Yep, add
 `use Service\Container`:
