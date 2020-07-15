@@ -15,7 +15,7 @@ exactly what I expected.
 This error is coming from `AbstractShip` line 65. Open that up. I want you to look
 at 2 exceptional things here:
 
-[[[ code('c7413a9b33') ]]]
+[[[ code('8b0f6e174d') ]]]
 
 First, we planned ahead. When we created the `setStrength()` method, we said:
 
@@ -24,7 +24,7 @@ First, we planned ahead. When we created the `setStrength()` method, we said:
 
 And second, in order to trigger an error, we threw an *exception*:
 
-[[[ code('16071387c3') ]]]
+[[[ code('a14644e83f') ]]]
 
 And that's actually what I want to talk about: Exceptions are classes, but they're
 completely special.
@@ -32,7 +32,7 @@ completely special.
 But first, `Exception` is a core PHP class, and when we added a `namespace` to this
 file, we forgot to change it to `\Exception`:
 
-[[[ code('9b25c9031d') ]]]
+[[[ code('eac408fa43') ]]]
 
 That's better. Now refresh again. *This* is a much better error:
 
