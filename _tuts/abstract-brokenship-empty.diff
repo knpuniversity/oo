@@ -11,14 +11,14 @@ index 91200e8..5cb9958 100644
  require_once __DIR__.'/lib/Service/ShipLoader.php';
  require_once __DIR__.'/lib/Model/BattleResult.php';
 diff --git a/index.php b/index.php
-index 296e6d5..b88b0c0 100644
+index 296e6d5..a3e1d3d 100644
 --- a/index.php
 +++ b/index.php
 @@ -6,6 +6,9 @@ $container = new Container($configuration);
  $shipLoader = $container->getShipLoader();
  $ships = $shipLoader->getShips();
  
-+$brokenShip = new BrokenShip('Just a hunk of metal');
++$brokenShip = new BrokenShip('I am so broken');
 +$ships[] = $brokenShip;
 +
  $errorMessage = '';

@@ -1,5 +1,5 @@
 diff --git a/index.php b/index.php
-index fc1f455..c1e3cd9 100644
+index 7f3ba2d..f269da9 100644
 --- a/index.php
 +++ b/index.php
 @@ -1,4 +1,7 @@
@@ -11,7 +11,7 @@ index fc1f455..c1e3cd9 100644
  
  $container = new Container($configuration);
 @@ -9,7 +12,7 @@ $ships = $shipLoader->getShips();
- $brokenShip = new BrokenShip('Just a hunk of metal');
+ $brokenShip = new BrokenShip('I am so broken');
  $ships[] = $brokenShip;
  
 -$battleTypes = Battle\BattleManager::getAllBattleTypesWithDescriptions();

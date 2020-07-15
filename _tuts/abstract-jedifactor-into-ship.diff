@@ -29,10 +29,11 @@ index f4f8a46..e796b1d 100644
                  $this->strength
              );
          }
-@@ -85,14 +83,6 @@ class AbstractShip
+@@ -84,14 +82,6 @@ class AbstractShip
+         return $this->weaponPower;
      }
  
-     /**
+-    /**
 -     * @return int
 -     */
 -    public function getJediFactor()
@@ -40,14 +41,14 @@ index f4f8a46..e796b1d 100644
 -        return $this->jediFactor;
 -    }
 -
--    /**
+     /**
       * @param string $name
       */
-     public function setName($name)
-@@ -109,14 +99,6 @@ class AbstractShip
+@@ -108,14 +98,6 @@ class AbstractShip
+         $this->weaponPower = $weaponPower;
      }
  
-     /**
+-    /**
 -     * @param int $jediFactor
 -     */
 -    public function setJediFactor($jediFactor)
@@ -55,10 +56,9 @@ index f4f8a46..e796b1d 100644
 -        $this->jediFactor = $jediFactor;
 -    }
 -
--    /**
+     /**
       * @return int
       */
-     public function getId()
 diff --git a/lib/Model/Ship.php b/lib/Model/Ship.php
 index 8e0d822..1432749 100644
 --- a/lib/Model/Ship.php

@@ -1,15 +1,3 @@
-diff --git a/index.php b/index.php
-index 2f5ea7a..a6ef016 100644
---- a/index.php
-+++ b/index.php
-@@ -12,7 +12,6 @@ $shipLoader = $container->getShipLoader();
- $ships = $shipLoader->getShips();
- 
- $brokenShip = new BrokenShip('Just a hunk of metal');
--$brokenShip->setStrength('banana');
- $ships[] = $brokenShip;
- 
- $battleTypes = BattleManager::getAllBattleTypesWithDescriptions();
 diff --git a/lib/Service/PdoShipStorage.php b/lib/Service/PdoShipStorage.php
 index 9826bb8..56650f5 100644
 --- a/lib/Service/PdoShipStorage.php
