@@ -139,7 +139,7 @@ constructor and force it to be passed in versus the setter? It's really up
 to you. In our case, it doesn't make sense to have a `Ship` without a name.
 And before, that would have been possible had we just instantiated a new
 `Ship` and forgotten to call `setName()`. Then we would have been running
-around with a `Ship` object that had absolutely no name. How embarrasing.
+around with a `Ship` object that had absolutely no name. How embarrassing.
 
 Sometimes, when you have required information, you might choose to set them
 up as arguments to your constructor. It says "Hey, when you create a `Ship`,
