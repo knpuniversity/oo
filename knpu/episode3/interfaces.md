@@ -28,7 +28,7 @@ our require line for this file in `bootstrap.php`:
 
 [[[ code('1552f24119') ]]]
 
-## Implment an Interface
+## Implement an Interface
 
 Stepping back and looking at `ShipStorageInterface`. I want you to think of this as acting just like
 an abstract class with two functions that need to be filled in. An important difference is that you
